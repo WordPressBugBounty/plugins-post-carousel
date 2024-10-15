@@ -36,7 +36,7 @@ class SPS_FilterPost {
 							/* translators: 1: start link and strong tag, 2: close tags. */
 							__( 'To filter custom post type (product, portfolio, event...), %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
 							'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><strong>',
-							'</strong></a>',
+							'</strong></a>'
 						),
 						'options'       => array(
 							'post'               => __( 'Posts', 'post-carousel' ),
@@ -242,7 +242,7 @@ class SPS_FilterPost {
 															/* translators: 1: start link and strong tag, 2: close tags. */
 															__( 'To allow visitors to Filter, Search, and Sort on the front end, %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
 															'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>',
-															'</b></a>',
+															'</b></a>'
 														),
 													),
 													array(

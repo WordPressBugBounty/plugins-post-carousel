@@ -110,7 +110,7 @@ class SPS_Display {
 											/* translators: 1: start link and strong tag, 2: close tags. */
 											__( 'To unlock more amazing Content Orientation and Layout based Settings, %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
 											'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><strong>',
-											'</strong></a>',
+											'</strong></a>'
 										),
 										'class'      => 'pcp-content-orientation',
 										'options'    => array(
@@ -683,7 +683,7 @@ class SPS_Display {
 																			/* translators: 1: start link and em tag, 2: close tags. */
 																			__( 'To show gravatar, you must %1$senable it%2$s.', 'post-carousel' ),
 																			'<a href="https://wordpress.org/support/article/how-to-use-gravatars/" target="_blank" rel="noopener noreferrer nofollow"><em>',
-																			'</em></a>',
+																			'</em></a>'
 																		),
 																		'default' => 'name_with_icon',
 																		'dependency' => array( 'select_post_meta', '==', 'author' ),
@@ -712,7 +712,7 @@ class SPS_Display {
 																			/* translators: 1: start link and em tag, 2: close tags. */
 																			__( 'To define format, check %1$sthis doc%2$s.', 'post-carousel' ),
 																			'<a href="https://wordpress.org/support/article/formatting-date-and-time/" target="_blank" rel="noopener noreferrer nofollow"><em>',
-																			'</em></a>',
+																			'</em></a>'
 																		),
 																		'dependency' => array( 'select_post_meta|post_meta_date_format', '==|==', 'date|custom' ),
 																	),
@@ -1075,7 +1075,7 @@ class SPS_Display {
 											/* translators: 1: start link and strong tag, 2: close tags. */
 											__( 'More amazing Ajax Pagination Settings are available in %1$sPro%2$s', 'post-carousel' ),
 											'<a href="https://smartpostshow.com/" target="_blank"><strong>',
-											'</strong></a>!',
+											'</strong></a>!'
 										),
 										'class'      => 'pcp-pagination-type',
 										'options'    => array(
@@ -1096,7 +1096,7 @@ class SPS_Display {
 											/* translators: 1: start strong tag, 2: close tags. */
 											__( 'This value should be lesser than that %1$s Limit %2$s from %1$sFilter Content  %2$s tab.', 'post-carousel' ),
 											'<strong>',
-											'</strong>',
+											'</strong>'
 										),
 										'default'    => 12,
 										'dependency' => array( 'pcp_layout_preset|show_post_pagination', 'not-any|==', 'carousel_layout|true', true ),
@@ -1182,7 +1182,7 @@ class SPS_Display {
 											/* translators: 1: start link and bold tag, 2: close tags. */
 											__( 'To earn money from your website by displaying Google AdSense, banners, and more in your posts, %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
 											'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>',
-											'</b></a>',
+											'</b></a>'
 										),
 									),
 									array(

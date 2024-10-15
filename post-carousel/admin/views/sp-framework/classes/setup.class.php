@@ -458,7 +458,8 @@ if ( ! class_exists( 'SP_PC' ) ) {
 
 				$field_type = $field['type'];
 
-				$field            = array();
+				$field = array();
+				/* translators: 1: field type */
 				$field['content'] = sprintf( esc_html__( 'Ooops! This field type (%s) can not be used here, yet.', 'post-carousel' ), '<strong>' . $field_type . '</strong>' );
 				$field['type']    = 'notice';
 				$field['style']   = 'danger';
