@@ -215,7 +215,8 @@ span.pcp-shortcode-selectable::after {
 	background-color: #fff;
 	border-radius: 3px;
 	margin: 20px 20px 0 0;
-	box-shadow: 0 0 20px 0 rgba(36,39,50,.08);
+	clear: both;
+	box-shadow: 0 0 20px 0 rgba(36, 39, 50, .08);
 }
 
 #smart-post-show-review-notice .sp-sps-plugin-icon {
@@ -288,7 +289,7 @@ span.pcp-shortcode-selectable::after {
 /* Hide date format & Avatar fields from smart post show (free). */
 #spf-section-sp_pcp_view_options_2 .spf-field.spf-field-select.post_meta_date_format,
 #spf-section-sp_pcp_view_options_2 .spf-field.spf-field-select.post_meta_author_avatar,
-#spf-section-sp_pcp_view_options_2 .spf-field.spf-field-icon.select_meta_icon{
+#spf-section-sp_pcp_view_options_2 .spf-field.spf-field-icon.select_meta_icon {
 	opacity: .7;
 	pointer-events: none;
 }
@@ -296,16 +297,184 @@ span.pcp-shortcode-selectable::after {
 #adminmenu #menu-posts-sp_post_carousel li:nth-child(8) a {
 	color: #f9be48;
 }
+
 #adminmenu #menu-posts-sp_post_carousel li a .sp-go-pro-icon {
-    background-image: url(../img/premium.svg);
-    width: 20px;
-    height: 20px;
-    display: block;
-    float: left;
-    margin-right: 1px;
-    margin-left: -2px;
+	background-image: url(../img/premium.svg);
+	width: 20px;
+	height: 20px;
+	display: block;
+	float: left;
+	margin-right: 1px;
+	margin-left: -2px;
 	margin-top: -1px;
 }
-.spspc-footer-text-star{
+
+.spspc-footer-text-star {
 	color: #dba617;
+}
+
+.rtl #smart-post-show-review-notice {
+	margin: 20px 0 0 20px;
+	padding: 18px 0 18px 15px;
+}
+
+.rtl #smart-post-show-review-notice .sp-sps-plugin-icon {
+	float: right;
+	margin: 0 0 0 8px;
+}
+
+/* Offer Banner Styles  */
+.sp_sps-admin-offer-banner-section {
+	position: relative;
+	border-radius: 5px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 16px;
+	height: auto;
+	border-left: 0;
+	margin-top: 40px;
+	margin-right: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 5px 40px;
+	background: linear-gradient(90deg, #000717 0%, #002068 50.5%, #451223 100%);
+	clear: both;
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-offer-additional-text {
+	display: flex;
+	align-items: center;
+}
+
+.sp_sps-admin-offer-banner-section span.sp_sps-clock-icon {
+	font-size: 24px;
+	margin-right: 6px;
+}
+
+.sp_sps-admin-offer-banner-section img.sp_sps-plugin-logo,
+.sp_sps-admin-offer-banner-section img.sp_sps-offer-name,
+.sp_sps-admin-offer-banner-section img.sp_sps-offer-percentage {
+	max-width: 250px;
+}
+
+.sp_sps-admin-offer-banner-section img.sp_sps-plugin-logo {
+	width: 150px;
+}
+
+.sp_sps-admin-offer-banner-section img.sp_sps-offer-percentage {
+	width: 210px;
+	vertical-align: middle;
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-offer-additional-text p {
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: .5px;
+}
+
+.sp_sps-admin-offer-banner-section a.sp_sps-get-offer-button {
+	width: 100px;
+	display: inline-block;
+	font-size: 13px;
+	background: pink;
+	border-radius: 50px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	padding: 12px 15px;
+	font-weight: 600;
+	transition: .8s ease;
+	background: linear-gradient(98.42deg, #A900BF 8.48%, #E100FF 80.32%);
+}
+
+.sp_sps-admin-offer-banner-section a.sp_sps-get-offer-button:hover {
+	background: linear-gradient(0deg, #A900BF 8.48%, #E100FF 80.32%);
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner {
+	position: absolute;
+	top: 50%;
+	right: 6px;
+	top: 6px;
+	cursor: pointer;
+}
+
+.sp_sps-admin-offer-banner-section i.sp_sps-icon-banner-close {
+	transition: 0.15s ease;
+}
+
+.sp_sps-admin-offer-banner-section i.sp_sps-icon-banner-close:hover {
+	color: #df3939b5;
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-banner-action-button {
+	line-height: 22px;
+}
+
+/* Offer Banner Responsiveness */
+@media only screen and (max-width: 1360px) {
+	.sp_sps-admin-offer-banner-section {
+		padding-bottom: 20px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.sp_sps-admin-offer-banner-section {
+		padding-top: 20px;
+	}
+
+	#screen-meta-links+.sp_sps-admin-offer-banner-section {
+		margin-top: 50px !important;
+	}
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner {
+	position: absolute;
+	top: 50%;
+	right: 4px;
+	top: 4px;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner:before,
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner:after {
+	content: '';
+	width: 16px;
+	height: 1.3px;
+	background: #ffffff;
+	top: 9px;
+	left: 3px;
+	display: block !important;
+	transform: rotate(45deg);
+	position: absolute;
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner:after {
+	transform: rotate(135deg);
+}
+
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner:hover:before,
+.sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner:hover:after {
+	background-color: #df3939b5;
+}
+
+/* RTL style for the offer banner. */
+.rtl .sp_sps-admin-offer-banner-section {
+	margin: 40px 0 0 20px;
+}
+
+.rtl .sp_sps-admin-offer-banner-section .sp_sps-close-offer-banner {
+	right: auto;
+	left: 4px;
+}
+
+.rtl .sp_sps-admin-offer-banner-section span.sp_sps-clock-icon {
+	margin-left: 6px;
+	margin-right: 0;
 }

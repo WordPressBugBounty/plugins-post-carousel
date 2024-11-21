@@ -145,9 +145,10 @@ class Smart_Post_Show {
 		require_once SP_PC_PATH . 'admin/preview/class-spsp-preview.php';
 
 		/**
-		 * The class responsible for review notice.
+		 * The class responsible for all admin notices.
 		 */
 		require_once SP_PC_PATH . 'admin/views/notices/review.php';
+		require_once SP_PC_PATH . 'admin/views/notices/offer-banner.php';
 
 		// Elementor shortcode addons.
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';

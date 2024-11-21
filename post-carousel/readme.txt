@@ -4,8 +4,8 @@ Tags: post slider, news carousel, post grid, latest post slider, post timeline
 Requires at least: 4.7
 Tested up to: 6.7
 WC requires at least: 5.0
-WC tested up to: 9.3.3
-Stable tag: 3.0.3
+WC tested up to: 9.4.2
+Stable tag: 3.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,10 @@ Thank you!
 
 
 == Changelog ==
+
+= 3.0.4 - Nov 21, 2024 =
+* Fix: The plugin style issue for RTL sites.
+* Tested: WooCommerce 9.4.2 compatibility.
 
 = 3.0.3 - Nov 10, 2024 =
 * Updated: The language (.pot) file.
