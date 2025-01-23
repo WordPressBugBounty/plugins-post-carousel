@@ -53,7 +53,9 @@ if ( ! class_exists( 'SP_PC_Field_sortable' ) ) {
 			if ( ! empty( $this->value ) ) {
 
 				foreach ( $this->value as $key => $value ) {
-					$pre_sortby[ $key ] = $pre_fields[ $key ];
+					if ( isset( $pre_fields[ $key ] ) ) {
+						$pre_sortby[ $key ] = $pre_fields[ $key ];
+					}
 				}
 			} else {
 
@@ -85,7 +87,6 @@ if ( ! class_exists( 'SP_PC_Field_sortable' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -98,8 +99,6 @@ if ( ! class_exists( 'SP_PC_Field_sortable' ) ) {
 			if ( ! wp_script_is( 'jquery-ui-sortable' ) ) {
 				wp_enqueue_script( 'jquery-ui-sortable' );
 			}
-
 		}
-
 	}
 }

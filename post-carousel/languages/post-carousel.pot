@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Smart Post Show 3.0.2\n"
-"POT-Creation-Date: 2024-11-07 17:55+0600\n"
+"Project-Id-Version: Smart Post Show 3.0.5\n"
+"POT-Creation-Date: 2025-01-21 12:25+0600\n"
 "PO-Revision-Date: 2024-07-08 16:27+0600\n"
 "Last-Translator: \n"
 "Language-Team: ShapedPlugin <support@shapedplugin.com>\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "-- Select a Show --"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:83
+#: admin/class-smart-post-show-admin.php:97
 #: includes/class-smart-post-show-post-types.php:74
 #: includes/class-smart-post-show-post-types.php:77
 #: includes/class-smart-post-show-post-types.php:96
@@ -68,23 +68,23 @@ msgstr ""
 msgid "Manage Shows"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:85
+#: admin/class-smart-post-show-admin.php:99
 msgid "Go Pro!"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:100
+#: admin/class-smart-post-show-admin.php:114
 msgid "Live Demo"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:101
+#: admin/class-smart-post-show-admin.php:115
 msgid "Documentation"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:102
+#: admin/class-smart-post-show-admin.php:116
 msgid "Support"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:182
+#: admin/class-smart-post-show-admin.php:195
 #: admin/views/configs/generator/class-sps-detailsettings.php:126
 #: admin/views/configs/generator/class-sps-display.php:570
 #: admin/views/configs/generator/class-sps-filterpost.php:409
@@ -92,29 +92,29 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:183
+#: admin/class-smart-post-show-admin.php:196
 msgid "Shortcode"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:184
+#: admin/class-smart-post-show-admin.php:197
 msgid "Layout"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:185
+#: admin/class-smart-post-show-admin.php:198
 #: admin/views/configs/generator/class-sps-display.php:662
 #: admin/views/configs/generator/class-sps-filterpost.php:410
 msgid "Date"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:203
+#: admin/class-smart-post-show-admin.php:216
 msgid "Shortcode Copied to Clipboard!"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:219
+#: admin/class-smart-post-show-admin.php:232
 msgid "Shortcode Updated"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:220
+#: admin/class-smart-post-show-admin.php:233
 msgid "Shortcode Published"
 msgstr ""
 
@@ -891,21 +891,20 @@ msgstr ""
 msgid "Change the popup navigation color."
 msgstr ""
 
+#: admin/views/configs/generator/class-sps-detailsettings.php:258
+msgid "Popup Width"
+msgstr ""
+
 #: admin/views/configs/generator/class-sps-detailsettings.php:259
-msgid "Popup Max Size"
+msgid "Set maximum popup width."
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-detailsettings.php:260
-msgid "Set a maximum popup width and height."
+#: admin/views/configs/generator/class-sps-detailsettings.php:275
+msgid "Popup Height"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-detailsettings.php:262
-msgid "Height"
-msgstr ""
-
-#: admin/views/configs/generator/class-sps-detailsettings.php:263
-#: admin/views/sp-framework/fields/border/border.php:105
-msgid "Width"
+#: admin/views/configs/generator/class-sps-detailsettings.php:276
+msgid "Set maximum popup height."
 msgstr ""
 
 #: admin/views/configs/generator/class-sps-display.php:28
@@ -2355,6 +2354,10 @@ msgstr ""
 msgid "Font Awesome CSS"
 msgstr ""
 
+#: admin/views/notices/offer-banner.php:136
+msgid "Limited Time Offer, Upgrade Now!"
+msgstr ""
+
 #: admin/views/sp-framework/classes/metabox.class.php:352
 #: admin/views/sp-framework/classes/options.class.php:834
 msgid "No option provided by developer."
@@ -2545,6 +2548,10 @@ msgstr ""
 #: admin/views/sp-framework/fields/border/border.php:87
 #: admin/views/sp-framework/fields/dimensions_advanced/dimensions_advanced.php:89
 msgid "ridge"
+msgstr ""
+
+#: admin/views/sp-framework/fields/border/border.php:105
+msgid "Width"
 msgstr ""
 
 #: admin/views/sp-framework/fields/border/border.php:140

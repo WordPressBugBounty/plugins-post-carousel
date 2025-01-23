@@ -57,16 +57,30 @@ class Smart_Post_Show_Admin {
 
 		// Autoload system.
 		spl_autoload_register( array( $this, 'autoload' ) );
+
+		// Register options.
+		add_action( 'after_setup_theme', array( $this, 'register_options' ) );
+
+		// Plugin action link Button.
+		add_filter( 'plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
+	}
+
+	/**
+	 * Registers various options and settings for the post carousel plugin.
+	 *
+	 * This function sets up metaboxes for preview, layout, options, and shortcodes.
+	 * It also initializes settings, layout replacement, and tools for the plugin.
+	 *
+	 * @since 2.2.0
+	 */
+	public function register_options() {
 		SPS_Metaboxes::preview_metabox( 'sp_pcp_display' );
 		SPS_Metaboxes::layout_metabox( 'sp_pcp_layouts' );
-
 		SPS_Metaboxes::option_metabox( 'sp_pcp_view_options' );
 		SPS_Metaboxes::shortcode_metabox( 'sp_pcp_display_shortcode' );
 		SPS_Settings::settings( 'sp_post_carousel_settings' );
 		SPS_ReplaceLayout::Replace_Layout( 'sp_post_carousel_rpl' );
 		SPS_Tools::tools( 'sp_post_carousel_tools' );
-		// Plugin action link Button.
-		add_filter( 'plugin_action_links', array( $this, 'add_plugin_action_links' ), 10, 2 );
 	}
 
 	/**
@@ -168,7 +182,6 @@ class Smart_Post_Show_Admin {
 			// Fix the plugin ui interaction conflict along with EasyTimeTable plugin.
 			wp_dequeue_script( 'jQuery-ui' );
 		}
-
 	}
 
 	/**

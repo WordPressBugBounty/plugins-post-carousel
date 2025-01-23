@@ -208,6 +208,7 @@ class SPS_Recommended {
 						break;
 					case 'location-weather':
 					case 'testimonial-free':
+					case 'logo-carousel-free':
 					case 'easy-accordion-free':
 					case 'gallery-slider-for-woocommerce':
 						$image_type = 'gif';
@@ -824,7 +825,7 @@ class SPS_Recommended {
 							</a>
 							<a target="_blank" class="spspc-our-plugin-list-box" href="https://logocarousel.com/">
 								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="https://ps.w.org/logo-carousel-free/assets/icon-256x256.png" alt="">
+								<img src="https://ps.w.org/logo-carousel-free/assets/icon-256x256.gif" alt="">
 								<h4>Logo Carousel</h4>
 								<p>Showcase a group of logo images with Title, Description, Tooltips, Links, and Popup as a grid or in a carousel.</p>
 							</a>

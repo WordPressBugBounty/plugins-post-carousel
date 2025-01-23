@@ -66,6 +66,7 @@ class Smart_Post_Show {
 		$this->define_public_hooks();
 		$this->set_locale();
 	}
+
 	/**
 	 * Define constants
 	 *

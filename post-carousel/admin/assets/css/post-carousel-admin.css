@@ -275,6 +275,10 @@ span.pcp-shortcode-selectable::after {
 	line-height: 24px;
 }
 
+.spsp-gutenberg-shortcode.editor-styles-wrapper:after {
+    display: none;
+}
+
 .block-editor-page .editor-styles-wrapper select,
 .block-editor-page select.spsp-shortcode-selector,
 .block-editor-page select.spsp-shortcode-selector:focus,

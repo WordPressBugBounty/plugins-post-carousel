@@ -1613,7 +1613,7 @@ Smart Post Show Custom CSS.
     margin-bottom: 5px;
 	text-transform: capitalize;
 }
-.spf-field-spacing:not(.pcp_content_length_type, .pcp_title_length) .pcp-units {
+.spf-field-spacing:not(.pcp_content_length_type, .pcp_title_length, .pcp-popup-size) .pcp-units {
 	margin-top: 22px;
 }
 
