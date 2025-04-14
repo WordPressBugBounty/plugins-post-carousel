@@ -1038,7 +1038,7 @@ class SPS_Display {
 															array(
 																'id'   => 'customize_custom_field_name',
 																'type' => 'text',
-																'title' => __( 'Customize Field Name', 'smart-post-show-pro' ),
+																'title' => __( 'Customize Field Name', 'post-carousel' ),
 																'dependency' => array( 'show_custom_field_name', '==', 'true' ),
 															),
 

@@ -76,7 +76,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 					'word_spacing'       => false,
 					'text_decoration'    => false,
 					'custom_style'       => false,
-					'exclude'            => '',
+					'exclude'            => '', // phpcs:ignore
 					'unit'               => 'px',
 					'preview_text'       => 'The quick brown fox jumps over the lazy dog',
 				)

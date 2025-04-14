@@ -161,6 +161,10 @@
   right: 20px;
   top: 30px;
 }
+.rtl .sp-smart-post__help .spspc-header-logo-shape {
+  left: 40px;
+  right: auto;
+}
 .sp-smart-post__help .spspc-header-nav {
   background-color: #fff;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06);

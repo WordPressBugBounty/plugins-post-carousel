@@ -2,10 +2,10 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags: post slider, news carousel, post grid, latest post slider, post timeline
 Requires at least: 4.7
-Tested up to: 6.7.1
+Tested up to: 6.8
 WC requires at least: 5.0
-WC tested up to: 9.6.0
-Stable tag: 3.0.5
+WC tested up to: 9.8.1
+Stable tag: 3.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,13 @@ Thank you!
 
 
 == Changelog ==
+
+= 3.0.6 - Apr 14, 2025 =
+* Improved: The plugin options styles for RTL language websites.
+* Fix: A few WPCS-related warnings.
+* Fix: The help page recommended plugins logo URL not found issue.
+* Tested: WordPress 6.8 compatibility.
+* Tested: WooCommerce 9.8.1 compatibility.
 
 = 3.0.5 - Jan 23, 2025 =
 * Improved: The shortcode select option style of the gutenberg block.

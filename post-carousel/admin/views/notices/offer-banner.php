@@ -133,7 +133,7 @@ class SPS_Offer_Banner {
 					</div>
 				<?php } ?>
 				<div class="sp_sps-offer-additional-text">
-					<span class="sp_sps-clock-icon">⏱</span><p><?php esc_html_e( 'Limited Time Offer, Upgrade Now!', 'wp-carousel-free' ); ?></p>
+					<span class="sp_sps-clock-icon">⏱</span><p><?php esc_html_e( 'Limited Time Offer, Upgrade Now!', 'post-carousel' ); ?></p>
 				</div>
 				<?php if ( ! empty( $action_url ) ) { ?>
 					<div class="sp_sps-banner-action-button">

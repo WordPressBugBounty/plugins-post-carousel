@@ -1,0 +1,19 @@
+<?php
+/**
+ * This file is used to update the database version of the plugin.
+ *
+ * @link        https://smartpostshow.com/
+ * @since      2.2.0
+ *
+ * @package    Smart_Post_Show
+ * @subpackage Smart_Post_Show/includes
+ */
+
+update_option( 'smart_post_show_version', '3.0.6' );
+update_option( 'smart_post_show_db_version', '3.0.6' );
+
+
+// If the transient exists, delete it.
+if ( get_transient( 'spspc_plugins' ) ) {
+	delete_transient( 'spspc_plugins' );
+}

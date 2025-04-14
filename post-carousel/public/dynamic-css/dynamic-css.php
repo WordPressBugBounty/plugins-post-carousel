@@ -23,7 +23,7 @@ if ( $section_title ) {
 	);
 	$section_title_margin_top    = (int) $section_title_margin ['top'] > 0 ? $section_title_margin ['top'] . 'px' : 0;
 	$section_title_margin_right  = (int) $section_title_margin['right'] > 0 ? $section_title_margin['right'] . 'px' : 0;
-	$section_title_margin_bottom = (int) $section_title_margin['bottom'] > -50 ? (int) $section_title_margin['bottom'] . 'px' : 0;
+	$section_title_margin_bottom = (int) $section_title_margin['bottom'] > -100 ? (int) $section_title_margin['bottom'] . 'px' : 0;
 	$section_title_margin_left   = (int) $section_title_margin['left'] > 0 ? $section_title_margin['left'] . 'px' : 0;
 	$_section_title_color        = isset( $view_options['section_title_typography']['color'] ) ? $view_options['section_title_typography']['color'] : '#111';
 	$custom_css                 .= "#poststuff #sp_pcp_display .sp-pcp-section .pcp-section-title, #pcp_wrapper-{$pcp_id} .pcp-section-title{color: {$_section_title_color };margin: {$section_title_margin_top} {$section_title_margin_right} {$section_title_margin_bottom} {$section_title_margin_left}}";

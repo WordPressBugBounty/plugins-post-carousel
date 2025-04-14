@@ -218,7 +218,7 @@ class Smart_Post_Show_Admin {
 				break;
 			case 'pcp_layout':
 				$layout = ucwords( str_replace( '_layout', ' ', $carousels_types ) );
-				esc_html_e( $layout, 'post-carousel' );
+				echo esc_html( $layout );
 		} // end switch.
 	}
 
