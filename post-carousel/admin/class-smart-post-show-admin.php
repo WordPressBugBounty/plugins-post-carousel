@@ -78,6 +78,8 @@ class Smart_Post_Show_Admin {
 		SPS_Metaboxes::layout_metabox( 'sp_pcp_layouts' );
 		SPS_Metaboxes::option_metabox( 'sp_pcp_view_options' );
 		SPS_Metaboxes::shortcode_metabox( 'sp_pcp_display_shortcode' );
+		SPS_Metaboxes::page_builders_metabox( 'sp_pcp_page_builder_notice' );
+		SPS_Metaboxes::promotional_metabox( 'sp_pcp_promotional_notice' );
 		SPS_Settings::settings( 'sp_post_carousel_settings' );
 		SPS_ReplaceLayout::Replace_Layout( 'sp_post_carousel_rpl' );
 		SPS_Tools::tools( 'sp_post_carousel_tools' );
@@ -145,7 +147,9 @@ class Smart_Post_Show_Admin {
 	public function enqueue_styles() {
 		$current_screen        = get_current_screen();
 		$the_current_post_type = $current_screen->post_type;
-		if ( 'sp_post_carousel' === $the_current_post_type ) {
+		$pcp_page_base         = 'sp_post_carousel_page_pcp_settings' === $current_screen->base || 'sp_post_carousel_page_pcp_tools' === $current_screen->base || 'sp_post_carousel_page_pcp_replace_layout' === $current_screen->base || 'sp_post_carousel_page_pcp_help' === $current_screen->base;
+
+		if ( 'sp_post_carousel' === $the_current_post_type || $pcp_page_base ) {
 			wp_enqueue_style( 'font-awesome' );
 			wp_enqueue_style( 'pcp_swiper' );
 			wp_enqueue_style( 'pcp_fonttello_icon' );

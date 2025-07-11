@@ -5,7 +5,7 @@ Requires at least: 4.7
 Tested up to: 6.8
 WC requires at least: 5.0
 WC tested up to: 9.8.1
-Stable tag: 3.0.6
+Stable tag: 3.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,12 @@ Thank you!
 
 
 == Changelog ==
+
+= 3.0.7 - Jul 11, 2025 =
+* Improved: The plugin setting page tab icons.
+* Fix: The plugin page style issue was found during testing with the WordPress Playground.
+* Updated: The language (.pot) file.
+* Tested: WordPress 6.8.1 compatibility.
 
 = 3.0.6 - Apr 14, 2025 =
 * Improved: The plugin options styles for RTL language websites.

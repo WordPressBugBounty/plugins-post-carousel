@@ -7,10 +7,10 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; 
+	die;
 } // Cannot access directly.
 
-if ( ! class_exists( 'SP_PC_Field_shortcode' ) ) {	
+if ( ! class_exists( 'SP_PC_Field_shortcode' ) ) {
 	/**
 	 * SP_PC_Field_shortcode
 	 */
@@ -35,8 +35,49 @@ if ( ! class_exists( 'SP_PC_Field_shortcode' ) ) {
 		public function render() {
 			// Get the Post ID.
 			$post_id = get_the_ID();
-			echo ( ! empty( $post_id ) ) ? '<div class="pcp-scode-wrap-side"><p>To display your show or view, add the following shortcode into your post, custom post types, page, widget or block editor. If adding the show to your theme files, additionally include the surrounding PHP code, <a href="https://docs.shapedplugin.com/docs/post-carousel/create-your-first-post-show/add-new-post-show/" target="_blank">see how</a>.‎</p><span class="pcp-shortcode-selectable">[smart_post_show id="' . esc_attr( $post_id ) . '"]</span></div><div class="pcp-after-copy-text"><i class="fa fa-check-circle"></i> Shortcode Copied to Clipboard! </div>' : '';
-		}
+			if ( ! empty( $this->field['shortcode'] ) && 'manage_view' === $this->field['shortcode'] ) {
+				echo ( ! empty( $post_id ) ) ? '<div class="pcp-scode-wrap-side"><p>To display your show or view, add the following shortcode into your post, custom post types, page, widget or block editor. If adding the show to your theme files, additionally include the surrounding PHP code, <a href="https://docs.shapedplugin.com/docs/post-carousel/create-your-first-post-show/add-new-post-show/#faq" target="_blank">see how</a>.</p><span class="pcp-shortcode-selectable">[smart_post_show id="' . esc_attr( $post_id ) . '"]</span></div><div class="pcp-after-copy-text"><i class="fa fa-check-circle"></i> Shortcode Copied to Clipboard! </div>' : '';
+			} elseif ( ! empty( $this->field['shortcode'] ) && 'pro_notice' === $this->field['shortcode'] ) {
+				if ( ! empty( $post_id ) ) {
+					echo '<div class="sp_wpcp_shortcode-area pcp-notice-wrapper">';
+					echo '<div class="pcp-notice-heading">' . sprintf(
+						/* translators: 1: start span tag, 2: close tag. */
+						esc_html__( 'Unlock Full Potential with %1$sPRO%2$s', 'post-carousel' ),
+						'<span>',
+						'</span>'
+					) . '</div>';
 
+					echo '<p class="pcp-notice-desc">' . sprintf(
+						/* translators: 1: start bold tag, 2: close tag. */
+						esc_html__( 'Boost engagement with next-level post sliders & grids by Pro.', 'post-carousel' ),
+						'<b>',
+						'</b>'
+					) . '</p>';
+
+					echo '<ul>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '30+ Beautiful Layouts', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '15+ Advanced Blocks (New)', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Advanced Query Builder', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Custom Post Type & Media', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Ajax Live Filtering & Search', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Control Detail Page Fields', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Ajax Load More & Infinite Scroll', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Custom Fields & Social Share', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Redesign Blog & Archive Pages', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Show Ads Between Posts', 'post-carousel' ) . '</li>';
+					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '200+ Customizations & More', 'post-carousel' ) . '</li>';
+					echo '</ul>';
+
+					echo '<div class="pcp-notice-button">';
+					echo '<a class="pcp-open-live-demo" href="https://smartpostshow.com/pricing/?ref=1" target="_blank">';
+					echo esc_html__( 'Upgrade to Pro Now', 'post-carousel' ) . ' <i class="sps-icon-shuttle_2285485-1"></i>';
+					echo '</a>';
+					echo '</div>';
+					echo '</div>';
+				}
+			} else {
+				echo ( ! empty( $post_id ) ) ? '<div class="pcp-scode-wrap-side"><p>Smart Post Show has seamless integration with Gutenberg, Classic Editor, <strong>Elementor,</strong> Divi, Bricks, Beaver, Oxygen, WPBakery Builder, etc.</p></div>' : '';
+			}
+		}
 	}
 }

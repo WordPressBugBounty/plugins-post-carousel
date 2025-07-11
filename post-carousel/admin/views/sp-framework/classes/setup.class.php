@@ -103,7 +103,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 			add_action( 'init', array( 'SP_PC', 'setup' ) );
 			add_action( 'switch_theme', array( 'SP_PC', 'setup' ) );
 			add_action( 'admin_enqueue_scripts', array( 'SP_PC', 'add_admin_enqueue_scripts' ), 20 );
-
 		}
 
 		/**
@@ -162,7 +161,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 			}
 
 			do_action( 'spf_loaded' );
-
 		}
 
 		/**
@@ -219,7 +217,7 @@ if ( ! class_exists( 'SP_PC' ) ) {
 		public static function constants() {
 
 			// we need this path-finder code for set URL of framework.
-			$dirname        = wp_normalize_path( dirname( dirname( __FILE__ ) ) );
+			$dirname        = wp_normalize_path( dirname( __DIR__ ) );
 			$theme_dir      = wp_normalize_path( get_parent_theme_file_path() );
 			$plugin_dir     = wp_normalize_path( WP_PLUGIN_DIR );
 			$located_plugin = ( preg_match( '#' . self::sanitize_dirname( $plugin_dir ) . '#', self::sanitize_dirname( $dirname ) ) ) ? true : false;
@@ -231,7 +229,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 
 			self::$dir = $dirname;
 			self::$url = $directory_uri . $foldername;
-
 		}
 
 		/**
@@ -276,7 +273,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 				return self::$dir . '/' . $file;
 
 			}
-
 		}
 
 		/**
@@ -323,7 +319,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 
 				self::include_plugin_file( 'classes/widgets.class.php' );
 			}
-
 		}
 
 		/**
@@ -367,7 +362,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -378,7 +372,9 @@ if ( ! class_exists( 'SP_PC' ) ) {
 		public static function add_admin_enqueue_scripts() {
 			$current_screen        = get_current_screen();
 			$the_current_post_type = $current_screen->post_type;
-			if ( 'sp_post_carousel' === $the_current_post_type ) {
+			$pcp_page_base         = 'sp_post_carousel_page_pcp_settings' === $current_screen->base || 'sp_post_carousel_page_pcp_tools' === $current_screen->base || 'sp_post_carousel_page_pcp_replace_layout' === $current_screen->base || 'sp_post_carousel_page_pcp_help' === $current_screen->base;
+
+			if ( 'sp_post_carousel' === $the_current_post_type || $pcp_page_base ) {
 				// check for developer mode.
 				$min = ( apply_filters( 'spf_dev_mode', false ) || WP_DEBUG ) ? '' : '.min';
 				// admin utilities.
@@ -438,7 +434,6 @@ if ( ! class_exists( 'SP_PC' ) ) {
 
 				do_action( 'spf_enqueue' );
 			} // Check screen ID.
-
 		}
 
 		/**
@@ -539,9 +534,7 @@ if ( ! class_exists( 'SP_PC' ) ) {
 			echo ( ! empty( $field['title'] ) ) ? '</div>' : '';
 			echo '<div class="clear"></div>';
 			echo '</div>';
-
 		}
-
 	}
 
 	SP_PC::init();

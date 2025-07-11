@@ -44,6 +44,6 @@ class SPS_Settings {
 		SPS_ScriptsAndStyles::section( $prefix );
 		SPS_Accessibility::section( $prefix );
 		SPS_CustomCSS::section( $prefix );
+		SPS_License::section( $prefix );
 	}
-
 }

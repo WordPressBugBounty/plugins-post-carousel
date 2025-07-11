@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Smart Post Show 3.0.5\n"
-"POT-Creation-Date: 2025-01-21 12:25+0600\n"
+"Project-Id-Version: Smart Post Show 3.0.7\n"
+"POT-Creation-Date: 2025-07-09 12:35+0600\n"
 "PO-Revision-Date: 2024-07-08 16:27+0600\n"
 "Last-Translator: \n"
 "Language-Team: ShapedPlugin <support@shapedplugin.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: admin/ElementAddons/Shortcode_Widget.php:40
 #: admin/GutenbergBlock/src/index.js:16 admin/GutenbergBlock/src/index.js:81
-#: admin/GutenbergBlock/src/index.js:113 admin/views/class-sps-metaboxes.php:27
+#: admin/GutenbergBlock/src/index.js:113 admin/views/class-sps-metaboxes.php:28
 #: admin/views/class-sps-settings.php:39
 #: includes/class-smart-post-show-post-types.php:76
 msgid "Smart Post Show"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "-- Select a Show --"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:97
+#: admin/class-smart-post-show-admin.php:99
 #: includes/class-smart-post-show-post-types.php:74
 #: includes/class-smart-post-show-post-types.php:77
 #: includes/class-smart-post-show-post-types.php:96
@@ -68,23 +68,23 @@ msgstr ""
 msgid "Manage Shows"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:99
+#: admin/class-smart-post-show-admin.php:101
 msgid "Go Pro!"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:114
+#: admin/class-smart-post-show-admin.php:116
 msgid "Live Demo"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:115
+#: admin/class-smart-post-show-admin.php:117
 msgid "Documentation"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:116
+#: admin/class-smart-post-show-admin.php:118
 msgid "Support"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:195
+#: admin/class-smart-post-show-admin.php:199
 #: admin/views/configs/generator/class-sps-detailsettings.php:126
 #: admin/views/configs/generator/class-sps-display.php:570
 #: admin/views/configs/generator/class-sps-filterpost.php:409
@@ -92,29 +92,29 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:196
+#: admin/class-smart-post-show-admin.php:200
 msgid "Shortcode"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:197
+#: admin/class-smart-post-show-admin.php:201
 msgid "Layout"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:198
+#: admin/class-smart-post-show-admin.php:202
 #: admin/views/configs/generator/class-sps-display.php:662
 #: admin/views/configs/generator/class-sps-filterpost.php:410
 msgid "Date"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:216
+#: admin/class-smart-post-show-admin.php:220
 msgid "Shortcode Copied to Clipboard!"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:232
+#: admin/class-smart-post-show-admin.php:236
 msgid "Shortcode Updated"
 msgstr ""
 
-#: admin/class-smart-post-show-admin.php:233
+#: admin/class-smart-post-show-admin.php:237
 msgid "Shortcode Published"
 msgstr ""
 
@@ -139,31 +139,31 @@ msgstr ""
 msgid "Get Help"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:241
+#: admin/help-page/class-sps-recommended.php:235
 msgid "Activate"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:248
+#: admin/help-page/class-sps-recommended.php:242
 msgid "Install Now"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:254
+#: admin/help-page/class-sps-recommended.php:248
 msgid "More Details"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:286
+#: admin/help-page/class-sps-recommended.php:280
 msgid "Version:"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:295
+#: admin/help-page/class-sps-recommended.php:289
 msgid "+ Active Installations"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:303
+#: admin/help-page/class-sps-recommended.php:297
 msgid "Last Updated:"
 msgstr ""
 
-#: admin/help-page/class-sps-recommended.php:304
+#: admin/help-page/class-sps-recommended.php:298
 msgid "ago"
 msgstr ""
 
@@ -182,8 +182,16 @@ msgstr ""
 msgid "View Options"
 msgstr ""
 
-#: admin/views/class-sps-metaboxes.php:97
+#: admin/views/class-sps-metaboxes.php:98
 msgid "How To Use"
+msgstr ""
+
+#: admin/views/class-sps-metaboxes.php:118
+msgid "Page Builders"
+msgstr ""
+
+#: admin/views/class-sps-metaboxes.php:149
+msgid "Unlock Full Potential with Pro"
 msgstr ""
 
 #: admin/views/class-sps-replacelayout.php:26
@@ -771,7 +779,7 @@ msgstr ""
 #: admin/views/configs/generator/class-sps-detailsettings.php:53
 #: admin/views/configs/generator/class-sps-display.php:165
 #: admin/views/configs/generator/class-sps-display.php:190
-#: admin/views/configs/generator/class-sps-layout.php:160
+#: admin/views/configs/generator/class-sps-layout.php:161
 msgid "Top"
 msgstr ""
 
@@ -989,15 +997,15 @@ msgid "Default"
 msgstr ""
 
 #: admin/views/configs/generator/class-sps-display.php:123
-#: admin/views/configs/generator/class-sps-layout.php:165
-#: admin/views/configs/generator/class-sps-layout.php:185
+#: admin/views/configs/generator/class-sps-layout.php:166
+#: admin/views/configs/generator/class-sps-layout.php:186
 #: admin/views/sp-framework/fields/typography/typography.php:206
 msgid "Left"
 msgstr ""
 
 #: admin/views/configs/generator/class-sps-display.php:128
-#: admin/views/configs/generator/class-sps-layout.php:170
-#: admin/views/configs/generator/class-sps-layout.php:189
+#: admin/views/configs/generator/class-sps-layout.php:171
+#: admin/views/configs/generator/class-sps-layout.php:190
 #: admin/views/sp-framework/fields/typography/typography.php:208
 msgid "Right"
 msgstr ""
@@ -1031,7 +1039,7 @@ msgstr ""
 
 #: admin/views/configs/generator/class-sps-display.php:170
 #: admin/views/configs/generator/class-sps-display.php:195
-#: admin/views/configs/generator/class-sps-layout.php:155
+#: admin/views/configs/generator/class-sps-layout.php:156
 msgid "Bottom"
 msgstr ""
 
@@ -2066,141 +2074,141 @@ msgstr ""
 msgid "Enter keyword(s) for searching the posts."
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:38
+#: admin/views/configs/generator/class-sps-layout.php:39
 msgid "Layout Preset"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:43
+#: admin/views/configs/generator/class-sps-layout.php:44
 msgid "Carousel"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:48
+#: admin/views/configs/generator/class-sps-layout.php:49
 msgid "Slider"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:53
+#: admin/views/configs/generator/class-sps-layout.php:54
 msgid "Grid"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:58
+#: admin/views/configs/generator/class-sps-layout.php:59
 msgid "List"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:63
+#: admin/views/configs/generator/class-sps-layout.php:64
 msgid "Thumbs Slider"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:69
-#: admin/views/configs/generator/class-sps-layout.php:211
+#: admin/views/configs/generator/class-sps-layout.php:70
+#: admin/views/configs/generator/class-sps-layout.php:212
 msgid "Masonry"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:75
+#: admin/views/configs/generator/class-sps-layout.php:76
 msgid "Isotope"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:81
+#: admin/views/configs/generator/class-sps-layout.php:82
 msgid "Glossary"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:87
+#: admin/views/configs/generator/class-sps-layout.php:88
 msgid "Hierarchical Grid"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:93
+#: admin/views/configs/generator/class-sps-layout.php:94
 msgid "Timeline"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:99
+#: admin/views/configs/generator/class-sps-layout.php:100
 msgid "Zigzag"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:105
+#: admin/views/configs/generator/class-sps-layout.php:106
 msgid "Table"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:111
+#: admin/views/configs/generator/class-sps-layout.php:112
 msgid "Accordion"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:122
+#: admin/views/configs/generator/class-sps-layout.php:123
 msgid "Carousel Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:126
+#: admin/views/configs/generator/class-sps-layout.php:127
 msgid "Standard"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:130
+#: admin/views/configs/generator/class-sps-layout.php:131
 #: admin/views/sp-framework/fields/typography/typography.php:207
 msgid "Center"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:135
+#: admin/views/configs/generator/class-sps-layout.php:136
 msgid "Ticker"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:140
+#: admin/views/configs/generator/class-sps-layout.php:141
 msgid "Multi Rows"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:151
+#: admin/views/configs/generator/class-sps-layout.php:152
 msgid "Thumbnails Slider Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:181
+#: admin/views/configs/generator/class-sps-layout.php:182
 msgid "List Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:200
+#: admin/views/configs/generator/class-sps-layout.php:201
 msgid "Isotope Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:206
+#: admin/views/configs/generator/class-sps-layout.php:207
 msgid "Even"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:222
+#: admin/views/configs/generator/class-sps-layout.php:223
 msgid "Hierarchical Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:227
+#: admin/views/configs/generator/class-sps-layout.php:228
 msgid "Hierarchical 1"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:232
+#: admin/views/configs/generator/class-sps-layout.php:233
 msgid "Hierarchical 2"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:237
+#: admin/views/configs/generator/class-sps-layout.php:238
 msgid "Hierarchical 3"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:242
+#: admin/views/configs/generator/class-sps-layout.php:243
 msgid "Hierarchical 4"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:247
+#: admin/views/configs/generator/class-sps-layout.php:248
 msgid "Hierarchical 5"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:258
+#: admin/views/configs/generator/class-sps-layout.php:259
 msgid "Timeline Style"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:263
+#: admin/views/configs/generator/class-sps-layout.php:264
 msgid "Vertical"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:268
+#: admin/views/configs/generator/class-sps-layout.php:269
 msgid "Horizontal"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:273
+#: admin/views/configs/generator/class-sps-layout.php:274
 msgid "Right Side"
 msgstr ""
 
-#: admin/views/configs/generator/class-sps-layout.php:278
+#: admin/views/configs/generator/class-sps-layout.php:279
 msgid "Left Side"
 msgstr ""
 
@@ -2326,6 +2334,10 @@ msgstr ""
 msgid "Custom JS"
 msgstr ""
 
+#: admin/views/configs/settings/class-sps-license.php:27
+msgid "License Key"
+msgstr ""
+
 #: admin/views/configs/settings/class-sps-scriptsandstyles.php:27
 msgid "Control Assets"
 msgstr ""
@@ -2442,41 +2454,41 @@ msgstr ""
 msgid "Are you sure to reset this section options?"
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:408
+#: admin/views/sp-framework/classes/setup.class.php:404
 msgid "Are you sure?"
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:409
+#: admin/views/sp-framework/classes/setup.class.php:405
 msgid "Restoring options."
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:410
+#: admin/views/sp-framework/classes/setup.class.php:406
 msgid "Importing options."
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:413
+#: admin/views/sp-framework/classes/setup.class.php:409
 #, php-format
 msgid "Please enter %s or more characters"
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:414
+#: admin/views/sp-framework/classes/setup.class.php:410
 msgid "Searching..."
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:415
+#: admin/views/sp-framework/classes/setup.class.php:411
 msgid "No results match"
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:463
+#: admin/views/sp-framework/classes/setup.class.php:458
 #, php-format
 msgid "Ooops! This field type (%s) can not be used here, yet."
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:533
+#: admin/views/sp-framework/classes/setup.class.php:528
 msgid "This field class is not available!"
 msgstr ""
 
-#: admin/views/sp-framework/classes/setup.class.php:536
+#: admin/views/sp-framework/classes/setup.class.php:531
 msgid "This type is not found!"
 msgstr ""
 
@@ -2629,6 +2641,75 @@ msgstr ""
 
 #: admin/views/sp-framework/fields/image_sizes/image_sizes.php:125
 msgid "No image sizes found."
+msgstr ""
+
+#: admin/views/sp-framework/fields/license/license.php:45
+msgid "You're using Smart Post Show Lite - No License Needed. Enjoy"
+msgstr ""
+
+#: admin/views/sp-framework/fields/license/license.php:46
+msgid "Upgrade to Smart Post Show Pro and unlock all the features."
+msgstr ""
+
+#: admin/views/sp-framework/fields/license/license.php:49
+msgid "Upgrade To Pro Now"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:45
+#, php-format
+msgid "Unlock Full Potential with %1$sPRO%2$s"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:52
+msgid "Boost engagement with next-level post sliders & grids by Pro."
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:58
+msgid "30+ Beautiful Layouts"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:59
+msgid "15+ Advanced Blocks (New)"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:60
+msgid "Advanced Query Builder"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:61
+msgid "Custom Post Type & Media"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:62
+msgid "Ajax Live Filtering & Search"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:63
+msgid "Control Detail Page Fields"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:64
+msgid "Ajax Load More & Infinite Scroll"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:65
+msgid "Custom Fields & Social Share"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:66
+msgid "Redesign Blog & Archive Pages"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:67
+msgid "Show Ads Between Posts"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:68
+msgid "200+ Customizations & More"
+msgstr ""
+
+#: admin/views/sp-framework/fields/shortcode/shortcode.php:73
+msgid "Upgrade to Pro Now"
 msgstr ""
 
 #: admin/views/sp-framework/fields/spacing/spacing.php:58

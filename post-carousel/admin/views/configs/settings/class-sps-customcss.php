@@ -25,7 +25,7 @@ class SPS_CustomCSS {
 			$prefix,
 			array(
 				'title'  => __( 'Additional CSS & JS', 'post-carousel' ),
-				'icon'   => 'fa fa-file-code-o',
+				'icon'   => 'fa sps-icon-code',
 				'fields' => array(
 					array(
 						'id'       => 'pcp_custom_css',

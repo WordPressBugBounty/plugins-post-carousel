@@ -25,7 +25,7 @@ class SPS_Advanced {
 			$prefix,
 			array(
 				'title'  => __( 'Advanced', 'post-carousel' ),
-				'icon'   => 'fa fa-wrench',
+				'icon'   => 'fa sps-icon-advanced',
 				'fields' => array(
 					array(
 						'id'         => 'pcp_delete_all_data',

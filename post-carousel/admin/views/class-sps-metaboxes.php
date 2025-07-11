@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access pages directly.
+	die;
+} // Cannot access pages directly.
 
 /**
  * Smart Post Show Metaboxes.
@@ -32,7 +33,6 @@ class SPS_Metaboxes {
 		);
 
 		SPS_Layout::section( $prefix );
-
 	}
 	/**
 	 * Preview metabox.
@@ -84,6 +84,7 @@ class SPS_Metaboxes {
 		SPS_DetailSettings::section( $prefix );
 		SPS_Typography::section( $prefix );
 	}
+
 	/**
 	 * Shortcode Metabox function
 	 *
@@ -102,7 +103,67 @@ class SPS_Metaboxes {
 		);
 
 		SPS_Shortcode::section( $prefix );
-
 	}
 
+	/**
+	 * Page Builder Metabox function
+	 *
+	 * @param string $prefix The metabox key.
+	 * @return void
+	 */
+	public static function page_builders_metabox( $prefix ) {
+		SP_PC::createMetabox(
+			$prefix,
+			array(
+				'title'        => __( 'Page Builders', 'post-carousel' ),
+				'post_type'    => 'sp_post_carousel',
+				'context'      => 'side',
+				'show_restore' => false,
+			)
+		);
+
+		SP_PC::createSection(
+			$prefix,
+			array(
+				'fields' => array(
+					array(
+						'type'      => 'shortcode',
+						'shortcode' => false,
+						'class'     => 'pcp-admin-sidebar',
+					),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Shortcode Metabox function
+	 *
+	 * @param string $prefix The metabox key.
+	 * @return void
+	 */
+	public static function promotional_metabox( $prefix ) {
+		SP_PC::createMetabox(
+			$prefix,
+			array(
+				'title'        => __( 'Unlock Full Potential with Pro', 'post-carousel' ),
+				'post_type'    => 'sp_post_carousel',
+				'context'      => 'side',
+				'show_restore' => false,
+			)
+		);
+
+		SP_PC::createSection(
+			$prefix,
+			array(
+				'fields' => array(
+					array(
+						'type'      => 'shortcode',
+						'shortcode' => 'pro_notice',
+						'class'     => 'pcp-admin-sidebar',
+					),
+				),
+			)
+		);
+	}
 }

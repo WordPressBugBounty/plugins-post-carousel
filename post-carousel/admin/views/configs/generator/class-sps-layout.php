@@ -26,11 +26,12 @@ class SPS_Layout {
 			array(
 				'fields' => array(
 					array(
-						'type'  => 'heading',
-						'image' => SP_PC_URL . 'admin/assets/img/logo.svg',
-						'after' => '<i class="fa fa-life-ring"></i> Support',
-						'link'  => 'https://shapedplugin.com/support/?user=lite',
-						'class' => 'pcp-admin-header',
+						'type'    => 'heading',
+						'image'   => SP_PC_URL . 'admin/assets/img/logo.svg',
+						'after'   => '<i class="fa fa-life-ring"></i> Support',
+						'link'    => 'https://shapedplugin.com/support/?user=lite',
+						'class'   => 'pcp-admin-header',
+						'version' => SP_PC_VERSION,
 					),
 					array(
 						'id'      => 'pcp_layout_preset',
@@ -285,6 +286,5 @@ class SPS_Layout {
 				), // End of fields array.
 			)
 		);
-
 	}
 }

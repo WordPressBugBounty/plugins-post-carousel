@@ -1,6 +1,6 @@
 <?php
 /**
- * The shortcode Meta-box configurations.
+ * The License setting configurations.
  *
  * @package Smart_Post_Show
  * @subpackage Smart_Post_Show/admin
@@ -10,26 +10,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die; } // Cannot access pages directly.
 
 /**
- * The Shortcode display class.
+ * The Layout building class.
  */
-class SPS_Shortcode {
+class SPS_License {
 
 	/**
-	 * Shortcode display metabox section.
+	 * Advanced setting section.
 	 *
-	 * @param string $prefix The metabox key.
+	 * @param string $prefix The settings.
 	 * @return void
 	 */
 	public static function section( $prefix ) {
-
 		SP_PC::createSection(
 			$prefix,
 			array(
+				'title'  => __( 'License Key', 'post-carousel' ),
+				'icon'   => 'fa sps-icon-key-01',
 				'fields' => array(
 					array(
-						'type'      => 'shortcode',
-						'shortcode' => 'manage_view',
-						'class'     => 'pcp-admin-sidebar',
+						'id'   => 'license_key',
+						'type' => 'license',
 					),
 				),
 			)
