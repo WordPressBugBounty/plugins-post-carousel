@@ -49,7 +49,6 @@ if ( ! class_exists( 'SP_PC_Abstract' ) ) {
 			if ( ! empty( $this->args['output_css'] ) ) {
 				add_action( 'wp_head', array( &$this, 'add_output_css' ), 100 );
 			}
-
 		}
 
 		/**
@@ -64,8 +63,6 @@ if ( ! class_exists( 'SP_PC_Abstract' ) ) {
 			if ( ! empty( $this->output_css ) ) {
 				echo '<style type="text/css">' . esc_html( $this->output_css ) . '</style>';
 			}
-
 		}
-
 	}
 }

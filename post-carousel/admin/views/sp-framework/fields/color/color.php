@@ -41,7 +41,6 @@ if ( ! class_exists( 'SP_PC_Field_color' ) ) {
 			echo wp_kses_post( $this->field_before() );
 			echo '<input type="text" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '" class="spf-color"' . wp_kses_post( $default_attr ) . wp_kses_post( $this->field_attributes() ) . '/>';
 			echo wp_kses_post( $this->field_after() );
-
 		}
 	}
 }

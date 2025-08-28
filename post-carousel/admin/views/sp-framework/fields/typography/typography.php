@@ -7,8 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die;
-} // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 	/**
@@ -121,7 +121,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			if ( ! empty( $args['font_family'] ) ) {
 				echo '<div class="spf--block">';
 				echo '<div class="spf--title">' . esc_html__( 'Font Family', 'post-carousel' ) . '</div>';
-				echo $this->create_select( array( $this->value['font-family'] => $this->value['font-family'] ), 'font-family', esc_html__( 'Select a font', 'post-carousel' ) );
+				echo $this->create_select( array( $this->value['font-family'] => $this->value['font-family'] ), 'font-family', esc_html__( 'Select a font', 'post-carousel' ) );  // phpcs:ignore -- escaped by create_select.
 				echo '</div>';
 			}
 
@@ -130,7 +130,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			if ( ! empty( $args['backup_font_family'] ) ) {
 				echo '<div class="spf--block spf--block-backup-font-family hidden">';
 				echo '<div class="spf--title">' . esc_html__( 'Backup Font Family', 'post-carousel' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select(  // phpcs:ignore -- escaped by create_select.
 					apply_filters(
 						'spf_field_typography_backup_font_family',
 						array(
@@ -177,7 +177,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 					echo '<div class="spf--block-extra-styles hidden">';
 					echo ( ! $this->chosen ) ? '<div class="spf--title">' . esc_html__( 'Load Extra Styles', 'post-carousel' ) . '</div>' : '';
 					$placeholder = ( $this->chosen ) ? esc_html__( 'Load Extra Styles', 'post-carousel' ) : esc_html__( 'Default', 'post-carousel' );
-					echo $this->create_select( $this->value['extra-styles'], 'extra-styles', $placeholder, true );
+					echo $this->create_select( $this->value['extra-styles'], 'extra-styles', $placeholder, true ); // phpcs:ignore -- escaped by create_select.
 					echo '</div>';
 				}
 
@@ -191,7 +191,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 				echo '<div class="spf--block spf--block-subset hidden">';
 				echo '<div class="spf--title">' . esc_html__( 'Subset', 'post-carousel' ) . '</div>';
 				$subset = ( is_array( $this->value['subset'] ) ) ? $this->value['subset'] : array_filter( (array) $this->value['subset'] );
-				echo $this->create_select( $subset, 'subset', esc_html__( 'Default', 'post-carousel' ), $args['multi_subset'] );
+				echo $this->create_select( $subset, 'subset', esc_html__( 'Default', 'post-carousel' ), $args['multi_subset'] ); // phpcs:ignore -- escaped by create_select.
 				echo '</div>';
 			}
 
@@ -200,7 +200,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			if ( ! empty( $args['text_align'] ) ) {
 				echo '<div class="spf--block">';
 				echo '<div class="spf--title">' . esc_html__( 'Text Align', 'post-carousel' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- escaped by create_select.
 					array(
 						'inherit' => esc_html__( 'Inherit', 'post-carousel' ),
 						'left'    => esc_html__( 'Left', 'post-carousel' ),
@@ -239,7 +239,7 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			if ( ! empty( $args['text_transform'] ) ) {
 				echo '<div class="spf--block">';
 				echo '<div class="spf--title">' . esc_html__( 'Text Transform', 'post-carousel' ) . '</div>';
-				echo $this->create_select(
+				echo $this->create_select( // phpcs:ignore -- escaped by create_select.
 					array(
 						'none'       => esc_html__( 'None', 'post-carousel' ),
 						'capitalize' => esc_html__( 'Capitalize', 'post-carousel' ),
@@ -415,7 +415,6 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -452,164 +451,6 @@ if ( ! class_exists( 'SP_PC_Field_typography' ) ) {
 			$output .= '</select>';
 
 			return $output;
-
 		}
-
-		/**
-		 * Enqueue fonts.
-		 *
-		 * @return void
-		 */
-		public function enqueue() {
-
-			if ( ! wp_style_is( 'spf-webfont-loader' ) ) {
-
-				SP_PC::include_plugin_file( 'fields/typography/google-fonts.php' );
-
-				wp_enqueue_script( 'spf-webfont-loader', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', array( 'spf' ), '1.6.28', true );
-
-				$webfonts = array();
-
-				$customwebfonts = apply_filters( 'spf_field_typography_customwebfonts', array() );
-
-				if ( ! empty( $customwebfonts ) ) {
-					$webfonts['custom'] = array(
-						'label' => esc_html__( 'Custom Web Fonts', 'post-carousel' ),
-						'fonts' => $customwebfonts,
-					);
-				}
-
-				$webfonts['safe'] = array(
-					'label' => esc_html__( 'Safe Web Fonts', 'post-carousel' ),
-					'fonts' => apply_filters(
-						'spf_field_typography_safewebfonts',
-						array(
-							'Arial',
-							'Arial Black',
-							'Helvetica',
-							'Times New Roman',
-							'Courier New',
-							'Tahoma',
-							'Verdana',
-							'Impact',
-							'Trebuchet MS',
-							'Comic Sans MS',
-							'Lucida Console',
-							'Lucida Sans Unicode',
-							'Georgia, serif',
-							'Palatino Linotype',
-						)
-					),
-				);
-
-				$webfonts['google'] = array(
-					'label' => esc_html__( 'Google Web Fonts', 'post-carousel' ),
-					'fonts' => apply_filters(
-						'spf_field_typography_googlewebfonts',
-						spf_get_google_fonts()
-					),
-				);
-
-				$defaultstyles = apply_filters( 'spf_field_typography_defaultstyles', array( 'normal', 'italic', '700', '700italic' ) );
-
-				$googlestyles = apply_filters(
-					'spf_field_typography_googlestyles',
-					array(
-						'100'       => 'Thin 100',
-						'100italic' => 'Thin 100 Italic',
-						'200'       => 'Extra-Light 200',
-						'200italic' => 'Extra-Light 200 Italic',
-						'300'       => 'Light 300',
-						'300italic' => 'Light 300 Italic',
-						'normal'    => 'Normal 400',
-						'italic'    => 'Normal 400 Italic',
-						'500'       => 'Medium 500',
-						'500italic' => 'Medium 500 Italic',
-						'600'       => 'Semi-Bold 600',
-						'600italic' => 'Semi-Bold 600 Italic',
-						'700'       => 'Bold 700',
-						'700italic' => 'Bold 700 Italic',
-						'800'       => 'Extra-Bold 800',
-						'800italic' => 'Extra-Bold 800 Italic',
-						'900'       => 'Black 900',
-						'900italic' => 'Black 900 Italic',
-					)
-				);
-
-				$webfonts = apply_filters( 'spf_field_typography_webfonts', $webfonts );
-
-				wp_localize_script(
-					'spf',
-					'spf_typography_json',
-					array(
-						'webfonts'      => $webfonts,
-						'defaultstyles' => $defaultstyles,
-						'googlestyles'  => $googlestyles,
-					)
-				);
-
-			}
-
-		}
-
-		/**
-		 * Enqueue Google fonts.
-		 *
-		 * @return mixed
-		 */
-		public function enqueue_google_fonts() {
-
-			$value     = $this->value;
-			$families  = array();
-			$is_google = false;
-
-			if ( ! empty( $this->value['type'] ) ) {
-				$is_google = ( 'google' === $this->value['type'] ) ? true : false;
-			} else {
-				SP_PC::include_plugin_file( 'fields/typography/google-fonts.php' );
-				$is_google = ( array_key_exists( $this->value['font-family'], spf_get_google_fonts() ) ) ? true : false;
-			}
-
-			if ( $is_google ) {
-
-				// set style.
-				$font_weight = ( ! empty( $value['font-weight'] ) ) ? $value['font-weight'] : '';
-				$font_style  = ( ! empty( $value['font-style'] ) ) ? $value['font-style'] : '';
-
-				if ( $font_weight || $font_style ) {
-					$style                       = $font_weight . $font_style;
-					$families['style'][ $style ] = $style;
-				}
-
-				// set extra styles.
-				if ( ! empty( $value['extra-styles'] ) ) {
-					foreach ( $value['extra-styles'] as $extra_style ) {
-						$families['style'][ $extra_style ] = $extra_style;
-					}
-				}
-
-				// set subsets.
-				if ( ! empty( $value['subset'] ) ) {
-					$value['subset'] = ( is_array( $value['subset'] ) ) ? $value['subset'] : array_filter( (array) $value['subset'] );
-					foreach ( $value['subset'] as $subset ) {
-						$families['subset'][ $subset ] = $subset;
-					}
-				}
-
-				$all_styles  = ( ! empty( $families['style'] ) ) ? ':' . implode( ',', $families['style'] ) : '';
-				$all_subsets = ( ! empty( $families['subset'] ) ) ? ':' . implode( ',', $families['subset'] ) : '';
-
-				$families = $this->value['font-family'] . str_replace( array( 'normal', 'italic' ), array( 'n', 'i' ), $all_styles ) . $all_subsets;
-
-				$this->parent->typographies[] = $families;
-
-				return $families;
-
-			}
-
-			return false;
-
-		}
-
 	}
 }

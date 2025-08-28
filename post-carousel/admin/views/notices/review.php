@@ -10,6 +10,10 @@
  * @author     ShapedPlugin<support@shapedplugin.com>
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The admin review notice.
  */
@@ -64,11 +68,11 @@ class SPS_Review {
 			</div>
 			<div class="sp-sps-notice-text">
 				<h3>Enjoying <strong>Smart Post Show</strong>?</h3>
-				<p>We hope you had a wonderful experience using <strong>Smart Post Show</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/post-carousel/reviews/?filter=5#new-post" target="_blank"><strong>WordPress.org</strong></a>?
+				<p>We hope you had a wonderful experience using <strong>Smart Post Show</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/post-carousel/reviews/" target="_blank"><strong>WordPress.org</strong></a>?
 				Your positive review will help us improve. Thank you! 😊</p>
 
 				<p class="sp-sps-review-actions">
-					<a href="https://wordpress.org/support/plugin/post-carousel/reviews/?filter=5#new-post" target="_blank" class="button button-primary notice-dismissed rate-testimonial">Ok, you deserve ★★★★★</a>
+					<a href="https://wordpress.org/support/plugin/post-carousel/reviews/" target="_blank" class="button button-primary notice-dismissed rate-testimonial">Ok, you deserve ★★★★★</a>
 					<a href="#" class="notice-dismissed remind-me-later"><span class="dashicons dashicons-clock"></span>Nope, maybe later</a>
 					<a href="#" class="notice-dismissed never-show-again"><span class="dashicons dashicons-dismiss"></span>Never show again</a>
 				</p>
@@ -113,9 +117,8 @@ class SPS_Review {
 	 * @return void
 	 **/
 	public function dismiss_review_notice() {
-		$post_data = wp_unslash( $_POST );
 
-		if ( ! isset( $post_data['nonce'] ) || ! wp_verify_nonce( sanitize_key( $post_data['nonce'] ), 'sps_review_notice' ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'sps_review_notice' ) ) {
 			return;
 		}
 
@@ -123,7 +126,8 @@ class SPS_Review {
 		if ( ! $review ) {
 			$review = array();
 		}
-		switch ( isset( $post_data['notice_dismissed_data'] ) ? $post_data['notice_dismissed_data'] : '' ) {
+		$notice_dismissed_data = isset( $_POST['notice_dismissed_data'] ) ? sanitize_key( wp_unslash( $_POST['notice_dismissed_data'] ) ) : '';
+		switch ( $notice_dismissed_data ) {
 			case '1':
 				$review['time']      = time();
 				$review['dismissed'] = true;

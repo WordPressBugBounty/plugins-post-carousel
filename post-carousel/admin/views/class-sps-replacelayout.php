@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access pages directly.
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Settings.

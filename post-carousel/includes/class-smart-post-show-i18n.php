@@ -12,6 +12,10 @@
  * @subpackage Smart_Post_Show/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Define the internationalization functionality.
  *
@@ -21,15 +25,16 @@
 class Smart_Post_Show_i18n {
 
 	/**
-	 * Load the plugin text domain for translation.
+	 * No longer needed for WordPress.org hosted plugins.
 	 *
 	 * @since    2.2.0
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			'post-carousel',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		// Deprecated: WordPress automatically loads plugin translations.
+		// load_plugin_textdomain(
+		// 'post-carousel',
+		// false,
+		// dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+		// );
 	}
 }

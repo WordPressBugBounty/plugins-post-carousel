@@ -15,6 +15,10 @@
  * @subpackage Smart_Post_Show/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
@@ -149,7 +153,6 @@ class Smart_Post_Show {
 		 * The class responsible for all admin notices.
 		 */
 		require_once SP_PC_PATH . 'admin/views/notices/review.php';
-		require_once SP_PC_PATH . 'admin/views/notices/offer-banner.php';
 
 		// Elementor shortcode addons.
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';

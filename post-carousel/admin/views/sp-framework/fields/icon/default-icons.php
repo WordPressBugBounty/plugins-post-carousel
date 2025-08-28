@@ -1,10 +1,20 @@
 <?php
-//
-//
-// Default Icons
-// We are using Font-awesome icons as default
-//
-//
+/**
+ * The framework default icons fields file.
+ *
+ * @package Smart_Post_Show
+ * @subpackage Smart_Post_Show/admin
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Get the default icons.
+ *
+ * @return array
+ */
 function spf_get_default_icons() {
 	return array(
 		array(

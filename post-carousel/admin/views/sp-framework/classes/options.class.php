@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC_Options' ) ) {
 	/**
@@ -178,7 +179,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 			// wp enqeueu for typography and output css.
 			parent::__construct();
-
 		}
 
 		/**
@@ -209,7 +209,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 					$parents[ $section['parent'] ][] = $section;
 					unset( $sections[ $key ] );
 				}
-				$count++;
+				++$count;
 			}
 
 			foreach ( $sections as $key => $section ) {
@@ -218,7 +218,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 					$section['subs'] = wp_list_sort( $parents[ $section['id'] ], array( 'priority' => 'ASC' ), 'ASC', true );
 				}
 				$result[] = $section;
-				$count++;
+				++$count;
 			}
 
 			return wp_list_sort( $result, array( 'priority' => 'ASC' ), 'ASC', true );
@@ -316,7 +316,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 					);
 				}
 			}
-
 		}
 
 		/**
@@ -363,7 +362,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			$default = ( isset( $options[ $field['id'] ] ) ) ? $options[ $field['id'] ] : $default;
 
 			return $default;
-
 		}
 
 		/**
@@ -384,8 +382,90 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			if ( $this->args['save_defaults'] && empty( $tmp_options ) ) {
 				$this->save_options( $this->options );
 			}
-
 		}
+
+		/**
+		 * Sanitize Smart Post Show plugin options.
+		 *
+		 * @param array $options Raw options array.
+		 * @return array Sanitized options array.
+		 */
+		public function sanitize_options( $options ) {
+			if ( ! is_array( $options ) ) {
+				return array();
+			}
+
+			$sanitized = array();
+
+			foreach ( $options as $key => $value ) {
+				switch ( $key ) {
+					case 'spf_transient':
+						// Handle nested array.
+						$sanitized['spf_transient'] = array();
+						if ( is_array( $value ) ) {
+							foreach ( $value as $sub_key => $sub_val ) {
+								switch ( $sub_key ) {
+									case 'section':
+										$sanitized['spf_transient']['section'] = sanitize_text_field( $sub_val );
+										break;
+									default:
+										$sanitized['spf_transient'][ $sub_key ] = sanitize_text_field( $sub_val );
+										break;
+								}
+							}
+						}
+						break;
+					case 'spf_options_noncesp_post_carousel_settings':
+					case '_wp_http_referer':
+						$sanitized[ $key ] = sanitize_text_field( $value );
+						break;
+					case 'sp_post_carousel_settings':
+						$sanitized['sp_post_carousel_settings'] = array();
+						if ( is_array( $value ) ) {
+							foreach ( $value as $sub_key => $sub_val ) {
+								switch ( $sub_key ) {
+									case 'pcp_delete_all_data':
+									case 'pcp_swiper_js':
+									case 'pcp_swiper_css':
+									case 'pcp_fontawesome_css':
+									case 'accessibility':
+										// These should be boolean-like (0/1).
+										$sanitized['sp_post_carousel_settings'][ $sub_key ] = (int) $sub_val;
+										break;
+
+									case 'prev_slide_message':
+									case 'next_slide_message':
+									case 'first_slide_message':
+									case 'last_slide_message':
+									case 'pagination_bullet_message':
+										$sanitized['sp_post_carousel_settings'][ $sub_key ] = sanitize_text_field( $sub_val );
+										break;
+
+									case 'pcp_custom_css':
+										$sanitized['sp_post_carousel_settings'][ $sub_key ] = wp_strip_all_tags( $sub_val );
+										break;
+									case 'pcp_custom_js':
+										$sanitized['sp_post_carousel_settings'][ $sub_key ] = wp_kses_post( $sub_val );
+										break;
+									default:
+										$sanitized['sp_post_carousel_settings'][ $sub_key ] = sanitize_text_field( $sub_val );
+										break;
+								}
+							}
+						}
+						break;
+					default:
+						// Fallback sanitization.
+						$sanitized[ $key ] = is_scalar( $value ) ? wp_kses_post( $value ) : '';
+						break;
+				}
+			}
+
+			return $sanitized;
+		}
+
+
+
 
 		/**
 		 * Set options.
@@ -395,106 +475,88 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 		 * @return mixed
 		 */
 		public function set_options( $ajax = false ) {
-
+			// Check nonce.
+			$nonce = $ajax && ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : ( ( ! empty( $_POST[ 'spf_options_nonce' . $this->unique ] ) ) ? sanitize_text_field( wp_unslash( $_POST[ 'spf_options_nonce' . $this->unique ] ) ) : '' );
+			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+				return false;
+			}
 			// XSS ok.
-			// No worries, This "POST" requests is sanitizing in the below foreach. see #L380 - #L384.
-			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : $_POST; // phpcs:ignore
-
+			// No worries, This "POST" requests is sanitizing in the below.
+			$response = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : wp_unslash( $_POST );  // phpcs:ignore -- Sanitized below.
+			$response = $this->sanitize_options( $response ); // Sanitize json response.
 			// Set variables.
-			$data      = array();
-			$noncekey  = 'spf_options_nonce' . $this->unique;
-			$nonce     = ( ! empty( $response[ $noncekey ] ) ) ? $response[ $noncekey ] : '';
-			$options   = ( ! empty( $response[ $this->unique ] ) ) ? $response[ $this->unique ] : array();
-			$transient = ( ! empty( $response['spf_transient'] ) ) ? $response['spf_transient'] : array();
+			$data       = array();
+			$options    = ( ! empty( $response[ $this->unique ] ) ) ? $response[ $this->unique ] : array();
+			$transient  = ( ! empty( $response['spf_transient'] ) ) ? $response['spf_transient'] : array();
+			$importing  = false;
+			$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
 
-			if ( wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+			if ( ! empty( $transient['reset'] ) ) {
 
-				$importing  = false;
-				$section_id = ( ! empty( $transient['section'] ) ) ? $transient['section'] : '';
-
-				// import data.
-				if ( ! $ajax && ! empty( $response['spf_import_data'] ) ) {
-
-					// XSS ok.
-					// No worries, This "POST" requests is sanitizing in the below foreach. see #L380 - #L384.
-					$import_data  = json_decode( wp_unslash( trim( $response['spf_import_data'] ) ), true );
-					$options      = ( is_array( $import_data ) && ! empty( $import_data ) ) ? $import_data : array();
-					$importing    = true;
-					$this->notice = esc_html__( 'Settings successfully imported.', 'post-carousel' );
-
+				foreach ( $this->pre_fields as $field ) {
+					if ( ! empty( $field['id'] ) ) {
+						$data[ $field['id'] ] = $this->get_default( $field );
+					}
 				}
 
-				if ( ! empty( $transient['reset'] ) ) {
+				$this->notice = esc_html__( 'Default options restored.', 'post-carousel' );
 
-					foreach ( $this->pre_fields as $field ) {
+			} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+
+				if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
+
+					foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
 						if ( ! empty( $field['id'] ) ) {
 							$data[ $field['id'] ] = $this->get_default( $field );
 						}
 					}
+				}
 
-					$this->notice = esc_html__( 'Default options restored.', 'post-carousel' );
+				$data         = wp_parse_args( $data, $this->options );
+				$this->notice = esc_html__( 'Default options restored for only this section.', 'post-carousel' );
 
-				} elseif ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
+			} else {
+				// Sanitize and validate.
+				foreach ( $this->pre_fields as $field ) {
 
-					if ( ! empty( $this->pre_sections[ $section_id - 1 ]['fields'] ) ) {
+					if ( ! empty( $field['id'] ) ) {
 
-						foreach ( $this->pre_sections[ $section_id - 1 ]['fields'] as $field ) {
-							if ( ! empty( $field['id'] ) ) {
-								$data[ $field['id'] ] = $this->get_default( $field );
-							}
+						$field_id    = $field['id'];
+						$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
+
+						// Ajax and Importing doing wp_unslash already.
+						if ( ! $ajax && ! $importing ) {
+							$field_value = wp_unslash( $field_value );
 						}
-					}
 
-					$data         = wp_parse_args( $data, $this->options );
-					$this->notice = esc_html__( 'Default options restored for only this section.', 'post-carousel' );
-
-				} else {
-
-					// sanitize and validate.
-					foreach ( $this->pre_fields as $field ) {
-
-						if ( ! empty( $field['id'] ) ) {
-
-							$field_id    = $field['id'];
-							$field_value = isset( $options[ $field_id ] ) ? $options[ $field_id ] : '';
-
-							// Ajax and Importing doing wp_unslash already.
-							if ( ! $ajax && ! $importing ) {
-								$field_value = wp_unslash( $field_value );
-							}
-
-							// sanitize.
-							if ( ! isset( $field['sanitize'] ) ) {
-								if ( is_array( $field_value ) ) {
-
-									$data[ $field_id ] = wp_kses_post_deep( $field_value );
-
-								} else {
-
-									$data[ $field_id ] = wp_kses_post( $field_value );
-								}
-							} elseif ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
-
-								$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
-
+						// sanitize.
+						if ( ! isset( $field['sanitize'] ) ) {
+							if ( is_array( $field_value ) ) {
+								$data[ $field_id ] = wp_kses_post_deep( $field_value );
 							} else {
-								$data[ $field_id ] = $field_value;
-
+								$data[ $field_id ] = wp_kses_post( $field_value );
 							}
+						} elseif ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
+							$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );
 
-							// Validate "post" request of field.
-							if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
+						} else {
+							$data[ $field_id ] = wp_kses_post( $field_value );
 
-								$has_validated = call_user_func( $field['validate'], $field_value );
+						}
 
-								if ( ! empty( $has_validated ) ) {
-									$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
-									$this->errors[ $field_id ] = $has_validated;
-								}
+						// Validate "post" request of field.
+						if ( isset( $field['validate'] ) && is_callable( $field['validate'] ) ) {
+
+							$has_validated = call_user_func( $field['validate'], $field_value );
+
+							if ( ! empty( $has_validated ) ) {
+								$data[ $field_id ]         = ( isset( $this->options[ $field_id ] ) ) ? $this->options[ $field_id ] : '';
+								$this->errors[ $field_id ] = $has_validated;
 							}
 						}
 					}
 				}
+			}
 
 				$data = apply_filters( "spf_{$this->unique}_save", $data, $this );
 
@@ -506,17 +568,12 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 				do_action( "spf_{$this->unique}_save_after", $data, $this );
 
-				if ( empty( $this->notice ) ) {
-					$this->notice = esc_html__( 'Settings saved.', 'post-carousel' );
-				}
-
-				return true;
+			if ( empty( $this->notice ) ) {
+				$this->notice = esc_html__( 'Settings saved.', 'post-carousel' );
 			}
 
-			return false;
-
+			return true;
 		}
-
 		/**
 		 * Save options database.
 		 *
@@ -536,7 +593,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			}
 
 			do_action( "spf_{$this->unique}_saved", $data, $this );
-
 		}
 
 		/**
@@ -561,7 +617,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			}
 
 			return $this->options;
-
 		}
 
 		/**
@@ -593,7 +648,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 							$tab_key += ( count( $section['subs'] ) - 1 );
 						}
 
-						$tab_key++;
+						++$tab_key;
 
 					}
 
@@ -607,7 +662,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			}
 
 			add_action( 'load-' . $menu_page, array( &$this, 'add_page_on_load' ) );
-
 		}
 
 		/**
@@ -627,7 +681,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 					$screen->set_help_sidebar( $this->args['contextual_help_sidebar'] );
 				}
 			}
-
 		}
 
 		/**
@@ -691,6 +744,11 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 			echo '<div class="spf spf-options' . esc_attr( $theme ) . esc_attr( $class ) . esc_attr( $wrapper_class ) . '" data-slug="' . esc_attr( $this->args['menu_slug'] ) . '" data-unique="' . esc_attr( $this->unique ) . '">';
 
+			if ( 'pcp_replace_layout' === $menu_slug ) {
+				echo '<div class="sp-smart-post-upgrade-to-pro-button">
+					<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank">Upgrade to Pro!</a>
+				</div>';
+			}
 			$notice_class = ( ! empty( $this->notice ) ) ? ' spf-form-show' : '';
 			$notice_text  = ( ! empty( $this->notice ) ) ? $this->notice : '';
 
@@ -723,7 +781,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 					.st0{fill:#D64224;}
 				</style>
 				<path class="st0" d="M0,69.3V0h69.4v18.6H18.6v50.7L0,69.3L0,69.3z M100,100H30.6V30.7H100V100z"/>
-				</svg>' . esc_html__( 'Replace Layout', 'post-carousel' ) . '</h1>';
+				</svg>' . esc_html__( 'Replace Layout (Pro)', 'post-carousel' ) . '</h1>';
 			} elseif ( $show_buttons ) {
 				echo '<h1><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1.4em" fill="#e1624b" height="1.4em" viewBox="0 0 288 288" enable-background="new 0 0 288 288" xml:space="preserve"><path fill="#e1624b" d="M262.102,20.977H27.615c-3.195,0-6.638,2.401-6.638,5.63v234.359c0,3.229,3.443,6.057,6.638,6.057h234.487c3.187,0,4.921-2.828,4.921-6.057V26.607C267.023,23.378,265.289,20.977,262.102,20.977z M118.37,53.441h51.26v43.571h-51.26V53.441z M55.15,53.441h51.26v43.571H55.15V53.441z M135.457,235.413H55.15v-46.134h80.307V235.413z M135.457,173.047H55.15v-46.134h80.307V173.047z M235.413,235.413h-80.307v-46.134h80.307V235.413z M235.413,173.047h-80.307v-46.134h80.307V173.047z M235.413,97.012h-51.26V53.441h51.26V97.012z"></path><line fill="none" x1="-99" y1="-84" x2="-99" y2="-57"></line><line fill="none" x1="-170" y1="61" x2="-170" y2="101"></line></svg>' . esc_html__( 'Settings', 'post-carousel' ) . '</h1>';
 			} else {
@@ -778,7 +836,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 							echo '<li class="spf-tab-depth-1"><a id="spf-tab-link-' . esc_attr( $tab_key ) . '" href="#tab=' . esc_attr( $tab_key ) . '">' . wp_kses_post( $sub_icon ) . esc_html( $sub['title'] ) . esc_html( $sub_error ) . '</a></li>';
 
-							$tab_key++;
+							++$tab_key;
 						}
 
 						echo '</ul>';
@@ -789,7 +847,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 						echo '<li class="spf-tab-depth-0"><a id="spf-tab-link-' . esc_attr( $tab_key ) . '" href="#tab=' . esc_attr( $tab_key ) . '">' . wp_kses_post( $tab_icon ) . esc_html( $tab['title'] ) . esc_html( $tab_error ) . '</a></li>';
 
-						$tab_key++;
+						++$tab_key;
 					}
 				}
 
@@ -837,7 +895,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 
 				echo '</div>';
 
-				$section_key++;
+				++$section_key;
 			}
 
 			echo '</div>';
@@ -876,7 +934,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			echo ( ! empty( $this->args['footer_after'] ) ) ? wp_kses_post( $this->args['footer_after'] ) : '';
 
 			echo '</div>';
-
 		}
 	}
 }

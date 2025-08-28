@@ -6,7 +6,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! function_exists( 'spf_array_search' ) ) {
 	/**

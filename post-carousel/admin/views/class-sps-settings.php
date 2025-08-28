@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access pages directly.
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Settings.
@@ -21,7 +22,6 @@ class SPS_Settings {
 	 * @return void
 	 */
 	public static function settings( $prefix ) {
-
 		SP_PC::createOptions(
 			$prefix,
 			array(
@@ -44,6 +44,5 @@ class SPS_Settings {
 		SPS_ScriptsAndStyles::section( $prefix );
 		SPS_Accessibility::section( $prefix );
 		SPS_CustomCSS::section( $prefix );
-		SPS_License::section( $prefix );
 	}
 }

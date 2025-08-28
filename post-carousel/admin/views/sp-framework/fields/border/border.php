@@ -196,7 +196,6 @@ if ( ! class_exists( 'SP_PC_Field_border' ) ) {
 			echo '<div class="clear"></div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 	}
 }

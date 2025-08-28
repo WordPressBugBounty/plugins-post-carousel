@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * The framework custom import fields file.
  *
@@ -7,7 +7,9 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
+
 /**
  *
  * Field: Custom_import

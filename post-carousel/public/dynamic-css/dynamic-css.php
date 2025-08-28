@@ -7,7 +7,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 $layout_preset = isset( $layout['pcp_layout_preset'] ) ? $layout['pcp_layout_preset'] : '';

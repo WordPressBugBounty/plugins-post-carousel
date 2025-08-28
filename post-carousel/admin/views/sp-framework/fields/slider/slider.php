@@ -65,7 +65,6 @@ if ( ! class_exists( 'SP_PC_Field_slider' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 
 		/**
@@ -78,8 +77,6 @@ if ( ! class_exists( 'SP_PC_Field_slider' ) ) {
 			if ( ! wp_script_is( 'jquery-ui-slider' ) ) {
 				wp_enqueue_script( 'jquery-ui-slider' );
 			}
-
 		}
-
 	}
 }

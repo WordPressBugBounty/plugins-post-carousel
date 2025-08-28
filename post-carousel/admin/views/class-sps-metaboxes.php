@@ -7,8 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die;
-} // Cannot access pages directly.
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Smart Post Show Metaboxes.
@@ -146,7 +146,7 @@ class SPS_Metaboxes {
 		SP_PC::createMetabox(
 			$prefix,
 			array(
-				'title'        => __( 'Unlock Full Potential with Pro', 'post-carousel' ),
+				'title'        => __( 'Additional Features in Pro', 'post-carousel' ),
 				'post_type'    => 'sp_post_carousel',
 				'context'      => 'side',
 				'show_restore' => false,

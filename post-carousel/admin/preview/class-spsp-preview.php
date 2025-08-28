@@ -8,6 +8,9 @@
  * @package    Smart_Post_Show
  * @subpackage Smart_Post_Show/admin
  */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * The admin preview.
@@ -75,7 +78,7 @@ class Class_SPSPS_Preview {
 		$section_title = $settings['post_title'];
 		// Load dynamic style for the backend preview.
 		$dynamic_style = Smart_Post_Show_Public::load_dynamic_style( $shortcode_id, $view_options, $layout );
-		echo '<style id="sps_dynamic_css">' . $dynamic_style['dynamic_css'] . '</style>';
+		echo '<style id="sps_dynamic_css">' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>'; // phpcs:ignore
 
 		SP_PC_Output::pc_html_show( $view_options, $layout, $shortcode_id, $section_title );
 		die();

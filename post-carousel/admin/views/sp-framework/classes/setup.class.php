@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot a cess directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC' ) ) {
 
@@ -406,6 +407,7 @@ if ( ! class_exists( 'SP_PC' ) ) {
 							'import_notification' => esc_html__( 'Importing options.', 'post-carousel' ),
 
 							// chosen localize.
+							/* translators: %s: minimum number of characters required */
 							'typing_text'         => esc_html__( 'Please enter %s or more characters', 'post-carousel' ),
 							'searching_text'      => esc_html__( 'Searching...', 'post-carousel' ),
 							'no_results_text'     => esc_html__( 'No results match', 'post-carousel' ),

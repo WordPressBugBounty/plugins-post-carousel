@@ -84,7 +84,6 @@ if ( ! class_exists( 'SP_PC_Field_layout_preset' ) ) {
 			echo '<div class="clear"></div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 	}
 }

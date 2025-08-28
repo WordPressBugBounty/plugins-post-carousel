@@ -7,8 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die;
-} // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC_Field_text' ) ) {
 	/**
@@ -46,8 +46,6 @@ if ( ! class_exists( 'SP_PC_Field_text' ) ) {
 				echo '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $this->field_name() ) . '" value="' . esc_attr( $this->value ) . '"' . wp_kses_post( $this->field_attributes() ) . ' />';
 			}
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

@@ -9,6 +9,10 @@
  * @subpackage Smart_Post_Show/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -268,7 +272,7 @@ class Smart_Post_Show_Admin {
 	public function sp_spc_footer_text( $text ) {
 		$screen = get_current_screen();
 		if ( 'sp_post_carousel' === $screen->post_type ) {
-			$url  = 'https://wordpress.org/support/plugin/post-carousel/reviews/?filter=5';
+			$url  = 'https://wordpress.org/support/plugin/post-carousel/reviews/';
 			$text = sprintf( wp_kses_post( 'Enjoying <strong>Smart Post Show?</strong> Please rate us <span class="spspc-footer-text-star">★★★★★</span> <a href="%s" target="_blank">WordPress.org.</a> Your positive feedback will help us grow more. Thank you! 😊', 'easy-accordion-free' ), $url );
 		}
 		return $text;

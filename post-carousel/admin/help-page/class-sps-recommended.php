@@ -165,7 +165,6 @@ class SPS_Recommended {
 			$response = wp_remote_post( $url, array( 'body' => $request ) );
 
 			if ( ! is_wp_error( $response ) ) {
-
 				$plugins_arr = array();
 				$plugins     = unserialize( $response['body'] );
 
@@ -773,7 +772,7 @@ class SPS_Recommended {
 							</div>
 						</div>
 						<div class="spspc-about-img">
-							<img src="https://shapedplugin.com/wp-content/uploads/2024/01/shapedplugin-team.jpg" alt="">
+							<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/shapedplugin-team.jpg' ); ?>" alt="ShapedPlugin Team">
 							<span>Team ShapedPlugin LLC at WordCamp Sylhet</span>
 						</div>
 					</div>
@@ -815,7 +814,9 @@ class SPS_Recommended {
 							</a>
 							<a target="_blank" class="spspc-our-plugin-list-box" href="https://getwpteam.com/?ref=1">
 								<i class="spspc-icon-button-arrow-icon"></i>
+								<?php if ( ! empty( $plugin_icon['team-free'] ) ) { ?>
 								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="WP Team">
+								<?php } ?>
 								<h4>WP Team</h4>
 								<p>Display your team members smartly who are at the heart of your company or organization!</p>
 							</a>
@@ -880,6 +881,6 @@ class SPS_Recommended {
 				</div>
 			</section>
 		</div>
-		<?php
+									<?php
 	}
 }

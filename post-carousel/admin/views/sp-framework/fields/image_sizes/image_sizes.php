@@ -75,7 +75,7 @@ if ( ! class_exists( 'SP_PC_Field_image_sizes' ) ) {
 				$sizes,
 				array(
 					'full'   => __( 'Original uploaded image', 'post-carousel' ),
-					'custom' => __( 'Set custom size', 'post-carousel' ),
+					'custom' => __( 'Set custom size (Pro)', 'post-carousel' ),
 				)
 			);
 
@@ -128,8 +128,6 @@ if ( ! class_exists( 'SP_PC_Field_image_sizes' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

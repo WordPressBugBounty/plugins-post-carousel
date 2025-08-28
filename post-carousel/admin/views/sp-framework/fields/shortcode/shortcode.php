@@ -42,27 +42,25 @@ if ( ! class_exists( 'SP_PC_Field_shortcode' ) ) {
 					echo '<div class="sp_wpcp_shortcode-area pcp-notice-wrapper">';
 					echo '<div class="pcp-notice-heading">' . sprintf(
 						/* translators: 1: start span tag, 2: close tag. */
-						esc_html__( 'Unlock Full Potential with %1$sPRO%2$s', 'post-carousel' ),
+						esc_html__( 'Additional Features in %1$sPRO%2$s', 'post-carousel' ),
 						'<span>',
 						'</span>'
 					) . '</div>';
 
 					echo '<p class="pcp-notice-desc">' . sprintf(
 						/* translators: 1: start bold tag, 2: close tag. */
-						esc_html__( 'Boost engagement with next-level post sliders & grids by Pro.', 'post-carousel' ),
+						esc_html__( 'Here are some additional features available in Pro!', 'post-carousel' ),
 						'<b>',
 						'</b>'
 					) . '</p>';
 
 					echo '<ul>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '30+ Beautiful Layouts', 'post-carousel' ) . '</li>';
-					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '15+ Advanced Blocks (New)', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Advanced Query Builder', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Custom Post Type & Media', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Ajax Live Filtering & Search', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Control Detail Page Fields', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Ajax Load More & Infinite Scroll', 'post-carousel' ) . '</li>';
-					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Custom Fields & Social Share', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Redesign Blog & Archive Pages', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( 'Show Ads Between Posts', 'post-carousel' ) . '</li>';
 					echo '<li><i class="sps-icon-check-icon"></i> ' . esc_html__( '200+ Customizations & More', 'post-carousel' ) . '</li>';

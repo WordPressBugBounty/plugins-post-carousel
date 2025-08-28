@@ -33,7 +33,7 @@ class SPS_CustomCSS {
 						'title'    => __( 'Custom CSS', 'post-carousel' ),
 						'settings' => array(
 							'icon'  => 'fa fa-sliders',
-							'theme' => 'mbo',
+							'theme' => 'default',
 							'mode'  => 'css',
 						),
 					),
@@ -43,7 +43,7 @@ class SPS_CustomCSS {
 						'title'    => __( 'Custom JS', 'post-carousel' ),
 						'settings' => array(
 							'icon'  => 'fa fa-sliders',
-							'theme' => 'monokai',
+							'theme' => 'default',
 							'mode'  => 'javascript',
 						),
 					),

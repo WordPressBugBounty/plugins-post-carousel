@@ -7,8 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
-
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC_Fields' ) ) {
 	/**

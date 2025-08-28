@@ -8,6 +8,10 @@
  * @since 2.2.0
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The query inside class to process the query.
  *
@@ -39,7 +43,8 @@ class SP_PC_QueryInside {
 		$post_per_page   = ( $post_per_page > $post_limit ) ? $post_limit : $post_per_page;
 
 		$paged_var = 'paged' . $shortcode_id;
-		$paged     = ( ! empty( $_GET[ "$paged_var" ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ "$paged_var" ] ) ) : 1;
+		// phpcs:ignore WordPress.Security.NonceVerification -- read-only operation, so can safely ignore it.
+		$paged = ( ! empty( $_GET[ "$paged_var" ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ "$paged_var" ] ) ) : 1;
 
 		$post_per_page = SP_PC_Functions::pcp_post_per_page( $post_limit, $post_per_page, $paged );
 		if ( $post_per_page < 1 ) {
@@ -53,7 +58,7 @@ class SP_PC_QueryInside {
 			$post_per_page = ( $post_limit > 0 ) ? $post_limit : 999999;
 			$args          = array(
 				'post_type'           => $pcp_post_type,
-				'suppress_filters'    => true,
+				'suppress_filters'    => false,
 				'ignore_sticky_posts' => $sticky_post_position,
 				'posts_per_page'      => $post_per_page,
 				'offset'              => (int) $post_offset,
@@ -61,7 +66,7 @@ class SP_PC_QueryInside {
 		} else {
 			$args = array(
 				'post_type'           => $pcp_post_type,
-				'suppress_filters'    => true,
+				'suppress_filters'    => false,
 				'ignore_sticky_posts' => $sticky_post_position,
 				'posts_per_page'      => $post_per_page,
 				'paged'               => $paged,

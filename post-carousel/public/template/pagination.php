@@ -7,7 +7,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 $pagination_type = isset( $view_options['post_pagination_type'] ) ? $view_options['post_pagination_type'] : '';
 // Paged argument.

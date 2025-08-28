@@ -7,7 +7,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! function_exists( 'pcp_get_option' ) ) {
 	/**

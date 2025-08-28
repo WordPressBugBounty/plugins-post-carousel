@@ -9,6 +9,10 @@
  * @subpackage Smart_Post_Show/public
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * The public-facing functionality of the plugin.
  */
@@ -122,7 +126,7 @@ class Smart_Post_Show_Public {
 			wp_enqueue_style( 'pcp-style' );
 			$dynamic_style = self::load_dynamic_style( $shortcode_id, $view_options, $layout );
 			// Add dynamic style.
-			echo '<style id="sp_pcp_dynamic_style' . esc_attr( $shortcode_id ) . '">' . $dynamic_style['dynamic_css'] . '</style>'; // phpcs:ignore
+			echo '<style id="sp_pcp_dynamic_style' . esc_attr( $shortcode_id ) . '">' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>'; // phpcs:ignore
 		}
 		// Update options if the existing shortcode id option not found.
 		self::sps_db_options_update( $shortcode_id, $get_page_data );

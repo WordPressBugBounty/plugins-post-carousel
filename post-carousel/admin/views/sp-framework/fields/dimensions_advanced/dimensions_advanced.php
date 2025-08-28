@@ -10,7 +10,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
 
 if ( ! class_exists( 'SP_PC_Field_dimensions_advanced' ) ) {
 
@@ -157,7 +158,6 @@ if ( ! class_exists( 'SP_PC_Field_dimensions_advanced' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 	}
 }

@@ -54,8 +54,6 @@ if ( ! class_exists( 'SP_PC_Field_fieldset' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

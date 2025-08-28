@@ -10,6 +10,10 @@
  * @author     ShapedPlugin <support@shapedplugin.com>
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Elementor smart post show free shortcode Widget.
  *
@@ -113,7 +117,6 @@ class Shortcode_Widget extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	/**
@@ -143,16 +146,11 @@ class Shortcode_Widget extends \Elementor\Widget_Base {
 			$section_title = get_the_title( $shortcode_id );
 			// Load dynamic style for the backend preview.
 			$dynamic_style = Smart_Post_Show_Public::load_dynamic_style( $shortcode_id, $view_options, $layout );
-			echo '<style id="sps_dynamic_style' . esc_attr( $shortcode_id ) . '">' . $dynamic_style['dynamic_css'] . '</style>';
+			echo '<style id="sps_dynamic_style' . esc_attr( $shortcode_id ) . '">' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>'; // phpcs:ignore
 			// Markup of the plugin.
 			SP_PC_Output::pc_html_show( $view_options, $layout, $shortcode_id, $section_title );
-			?>
-			<script src="<?php echo esc_url( SP_PC_URL . 'public/assets/js/scripts.min.js' ); ?>" ></script>
-			<?php
 		} else {
 			echo do_shortcode( '[smart_post_show id="' . $generator_id . '"]' );
 		}
-
 	}
-
 }

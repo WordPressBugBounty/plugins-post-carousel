@@ -90,8 +90,6 @@ if ( ! class_exists( 'SP_PC_Field_radio' ) ) {
 			}
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

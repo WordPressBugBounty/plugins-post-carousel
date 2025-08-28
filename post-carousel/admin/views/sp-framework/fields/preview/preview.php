@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * The framework preview fields file.
  *
@@ -7,10 +7,10 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; 
+	die;
 } // Cannot access directly.
 
-if ( ! class_exists( 'SP_PC_Field_preview' ) ) {	
+if ( ! class_exists( 'SP_PC_Field_preview' ) ) {
 	/**
 	 * SP_PC_Field_preview
 	 */
@@ -35,6 +35,5 @@ if ( ! class_exists( 'SP_PC_Field_preview' ) ) {
 		public function render() {
 			echo '<div class="spsp-preview-box"><div id="spsp-preview-box"></div></div>';
 		}
-
 	}
 }

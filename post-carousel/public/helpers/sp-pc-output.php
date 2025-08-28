@@ -10,7 +10,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+	die; // Exit if accessed directly.
 }
 /**
  * Post output query.
@@ -63,12 +63,13 @@ class SP_PC_Output {
 	 */
 	public static function pcp_post_loop( $options, $layout, $sorter, $scode_id ) {
 		global $post;
-		$number_of_columns = SP_PC_Functions::pcp_metabox_value( 'pcp_number_of_columns', $options );
-		$item_class        = 'slider_layout' === $layout ? 'sp-overlay overlay-content-position-middle' : 'left-thumb';
+		$post_content_orientation = SP_PC_Functions::pcp_metabox_value( 'post_content_orientation', $options );
+		$number_of_columns        = SP_PC_Functions::pcp_metabox_value( 'pcp_number_of_columns', $options );
+		$_orientation             = ( 'list_layout' === $layout ) ? 'left-thumb' : $post_content_orientation;
+		$item_class               = ( 'slider_layout' === $layout ) ? 'sp-overlay overlay-content-position-middle' : $_orientation;
 		?>
 		<div class="<?php echo esc_attr( self::pcp_post_responsive_columns( $layout, $number_of_columns ) ); ?>">
-			<?php if ( 'slider_layout' === $layout || 'list_layout' === $layout ) { ?>
-				<div class="sp-pcp-post <?php echo esc_attr( $item_class ); ?> pcp-item-<?php echo esc_attr( $post->ID ); ?>" data-id="<?php echo esc_attr( $post->ID ); ?>">
+			<div class="sp-pcp-post <?php echo esc_attr( $item_class ); ?> pcp-item-<?php echo esc_attr( $post->ID ); ?>" data-id="<?php echo esc_attr( $post->ID ); ?>">
 				<?php
 					SP_PC_HTML::pcp_post_thumb_html( $sorter, $scode_id, $post, $options, $layout );
 				?>
@@ -80,13 +81,6 @@ class SP_PC_Output {
 					</div>
 				</div>
 			</div>
-			<?php } else { ?>
-			<div class="sp-pcp-post pcp-item-<?php echo esc_attr( $post->ID ); ?>" data-id="<?php echo esc_attr( $post->ID ); ?>">
-				<?php
-					SP_PC_HTML::pcp_post_content_with_thumb( $sorter, $layout, $scode_id, $post, $options );
-				?>
-			</div>
-			<?php } ?>
 		</div>
 		<?php
 	}
@@ -109,7 +103,7 @@ class SP_PC_Output {
 			if ( $without_post_thumbnail ) {
 				self::pcp_post_loop( $options, $layout, $sorter, $view_id );
 			}
-			$pcp_count++;
+			++$pcp_count;
 		}
 		wp_reset_postdata();
 	}

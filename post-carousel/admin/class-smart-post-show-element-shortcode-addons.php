@@ -7,6 +7,10 @@
  * @subpackage  Smart_Post_Show/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Smart_Post_Show_Free_Element_Shortcode_Addons main class.
  */
@@ -50,7 +54,6 @@ class Smart_Post_Show_Free_Element_Shortcode_Addons {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
-
 	}
 
 	/**
@@ -169,9 +172,7 @@ class Smart_Post_Show_Free_Element_Shortcode_Addons {
 		// Register widget.
 		require_once SP_PC_PATH . 'admin/ElementAddons/Shortcode_Widget.php';
 		\Elementor\Plugin::instance()->widgets_manager->register( new Shortcode_Widget() );
-
 	}
-
 }
 
 Smart_Post_Show_Free_Element_Shortcode_Addons::instance();

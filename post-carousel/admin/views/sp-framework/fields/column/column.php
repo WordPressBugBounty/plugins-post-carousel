@@ -7,7 +7,9 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die; } // Cannot access directly.
+	exit; // Exit if accessed directly.
+}
+
 /**
  *
  * Field: column
@@ -143,7 +145,6 @@ if ( ! class_exists( 'SP_PC_Field_column' ) ) {
 			echo '</div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
 	}
 }

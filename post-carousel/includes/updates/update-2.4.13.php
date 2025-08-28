@@ -1,4 +1,18 @@
 <?php
+/**
+ * This file is used to update the database version of the plugin.
+ *
+ * @link        https://smartpostshow.com/
+ * @since      2.4.13
+ *
+ * @package    Smart_Post_Show
+ * @subpackage Smart_Post_Show/includes
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'smart_post_show_version', '2.4.13' );
 update_option( 'smart_post_show_db_version', '2.4.13' );
 

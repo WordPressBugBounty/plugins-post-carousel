@@ -47,7 +47,7 @@ if ( ! class_exists( 'SP_PC_Field_color_group' ) ) {
 					$default_attr = ( ! empty( $this->field['default'][ $key ] ) ) ? ' data-default-color="' . esc_attr( $this->field['default'][ $key ] ) . '"' : '';
 
 					echo '<div class="spf--left spf-field-color">';
-					echo '<div class="spf--title">' . $option . '</div>';
+					echo '<div class="spf--title">' . wp_kses_post( $option ) . '</div>';
 					echo '<input type="text" name="' . $this->field_name( '[' . $key . ']' ) . '" value="' .  esc_attr( $color_value ) . '" class="spf-color"' . $default_attr . $this->field_attributes() . '/>';// phpcs:ignore
 					echo '</div>';
 
@@ -57,8 +57,6 @@ if ( ! class_exists( 'SP_PC_Field_color_group' ) ) {
 			echo '<div class="clear"></div>';
 
 			echo wp_kses_post( $this->field_after() );
-
 		}
-
 	}
 }

@@ -39,9 +39,8 @@ if ( ! class_exists( 'SP_PC_Field_notice' ) ) {
 			echo wp_kses_post( $this->field_before() );
 			$style = ( ! empty( $this->field['style'] ) ) ? $this->field['style'] : 'normal';
 
-			echo ( ! empty( $this->field['content'] ) ) ? '<div class="spf-notice spf-notice-' . $style . '">' . wp_kses_post( $this->field['content'] ) . '</div>' : '';
+			echo ( ! empty( $this->field['content'] ) ) ? '<div class="spf-notice spf-notice-' . esc_attr( $style ) . '">' . wp_kses_post( $this->field['content'] ) . '</div>' : '';
 			echo wp_kses_post( $this->field_after() );
 		}
-
 	}
 }

@@ -7,6 +7,10 @@
  * @subpackage  Smart_Post_Show/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Smart_Post_Show_Element_Shortcode_Addons_Deprecated main class.
  */

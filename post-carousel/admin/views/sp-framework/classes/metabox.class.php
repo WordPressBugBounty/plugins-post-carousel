@@ -114,7 +114,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 
 			// wp enqeueu for typography and output css.
 			parent::__construct();
-
 		}
 
 		/**
@@ -206,7 +205,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			}
 
 			return $classes;
-
 		}
 
 		/**
@@ -219,7 +217,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			if ( ! in_array( $post_type, $this->args['exclude_post_types'] ) ) {
 				add_meta_box( $this->unique, $this->args['title'], array( &$this, 'add_meta_box_content' ), $this->post_type, $this->args['context'], $this->args['priority'], $this->args );
 			}
-
 		}
 
 		/**
@@ -235,7 +232,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			$default = ( isset( $field['default'] ) ) ? $field['default'] : $default;
 
 			return $default;
-
 		}
 
 		/**
@@ -267,7 +263,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			$value   = ( isset( $value ) ) ? $value : $default;
 
 			return $value;
-
 		}
 
 		/**
@@ -311,7 +306,7 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 					// Added li class to hide when needs, -ShapedPlugin.
 					echo '<li class="menu-item_' . esc_attr( $this->unique ) . '_' . esc_attr( $tab_key ) . '"><a href="#" data-section="' . esc_attr( $this->unique ) . '_' . esc_attr( $tab_key ) . '">' . wp_kses_post( $tab_icon ) . esc_html( $section['title'] ) . esc_html( $tab_error ) . '</a></li>';
 
-					$tab_key++;
+					++$tab_key;
 				}
 				echo '</ul>';
 
@@ -355,7 +350,7 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 
 				echo '</div>';
 
-				$section_key++;
+				++$section_key;
 			}
 
 			echo '</div>';
@@ -383,7 +378,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			echo '</div>';
 
 			echo '</div>';
-
 		}
 
 		/**
@@ -406,7 +400,7 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
 			// @codingStandardsIgnoreLine
-			$request = ( ! empty( $_POST[ $this->unique ] ) ) ? $_POST[ $this->unique ] : array();
+			$request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array();
 			if ( ! empty( $request ) ) {
 				foreach ( $this->sections as $section ) {
 					if ( ! empty( $section['fields'] ) ) {
@@ -414,7 +408,7 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 							$this->process_field( $field, $request, $count, $data, $errors );
 						}
 					}
-					$count++;
+					++$count;
 				}
 			}
 			$data = apply_filters( "spf_{$this->unique}_save", $data, $post_id, $this );
@@ -422,7 +416,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			do_action( "spf_{$this->unique}_save_before", $data, $post_id, $this );
 
 			if ( empty( $data ) || ! empty( $request['_reset'] ) ) {
-
 				if ( 'serialize' !== $this->args['data_type'] ) {
 					foreach ( $data as $key => $value ) {
 						delete_post_meta( $post_id, $key );
@@ -446,7 +439,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			do_action( "spf_{$this->unique}_saved", $data, $post_id, $this );
 
 			do_action( "spf_{$this->unique}_save_after", $data, $post_id, $this );
-
 		}
 
 		/**
@@ -485,7 +477,6 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 			if ( ! empty( $field['id'] ) && ! ( isset( $field['only_pro'] ) ) ) {
 				$field_id    = $field['id'];
 				$field_value = isset( $request[ $field_id ] ) ? $request[ $field_id ] : '';
-
 				// Sanitize "post" request of field.
 				if ( isset( $field['sanitize'] ) && is_callable( $field['sanitize'] ) ) {
 					$data[ $field_id ] = call_user_func( $field['sanitize'], $field_value );

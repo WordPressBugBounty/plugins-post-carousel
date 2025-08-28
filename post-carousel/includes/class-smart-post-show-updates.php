@@ -11,7 +11,7 @@
 
 // don't call the file directly.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -101,7 +101,15 @@ class Smart_Post_Show_Updates {
 
 		foreach ( self::$updates as $version => $path ) {
 			if ( version_compare( $installed_version, $version, '<' ) ) {
-				include $path;
+				$allowed_paths = array(
+					'updates/update-2.2.0.php',
+					'updates/update-2.4.13.php',
+					'updates/update-3.0.0.php',
+					'updates/update-3.0.6.php',
+				);
+				if ( in_array( $path, $allowed_paths ) && file_exists( SP_PC_PATH . 'includes/' . $path ) ) {
+					require_once SP_PC_PATH . 'includes/' . $path;
+				}
 				update_option( 'smart_post_show_version', $version );
 			}
 		}

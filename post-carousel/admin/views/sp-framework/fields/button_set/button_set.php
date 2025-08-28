@@ -78,8 +78,6 @@ if ( ! class_exists( 'SP_PC_Field_button_set' ) ) {
 			}
 			echo wp_kses_post( $this->field_after() );
 			echo '<div class="clear"></div>';
-
 		}
-
 	}
 }

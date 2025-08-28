@@ -10,7 +10,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+	die; // Exit if accessed directly.
 }
 /**
  * Post all html method.
@@ -48,6 +48,7 @@ class SP_PC_HTML {
 		$pcp_link_rel       = SP_PC_Functions::pcp_metabox_value( 'pcp_link_rel', $options );
 		$pcp_link_rel_text  = $pcp_link_rel ? 'rel=nofollow' : '';
 		$pcp_link_target    = SP_PC_Functions::pcp_metabox_value( 'pcp_link_target', $options );
+
 		if ( is_array( $post_meta_fields ) && 'accordion_layout' !== $layout && $show_post_meta ) {
 			foreach ( $post_meta_fields as $each_meta ) {
 				if ( 'taxonomy' === $each_meta['select_post_meta'] ) {
@@ -93,9 +94,9 @@ class SP_PC_HTML {
 			?>
 			<<?php echo tag_escape( $post_title_tag ); ?> class="sp-pcp-title">
 				<?php if ( 'none' === $pcp_page_link_type ) { ?>
-					<?php echo sprintf( '<a %2$s>%1$s</a>', wp_kses( trim( $pcp_post_title ), $allowed_html_tags ), esc_attr( $pcp_link_rel_text ) ); ?>
+					<?php printf( '<a %2$s>%1$s</a>', wp_kses( trim( $pcp_post_title ), $allowed_html_tags ), esc_attr( $pcp_link_rel_text ) ); ?>
 			<?php } else { ?>
-					<?php echo sprintf( '<a href="%1$s" %3$s target="%4$s">%2$s</a>', esc_url( get_the_permalink() ), wp_kses( trim( $pcp_post_title ), $allowed_html_tags ), esc_attr( $pcp_link_rel_text ), esc_attr( $pcp_link_target ) ); ?>
+					<?php printf( '<a href="%1$s" %3$s target="%4$s">%2$s</a>', esc_url( get_the_permalink() ), wp_kses( trim( $pcp_post_title ), $allowed_html_tags ), esc_attr( $pcp_link_rel_text ), esc_attr( $pcp_link_target ) ); ?>
 			<?php } ?>
 				</<?php echo tag_escape( $post_title_tag ); ?>>
 				<?php
@@ -210,7 +211,8 @@ class SP_PC_HTML {
 		$_meta_settings   = SP_PC_Functions::pcp_metabox_value( 'pcp_post_meta', $sorter );
 		$post_meta_fields = SP_PC_Functions::pcp_metabox_value( 'pcp_post_meta_group', $_meta_settings );
 		$show_post_meta   = SP_PC_Functions::pcp_metabox_value( 'show_post_meta', $_meta_settings, true );
-		$_meta_separator  = ' ';
+		$_meta_separator  = SP_PC_Functions::pcp_metabox_value( 'meta_separator', $_meta_settings, ' ' );
+
 		if ( $post_meta_fields && $show_post_meta ) {
 			?>
 		<div class="sp-pcp-post-meta">
@@ -307,7 +309,8 @@ class SP_PC_HTML {
 		}
 		$big = 999999999; // need an unlikely integer.
 		if ( $pages > 1 ) {
-			$paged_var    = 'paged' . $shortcode_id;
+			$paged_var = 'paged' . $shortcode_id;
+			// phpcs:ignore WordPress.Security.NonceVerification -- read-only operation, so can safely ignore it.
 			$page_current = ( ! empty( $_GET[ "$paged_var" ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ "$paged_var" ] ) ) : 1;
 			$page_links   = paginate_links(
 				array(

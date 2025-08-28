@@ -8,6 +8,10 @@
  * @since 2.2.0
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Post views helper method.
  *

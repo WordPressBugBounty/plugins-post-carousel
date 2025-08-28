@@ -43,7 +43,7 @@ if ( ! class_exists( 'Smart_Post_Show_Gutenberg_Block_Init' ) ) {
 		public function spsp_block_editor_assets() {
 			wp_enqueue_script(
 				'smart-post-show-shortcode-block',
-				plugins_url( '/GutenbergBlock/build/index.js', dirname( __FILE__ ) ),
+				plugins_url( '/GutenbergBlock/build/index.js', __DIR__ ),
 				array( 'jquery' ),
 				SP_PC_VERSION,
 				true

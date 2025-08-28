@@ -1,4 +1,14 @@
-<?php if ( ! defined( 'ABSPATH' ) ) { die; } // Cannot access directly.
+<?php
+/**
+ * The framework typography fields file.
+ *
+ * @package Smart_Post_Show
+ * @subpackage Smart_Post_Show/admin
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 if( ! function_exists( 'spf_get_google_fonts' ) ) {
   function spf_get_google_fonts() {

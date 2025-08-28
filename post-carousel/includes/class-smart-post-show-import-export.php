@@ -40,12 +40,14 @@ class Smart_Post_Show_Import_Export {
 			if ( ! empty( $shortcodes ) ) {
 				foreach ( $shortcodes as $shortcode ) {
 					$shortcode_export = array(
-						'title'       => $shortcode->post_title,
-						'original_id' => $shortcode->ID,
+						'title'       => sanitize_text_field( $shortcode->post_title ),
+						'original_id' => absint( $shortcode->ID ),
 						'meta'        => array(),
 					);
 					foreach ( get_post_meta( $shortcode->ID ) as $metakey => $value ) {
-						$shortcode_export['meta'][ $metakey ] = $value[0];
+						$meta_key                              = sanitize_key( $metakey );
+						$meta_value                            = is_serialized( $value[0] ) ? $value[0] : sanitize_text_field( $value[0] );
+						$shortcode_export['meta'][ $meta_key ] = $meta_value;
 					}
 					$export['shortcode'][] = $shortcode_export;
 
@@ -53,11 +55,12 @@ class Smart_Post_Show_Import_Export {
 				}
 				$export['metadata'] = array(
 					'version' => SP_PC_VERSION,
-					'date'    => gmdate( 'Y/m/d' ),
+					'date'    => sanitize_text_field( gmdate( 'Y/m/d' ) ),
 				);
 			}
 			return $export;
 		}
+		return false;
 	}
 
 	/**
@@ -66,14 +69,20 @@ class Smart_Post_Show_Import_Export {
 	 * @return void
 	 */
 	public function export_shortcodes() {
-		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : ''; // phpcs:ignore
+		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
-			die();
+			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
 		}
+
+		$_capability = apply_filters( 'sp_post_carousel_import_export_user_capability', 'manage_options' );
+		if ( ! current_user_can( $_capability ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to export.', 'post-carousel' ) ) );
+		}
+
 		$shortcode_ids = isset( $_POST['pcp_ids'] ) ? wp_unslash( $_POST['pcp_ids'] ) : ''; // phpcs:ignore
 
 		if ( is_array( $shortcode_ids ) ) {
-			$shortcode_ids = array_map( 'sanitize_text_field', $shortcode_ids );
+			$shortcode_ids = array_map( 'absint', $shortcode_ids );
 		} else {
 			$shortcode_ids = sanitize_text_field( $shortcode_ids );
 		}
@@ -83,7 +92,16 @@ class Smart_Post_Show_Import_Export {
 		if ( is_wp_error( $export ) ) {
 			wp_send_json_error(
 				array(
-					'message' => $export->get_error_message(),
+					'message' => esc_html( $export->get_error_message() ),
+				),
+				400
+			);
+		}
+
+		if ( false === $export ) {
+			wp_send_json_error(
+				array(
+					'message' => esc_html__( 'No data to export.', 'post-carousel' ),
 				),
 				400
 			);
@@ -91,7 +109,7 @@ class Smart_Post_Show_Import_Export {
 
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
 			// @codingStandardsIgnoreLine
-			echo wp_json_encode($export, JSON_PRETTY_PRINT);
+			echo wp_json_encode( $export, JSON_PRETTY_PRINT );
 			die;
 		}
 
@@ -114,7 +132,7 @@ class Smart_Post_Show_Import_Export {
 			try {
 				$new_shortcode_id = wp_insert_post(
 					array(
-						'post_title'  => isset( $shortcode['title'] ) ? $shortcode['title'] : '',
+						'post_title'  => isset( $shortcode['title'] ) ? sanitize_text_field( $shortcode['title'] ) : '',
 						'post_status' => 'publish',
 						'post_type'   => 'sp_post_carousel',
 					),
@@ -127,18 +145,22 @@ class Smart_Post_Show_Import_Export {
 
 				if ( isset( $shortcode['meta'] ) && is_array( $shortcode['meta'] ) ) {
 					foreach ( $shortcode['meta'] as $key => $value ) {
-						update_post_meta(
-							$new_shortcode_id,
-							$key,
-							maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) )
-						);
+						// meta key.
+						$meta_key = sanitize_key( $key );
+						// meta value.
+						$meta_value = maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) );
+
+						// update meta.
+						update_post_meta( $new_shortcode_id, $meta_key, $meta_value );
 					}
 				}
 			} catch ( Exception $e ) {
 				array_push( $errors[ $index ], $e->getMessage() );
 
 				// If there was a failure somewhere, clean up.
-				wp_trash_post( $new_shortcode_id );
+				if ( $new_shortcode_id > 0 ) {
+					wp_trash_post( $new_shortcode_id );
+				}
 			}
 
 			// If no errors, remove the index.
@@ -147,11 +169,13 @@ class Smart_Post_Show_Import_Export {
 			}
 
 			// External modules manipulate data here.
-			do_action( 'sp_smart_post_show_shortcode_imported', $new_shortcode_id );
+			if ( $new_shortcode_id > 0 ) {
+				do_action( 'sp_smart_post_show_shortcode_imported', $new_shortcode_id );
+			}
 		}
 
 		$errors = reset( $errors );
-		return isset( $errors[0] ) ? new WP_Error( 'import_sp_smart_post_show_error', $errors[0] ) : '';
+		return isset( $errors[0] ) ? new WP_Error( 'import_sp_smart_post_show_error', esc_html( $errors[0] ) ) : '';
 	}
 
 	/**
@@ -160,34 +184,65 @@ class Smart_Post_Show_Import_Export {
 	 * @return void
 	 */
 	public function import_shortcodes() {
-		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : ''; // phpcs:ignore
+		// Verify nonce.
+		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
 		}
-		$data       = isset( $_POST['shortcode'] ) ? wp_unslash( $_POST['shortcode'] ) : '';// phpcs:ignore
-		$data       = json_decode( ( $data ) );
-		$data       = json_decode( $data, true );
-		$shortcodes = $data['shortcode'];
+
+		// Check user capabilities.
+		$_capability = apply_filters( 'sp_post_carousel_import_export_user_capability', 'manage_options' );
+		if ( ! current_user_can( $_capability ) ) {
+			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to import.', 'post-carousel' ) ) );
+		}
+
+		// Get and validate input data.
+		$data = isset( $_POST['shortcode'] ) ? sanitize_text_field( wp_unslash( $_POST['shortcode'] ) ) : '';
 		if ( ! $data ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Nothing to import.', 'post-carousel' ) ), 400 );
+		}
+
+		// Decode JSON with error checking.
+		$decoded_data = json_decode( $data, true );
+		if ( is_string( $decoded_data ) ) {
+			$decoded_data = json_decode( $decoded_data, true );
+		}
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Nothing to import.', 'post-carousel' ),
+					'message' => esc_html__( 'Invalid JSON data.', 'post-carousel' ),
 				),
 				400
 			);
 		}
+
+		// Check if shortcode key exists and is valid.
+		if ( ! isset( $decoded_data['shortcode'] ) || ! is_array( $decoded_data['shortcode'] ) ) {
+			wp_send_json_error(
+				array(
+					'message' => esc_html__( 'Invalid shortcode data structure.', 'post-carousel' ),
+				),
+				400
+			);
+		}
+
+		$shortcodes = map_deep(
+			$decoded_data['shortcode'],
+			function ( $value ) {
+				return is_string( $value ) ? sanitize_text_field( $value ) : $value;
+			}
+		);
 
 		$status = $this->import( $shortcodes );
 
 		if ( is_wp_error( $status ) ) {
 			wp_send_json_error(
 				array(
-					'message' => $status->get_error_message(),
+					'message' => esc_html( $status->get_error_message() ),
 				),
 				400
 			);
 		}
-
 		wp_send_json_success( $status, 200 );
 	}
 }

@@ -1,4 +1,18 @@
 <?php
+/**
+ * This file is used to update the database version of the plugin.
+ *
+ * @link        https://smartpostshow.com/
+ * @since      2.2.0
+ *
+ * @package    Smart_Post_Show
+ * @subpackage Smart_Post_Show/includes
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 update_option( 'smart_post_show_version', '2.2.0' );
 update_option( 'smart_post_show_db_version', '2.2.0' );
 
@@ -273,27 +287,27 @@ if ( count( $shortcode_ids ) > 0 ) {
 	global $wpdb;
 	$old_post_types = array( 'sp_pc_shortcodes' => 'sp_post_carousel' );
 	foreach ( $old_post_types as $old_type => $type ) {
-		$wpdb->query(
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				"UPDATE {$wpdb->posts} SET post_type = REPLACE(post_type, %s, %s) 
+				"UPDATE {$wpdb->posts} SET post_type = REPLACE(post_type, %s, %s)
                             WHERE post_type LIKE %s",
 				$old_type,
 				$type,
 				$old_type
 			)
 		);
-		$wpdb->query(
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s) 
+				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s)
                             WHERE guid LIKE %s",
 				"post_type={$old_type}",
 				"post_type={$type}",
 				"%post_type={$type}%"
 			)
 		);
-		$wpdb->query(
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
-				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s) 
+				"UPDATE {$wpdb->posts} SET guid = REPLACE(guid, %s, %s)
                             WHERE guid LIKE %s",
 				"/{$old_type}/",
 				"/{$type}/",

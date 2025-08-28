@@ -117,35 +117,6 @@ class SPS_Layout {
 						'default' => 'carousel_layout',
 					),
 					array(
-						'id'         => 'pcp_carousel_mode',
-						'type'       => 'layout_preset',
-						'class'      => 'img_custom_width-3 hide-active-sign pcp_carousel_mode padding_0',
-						'title'      => __( 'Carousel Style', 'post-carousel' ),
-						'options'    => array(
-							'standard'   => array(
-								'image' => SP_PC_URL . 'admin/img/carousel-style/standard.svg',
-								'text'  => __( 'Standard', 'post-carousel' ),
-							),
-							'center'     => array(
-								'image'    => SP_PC_URL . 'admin/img/carousel-style/center.svg',
-								'text'     => __( 'Center', 'post-carousel' ),
-								'pro_only' => true,
-							),
-							'ticker'     => array(
-								'image'    => SP_PC_URL . 'admin/img/carousel-style/ticker.svg',
-								'text'     => __( 'Ticker', 'post-carousel' ),
-								'pro_only' => true,
-							),
-							'multi-rows' => array(
-								'image'    => SP_PC_URL . 'admin/img/carousel-style/multi_rows.svg',
-								'text'     => __( 'Multi Rows', 'post-carousel' ),
-								'pro_only' => true,
-							),
-						),
-						'default'    => 'standard',
-						'dependency' => array( 'pcp_layout_preset', '==', 'carousel_layout' ),
-					),
-					array(
 						'id'         => 'pcp_thumb_style',
 						'type'       => 'layout_preset',
 						'class'      => 'img_custom_width-3 hide-active-sign pcp_thumb_style padding_0',
@@ -174,25 +145,6 @@ class SPS_Layout {
 						),
 						'default'    => 'bottom',
 						'dependency' => array( 'pcp_layout_preset', '==', 'thumbnails_slider' ),
-					),
-					array(
-						'id'         => 'post_list_orientation',
-						'type'       => 'layout_preset',
-						'class'      => 'img_custom_width-3 hide-active-sign post_list_orientation padding_0',
-						'title'      => __( 'List Style', 'post-carousel' ),
-						'options'    => array(
-							'left-thumb'  => array(
-								'image' => SP_PC_URL . 'admin/img/list-style/left.svg',
-								'text'  => __( 'Left', 'post-carousel' ),
-							),
-							'right-thumb' => array(
-								'image'    => SP_PC_URL . 'admin/img/list-style/right.svg',
-								'text'     => __( 'Right', 'post-carousel' ),
-								'pro_only' => true,
-							),
-						),
-						'default'    => 'left-thumb',
-						'dependency' => array( 'pcp_layout_preset', '==', 'list_layout' ),
 					),
 					array(
 						'id'         => 'pcp_grid_style',

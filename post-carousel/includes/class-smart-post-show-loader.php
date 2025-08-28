@@ -9,6 +9,10 @@
  * @subpackage Smart_Post_Show/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Register all actions and filters for the plugin.
  *

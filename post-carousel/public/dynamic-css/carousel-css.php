@@ -5,6 +5,10 @@
  * @package Smart_Post_Show
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $carousel_nav_position = SP_PC_Functions::pcp_metabox_value( 'pcp_carousel_nav_position', $view_options );
 if ( 'vertically_center_outer' === $carousel_nav_position ) {
 	$custom_css .= '.pcp-wrapper-{$pcp_id} .swiper-container{ position: static; }';
