@@ -66,7 +66,7 @@ class SPS_DetailSettings {
 						'content' => sprintf(
 							/* translators: 1: start link tag, 2: close tag. */
 							__( 'To unlock additional amazing Popup Settings (Single, Multi, Show/Hide Popup Fields, Custom height-width and more customization options), %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
-							'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>',
+							'<a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>',
 							'</b></a>'
 						),
 						'class'   => 'taxonomy-ajax-filter-notice',

@@ -2,15 +2,15 @@
 /**
  * Smart Post Show
  *
- * @link              https://smartpostshow.com/
+ * @link              https://wpsmartpost.com/
  * @since             2.2.0
  * @package           Smart_Post_Show
  *
  * @wordpress-plugin
  * Plugin Name:       Smart Post Show
- * Plugin URI:        https://smartpostshow.com/
+ * Plugin URI:        https://wpsmartpost.com/
  * Description:       Filter and display posts, pages, taxonomy (categories, tags, & post formats), in beautiful layouts (carousel, grid) easily without coding! Highly customizable and developer-friendly with free active support.
- * Version:           3.0.10
+ * Version:           3.0.12
  * Author:            ShapedPlugin LLC
  * Author URI:        https://shapedplugin.com/
  * License:           GPL-2.0+
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Start at version 2.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'SMART_POST_SHOW_VERSION', '3.0.10' );
+define( 'SMART_POST_SHOW_VERSION', '3.0.12' );
 define( 'SMART_POST_SHOW_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
@@ -70,6 +70,15 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-smart-post-show.php';
 function run_smart_post_show() {
 	$plugin = new Smart_Post_Show();
 	$plugin->run();
+
+	if ( ! defined( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED' ) ) {
+		define( 'SHAPEDPLIUGIN_OFFER_BANNER_LOADED', true );
+
+		/**
+		 * The file is responsible for generating admin offer banner.
+		 */
+		require_once SP_PC_PATH . 'admin/views/notices/offer-banner.php';
+	}
 }
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';

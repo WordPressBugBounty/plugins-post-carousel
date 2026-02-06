@@ -11,7 +11,7 @@
  * - Repeat with other user roles. Best directly by using the links/query string parameters.
  * - Repeat things for multisite. Once for a single site in the network, once sitewide.
  *
- * @link        https://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      2.0.0
  *
  * @package    Smart_Post_Show
@@ -48,6 +48,10 @@ function sp_post_carousel_data_delete() {
 	// Delete Smart Post Show post meta.
 	delete_post_meta_by_key( 'sp_pcp_layouts' );
 	delete_post_meta_by_key( 'sp_pcp_view_options' );
+
+	// Delete offer banner related option keys.
+	delete_option( 'shapedplugin_offer_banner_dismissed_black_friday_2025' );
+	delete_option( 'shapedplugin_offer_banner_dismissed_new_year_2026' );
 }
 
 // Load Smart Post Show file.

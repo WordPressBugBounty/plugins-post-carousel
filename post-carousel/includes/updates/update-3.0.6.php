@@ -2,7 +2,7 @@
 /**
  * This file is used to update the database version of the plugin.
  *
- * @link        https://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      3.0.6
  *
  * @package    Smart_Post_Show

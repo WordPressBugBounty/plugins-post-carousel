@@ -67,7 +67,7 @@ if ( ! class_exists( 'SP_PC_Field_shortcode' ) ) {
 					echo '</ul>';
 
 					echo '<div class="pcp-notice-button">';
-					echo '<a class="pcp-open-live-demo" href="https://smartpostshow.com/pricing/?ref=1" target="_blank">';
+					echo '<a class="pcp-open-live-demo" href="https://wpsmartpost.com/pricing/?ref=1" target="_blank">';
 					echo esc_html__( 'Upgrade to Pro Now', 'post-carousel' ) . ' <i class="sps-icon-shuttle_2285485-1"></i>';
 					echo '</a>';
 					echo '</div>';

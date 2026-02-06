@@ -2,7 +2,7 @@
 /**
  * The admin preview.
  *
- * @link        http://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      2.1.4
  *
  * @package    Smart_Post_Show

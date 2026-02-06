@@ -119,7 +119,7 @@ class SPS_Carousel {
 									array(
 										'type'    => 'notice',
 										'class'   => 'taxonomy-ajax-filter-notice',
-										'content' => __( 'Ready to fascinate your audience with beautiful transitions, such as Fade, Flip Cube and Coverflow?', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+										'content' => __( 'Ready to fascinate your audience with beautiful transitions, such as Fade, Flip Cube and Coverflow?', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 									),
 								),
 							),
@@ -226,7 +226,7 @@ class SPS_Carousel {
 									array(
 										'type'    => 'notice',
 										'class'   => 'taxonomy-ajax-filter-notice',
-										'content' => __( 'Want even more fine-tuned control over your Carousel Navigation display?', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+										'content' => __( 'Want even more fine-tuned control over your Carousel Navigation display?', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 									),
 								),
 							),
@@ -324,7 +324,7 @@ class SPS_Carousel {
 									array(
 										'type'    => 'notice',
 										'class'   => 'taxonomy-ajax-filter-notice',
-										'content' => __( 'Want even more fine-tuned control over your Carousel Pagination display?', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+										'content' => __( 'Want even more fine-tuned control over your Carousel Pagination display?', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 									),
 								),
 							),

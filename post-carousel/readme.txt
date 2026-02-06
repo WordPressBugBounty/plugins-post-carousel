@@ -2,10 +2,10 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags:  latest posts, popular posts, post grid, recent posts, post timeline
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 WC requires at least: 5.0
-WC tested up to: 10.1.1
-Stable tag: 3.0.10
+WC tested up to: 10.4.3
+Stable tag: 3.0.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Display posts, pages, and taxonomies in beautiful carousel, slider, and grid lay
 
 https://www.youtube.com/watch?v=Zd3cSnlEA_Y&list=PLoUb-7uG-5jPJ4tAoZbF_angfWNGeXdye
 
-[__Live Demo__](https://smartpostshow.com/demo/lite/) | [__Support__](https://shapedplugin.com/create-new-ticket/) | [__Upgrade to Pro!__](https://smartpostshow.com/)
+[__Live Demo__](https://wpsmartpost.com/blocks/lite/) | [__Support__](https://shapedplugin.com/create-new-ticket/) | [__Upgrade to Pro!__](https://wpsmartpost.com/)
 
 **Smart Post Show** allows you to filter and display posts, pages, and taxonomies (categories, tags, and post formats) in carousel and grid layouts without coding. Create post carousels and grids to display your content in various ways.
 
@@ -110,10 +110,10 @@ After activating the plugin, you will see “Smart Post Show” in the WordPress
 
 
 =I’d like access to more features. How can I get them?=
-Additional features are available in the [Pro version](https://smartpostshow.com/) of the plugin.
+Additional features are available in the [Pro version](https://wpsmartpost.com/) of the plugin.
 
 =What if I upgrade to the premium version?=
-Your existing Post Carousels or Grids content will work with [premium version](https://smartpostshow.com/). You won't lose your existing content.
+Your existing Post Carousels or Grids content will work with [premium version](https://wpsmartpost.com/). You won't lose your existing content.
 
 =Do I need coding skills to use Smart Post Show?=
 No coding skills are required. You can create post carousels and grids without writing shortcode attributes.
@@ -155,6 +155,14 @@ Yes, Smart Post Show works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 3.0.12 - Dec 29, 2025 =
+* Improved: Standardized singleton instance property naming.
+* Improved: Code readability and maintainability improved.
+
+= 3.0.11 - Nov 25, 2025 =
+* Tested: WordPress 6.9 compatibility.
+* Tested: WooCommerce 10.3.5 compatibility.
 
 = 3.0.10 - Aug 25, 2025 =
 * Fix: Elementor editor preloader issue.

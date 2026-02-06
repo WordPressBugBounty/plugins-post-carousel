@@ -8,7 +8,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @link        https://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      2.2.0
  *
  * @package    Smart_Post_Show
@@ -220,7 +220,6 @@ class Smart_Post_Show {
 		$this->loader->add_filter( 'post_updated_messages', $plugin_admin, 'sppcp_update', 10, 1 );
 		// Help Page.
 		SPS_Recommended::instance();
-
 		$import_export = new Smart_Post_Show_Import_Export( SP_PC_PLUGIN_NAME, SP_PC_VERSION );
 
 		$this->loader->add_action( 'wp_ajax_pcp_export_shortcodes', $import_export, 'export_shortcodes' );

@@ -2,7 +2,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link        https://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      2.2.0
  *
  * @package    Smart_Post_Show

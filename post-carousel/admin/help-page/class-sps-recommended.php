@@ -20,7 +20,7 @@ class SPS_Recommended {
 	 *
 	 * @var null
 	 */
-	protected static $_instance = null;
+	protected static $instance = null;
 
 	/**
 	 * Plugins Path variable.
@@ -77,11 +77,11 @@ class SPS_Recommended {
 	 * @return self Main instance
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**
@@ -396,7 +396,7 @@ class SPS_Recommended {
 			<!-- Header section start -->
 			<section class="spspc__help header">
 				<div class="spspc-header-area-top">
-					<p>You’re currently using <b>Smart Post Show Lite</b>. To access additional features, consider <a target="_blank" href="https://smartpostshow.com/pricing/?ref=1" ><b>upgrading to Pro!</b></a> 🚀</p>
+					<p>You’re currently using <b>Smart Post Show Lite</b>. To access additional features, consider <a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" ><b>upgrading to Pro!</b></a> 🚀</p>
 				</div>
 				<div class="spspc-header-area">
 					<div class="spspc-container">
@@ -434,8 +434,8 @@ class SPS_Recommended {
 							<iframe width="724" height="405" src="https://www.youtube.com/embed/Zd3cSnlEA_Y?si=jZY-sPMZnol03ems" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
 							<ul>
 								<li><a class='spspc-medium-btn' href="<?php echo esc_url( home_url( '/' ) . 'wp-admin/post-new.php?post_type=sp_post_carousel' ); ?>">Create a Show</a></li>
-								<li><a target="_blank" class='spspc-medium-btn' href="https://smartpostshow.com/demo/lite/">Live Demo</a></li>
-								<li><a target="_blank" class='spspc-medium-btn arrow-btn' href="https://smartpostshow.com/">Explore Smart Post Show <i class="spspc-icon-button-arrow-icon"></i></a></li>
+								<li><a target="_blank" class='spspc-medium-btn' href="https://wpsmartpost.com/blocks/lite/">Live Demo</a></li>
+								<li><a target="_blank" class='spspc-medium-btn arrow-btn' href="https://wpsmartpost.com/">Explore Smart Post Show <i class="spspc-icon-button-arrow-icon"></i></a></li>
 							</ul>
 						</div>
 						<div class="spspc-start-page-sidebar">
@@ -470,7 +470,7 @@ class SPS_Recommended {
 				<div class="spspc-container">
 					<div class="spspc-call-to-action-top">
 						<h2 class="spspc-section-title">Lite vs Pro Comparison</h2>
-						<a target="_blank" href="https://smartpostshow.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
+						<a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
 					</div>
 					<div class="spspc-lite-to-pro-wrap">
 						<div class="spspc-features">
@@ -677,11 +677,11 @@ class SPS_Recommended {
 							<span class='spspc-section-subtitle'>Already, <b>21000+</b> people are using Smart Post Show on their websites to create beautiful showcase, why won’t you!</span>
 							<div class="spspc-upgrade-to-pro-btn">
 								<div class="spspc-action-btn">
-									<a target="_blank" href="https://smartpostshow.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
+									<a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
 									<span class='spspc-small-paragraph'>14-Day No-Questions-Asked <a target="_blank" href="https://shapedplugin.com/refund-policy/">Refund Policy</a></span>
 								</div>
-								<a target="_blank" href="https://smartpostshow.com/" class='spspc-big-btn-border'>See All Features</a>
-								<a target="_blank" href="https://smartpostshow.com/demo/" class='spspc-big-btn-border spspc-live-pro-demo'>Pro Live Demo</a>
+								<a target="_blank" href="https://wpsmartpost.com/" class='spspc-big-btn-border'>See All Features</a>
+								<a target="_blank" href="https://wpsmartpost.com/blocks/" class='spspc-big-btn-border spspc-live-pro-demo'>Pro Live Demo</a>
 							</div>
 						</div>
 					</div>
@@ -767,7 +767,7 @@ class SPS_Recommended {
 							<p>At <b>ShapedPlugin LLC</b>, we have been searching for the best way to filter and display any posts (any post type), pages, taxonomy, custom taxonomy, and custom fields in beautiful layouts without coding! Unfortunately, we couldn't find any suitable plugin that met our needs. Therefore, we decided to develop a powerful WordPress post showcase plugin that is both user-friendly and efficient. </p>
 							<p>We are introducing the Smart Post Show plugin - a simple and convenient way to showcase posts on your WordPress website. Check it out now!</p>
 							<div class="spspc-about-btn">
-								<a target="_blank" href="https://smartpostshow.com/" class='spspc-medium-btn'>Explore Smart Post Show</a>
+								<a target="_blank" href="https://wpsmartpost.com/" class='spspc-medium-btn'>Explore Smart Post Show</a>
 								<a target="_blank" href="https://shapedplugin.com/about-us/" class='spspc-medium-btn spspc-arrow-btn'>More About Us <i class="spspc-icon-button-arrow-icon"></i></a>
 							</div>
 						</div>

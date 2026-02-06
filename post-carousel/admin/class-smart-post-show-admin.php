@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link        https://smartpostshow.com/
+ * @link        https://wpsmartpost.com/
  * @since      2.2.0
  *
  * @package    Smart_Post_Show
@@ -102,7 +102,7 @@ class Smart_Post_Show_Admin {
 			$new_links       = array(
 				sprintf( '<a href="%s">%s</a>', admin_url( 'edit.php?post_type=sp_post_carousel' ), __( 'Manage Shows', 'post-carousel' ) ),
 			);
-			$links['go_pro'] = sprintf( '<a href="%s" target="_blank" style="%s">%s</a>', 'https://smartpostshow.com/', 'color:#1dab87;font-weight:bold', __( 'Go Pro!', 'post-carousel' ) );
+			$links['go_pro'] = sprintf( '<a href="%s" target="_blank" style="%s">%s</a>', 'https://wpsmartpost.com/', 'color:#1dab87;font-weight:bold', __( 'Go Pro!', 'post-carousel' ) );
 			return array_merge( $new_links, $links );
 		}
 		return $links;
@@ -117,7 +117,7 @@ class Smart_Post_Show_Admin {
 	 */
 	public function after_pcp_row_meta( $plugin_meta, $file ) {
 		if ( SMART_POST_SHOW_BASENAME == $file ) {
-			$plugin_meta[] = '<a href="https://smartpostshow.com/demo/" target="_blank">' . __( 'Live Demo', 'post-carousel' ) . '</a>';
+			$plugin_meta[] = '<a href="https://wpsmartpost.com/blocks/" target="_blank">' . __( 'Live Demo', 'post-carousel' ) . '</a>';
 			$plugin_meta[] = '<a href="https://docs.shapedplugin.com/docs/post-carousel/overview/" target="_blank">' . __( 'Documentation', 'post-carousel' ) . '</a>';
 			$plugin_meta[] = '<a href="https://shapedplugin.com/support/?user=lite" target="_blank">' . __( 'Support', 'post-carousel' ) . '</a>';
 		}

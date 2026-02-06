@@ -109,7 +109,7 @@ class SPS_Display {
 										'desc'       => sprintf(
 											/* translators: 1: start link and strong tag, 2: close tags. */
 											__( 'To unlock more amazing Content Orientation and Layout based Settings, %1$sUpgrade To Pro!%2$s', 'post-carousel' ),
-											'<a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><strong>',
+											'<a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><strong>',
 											'</strong></a>'
 										),
 										'class'      => 'pcp-content-orientation',
@@ -340,7 +340,7 @@ class SPS_Display {
 										'type'     => 'sortable',
 										'title'    => __( 'Content Fields', 'post-carousel' ),
 										'subtitle' => __( 'Item content fields which are draggable to change display order and it\'s settings.', 'post-carousel' ),
-										// 'desc'     => __( 'To show Social Share and Custom Fields, <a href="https://smartpostshow.com/" target="_blank"><strong>Upgrade To Pro!</strong></a>', 'post-carousel' ),
+										// 'desc'     => __( 'To show Social Share and Custom Fields, <a href="https://wpsmartpost.com/" target="_blank"><strong>Upgrade To Pro!</strong></a>', 'post-carousel' ),
 										'class'    => 'post_content_sorter',
 										'fields'   => array(
 											array(
@@ -412,7 +412,7 @@ class SPS_Display {
 															array(
 																'type' => 'notice',
 																'class'    => 'taxonomy-ajax-filter-notice',
-																'content' => __( 'To enhance the Featured Image using advanced customizations?', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+																'content' => __( 'To enhance the Featured Image using advanced customizations?', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 															),
 														),
 													),
@@ -455,7 +455,7 @@ class SPS_Display {
 															array(
 																'type' => 'notice',
 																'class'    => 'taxonomy-ajax-filter-notice',
-																'content' => __( 'To limit the title with specific characters or words length,', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+																'content' => __( 'To limit the title with specific characters or words length,', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 															),
 														),
 													),
@@ -629,7 +629,7 @@ class SPS_Display {
 															array(
 																'type' => 'notice',
 																'class'    => 'taxonomy-ajax-filter-notice',
-																'content' => __( 'To access more Meta Data and options,', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+																'content' => __( 'To access more Meta Data and options,', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 															),
 														),
 													),
@@ -728,7 +728,7 @@ class SPS_Display {
 															array(
 																'type' => 'notice',
 																'class'    => 'taxonomy-ajax-filter-notice',
-																'content' => __( 'To limit the Content and more options,', 'post-carousel' ) . ' <a href="https://smartpostshow.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
+																'content' => __( 'To limit the Content and more options,', 'post-carousel' ) . ' <a href="https://wpsmartpost.com/pricing/?ref=1" target="_blank"><b>' . __( 'Upgrade To Pro!', 'post-carousel' ) . '</b></a>',
 															),
 														),
 													),
@@ -798,7 +798,7 @@ class SPS_Display {
 										'desc'       => sprintf(
 											/* translators: 1: start link and strong tag, 2: close tags. */
 											__( 'More amazing Ajax Pagination Settings are available in %1$sPro%2$s', 'post-carousel' ),
-											'<a href="https://smartpostshow.com/" target="_blank"><strong>',
+											'<a href="https://wpsmartpost.com/" target="_blank"><strong>',
 											'</strong></a>!'
 										),
 										'class'      => 'pcp-pagination-type',

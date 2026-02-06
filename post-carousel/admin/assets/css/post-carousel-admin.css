@@ -276,7 +276,7 @@ span.pcp-shortcode-selectable::after {
 }
 
 .spsp-gutenberg-shortcode.editor-styles-wrapper:after {
-    display: none;
+	display: none;
 }
 
 .block-editor-page .editor-styles-wrapper select,
@@ -325,4 +325,27 @@ span.pcp-shortcode-selectable::after {
 .rtl #smart-post-show-review-notice .sp-sps-plugin-icon {
 	float: right;
 	margin: 0 0 0 8px;
+}
+
+/* Admin offer banner */
+#shapedplugin-offer-banner {
+	padding: 0;
+	border: 0;
+	line-height: 0;
+	background: transparent;
+}
+
+#shapedplugin-offer-banner a:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+#shapedplugin-offer-banner .notice-dismiss:focus {
+	outline: 0;
+	box-shadow: none;
+}
+
+#shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:before {
+	color: #fff;
+	font-size: 22px;
 }
