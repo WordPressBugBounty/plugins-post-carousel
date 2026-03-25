@@ -4,8 +4,8 @@ Tags:  latest posts, popular posts, post grid, recent posts, post timeline
 Requires at least: 5.0
 Tested up to: 6.9
 WC requires at least: 5.0
-WC tested up to: 10.4.3
-Stable tag: 3.0.12
+WC tested up to: 10.6.1
+Stable tag: 3.0.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -155,6 +155,11 @@ Yes, Smart Post Show works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 3.0.13 - Mar 25, 2026 =
+* Improved: The plugin security has improved.
+* Tested: WordPress 6.9.4 compatibility.
+* Tested: WooCommerce 10.6.1 compatibility.
 
 = 3.0.12 - Dec 29, 2025 =
 * Improved: Standardized singleton instance property naming.

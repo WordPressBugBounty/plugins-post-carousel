@@ -147,10 +147,36 @@ class Smart_Post_Show_Import_Export {
 					foreach ( $shortcode['meta'] as $key => $value ) {
 						// meta key.
 						$meta_key = sanitize_key( $key );
-						// meta value.
-						$meta_value = maybe_unserialize( str_replace( '{#ID#}', $new_shortcode_id, $value ) );
 
-						// update meta.
+						// Raw meta value with placeholder replaced.
+						$meta_value_raw = str_replace( '{#ID#}', $new_shortcode_id, $value );
+
+						if ( is_string( $meta_value_raw ) && is_serialized( $meta_value_raw ) ) {
+
+							// @ suppresses warnings for malformed serialized data while import. Note: already sanitize the object each data, so this is just an extra precaution.
+							// WordPress built-in function maybe_unserialize() does not block objects in serialized data.
+							// For security, we use PHP's native unserialize() with 'allowed_classes' => false to stop creating objects.
+							// to prevent PHP Object Injection while still converting serialized arrays, booleans, and strings.
+							$meta_value = @unserialize( // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize .
+								$meta_value_raw,
+								array(
+									'allowed_classes' => false, // Disallow all classes to prevent object instantiation.
+								)
+							);
+
+							// Fallback for blocked objects or invalid serialization.
+							if ( false === $meta_value && 'b:0;' !== $meta_value_raw ) {
+								$meta_value = $meta_value_raw;
+							}
+						} else {
+							$meta_value = $meta_value_raw;
+						}
+
+						// Ensure no object is ever stored in DB.
+						if ( is_object( $meta_value ) ) {
+							$meta_value = $meta_value_raw;
+						}
+
 						update_post_meta( $new_shortcode_id, $meta_key, $meta_value );
 					}
 				}
