@@ -752,8 +752,6 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			$notice_class = ( ! empty( $this->notice ) ) ? ' spf-form-show' : '';
 			$notice_text  = ( ! empty( $this->notice ) ) ? $this->notice : '';
 
-			// echo '<div class="spf-form-result spf-form-success' . esc_attr( $notice_class ) . '">' . esc_html( $notice_text ) . '</div>';
-
 			$error_class = ( ! empty( $this->errors ) ) ? ' spf-form-show' : '';
 
 			echo '<div class="spf-form-result spf-form-error' . esc_attr( $error_class ) . '">';
@@ -783,7 +781,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 				<path class="st0" d="M0,69.3V0h69.4v18.6H18.6v50.7L0,69.3L0,69.3z M100,100H30.6V30.7H100V100z"/>
 				</svg>' . esc_html__( 'Replace Layout (Pro)', 'post-carousel' ) . '</h1>';
 			} elseif ( $show_buttons ) {
-				echo '<h1><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1.4em" fill="#e1624b" height="1.4em" viewBox="0 0 288 288" enable-background="new 0 0 288 288" xml:space="preserve"><path fill="#e1624b" d="M262.102,20.977H27.615c-3.195,0-6.638,2.401-6.638,5.63v234.359c0,3.229,3.443,6.057,6.638,6.057h234.487c3.187,0,4.921-2.828,4.921-6.057V26.607C267.023,23.378,265.289,20.977,262.102,20.977z M118.37,53.441h51.26v43.571h-51.26V53.441z M55.15,53.441h51.26v43.571H55.15V53.441z M135.457,235.413H55.15v-46.134h80.307V235.413z M135.457,173.047H55.15v-46.134h80.307V173.047z M235.413,235.413h-80.307v-46.134h80.307V235.413z M235.413,173.047h-80.307v-46.134h80.307V173.047z M235.413,97.012h-51.26V53.441h51.26V97.012z"></path><line fill="none" x1="-99" y1="-84" x2="-99" y2="-57"></line><line fill="none" x1="-170" y1="61" x2="-170" y2="101"></line></svg>' . esc_html__( 'Settings', 'post-carousel' ) . '</h1>';
+				echo '<h1><svg width="30" height="30" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 100C0 44.772 44.772 0 100 0h600c55.229 0 100 44.772 100 100v600c0 55.229-44.771 100-100 100H100C44.772 800 0 755.229 0 700z" fill="url(#a)"/><path d="M115.997 471.75c0-24.162 19.587-43.75 43.749-43.75h164.498c24.162 0 43.75 19.588 43.75 43.75v164.5c0 24.163-19.588 43.75-43.75 43.75H159.746c-24.162 0-43.749-19.587-43.749-43.75zM423.993 246c0-69.588 56.411-126 125.998-126s125.998 56.412 125.998 126-56.411 126-125.998 126-125.998-56.412-125.998-126m-307.996-82.25c0-24.162 19.587-43.75 43.749-43.75h164.498c24.162 0 43.75 19.588 43.75 43.75v164.5c0 24.163-19.588 43.75-43.75 43.75H159.746c-24.162 0-43.749-19.587-43.749-43.75zm308.006 301.584c0-10.309 8.357-18.666 18.667-18.666h214.663c10.309 0 18.666 8.357 18.666 18.666s-8.357 18.667-18.666 18.667H442.67c-10.31 0-18.667-8.357-18.667-18.667m0 88.534c0-10.31 8.357-18.667 18.667-18.667h214.663c10.309 0 18.666 8.357 18.666 18.667 0 10.309-8.357 18.666-18.666 18.666H442.67c-10.31 0-18.667-8.357-18.667-18.666m0 88.533c0-10.309 8.357-18.667 18.667-18.667h214.663c10.309 0 18.666 8.358 18.666 18.667s-8.357 18.667-18.666 18.667H442.67c-10.31 0-18.667-8.358-18.667-18.667" fill="#fff"/><defs><linearGradient id="a" x1="400" y1="0" x2="400" y2="800" gradientUnits="userSpaceOnUse"><stop stop-color="#e1624b"/><stop offset="1" stop-color="#e1624b"/></linearGradient></defs></svg>' . esc_html__( 'Settings', 'post-carousel' ) . '</h1>';
 			} else {
 				echo '<h1 class="export-import"><img src="' . esc_url( SP_PC_URL ) . 'admin/assets/img/import-export.svg">' . esc_html( $this->args['framework_title'] ) . '</h1>';
 			}
@@ -934,6 +932,15 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			echo ( ! empty( $this->args['footer_after'] ) ) ? wp_kses_post( $this->args['footer_after'] ) : '';
 
 			echo '</div>';
+
+			if ( 'pcp_settings' === $menu_slug ) {
+				echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#settings' ) ) . '" target="_blank" rel="noopener noreferrer" class="sp-pcp-classic-settings-page-link"> 
+				Back to Block Settings
+				<span class="sp-pcp-classic-settings-page-link-arrow">
+					<img src="' . esc_url( SP_PC_URL ) . 'admin/views/sp-framework/assets/img/block-settings-arrow.svg">
+				</span>
+				</a>';
+			}
 		}
 	}
 }

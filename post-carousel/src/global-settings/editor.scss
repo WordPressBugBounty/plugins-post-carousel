@@ -1,0 +1,255 @@
+// Fonts library modal style.
+.sp-smart-fonts-library {
+  .components-tab-panel__tabs {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: calc(100% + 65px);
+      height: 1px;
+      background: #ccc;
+      left: -32px;
+      bottom: 0;
+      z-index: -1;
+    }
+
+    button.active-tab::after {
+      border-bottom: 2px solid #007cba;
+      transform: translateY(0.5px);
+      border-radius: 4px;
+    }
+  }
+
+  .sp-smart-fonts-upload-field {
+    margin-top: 32px;
+  }
+}
+
+.sp-smart-global-typography {
+  .sp-smart-post-typography-header {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+
+    button {
+      cursor: pointer;
+      padding-right: 10px;
+    }
+
+    span {
+      margin-right: 10px;
+    }
+
+    input {
+      border-radius: 2px;
+      border: 1px solid #ddd;
+      height: 32px;
+      width: 220px;
+      padding-left: 10px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+  }
+
+  &-label {
+    background-color: #F2F2F2;
+    padding: 6px 20px;
+    display: block;
+    margin: 0 -21px;
+    margin-bottom: 13px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.sp-smart-post-color-settings {
+
+  .sp-smart-post-toggle-button-group,
+  .components-circular-option-picker {
+    margin-bottom: 11px !important;
+  }
+}
+
+.sp-global-typography-fonts-list-wrapper {
+  .sp-global-typography-fonts-list {
+    display: flex;
+    flex-direction: column;
+    // gap: 6px;
+  }
+
+  .sp-global-typography-fonts-label {
+    margin-bottom: 8px;
+  }
+
+  .sp-smart-post-typography-btn,
+  .sp-smart-post-component-title {
+    margin-bottom: 0;
+  }
+
+  .sp-smart-post-typography {
+    width: 100%;
+  }
+
+  .sp-global-typography-fonts-list-item {
+    display: flex;
+    width: 252px;
+    height: 40px;
+    padding: 4px 14px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2px 2px 0 0;
+    border: 1px solid #DDD;
+    background: #FFF;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+
+    .sp-list-item-label {
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    .sp-list-name {
+      color: #2F2F2F;
+    }
+
+    .sp-list-variants {
+      color: #757575;
+    }
+
+    .sp-list-icon {
+      font-size: 13px;
+      line-height: 10px;
+    }
+  }
+}
+
+.smart-post-global-color {
+  flex: 1;
+  height: 30px;
+}
+
+.smart-post-global-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+
+.smart-post-preset-color-show {
+  display: flex;
+}
+
+.smart-post-global-current-content {
+  padding: 4px;
+  border: 1.5px solid #CCC;
+  border-radius: 2px;
+  background-color: #F0F0F0;
+}
+
+.smart-post-global-color-preset {
+  display: flex;
+  margin-top: 30px;
+}
+
+.smart-post-global-current-content.selected {
+  border-color: #0054FB;
+}
+
+.smart-post-custom-color-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: #f6f7f7;
+  border-radius: 4px;
+}
+
+.smart-post-custom-color-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.smart-post-custom-color-name {
+  flex: 1;
+  font-size: 13px;
+}
+
+.smart-post-gradient-presets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.smart-post-gradient-preset {
+  height: 60px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+}
+
+.smart-post-gradient-preview {
+  height: 60px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.sp-smart-breakpoint {
+  .sp-smart-breakpoint-icon {
+    fill: currentColor;
+  }
+}
+
+.sp-global-settings-title {
+  font-size: 13px;
+  margin-top: 11px;
+  margin-bottom: 8px;
+}
+
+.sp-clickable {
+  cursor: pointer;
+}
+
+.sp-global-settings-save-button-container {
+  margin-top: 20px;
+  padding: 16px;
+  text-align: center;
+}
+
+.sp-global-settings-save-button {
+  min-width: 120px;
+}
+
+.sp-global-settings-save-help-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+button[aria-controls="smart-post-show-pro-global-settings:sidebar"],
+button[aria-controls="smart-post-show-pro-global-settings:sidebar"]:hover {
+  color: var(--sp-smart-primary-2-600) !important;
+}
+
+button.is-pressed[aria-controls="smart-post-show-pro-global-settings:sidebar"] {
+  color: #fff !important;
+  background-color: var(--sp-smart-primary-2-600) !important;
+}

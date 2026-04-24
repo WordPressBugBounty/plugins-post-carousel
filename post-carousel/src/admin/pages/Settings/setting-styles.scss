@@ -1,0 +1,452 @@
+.sp-pcp-settings-page-container {
+    display: flex;
+    min-height: 360px;
+    align-items: flex-start;
+    border-radius: 4px;
+    border: 1px solid #DDDDDD;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+
+    .sp-pcp-setting-tabs {
+        display: block;
+        z-index: 10;
+        width: 225px;
+        height: 100%;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .sp-pcp-setting-tab {
+        cursor: pointer;
+        border-bottom: 1px solid #E0E0E0;
+        padding: 14px 15px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #444444;
+        border-radius: 0;
+        font-weight: 500;
+        z-index: 10;
+        position: relative;
+        background: #F0F0F0;
+        border-right: 1px solid #E0E0E0;
+        display: flex;
+        gap: 8px;
+        margin: 0;
+        transition: all 0.3s ease;
+
+        &:nth-child(1) {
+            svg {
+                height: 16px;
+                width: 16px;
+                margin-bottom: -3px;
+            }
+
+            path {
+                stroke: #2F2F2F;
+            }
+        }
+
+        &.active {
+            background: #FFFFFF;
+            color: #641DD7;
+            border-right: 1px solid rgba(0, 0, 0, 0);
+            box-shadow: 3px 0 0 0 #641DD7 inset;
+
+            path {
+                stroke: #641DD7;
+            }
+        }
+    }
+
+    .sp-pcp-settings-select-field {
+        .sp-pcp-component-title {
+            width: 220px;
+        }
+
+        .sp-smart-post-select-field {
+            width: 260px;
+        }
+
+        .sp-smart-post-component-mb {
+            margin-bottom: 0;
+        }
+    }
+
+    .sp-pcp-setting-tabs-bottom {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 9;
+        width: 225px;
+        margin-left: -1px;
+        border-right: 1px solid #E0E0E0;
+        background: #FFFFFF;
+    }
+
+    .sp-pcp-setting-tab-content {
+        height: 100%;
+        flex: 1;
+        padding: 32px;
+    }
+
+    hr {
+        margin: 24px 0;
+    }
+
+    .components-input-control__backdrop {
+        border-radius: 4px !important;
+        border: 1px solid #DDDDDD !important;
+    }
+
+    .sp-pcp-settings-save-wrapper {
+        display: flex;
+        gap: 8px;
+        margin-top: 36px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 24px;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            border: none;
+            background-color: #c5c5c6;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .sp-pcp-settings-save-btn {
+            pointer-events: none;
+            height: 48px;
+
+            &.active {
+                background-color: rgb(0, 194, 99);
+                pointer-events: initial;
+            }
+        }
+    }
+
+    .sp-pcp-settings-api-guideline {
+        background: #F3F4F5;
+        padding: 16px 0 16px 305px;
+        margin: 36px -36px -32px -36px;
+        display: flex;
+        gap: 4px;
+
+        a {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .sp-pcp-component-title {
+        width: 270px;
+        color: #2F2F2F;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+    }
+
+    .sp-pcp-component-title.site-mode-title {
+        white-space: pre-line;
+    }
+
+    .sp-pcp-settings-advanced-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .sp-pcp-blocks-settings-select-field {
+            .css-1y1fx19 svg {
+                width: 24px !important;
+                height: 24px !important;
+            }
+        }
+        hr {
+            margin: -25px 0;
+        }
+
+        .sp-pcp-settings-save-wrapper {
+            margin: 0;
+        }
+    }
+
+    .sp-pcp-settings-cache-time {
+        width: 110px;
+        gap: 2px;
+        position: relative;
+
+        .mins {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            user-select: none;
+            padding: 0 10px;
+            font-size: 12px;
+            color: #555;
+            border: none;
+            height: 28px;
+            background-color: #f5f5f5;
+            border-radius: 0 5px 5px 0;
+            position: absolute;
+            right: 1px;
+        }
+
+        .components-input-base {
+            height: 30px;
+        }
+    }
+
+    .sp-pcp-settings-option {
+        display: flex;
+        align-items: center;
+    }
+
+    .api-source {
+        .sp-pcp-component-title {
+            display: block;
+            padding-right: 20px;
+            z-index: 10;
+        }
+
+        .sp-pcp-settings-info {
+            display: inline-flex;
+            transform: translateY(2px);
+            padding-top: 0;
+        }
+    }
+
+    .sp-pcp-setting-purge-cache {
+        cursor: pointer;
+        border-radius: 4px;
+        background: #1A74E4;
+        padding: 6px 12px;
+        color: #FFFFFF;
+        border: none;
+    }
+
+    .sp-pcp-settings-additional-codes {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .sp-pcp-component-title {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+/* Buttons row */
+.sp-pcp-settings-info {
+    display: flex;
+    cursor: help;
+    position: relative;
+    padding: 5px;
+
+    img {
+        height: 14px;
+        width: 14px;
+    }
+
+    &:hover {
+        .sp-pcp-settings-info-text {
+            display: block;
+        }
+    }
+}
+
+.sp-pcp-settings-info-text {
+    display: none;
+    position: absolute;
+    background: rgb(22 30 38);
+    color: rgb(127 159 175);
+    width: 290px;
+    padding: 14px 20px;
+    font-weight: normal;
+    border-radius: 5px;
+    z-index: 10;
+    left: 22px;
+    top: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.contribute-text {
+    margin-top: -46px;
+    width: 450px;
+
+    .sp-pcp-settings-modal-btn {
+        cursor: pointer;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+}
+
+.sp-pcp-section-title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #1d2327;
+}
+
+.sp-pcp-blocks-settings-toggle-btn {
+    .react-toggle {
+        touch-action: pan-x;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        background-color: transparent;
+        border: 0;
+        padding: 0;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .react-toggle-screenreader-only {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .react-toggle--disabled {
+        cursor: not-allowed;
+        // opacity: 0.5;
+        -webkit-transition: opacity 0.25s;
+        transition: opacity 0.25s;
+    }
+
+    .react-toggle-track {
+        width: 36px;
+        height: 18px;
+        padding: 0;
+        border-radius: 30px;
+        background-color: #BBBBBB;
+        -webkit-transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+    }
+
+    .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+        background-color: #BBBBBB;
+    }
+
+    .react-toggle--checked .react-toggle-track {
+        background-color: #4AB866;
+    }
+
+    .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+        background-color: #4AB866;
+    }
+
+    .react-toggle-track-check {
+        position: absolute;
+        width: 14px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        line-height: 0;
+        left: 8px;
+        opacity: 0;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-track-check {
+        opacity: 1;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle-track-x {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        line-height: 0;
+        right: 10px;
+        opacity: 1;
+        -webkit-transition: opacity 0.25s ease;
+        -moz-transition: opacity 0.25s ease;
+        transition: opacity 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-track-x {
+        opacity: 0;
+    }
+
+    .react-toggle-thumb {
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        border: 1px solid #BBBBBB;
+        border-radius: 50%;
+        background-color: #FAFAFA;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        -webkit-transition: all 0.25s ease;
+        -moz-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+    }
+
+    .react-toggle--checked .react-toggle-thumb {
+        left: 20px;
+        border-color: #4ab866;
+    }
+
+    //   .react-toggle--focus .react-toggle-thumb {
+    //     -webkit-box-shadow: 0px 0px 3px 2px #0099E0;
+    //     -moz-box-shadow: 0px 0px 3px 2px #0099E0;
+    //     box-shadow: 0px 0px 2px 3px #0099E0;
+    //   }
+
+    .react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+        -webkit-box-shadow: 0px 0px 5px 5px #0099E0;
+        -moz-box-shadow: 0px 0px 5px 5px #0099E0;
+        box-shadow: 0px 0px 5px 5px #0099E0;
+    }
+}
+
+.sp-smart-post-blocks-settings-page .sp-pcp-blocks-setting-wrapper a.sp-pcp-classic-settings-page-link {
+    color: #1a74e4;
+    display: inline-block;
+    margin-top: 24px;
+    position: relative;
+    right: 16px;
+    text-align: right;
+    width: 100%;
+}

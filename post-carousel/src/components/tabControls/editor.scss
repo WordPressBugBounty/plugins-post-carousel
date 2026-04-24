@@ -1,0 +1,76 @@
+.sp-smart-post-tab-panel {
+  .components-tab-panel__tabs-item:focus:not(:disabled) {
+    box-shadow: none;
+  }
+  .components-tab-panel__tabs {
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+  .components-tab-panel__tab-content {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+  }
+  .components-tab-panel__tabs > button {
+    padding: 0;
+  }
+  .components-tab-panel__tabs button {
+    color: #2f2f2f;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+    border-bottom: 2px solid #ddd;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .components-tab-panel__tabs button.components-tab-panel__tabs-item:focus {
+    border-bottom: 2px solid var(--sp-smart-primary-2-600) !important;
+  }
+  .components-panel__body-title .components-button:focus:not(:disabled) {
+    border-bottom: 0 !important;
+  }
+  .sp-smart-post-general-tab .components-button:focus:not(:disabled) {
+    border-bottom: 2px solid var(--sp-smart-primary-2-600) !important;
+  }
+  .components-tab-panel__tabs button span {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 4px;
+      fill: #2f2f2f;
+      transition: 0.3s ease-in-out;
+    }
+  }
+  .components-tab-panel__tabs button.active-tab {
+    position: relative;
+    color: var(--sp-smart-primary-2-600);
+    border-bottom: 2px solid var(--sp-smart-primary-2-600) !important;
+    &:hover {
+      color: var(--sp-smart-primary-2-600);
+    }
+    span {
+      .sp-smart-post-block-icon {
+        svg {
+          fill: var(--sp-smart-primary-2-600);
+        }
+      }
+    }
+  }
+  .components-panel__body {
+    .components-panel__body-title {
+      .components-panel__body-toggle:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.sp-smart-post-tab-panel .components-tab-panel__tabs-item {
+  height: 41px !important;
+  margin-top: -12px;
+}

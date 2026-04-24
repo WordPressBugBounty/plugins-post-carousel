@@ -1,0 +1,826 @@
+.sp-table-of-content-toc .sps-toc-title {
+  transition: all 0.3s;
+  display: block;
+}
+
+
+.sp-table-of-content-toc .sps-toc-wrapper {
+  transition: all 0.4s;
+}
+
+.sps-toc-list,
+.sps-toc-sublist {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin: 0;
+}
+
+.sps-toc-item {
+  position: relative;
+}
+
+.sps-toc-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 5px 0;
+  transition: all 0.2s ease;
+}
+
+//......................................
+/* Base styles for all list types */
+.sps-toc-list,
+.sps-toc-sublist {
+  margin: 0;
+}
+
+/* None style */
+.sp-table-of-content-toc .sps-toc-style-none {
+  list-style: none !important;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-none .sps-toc-sublist {
+  list-style: none !important;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-none .sps-toc-number {
+  display: none;
+}
+
+
+.sp-table-of-content-toc:not(:has(.presetTwo)):not(:has(.presetFive)) .sps-toc-style-bullet {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+
+
+.sp-table-of-content-toc:not(:has(.presetTwo)):not(:has(.presetFive)) .sps-toc-style-bullet .sps-toc-sublist {
+  list-style: disc;
+}
+
+
+.presetTwo .sps-toc-style-bullet .sps-toc-link-wrapper,
+.presetFive .sps-toc-style-bullet .sps-toc-link-wrapper {
+  padding: 2px 1px 1px 28px;
+  border-radius: 6px;
+  list-style: none;
+  /* Remove default bullets */
+  position: relative;
+}
+
+.presetTwo .sps-toc-style-bullet .sps-toc-link-wrapper::before,
+.presetFive .sps-toc-style-bullet .sps-toc-link-wrapper::before {
+  content: "•";
+  /* Custom bullet */
+  position: absolute;
+  left: 8px;
+  /* Position bullet inside padding */
+  color: #333;
+  /* Bullet color */
+  font-weight: bold;
+}
+
+.sp-table-of-content-toc .sps-toc-style-bullet .sps-toc-number {
+  display: none;
+}
+
+
+/* Decimal style (multi-level) - 1., 1.1., 1.2., 1.2.1. */
+.sp-table-of-content-toc .sps-toc-style-decimal {
+  list-style: none;
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-decimal .sps-toc-item {
+  counter-increment: item;
+  position: relative;
+  list-style: none;
+  // padding-left: 1.5em;
+}
+
+.sp-table-of-content-toc .sps-toc-style-decimal .sps-toc-item .sps-toc-number::before {
+  content: counters(item, ".") ". ";
+  font-weight: 600;
+  position: absolute;
+  left: 0;
+  // padding-left: 10px;
+  padding-left: 2px;
+}
+
+.sp-table-of-content-toc .sps-toc-style-decimal .sps-toc-sublist {
+  list-style: none;
+  counter-reset: item;
+  // margin-top: 0.5em;
+  // padding-left: 1.5em;
+}
+
+.sp-table-of-content-toc .sps-toc-style-decimal .sps-toc-sublist .sps-toc-item {
+  counter-increment: item;
+  position: relative;
+}
+
+/* Numeric Outline (1. a. b. i.) */
+.sp-table-of-content-toc .sps-toc-style-numericOutline {
+  list-style: none;
+  counter-reset: toc-counter-0;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-numericOutline .sps-toc-item {
+  position: relative;
+  list-style: none;
+}
+
+/* Level 0 (1, 2, 3...) */
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="0"] {
+  counter-increment: toc-counter-0;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="0"] .sps-toc-number::before {
+  content: counter(toc-counter-0, decimal) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  // padding-left: 10px;
+  padding-left: 2px;
+}
+
+/* Level 1 (a, b, c...) */
+.sps-toc-style-numericOutline .sps-toc-sublist {
+  list-style: none;
+  counter-reset: toc-counter-1;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="1"] {
+  counter-increment: toc-counter-1;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="1"] .sps-toc-number::before {
+  content: counter(toc-counter-1, lower-alpha) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+/* Level 2 (i, ii, iii...) */
+.sps-toc-style-numericOutline .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-2;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="2"] {
+  counter-increment: toc-counter-2;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="2"] .sps-toc-number::before {
+  content: counter(toc-counter-2, lower-roman) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Level 3 (A, B, C...) - optional if needed */
+.sps-toc-style-numericOutline .sps-toc-sublist .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-3;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="3"] {
+  counter-increment: toc-counter-3;
+}
+
+.sps-toc-style-numericOutline .sps-toc-item[data-depth="3"] .sps-toc-number::before {
+  content: counter(toc-counter-3, lower-alpha) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Roman - Alphabetic Mix (I. A. 1.) */
+.sp-table-of-content-toc .sps-toc-style-romanAlphabeticMix {
+  list-style: none;
+  counter-reset: toc-counter-0;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-romanAlphabeticMix .sps-toc-item {
+  position: relative;
+  list-style: none;
+}
+
+/* Level 0 (I, II, III...) */
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="0"] {
+  counter-increment: toc-counter-0;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="0"] .sps-toc-number::before {
+  content: counter(toc-counter-0, lower-roman) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+/* Level 1 (A, B, C...) */
+.sps-toc-style-romanAlphabeticMix .sps-toc-sublist {
+  list-style: none;
+  counter-reset: toc-counter-1;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="1"] {
+  counter-increment: toc-counter-1;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="1"] .sps-toc-number::before {
+  content: counter(toc-counter-1, lower-alpha) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Level 2 (1, 2, 3...) */
+.sps-toc-style-romanAlphabeticMix .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-2;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="2"] {
+  counter-increment: toc-counter-2;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="2"] .sps-toc-number::before {
+  content: counter(toc-counter-2, decimal) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Level 3 (a, b, c...) - optional if needed */
+.sps-toc-style-romanAlphabeticMix .sps-toc-sublist .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-3;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="3"] {
+  counter-increment: toc-counter-3;
+}
+
+.sps-toc-style-romanAlphabeticMix .sps-toc-item[data-depth="3"] .sps-toc-number::before {
+  content: counter(toc-counter-3, lower-alpha) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+
+/* Padded Numbers (01. a. b. i.) */
+.sp-table-of-content-toc .sps-toc-style-paddedNumbers {
+  list-style: none;
+  counter-reset: toc-counter-0;
+  padding-left: 0;
+}
+
+.sp-table-of-content-toc .sps-toc-style-paddedNumbers .sps-toc-item {
+  position: relative;
+  list-style: none;
+  // padding-left: 1.5em;
+}
+
+/* Level 0 (01, 02, 03...) */
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="0"] {
+  counter-increment: toc-counter-0;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="0"] .sps-toc-number::before {
+  content: counter(toc-counter-0, decimal-leading-zero) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+/* Level 1 (a, b, c...) */
+.sps-toc-style-paddedNumbers .sps-toc-sublist {
+  list-style: none;
+  counter-reset: toc-counter-1;
+  // margin-top: 0.5em;
+  // padding-left: 1.5em;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="1"] {
+  counter-increment: toc-counter-1;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="1"] .sps-toc-number::before {
+  content: counter(toc-counter-1, lower-alpha) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Level 2 (i, ii, iii...) */
+.sps-toc-style-paddedNumbers .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-2;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="2"] {
+  counter-increment: toc-counter-2;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="2"] .sps-toc-number::before {
+  content: counter(toc-counter-2, lower-roman) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+/* Level 3 (1, 2, 3...) - optional if needed */
+.sps-toc-style-paddedNumbers .sps-toc-sublist .sps-toc-sublist .sps-toc-sublist {
+  counter-reset: toc-counter-3;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="3"] {
+  counter-increment: toc-counter-3;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-item[data-depth="3"] .sps-toc-number::before {
+  content: counter(toc-counter-3, decimal) ". ";
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+}
+
+
+/* Add depth-specific styles for better visual hierarchy */
+// .sps-toc-item[data-depth="0"] {
+//   font-weight: 600;
+// }
+
+// .sps-toc-item[data-depth="1"] {
+//   font-weight: 500;
+//   // margin-top: 0.3em;
+// }
+
+// .sps-toc-item[data-depth="2"] {
+//   font-weight: 400;
+//   // margin-top: 0.2em;
+// }
+
+// /* Add color differentiation for levels */
+// .sps-toc-item[data-depth="0"] .sps-toc-link {
+//   color: #2c3e50;
+// }
+
+// .sps-toc-item[data-depth="1"] .sps-toc-link {
+//   color: #34495e;
+// }
+
+// .sps-toc-item[data-depth="2"] .sps-toc-link {
+//   color: #7f8c8d;
+// }
+
+//.......................copy
+
+/* Copy button styles */
+.sps-toc-item {
+  position: relative;
+}
+
+.sp-table-of-content-toc .sps-toc-link-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sp-table-of-content-toc .sps-toc-left {
+  justify-content: left;
+}
+
+.sp-table-of-content-toc .sps-toc-center {
+  justify-content: center;
+}
+
+.sp-table-of-content-toc .sps-toc-right {
+  justify-content: right;
+}
+
+
+.sps-toc-copy {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 3px;
+  opacity: 0;
+  /* start hidden */
+  transform: translateY(-3px);
+  /* slight lift effect */
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  margin-top: 2px;
+  display: flex;
+  /* keep in layout */
+  visibility: hidden;
+  /* hidden when not hovered */
+
+}
+
+.sps-toc-link-wrapper:hover .sps-toc-copy {
+  opacity: 1;
+  transform: translateY(0);
+  /* slide into place */
+  visibility: visible;
+}
+
+
+.sps-toc-copy:hover {
+  opacity: 1;
+  background-color: #f0f0f0;
+
+
+}
+
+.sps-toc-copy svg {
+  width: 14px;
+  height: 14px;
+
+}
+
+.sps-toc-copy.copied {
+  opacity: 1;
+  color: #4caf50;
+}
+
+/* Ensure proper spacing for numbered lists */
+.sps-toc-style-decimal .sps-toc-item,
+.sps-toc-style-numericOutline .sps-toc-item,
+.sps-toc-style-romanAlphabeticMix .sps-toc-item,
+.sps-toc-style-paddedNumbers .sps-toc-item {
+  display: block;
+}
+
+.sps-toc-style-decimal .sps-toc-number {
+  margin-right: 1.1em;
+  display: inline;
+}
+
+.sps-toc-style-decimal .sps-toc-sublist .sps-toc-number {
+  margin-right: 2em;
+}
+
+.sps-toc-style-decimal .sps-toc-sublist li[data-depth="2"] .sps-toc-number {
+  margin-right: 2.8em;
+}
+
+
+.sps-toc-style-numericOutline .sps-toc-item:nth-of-type(n+100) .sps-toc-number,
+.sps-toc-style-romanAlphabeticMix .sps-toc-item:nth-of-type(n+100) .sps-toc-number {
+  margin-right: 1.6em;
+  display: inline;
+}
+
+.sps-toc-style-numericOutline .sps-toc-number,
+.sps-toc-style-romanAlphabeticMix .sps-toc-number {
+  margin-right: 1.2em;
+  display: inline;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-number {
+  margin-right: 1.7em;
+  display: inline;
+}
+
+.sps-toc-style-paddedNumbers .sps-toc-sublist .sps-toc-number {
+  margin-right: 1.1em;
+  display: inline;
+}
+
+//.........
+.sps-toc-link-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+
+  /* optional, spacing between left and right */
+}
+
+.sps-toc-link {
+  flex: 1;
+  /* take all available space */
+  display: flex;
+  gap: 10px;
+
+  min-width: 0;
+  /* prevents flex text overflow issues */
+}
+
+.sps-toc-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* space between copy & toggle */
+}
+
+.sps-toc-copy,
+.sps-toc-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+
+.sps-toc-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sps-toc-header {
+  flex: 0 0 95%;
+}
+
+.sp-main-collapse-toggle {
+  flex: 0 0 5%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+.sps-toc-main-toggle {
+  cursor: pointer;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  margin-left: -18px;
+
+}
+
+.sps-toc-main-toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.sps-toc-main-toggle-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.sps-toc-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.sps-toc-collapsed {
+  display: none;
+}
+
+.sps-toc-sublist-collapsed {
+  display: none;
+}
+
+.sps-toc-toggle-icon {
+  transition: transform 0.3s;
+}
+
+.sps-toc-toggle.expanded .sps-toc-toggle-icon {
+  transform: rotate(90deg);
+}
+
+.sps-toc-main-toggle-icon {
+  transition: transform 0.3s;
+}
+
+.sps-toc-main-toggle.expanded .sps-toc-main-toggle-icon {
+  transform: rotate(180deg);
+}
+
+
+.sps-toc-sublist .sps-toc-item[data-depth="1"] .sps-toc-link-wrapper:last-child {
+  border-bottom: none
+}
+
+.sps-toc-main-toggle:focus,
+.sps-toc-toggle:focus,
+.sps-toc-link:focus {
+  outline: none;
+}
+
+.sp-table-of-content-toc .sps-toc-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+//select ...
+
+.sps-toc-container.presetThree {
+  position: relative;
+  border-left: 2px solid #e0e0e0;
+  padding-left: 15px;
+
+}
+
+
+.sps-toc-container.presetFour,
+.sps-toc-container.presetFive {
+  position: relative;
+  padding-left: 15px;
+
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sps-toc-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sps-toc-indicator {
+  position: absolute;
+  left: -2px;
+  width: 3px;
+  // background-color: #1A74E4;
+  // transition: top 0.3s ease, height 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+
+.sps-toc-link-selected {
+  // font-weight: 600;
+  color: #2e7d32;
+}
+
+/* Optional: Add hover effect */
+.sps-toc-link:hover {
+  color: #2e7d32;
+}
+
+/* Ensure the list items are positioned correctly */
+.sps-toc-item {
+  position: relative;
+  z-index: 2;
+}
+
+/* Add padding to the bottom of the container to ensure last items are visible */
+.sps-toc-list {
+  padding-bottom: 10px;
+}
+
+.sps-toc-container.presetTwo .sps-toc-link,
+.sps-toc-container.presetFive .sps-toc-link {
+  display: flex;
+  gap: 10px;
+}
+
+
+/* Smooth transitions for collapsible elements */
+.sps-toc-list {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: hidden;
+  // max-height: 2000px;
+  max-height: 100%;
+  opacity: 1;
+}
+
+.sps-toc-list.sps-toc-collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.sps-toc-sublist {
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.sps-toc-sublist.sps-toc-sublist-collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Smooth rotation for toggle icons */
+.sps-toc-toggle svg,
+.sps-toc-main-toggle svg {
+  transition: transform 0.3s ease-in-out;
+}
+
+.sps-toc-toggle.expanded svg {
+  transform: rotate(180deg);
+}
+
+.sps-toc-main-toggle.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* Indicator when hidden - no transition */
+.sps-toc-indicator.hidden {
+  transition: none;
+  opacity: 0;
+  height: 0;
+}
+
+/* Ensure full width coverage */
+.sps-toc-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Actions container */
+.sps-toc-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+/* Copy button */
+.sps-toc-copy {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.sps-toc-copy:hover {
+  opacity: 1;
+}
+
+/* Toggle button */
+.sps-toc-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden container class */
+.sps-toc-container.sps-toc-hidden {
+  display: none;
+}
+@media only screen and (max-width: 599px) {
+  .sp-smart-post-table-of-content.sp-table-of-content-toc {
+    position: static !important;
+    width: 100% !important;
+  }
+}
+
+.sp-table-of-content-toc {
+  transform: none;
+  z-index: 99;
+  width: auto;
+
+  &.sp-toc-position-static {
+    position: static;
+  }
+  &.sp-toc-position-sticky {
+    position: sticky;
+    transform: none;
+  }
+  &.sp-toc-position-floating {
+    position: static;
+    width: 30%;
+
+    &.sp-toc-floating-top-left {
+      left: 20px;
+    }
+    &.sp-toc-floating-top-right {
+      right: 20px;
+    }
+    &.sp-toc-floating-top-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &.sp-toc-floating-middle-left {
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+    &.sp-toc-floating-middle-right {
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+  }
+}

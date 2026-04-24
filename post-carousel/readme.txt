@@ -1,60 +1,347 @@
-=== Smart Post Show – Post Grid, Post Carousel & Slider, and List Category Posts ===
+=== Post Grid & Gutenberg Page Builder Blocks for Blogs, News & Any Website – Smart Post ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
-Tags:  latest posts, popular posts, post grid, recent posts, post timeline
+Tags:  post grid, post carousel, list category posts, gutenberg blocks, page builder
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 WC requires at least: 5.0
-WC tested up to: 10.6.1
-Stable tag: 3.0.13
+WC tested up to: 10.7.0
+Stable tag: 4.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display posts, pages, and taxonomies in beautiful carousel, slider, and grid layouts with advanced filtering. Customizable, Developer-friendly.
+60+ Post & Page Builder Gutenberg Blocks with 160+ Ready Patterns. Post Grid, Post Carousel, Post Slider, Post Timeline, List Category Posts, and more
 
 == Description ==
 
-https://www.youtube.com/watch?v=Zd3cSnlEA_Y&list=PLoUb-7uG-5jPJ4tAoZbF_angfWNGeXdye
+🚀 Explore [**60+ Advanced Post & Page Builder Blocks (Free & Pro)**](https://wpsmartpost.com/blocks/)  
+📚 Launch Fast with [**160+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
+🌐 Visit the Official Website [**Smart Post**](https://wpsmartpost.com/)  
+❤️ 112+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
 
-[__Live Demo__](https://wpsmartpost.com/blocks/lite/) | [__Support__](https://shapedplugin.com/create-new-ticket/) | [__Upgrade to Pro!__](https://wpsmartpost.com/)
+[**Smart Post**](https://wpsmartpost.com/) is a next-generation Post Grid and Gutenberg Page Builder Blocks plugin designed to help you build stunning blogs, magazines, news portals, and content-driven websites with ease. Whether you're creating a new site or upgrading an existing one, Smart Post lets you transform your content into modern, engaging layouts in minutes—no coding required.
 
-**Smart Post Show** allows you to filter and display posts, pages, and taxonomies (categories, tags, and post formats) in carousel and grid layouts without coding. Create post carousels and grids to display your content in various ways.
+Build and manage professional websites effortlessly while boosting user engagement with visually appealing post displays and flexible customization options.
+
+[__Ready Patterns__](https://wpsmartpost.com/patterns/) | [__Blocks__](https://wpsmartpost.com/blocks/) | [__Documentation__](https://wpsmartpost.com/docs/) | [__Support__](https://shapedplugin.com/create-new-ticket/) | [__Upgrade to Pro!__](https://wpsmartpost.com/pricing/)
+
+https://www.youtube.com/watch?v=vnveuaiPBdc&list=PLoUb-7uG-5jPJ4tAoZbF_angfWNGeXdye
+
+***Our Mission Behind Smart Post***
+
+*Our mission is to empower **Bloggers**, **Writers**, **Creators**, **Agencies**, **Marketers**, and **Professionals** with an all-in-one solution for building modern, content-driven websites with ease. Whether starting fresh or enhancing an existing site, blog, newsroom, news updates, or articles section, **Smart Post** helps transform your content into engaging layouts—without coding.*
+
+*By combining powerful features into a single plugin, we simplify website creation and reduce complexity. Smart Post is designed to be beginner-friendly while offering the flexibility and control experienced users need.*
+
+= 🎯 Perfect for Any Content-Driven Website =
+
+With Smart Post, you can build almost any type of website with ease—especially content-driven sites. It features a rich library of ready-to-use, niche-based patterns to help you create stunning layouts effortlessly. It’s the perfect choice for:
+
+✅ Blogs & Personal Websites  
+✅ News & Magazine Sites  
+✅ Portfolio Websites  
+✅ Business & Niche Websites  
+✅ Sports News Websites  
+✅ Tech News Websites  
+✅ Gaming News Websites  
+✅ Travel Blogs  
+✅ Fashion Blogs  
+✅ Food & Recipe Blogs  
+✅ Lifestyle Blogs  
+✅ And much more
+
+= 📈 Enhance Your Site with Beautiful Patterns =
+
+Transform your website with stunning, ready-made sections designed to grab attention and boost conversions. Everything is at your fingertips to create a professional, high-performing site with minimal customizations. No design complexity, just plug, play, and impress. 
+
+* [Post Carousel Patterns](https://wpsmartpost.com/patterns/#post-carousel)  
+* [Post Slider Patterns](https://wpsmartpost.com/patterns/#post-slider)  
+* [Thumbnail Slider Patterns](https://wpsmartpost.com/patterns/#thumbnail-slider)  
+* [News Ticker Patterns](https://wpsmartpost.com/patterns/#news-ticker)   
+* [Post Grid Patterns](https://wpsmartpost.com/patterns/#post-grid-one)  
+* [Post List Patterns](https://wpsmartpost.com/patterns/#post-list-one)  
+* [Post Timeline Patterns](https://wpsmartpost.com/patterns/#post-timeline-one)  
+* [Section Heading Patterns](https://wpsmartpost.com/patterns/#section-heading)   
+* [Smart Frontend Patterns](https://wpsmartpost.com/patterns/#smart-frontend-filter)  
+* [Social Profiles Patterns](https://wpsmartpost.com/patterns/#social-profiles)   
+* [Buttons Patterns](https://wpsmartpost.com/patterns/#buttons)   
+* [Pagination Patterns](https://wpsmartpost.com/patterns/#pagination)   
+* [Smart Image Patterns](https://wpsmartpost.com/patterns/#smart-image)  
+* [Smart Info Box Patterns](https://wpsmartpost.com/patterns/#smart-info-box)  
+* [Smart List Patterns](https://wpsmartpost.com/patterns/#smart-list)  
+* [Table of Contents Patterns](https://wpsmartpost.com/patterns/#table-of-content)  
+* [Taxonomy Patterns](https://wpsmartpost.com/patterns/#taxonomy)
 
 
-= Three Steps to Create Your Post Carousel or Grid =
-* Step 1: Select a carousel or grid layout. Customize the layout with various settings.
-* Step 2: Filter posts by type (posts, pages), ID, taxonomy (categories, tags, post formats), author, keyword, status, and sort order (ID, title, date, modified date).
-* Step 3:  Paste the generated shortcode anywhere you want to display your post carousel or grid.
+= ⚡ Power Up Your Site with Handy Modules =
 
-= Easy to Use =
-Display any post type without writing code. The plugin provides an intuitive interface suitable for all users. The settings panel helps you create carousels and grids efficiently, with well-organized options and clear descriptions.
+Unlock powerful features that enhance both functionality and user experience—without added complexity. From back-to-top navigation and saved templates to post badges, image galleries, and featured videos, these smart modules help you build faster, engage visitors longer, and create a more dynamic website with ease. 
 
-= Responsive & SEO Friendly =
-Smart Post Show is responsive and SEO-friendly. Customize the number of slides displayed on desktop, tablet, and mobile devices.
+Available Modules Include:
 
-= Customization Options =
-The plugin offers multiple customization options and is extendable with hooks to modify the query and output.
+* [Smart Design Library](https://wpsmartpost.com/docs/smart-design-library/)  
+* [Saved Templates](https://wpsmartpost.com/docs/saved-templates/)  
+* [Back to Top](https://wpsmartpost.com/docs/back-to-top/)   
+* [Taxonomy Image & Color](https://wpsmartpost.com/docs/taxonomy-image-color/) (Pro)  
+* [Post Badges](https://wpsmartpost.com/docs/post-badges/) (Pro)  
+* [Post Image Gallery](https://wpsmartpost.com/docs/post-image-gallery/) (Pro)  
+* [Post Featured Video](https://wpsmartpost.com/docs/post-featured-video/) (Pro)
 
-= Performance Optimized =
-The plugin follows WordPress coding standards and is optimized for performance.
+*Upcoming Modules:*
 
-= Theme Compatibility =
-Smart Post Show works with most WordPress themes and plugins, including Genesis, Divi, Avada, and others. It is compatible with single-site and multisite WordPress networks.
+* Website Builder  
+* Starter Sites  
+* Reading & Scroll Progress  
+* Frontend Post Submission (Pro)  
+* Dynamic Data & Fields
 
-= Page Builder Integration =
-The plugin integrates with page builders such as Elementor, Divi, WPBakery, ThemeFusion, Beaver Builder, and SiteOrigin.
+= Modern Post Grid Blocks =
 
-= Translation & RTL Ready =
-Translate the plugin into your language using .po and .mo files. The plugin is Right-To-Left (RTL) ready and supports multilingual websites.
+Create responsive grid layouts that showcase your content beautifully across all devices. Capture attention instantly with clean, well-organized designs that are easy to scan and boost engagement. Turn your blog into a visual powerhouse—effortlessly.
 
-= Regular Updates =
-The plugin is regularly updated with new features, bug fixes, and security patches.
+ Available Post Grid Blocks:
 
-= Documentation =
-If you have any questions about working with Smart Post Show, you can take a look at the online [__documentation__](https://docs.shapedplugin.com/docs/post-carousel/overview/).
+* [Post Grid Block 01](https://wpsmartpost.com/blocks/#demoId3497)  
+* [Post Grid Block 02](https://wpsmartpost.com/blocks/#demoId3504)  
+* [Post Grid Block 03](https://wpsmartpost.com/blocks/#demoId3505)  
+* [Post Grid Block 04 (Pro)](https://wpsmartpost.com/blocks/#demoId3506)  
+* [Post Grid Block 05](https://wpsmartpost.com/blocks/#demoId3507)  
+* [Post Grid Block 06](https://wpsmartpost.com/blocks/#demoId3508)
 
-= Author =
-Designed and Developed by [__ShapedPlugin__](https://shapedplugin.com/)
+= Post Slider Blocks =
 
+Showcase your top stories with smooth, eye-catching sliders that instantly grab attention. Highlight featured content without clutter and boost clicks with bold visuals and seamless transitions. Available Post Slider Blocks:
+
+* [Post Slider Block 01](https://wpsmartpost.com/blocks/#demoId3490)  
+* [Post Slider Block 02 (Pro)](https://wpsmartpost.com/blocks/#demoId3493)
+
+= Post Carousel Blocks =
+
+Display more content in less space with smooth, interactive carousels. Keep visitors engaged with swipeable, touch-friendly layouts perfect for featured posts and curated content. Available Post Carousel Blocks:
+
+* [Post Carousel Block 01](https://wpsmartpost.com/blocks/#demoId3514)  
+* [Post Carousel Block 02](https://wpsmartpost.com/blocks/#demoId3516)
+
+= News Ticker Block =
+
+Display real-time, scrolling headlines that instantly grab attention. Perfect for breaking news, updates, and trending stories in a sleek, space-saving format that keeps readers engaged. Available News Ticker Blocks:
+
+* [News Ticker](https://wpsmartpost.com/blocks/#demoId3568)
+
+= Post Thumbnail Slider Blocks =
+
+Showcase posts with bold, image-first sliders that draw instant attention. Perfect for highlighting featured content with visually rich, engaging previews. Available Post Thumbnail Slider Blocks:
+
+* [Post Thumbnail Slider Block 01](https://wpsmartpost.com/blocks/#demoId3570)  
+* [Post Thumbnail Slider Block 02 *(Pro)*](https://wpsmartpost.com/blocks/#demoId3572)
+
+= Post List Blocks =
+
+Present content in clean, fast-loading lists that are easy to scan. Ideal for high-volume sites that value clarity, speed, and readability. Available Post List Blocks:
+
+* [Post List Block 01](https://wpsmartpost.com/blocks/#demoId3509)  
+* [Post List Block 02 *(Pro)*](https://wpsmartpost.com/blocks/#demoId3511)  
+* [Post List Block 03](https://wpsmartpost.com/blocks/#demoId3520)
+
+= Post Timeline Blocks =
+
+Display content in elegant, chronological timelines. Perfect for storytelling, news updates, or showcasing events with clarity and flow. Available Post Timeline Blocks:
+
+* [Post Timeline Block 01](https://wpsmartpost.com/blocks/#demoId3522)  
+* [Post Timeline Block 02](https://wpsmartpost.com/blocks/#demoId3524)  
+* [Post Timeline Block 03](https://wpsmartpost.com/blocks/#demoId3526)
+
+= 19+ Archive Builder Blocks to Build Dynamic Pages =
+
+* [**Archive and Single Page Builder**](https://wpsmartpost.com/docs/dynamic-site-builders/)
+
+Go beyond basic layouts with 19+ Additional Archive and Single Page Builder blocks. Smart Post introduces a powerful dynamic site builder for Gutenberg, complete with dedicated templates for all essential pages—giving you full control over your site design. Easily build and customize:
+
+* Home Page  
+* Single Blog Posts  
+* Archive Pages  
+* Category Pages  
+* Tag Pages  
+* Author Pages  
+* Search Pages  
+* Date Pages
+
+= Gutenberg Header & Footer Builder (upcoming) = 
+Take full control of your website’s header and footer with an intuitive visual builder. Start with ready-made templates or create your own from scratch—customize layouts, styles, and elements to match your brand perfectly, without writing a single line of code.
+
+= Gutenberg Mega Menu Builder (upcoming) =
+Upgrade your site navigation with a flexible mega menu builder. Add links, images, and dynamic content to create visually rich, intuitive menus that elevate user experience and engagement.
+
+= 14+ Smart Page Builder Blocks =
+
+* [**Smart Page Builder Blocks**](https://wpsmartpost.com/blocks/#smart-page-builder-blocks)
+
+Build clean, functional layouts with Smart Page Builder Blocks. From headings and containers to search, taxonomy, and interactive elements—everything you need to create modern pages inside Gutenberg.
+
+Available Page Builder Blocks include:
+
+* [Section Heading](https://wpsmartpost.com/blocks/#demoId3586)  
+* Container  
+* [Smart Button](https://wpsmartpost.com/blocks/#demoId3588)  
+* [Taxonomy](https://wpsmartpost.com/blocks/#demoId3604)  
+* [Social Profiles](https://wpsmartpost.com/blocks/#demoId3528)  
+* [Table of Contents](https://wpsmartpost.com/blocks/#demoId3602)  
+* [Smart Image](https://wpsmartpost.com/blocks/#demoId3584)  
+* [Smart Search](https://wpsmartpost.com/blocks/#demoId3596)  
+* [Smart Info Box](https://wpsmartpost.com/blocks/#demoId3590)  
+* [Smart List](https://wpsmartpost.com/blocks/#demoId3592)
+
+*Upcoming Page Builder Blocks:*
+
+* Subscribe to Newsletter  
+* Social Feeds  
+* Smart Menu  
+* Google Map
+
+= Enjoy Full Control Over Which Posts to Display =
+
+* [**Advanced Post Query Builder**](https://wpsmartpost.com/docs/post-carousel-slider-blocks/post-carousel-01/#query-builder)
+
+Take full control of your content with an advanced post query builder designed for flexibility and precision. Showcase desired content using powerful, quick filters, flexible queries, and custom display conditions to display exactly what you intend to show.
+
+* Display posts by category  
+* Display posts by tags  
+* Display posts by category and tags  
+* Display specific posts or pages  
+* Display custom post types  
+* Filter posts by author  
+* Filter posts by date  
+* Filter posts by keyword  
+* Filter posts by custom field  
+* Show popular posts  
+* Show related posts  
+* Show recent posts  
+* Show random posts  
+* Show oldest posts  
+* Show most liked posts  
+* Show most viewed posts  
+* Show the most commented posts  
+* Order posts by ASC & DSC  
+* Reorder posts easily  
+* Include specific posts  
+* Exclude specific posts  
+* Exclude posts by term and author  
+* Exclude sticky posts  
+* Exclude current posts  
+* Exclude children's posts  
+* Exclude posts without an image
+
+= Help Users Instantly Find What They're Looking for =
+
+* [**AJAX Frontend Live Filter**](https://wpsmartpost.com/blocks/#demoId3647)   
+* [**AJAX Search**](https://wpsmartpost.com/blocks/#demoId3596)  
+* [**AJAX Pagination**](https://wpsmartpost.com/blocks/#demoId3649)
+
+With Smart Post’s Ajax-powered search, filters, and pagination, users can quickly find and browse content without reloading the whole page. You have all the essential smart frontend post-filtering options, including:
+
+* Filter by Category  
+* Filter by Tags  
+* Filter by Author  
+* Filter by Date  
+* Filter by Post Order (Asc & Dsc)  
+* Sort By Filter  
+* Keyword Search Filter  
+* Custom Taxonomy Filter  
+* Clear or Reset Filter
+
+= Create Reusable Templates for Any Page Builder 🔥 =
+
+* [**Saved Templates**](https://wpsmartpost.com/docs/saved-templates/)
+
+Build custom templates once, then reuse them anywhere on your site in any page builders– as many times as you want. It works seamlessly with **Elementor, Divi, WP Bakery, Gutenberg,** and all major page builders, saving hours of repetitive work while maintaining perfect consistency. 
+
+= Build Faster, Design Visually Without Limits =
+
+Create ultra-fast, high-performing websites with Smart Post’s powerful Gutenberg blocks, built for speed and results. Design stunning layouts that load instantly and keep visitors engaged. Customize everything visually—from colors to styles—with complete flexibility and zero coding.
+
+= 🎨 Save Time with Global Design System =
+
+* [**Global Style Settings**](https://wpsmartpost.com/docs/global-style-settings/)
+
+Set your styles once and watch them apply instantly across your entire site with powerful global settings. Maintain a consistent, professional look without manually tweaking every single block. Spend less time on repetitive design tasks and more time creating great content. One change, site-wide impact– simplicity at its finest.
+
+= 📖 Improve Readability and Keep Readers Engaged Longer =
+
+* [**Advanced Typography**](https://wpsmartpost.com/docs/advanced-typography/)
+
+
+Use clean, well-structured typography to make your content easier and more comfortable to read. Customize fonts, sizes, and styles to match your brand, improve clarity, and keep visitors engaged with your content for longer.
+
+= Starter Sites and Website Builder (upcoming) =
+
+Smart Post Starter Sites provide ready-to-import website templates to help you get started faster. Browse the collection, choose a design that fits your needs, customize it easily, and go live in no time—perfect for building your own site or delivering client projects efficiently.
+
+= ❇️ AI-Powered Content Generation (upcoming) =
+
+Integrated ChatGPT and Gemini support inside Gutenberg to generate post content, descriptions, and ideas, making content creation faster and more efficient.
+
+= 🧩 Fully Compatible with Page Builders & Themes = 
+
+No compatibility worries\! Smart Post works flawlessly with your existing setup. It seamlessly integrates with:
+
+* **Gutenberg Block Editor**  
+* **Popular Page Builders**: Elementor, Divi, WPBakery, Beaver Builder, and more  
+* **Top WordPress Themes**: Avada, X Theme, BeTheme, Astra, OceanWP, and others  
+* **Multilingual Plugins**: WPML, Polylang, Loco Translate, qTranslate, etc. You can [**translate**](https://translate.wordpress.org/projects/wp-plugins/post-carousel/) Smart Post on translate.wordpress.org.  
+* **Popular Plugins**: ACF, The Events Calendar, Events Manager, Membership plugins, and more  
+* **WooCommerce** and other essential tools
+
+= 📊 Boost Your Website SEO with Smart Post =  
+Easily connect with popular SEO plugins and display custom meta descriptions in place of default excerpts to improve your content’s search performance. SEO plugins include: 
+
+* Yoast  
+* Rank Math  
+* All-in-One SEO  
+* Squirrly  
+* SEOPress
+
+= 👨🏻‍💻 Author =
+
+**Smart Post** is developed by [**ShapedPlugin LLC**](https://shapedplugin.com/), a team with over a decade of experience in building WordPress plugins, focused on quality, performance, and ongoing improvements.
+
+= 🛟 Documentation & Support =
+
+Although Smart Post is beginner-friendly with a minimal learning curve, it is well-documented. It provides dedicated support whenever you need.  
+
+👉 Read well-organized Smart Post [Documentation](https://wpsmartpost.com/docs/) 
+
+👉 Watch Smart Post [YouTube Playlist](https://www.youtube.com/watch?v=vnveuaiPBdc&list=PLoUb-7uG-5jMKaIryd6B0d41Lafvx4UF5) 
+
+👉 Join the plugin’s [Forum](https://wordpress.org/support/plugin/post-carousel/) or [Contact Us](https://shapedplugin.com/contact-us/) for support.
+
+👉 Join the [ShapedPlugin Community](https://community.shapedplugin.com/portal/) for tips from users and experts  
+
+👉 Learn more about the Smart Post at [https://wpsmartpost.com/](https://wpsmartpost.com/)
+
+= 🔥 Explore More Solutions from ShapedPlugin =
+
+Discover our powerful WordPress and WooCommerce plugins designed to save time, boost performance, and enhance your website experience:
+
+[**Real Testimonials**](https://wordpress.org/plugins/testimonial-free/) – Showcase authentic customer reviews with stylish layouts to build trust, boost credibility, and increase conversions effortlessly on your website.
+
+[**WP Carousel**](https://wordpress.org/plugins/wp-carousel-free/) – Create responsive carousels for posts, images, and content with smooth navigation to engage visitors and beautifully highlight your key content.
+
+[**Smart Tabs**](https://wordpress.org/plugins/wp-expand-tabs-free/) – Organize content into clean, responsive tabs to improve user experience, reduce clutter, and present information in a structured, engaging way.
+
+[**Location Weather**](https://wordpress.org/plugins/location-weather/) – Display real-time weather updates for any location with customizable layouts, enhancing user engagement and adding dynamic, useful content to your site.
+
+[**Easy Accordion**](https://wordpress.org/plugins/easy-accordion-free/) – Add responsive, SEO-friendly accordion sections to organize content efficiently, improve readability, and create a clean, interactive browsing experience.
+
+[**Smart Team**](https://wordpress.org/plugins/team-free/) – Showcase your team members with stylish, customizable layouts to build trust, highlight expertise, and present your organization professionally.
+
+[**Logo Carousel**](https://wordpress.org/plugins/logo-carousel-free/) – Display client, partner, or brand logos in responsive carousels to build credibility, strengthen brand identity, and showcase partnerships effectively.
+
+[**WooGallery**](https://wordpress.org/plugins/gallery-slider-for-woocommerce/) – Create beautiful, responsive product galleries for WooCommerce to showcase images attractively, improve user experience, and increase product engagement.
+
+[**Smart Swatches**](https://wordpress.org/plugins/smart-swatches/) – Replace default WooCommerce variation dropdowns with color, image, and label swatches to improve product selection and enhance the shopping experience.
+
+[**Product Slider (Smart Store)**](https://wordpress.org/plugins/woo-product-slider/) – Build modern, conversion-focused WooCommerce store layouts with advanced features to improve product visibility, user experience, and sales performance.
+
+[**WooCategory**](https://wordpress.org/plugins/woo-category-slider-grid/) – Display WooCommerce product categories in stylish grids or sliders to improve navigation, highlight collections, and enhance store browsing experience.
 
 == Installation ==
 
@@ -68,8 +355,8 @@ Designed and Developed by [__ShapedPlugin__](https://shapedplugin.com/)
 
 = AUTOMATIC INSTALLATION (EASIEST WAY) =
 
-To do an automatic install of Smart Post Show, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
-In the search field, type "Smart Post Show". Once you have found it, you can install it by simply clicking "Install Now" and then "Activate".
+To do an automatic install of Smart Post, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
+In the search field, type "Smart Post". Once you have found it, you can install it by simply clicking "Install Now" and then "Activate".
 
 = MANUAL INSTALLATION =
 
@@ -97,8 +384,8 @@ The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugi
 
 == Frequently Asked Questions ==
 
-=Is Smart Post Show free?=
-Yes! Smart Post Show is free to use.
+=Is Smart Post free?=
+Yes! Smart Post is free to use.
 
 =How can I show Post Carousel or Post Grid?=
 After activating the plugin, you will see “Smart Post Show” in the WordPress admin dashboard.
@@ -115,11 +402,11 @@ Additional features are available in the [Pro version](https://wpsmartpost.com/)
 =What if I upgrade to the premium version?=
 Your existing Post Carousels or Grids content will work with [premium version](https://wpsmartpost.com/). You won't lose your existing content.
 
-=Do I need coding skills to use Smart Post Show?=
+=Do I need coding skills to use Smart Post?=
 No coding skills are required. You can create post carousels and grids without writing shortcode attributes.
 
-=Is Smart Post Show responsive?=
-Yes, Smart Post Show is responsive and works on mobile and touch devices.
+=Is Smart Post responsive?=
+Yes, Smart Post is responsive and works on mobile and touch devices.
 
 =Can I show Post Carousel or Grid anywhere on my website?=
 Yes, you can add Post Carousel or Grid inside blog posts, pages, widgets, and elsewhere on your WordPress site using a shortcode or PHP function.
@@ -130,31 +417,102 @@ Yes, you can add Post Carousel or Grid inside blog posts, pages, widgets, and el
 =Can I have multiple Post Carousels or Grids with separate settings?=
 Yes, you can create unlimited Post Carousels or Grids with separate settings on pages, posts, templates, widgets, or elsewhere.
 
-=Will Smart Post Show work with my theme?=
-Smart Post Show works with any WordPress theme that follows WordPress standards.
+=Will Smart Post work with my theme?=
+Smart Post works with any WordPress theme that follows WordPress standards.
 
 =Where can I report bugs?=
 If you find a bug, please report it in our [support](https://shapedplugin.com/create-new-ticket/). You will be replied once the issue is resolved.
 
-=Is Smart Post Show Multilingual Ready?=
-Yes, Smart Post Show is translation-ready and compatible with WPML, Polylang, Loco Translate, qTranslate-x, GTranslate, Google Language Translator, WPGlobus, and others.
+=Is Smart Post Multilingual Ready?=
+Yes, Smart Post is translation-ready and compatible with WPML, Polylang, Loco Translate, qTranslate-x, GTranslate, Google Language Translator, WPGlobus, and others.
 
-=Is Smart Post Show ready with multisite?
-Yes, Smart Post Show works with WordPress multisite networks.
+=Is Smart Post ready with multisite?
+Yes, Smart Post works with WordPress multisite networks.
 
 
 == Screenshots ==
 
-1. Demo
-2. Filter Content
-3. Display Options
-4. Carousel Controls
-5. Detail Page Settings
-6. Typography
+1. Post Carousel 01
+2. Post Carousel 02
+3. Post Slider 01
+4. Thumbnails Slider 01
+5. News Ticker
+6. Post Grid 01 with Frontend Live Filter
+7. Post Grid 02
+8. Post Grid 03 with Ajax Number Pagination
+9. Post Grid 05
+10. Post Grid 06
+11. Post List 01
+12. Post List 03
+13. Post Timeline 01
+14. Post Timeline 02
+15. Post Timeline 03
+16. Section Heading
+17. Container
+18. Smart Button
+19. Taxonomy
+20. Social Profiles
+21. Table Of Contents
+22. Smart Image
+23. Smart Info Box
+24. Smart List
+25. Global Style Settings
+26. Dashboard Panel
+27. Block Control Panel
+28. Manage Modules Panel 
+29. Classic Shortcode Demo
+30. Filter Content
+31. Display Options
+32. Carousel Controls
+33. Detail Page Settings
+34. Typography
 
 
 
 == Changelog ==
+
+= 4.0.0 - Apr 24, 2026 =
+* New: Smart Frontend Filter block.
+* New: Post Carousel 01 block.
+* New: Post Carousel 02 block.
+* New: Post Slider 01 block.
+* New: Thumbnails Slider 01 block.
+* New: News Ticker block.
+* New: Post Grid 01 block.
+* New: Post Grid 02 block.
+* New: Post Grid 03 block.
+* New: Post Grid 05 block.
+* New: Post Grid 06 block.
+* New: Post List 01 block.
+* New: Post List 02 block.
+* New: Post List 03 block.
+* New: Post Timeline 01 block.
+* New: Post Timeline 02 block.
+* New: Post Timeline 03 block.
+* New: Container block.
+* New: Smart Button block.
+* New: Social Profiles block.
+* New: Taxonomy block.
+* New: Table of Contents block.
+* New: Smart Image block.
+* New: Smart Info Box block.
+* New: Smart List block.
+* New: Heading block.
+* New: Smart Pagination (child block).
+* New: Taxonomy Filter (child block).
+* New: Smart List Item (child block).
+* New: Elementor integration for Smart Post Saved Templates.
+* New: Divi integration for Smart Post Saved Templates.
+* New: WPBakery integration for Smart Post Saved Templates.
+* New: Oxygen integration for Smart Post Saved Templates.
+* New: Beaver Builder integration for Smart Post Saved Templates.
+* New: Bricks integration for Smart Post Saved Templates.
+* Improved: Rebuilt with a focus on Gutenberg blocks.
+* Improved: Renamed plugin from Smart Post Show to Smart Post.
+* Updated: Rearranged plugin submenus for better usability.
+* Updated: Language (.pot) file.
+* Tested: Compatible with WordPress 7.0.
+* Tested: Compatible with WooCommerce 10.7.0.
 
 = 3.0.13 - Mar 25, 2026 =
 * Improved: The plugin security has improved.

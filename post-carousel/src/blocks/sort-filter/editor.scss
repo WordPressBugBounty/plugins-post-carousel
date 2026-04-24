@@ -1,0 +1,23 @@
+.editor-block-list-item-sp-smart-post-show-search-filter,
+.editor-block-list-item-sp-smart-post-show-sort-filter {
+    position: relative;
+    pointer-events:  none;
+    .block-editor-block-types-list__item-title,
+    .block-editor-block-icon > svg {
+        opacity: 0.6;
+    }
+    .sp-pro-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgba(17, 161, 12, 0.80);
+        color: #fff;
+        padding: 5px 6.5px;
+        border-radius: 50%;
+        svg {
+            fill: #11A10c;
+            min-width: 12px;
+            min-height: 12px;
+        }
+    }
+}

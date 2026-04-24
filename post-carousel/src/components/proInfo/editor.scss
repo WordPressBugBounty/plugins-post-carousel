@@ -1,0 +1,53 @@
+.sp-smart-pro-info {
+    border: 1px solid #93DCAC;
+    border-radius: 8px;
+    background-color: #EDFAEF;
+    padding: 15px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+
+    h3 {
+        color: #0E7B22;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    h4 {
+       color: #2F2F2F;
+       font-size: 13px;
+       font-weight: 600;
+       line-height: 20px;
+       margin: 0;
+    }
+
+    ul {
+        margin: 16px 0;
+    }
+
+    ul li {
+        color: #2F2F2F;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        margin-bottom: 6px;
+    }
+
+    a {
+        color: #159E2E;
+        text-decoration: none;
+        font-weight: 600;
+    }
+}
+
+.sp-smart-upgrade-btn {
+    background: linear-gradient(90deg, #11AB56 0%, #159E2E 65.02%);
+    border-radius: 6px;
+    padding: 8px 10px;
+    color: #fff !important;
+    display: block;
+    text-align: center;
+}

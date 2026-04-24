@@ -1,0 +1,127 @@
+// .advertisement-general-tab {
+//     margin: 20px 0;
+//     padding: 20px;
+//     border: 1px solid #e0e0e0;
+//     border-radius: 6px;
+//     background-color: #fff;
+// }
+
+.sp-smart-post-ad-content-item {
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+  padding-right: 4px;
+  margin-bottom: 12px;
+}
+
+.sp-smart-post-ad-content-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  width: 246px;
+  height: 28px;
+  align-items: center;
+  padding: 4px 8px 4px 10px;
+}
+
+.sp-smart-post-ad-content-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+// .ad-title {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     width: 100%;
+// }
+
+.sp-smart-post-dropdown-arrow {
+  cursor: pointer;
+}
+
+.sp-smart-post-remove-ad-button {
+  cursor: pointer;
+}
+
+// .sp-smart-post-CodeMirror {
+//   width: 100%;
+//   height: 150px;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 6px;
+//   padding: 10px;
+//   font-family: monospace;
+// }
+
+.sp-smart-post-add-ad-button {
+  display: block;
+  margin-top: 12px;
+  background-color: var(--sp-smart-primary-2-600);
+  color: #fff;
+  padding: 8px 12px 8px 12px;
+  width: 97px;
+  height: 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+}
+
+.sp-smart-post-add-ad-button:hover {
+  color: #fff !important;
+}
+
+.sp-smart-post-ad-title-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 16px;
+  width: 34px;
+}
+
+.sp-smart-post-ad-gap {
+  width: 246px;
+  height: 16px;
+  background-color: #fff;
+}
+
+.sp-smart-post-ad-gap {
+  width: 246px;
+  height: 12px;
+  background-color: #fff;
+}
+
+.sp-smart-post-code-mirror-container {
+  height: 200px;
+  .CodeMirror {
+    width: 100%;
+    height: 102px;
+    border: 1px solid #e0e0e0;
+    border-radius: 0px !important;
+    gap: 8px;
+    margin: 0px 2px 2px 2px;
+    font-family: monospace;
+  }
+}
+
+/* editor.scss */
+
+.sp-smart-post-dropdown-arrow {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.sp-smart-post-dropdown-arrow:hover {
+  color: #FF0000;
+  /* Hover color */
+}
+
+.sp-smart-post-ad-content-item.expanded {
+  transition: height 2s ease-in-out;
+
+}

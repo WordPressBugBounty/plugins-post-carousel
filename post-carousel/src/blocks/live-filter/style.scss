@@ -1,0 +1,410 @@
+.layoutOne .sp-smart-post-live-filter-parent {
+  .block-editor-inner-blocks .block-editor-block-list__layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .wp-block-sp-smart-post-show-live-filter {
+    flex-wrap: wrap;
+  }
+
+  // Child blocks.
+  .sp-smart-post-live-filter {
+    position: relative;
+    width: 280px;
+
+    &-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #4e4f52;
+      display: block;
+      line-height: 24px;
+      margin-bottom: 5px;
+    }
+
+    &-btn {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      color: #838487;
+      border: 1px solid #838487;
+      padding: 10px 12px;
+      border-radius: 2px;
+      font-size: 14px;
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:focus {
+        box-shadow: 0 0 0 1px #1a74e4;
+        outline: none;
+      }
+    }
+
+    &-dropdown {
+      list-style: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      // width: max-content;
+      width: 100%;
+      border-radius: 2px;
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+      outline: none;
+      z-index: 99;
+      opacity: 0;
+      transform-origin: top left;
+      visibility: hidden;
+      // overflow: hidden;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        a {
+          color: #4e4f52;
+          padding: 8px 12px;
+          text-decoration: none !important;
+          display: block;
+          text-transform: capitalize;
+          transition: 0.3s ease-in-out;
+        }
+
+        a:hover {
+          background: #ccc;
+        }
+      }
+
+      .sp-dropdown-search-field {
+        padding: 8px 12px;
+
+        input {
+          width: 100%;
+
+          &:focus {
+            box-shadow: none;
+            outline: none;
+            border-color: #4e4f52;
+          }
+        }
+      }
+    }
+
+    &-button {
+      list-style: none;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        a {
+          padding: 10px 20px;
+          border: 1px solid #4e4f52;
+          color: #4e4f52;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none !important;
+          display: inline-block;
+
+          &.active {
+            color: #fff;
+            background: #4e4f52;
+          }
+        }
+      }
+    }
+
+    &-button li a:focus,
+    &-dropdown li a:focus {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      z-index: 99999;
+    }
+
+    .sp-smart-post-search-field {
+      input {
+        width: 100%;
+        min-height: auto;
+        height: auto;
+        border: none;
+        line-height: 24px;
+        padding: 0 0 0 8px;
+
+        &:focus {
+          box-shadow: none;
+          outline: none;
+          border-color: #4e4f52;
+        }
+      }
+
+      input::placeholder {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.layoutOne.sp-smart-full {
+  .sp-smart-post-live-filter,
+  .sp-smart-post-sort-filter,
+  .sp-smart-post-taxonomy-filter {
+    width: 100%;
+    flex-grow: 1;
+  }
+  .block-editor-inner-blocks .block-editor-block-list__layout {
+    flex-wrap: nowrap;
+  }
+}
+
+.sp-smart-full {
+  // .sp-smart-post-live-filter {
+  //   width: auto;
+  // }
+
+  .block-editor-inner-blocks .block-editor-block-list__layout {
+    flex-wrap: nowrap;
+  }
+
+  .sp-smart-post-live-filter-parent .wp-block-sp-smart-post-show-live-filter {
+    flex-wrap: nowrap;
+  }
+
+  .sp-smart-post-live-filter,
+  .wp-block-sp-smart-post-show-sort-filter,
+  .wp-block-sp-smart-post-show-search-filter,
+  .wp-block-sp-smart-post-show-author-filter,
+  .wp-block-sp-smart-post-show-taxonomy-filter {
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .sp-smart-post-live-filter-dropdown {
+    width: 100%;
+  }
+}
+
+.sp-smart-full.sp-width-33 {
+  .block-editor-inner-blocks .block-editor-block-list__layout {
+    flex-wrap: wrap;
+  }
+
+  .sp-smart-post-live-filter-parent .wp-block-sp-smart-post-show-live-filter {
+    flex-wrap: wrap;
+  }
+
+  // .wp-block-sp-smart-post-show-sort-filter,
+  // .wp-block-sp-smart-post-show-search-filter,
+  // .wp-block-sp-smart-post-show-author-filter,
+  // .wp-block-sp-smart-post-show-taxonomy-filter {
+  //     width: 33%;
+  // }
+}
+
+@media screen and (max-width: 767px) {
+
+  .sp-smart-post-live-filter-parent .wp-block-sp-smart-post-show-live-filter,
+  .block-editor-inner-blocks .block-editor-block-list__layout {
+    flex-wrap: wrap;
+  }
+  .layoutOne.sp-smart-full {
+    .sp-smart-post-live-filter,
+    .sp-smart-post-sort-filter,
+    .block-editor-inner-blocks .block-editor-block-list__layout {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.sp-smart-post-search-field-icon {
+  height: 20px;
+  width: 20px;
+  padding-top: 2px;
+}
+
+.sp-smart-post-live-filter-label {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sp-smart-post-live-filter-button li a,
+.sp-smart-post-live-filter-dropdown li a,
+.sp-smart-post-live-filter-btn,
+.sp-smart-post-live-filter-btn svg path {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+
+//..........layout two...........
+
+
+a:focus,
+a:focus .gravatar,
+a:focus .media-icon img,
+a:focus .plugin-icon {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.sps-live-filter-navbar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: end;
+}
+
+
+.sps-live-filter-latest-post-btn {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  transition: all 0.3s,
+}
+
+
+
+.sps-live-filter-nav-container {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  z-index: 1;
+
+}
+
+.sps-live-filter-nav-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  // max-height: 47px;
+}
+
+.sps-live-filter-nav-item {
+  position: relative;
+}
+
+.sps-live-filter-nav-link {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+
+.sps-live-filter-dropdown-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  transition: transform 0.3s;
+}
+
+.sps-live-filter-dropdown-menu {
+  position: absolute;
+  top: 112%;
+  right: 0;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px 0;
+  display: none;
+  z-index: 100;
+}
+
+.sps-live-filter-dropdown.active .sps-live-filter-dropdown-menu {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sps-live-filter-dropdown.active .sps-live-filter-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.sps-live-filter-dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+// .sps-live-filter-dropdown-item:hover {
+//   background-color: #f0f0f0;
+//   color: #e53935;
+// }
+
+// .sps-live-filter-dropdown-item.active {
+//   color: #e53935;
+//   font-weight: 600;
+// }
+
+.sps-live-filter-latest-post-btn.styleFive {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: auto;
+  text-decoration-color: #503AA8;
+}
+
+.sps-live-filter-layout-two .sps-live-filter-latest-post-btn {
+
+  background-color: var(--smart-post-secondary);
+
+}
+
+
+.sps-live-filter-layout-two .sps-live-filter-nav-link {
+  color: var(--smart-post-dark-2-text);
+}
+
+.sps-live-filter-layout-two .sps-live-filter-nav-link.active {
+  color: var(--smart-post-secondary);
+}
+
+.sps-live-filter-latest-post-btn.styleOne {
+  color: var(--smart-post-light-text);
+}
+
+.sps-live-filter-latest-post-btn.styleTwo,
+.sps-live-filter-latest-post-btn.styleThree,
+.sps-live-filter-latest-post-btn.styleFour,
+.sps-live-filter-latest-post-btn.styleFive {
+  color: #4E4F52;
+  background-color: #00960300
+}
+.layoutOne.sp-smart-post-wrapper,
+.layoutTwo.sp-smart-post-wrapper {
+  position: relative;
+  z-index: 9;
+}

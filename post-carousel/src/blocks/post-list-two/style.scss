@@ -1,0 +1,266 @@
+// // Large items style.
+// .rtl #sp-smart-post-list-wrapper {
+//     direction: ltr;
+// }
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items {
+//     transition: all 0.3s ease-in-out;
+//     .sp-smart-post-template-one-content,
+//     .sp-smart-post-card {
+//         width: 100%;
+//     }
+//     .sp-smart-post-card-image a,
+//     .sp-smart-post-card-image{
+//         display: block;
+//         width: 100% !important;
+//         height: 100%;
+//     }
+//     .sp-smart-post-card-image img{
+//         height: 100% !important;
+//         width: 100%;
+//     }
+//     .sp-smart-post-card {
+//         height: 100%;
+//         flex-direction: column;
+//     }
+//     // .sp-smart-post-template-one-content {
+//     //     position: absolute;
+//     //     left: 0;
+//     //     bottom: 0;
+//     //     z-index: 9;
+//     // }
+//     // .sp-smart-post-card-content {
+//     //     height: 100%;
+//     //     justify-content: end;
+//     //     // padding: 20px;
+//     // }
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-list-item {
+//     position: relative;
+// }
+// #sp-smart-post-list-wrapper:not(.sp-smart-post-list-three) .sp-smart-post-large-items .sp-smart-post-list-item {
+//     height: 380px;
+// }
+
+// // #sp-smart-post-list-wrapper.no-overlay .sp-smart-post-large-items .sp-smart-post-list-item::after {
+// //     position: absolute;
+// //     content: "";
+// //     width: 100%;
+// //     height: 100%;
+// //     background-color: #000;
+// //     left: 50%;
+// //     top: 50%;
+// //     transform: translate(-50%, -50%);
+// //     opacity: .5;
+// //     z-index: 1;
+// // }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-list-divider {
+//     width: 100%;
+//     border-top: 1px solid #ccc;
+//     border-image-slice: 1;
+//     grid-column: 1 / 3;
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-list-divider,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-five .sp-smart-post-list-divider,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-six .sp-smart-post-list-divider,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-seven .sp-smart-post-small-items .sp-smart-post-list-div,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-eight .sp-smart-post-small-items .sp-smart-post-list-div,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-three .sp-smart-post-small-items .sp-smart-post-list-divider {
+//     display: none;
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items.sp-smart-post-background-layout .sp-smart-post-card-content {
+//     padding: 30px;
+//     // .sp-social-share-popup-icon.popup-share-icon svg path,
+//     // .sp-smart-post-excerpt,
+//     // .sp-smart-post-meta span,
+//     // .sp-smart-post-meta svg path,
+//     // .sp-smart-post-title {
+//     //     color: #fff;
+//     //     fill: #fff;
+//     // }
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-three .sp-smart-post-large-items{
+//    .sp-smart-post-template-one-content {
+//         position: relative;
+//    }
+//    .sp-smart-post-card.template-one {
+//         flex-direction: column;
+//    }
+//    .sp-smart-post-list-item {
+//         height: auto;
+//    }
+//    .sp-smart-post-list-item::after{
+//         display: none;
+//    }
+//    .sp-smart-post-card-content{
+//         width: 100%;
+//    }
+// }
+
+// // Small items style.
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items {
+//     display: flex;
+//     flex-direction: column;
+//     // gap: 20px;
+// }
+
+// /* Normal style */
+// #sp-smart-post-list-wrapper .sp-smart-post-card {
+//     display: flex;
+//     // flex-direction: column;
+//     justify-content: left;
+//     width: 100%;
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-list-item {
+//     // display: flex;
+//     gap: 20px;
+// }
+// #sp-smart-post-list-wrapper:not(.sp-smart-post-list-three) .sp-smart-post-small-items .sp-smart-post-list-divider:last-of-type {
+//     display: none;
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-card {
+//     gap: 24px;
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-card .sp-smart-post-excerpt-read-more {
+//     text-decoration: underline;
+//     color: var(--smart-post-dark-text);
+//     transition: all .3s;
+//     // font-size: 14px;
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-four .sp-smart-post-card,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-card {
+//     gap: 16px;
+// }
+
+// /* Small items style */
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card-image {
+//     max-width: 35%;
+//     width: 100%;
+//     flex-shrink: 0;
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-four .sp-smart-post-small-items .sp-smart-post-card-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-three .sp-smart-post-small-items .sp-smart-post-card-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-small-items .sp-smart-post-card-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-one .sp-smart-post-small-items .sp-smart-post-card-content {
+//     margin-top: 10px;
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-four .sp-smart-post-small-items .sp-smart-post-card-image,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-small-items .sp-smart-post-card-image {
+//     width: 45%;
+//     flex-shrink: 0;
+// }
+// .sp-smart-post-wrapper .sp-smart-post-small-items .sp-smart-post-title {
+//     font-size: 22px;
+// }
+
+// .sp-smart-post-list-two-layout-eight .sp-smart-post-small-items .sp-smart-post-title,
+// .sp-smart-post-list-two-layout-six .sp-smart-post-small-items .sp-smart-post-title,
+// .sp-smart-post-list-two-layout-four .sp-smart-post-small-items .sp-smart-post-title,
+// .sp-smart-post-list-two-layout-two .sp-smart-post-small-items .sp-smart-post-title {
+//     font-size: 18px;
+// }
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-template-one-content {
+//     width: 100%;
+// }
+// .sp-smart-post-small-items .sp-smart-post-card-image img {
+//     width: 100%;
+//     object-fit: cover;
+// }
+
+// /* Post list two layout 2 style */
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-six .sp-smart-post-small-items,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-eight .sp-smart-post-small-items,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-four .sp-smart-post-small-items,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-small-items {
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+// }
+
+// /* Post list two layout 3 style */
+// .sp-smart-post-list-two-layout-three .sp-smart-post-list-item.sp-smart-overlay-post {
+//     height: auto;
+// }
+// .sp-smart-post-list-two-layout-three .sp-smart-post-list-item.sp-smart-overlay-post .sp-smart-post-card,
+// .sp-smart-post-list-two-layout-three .sp-smart-post-list-item.sp-smart-overlay-post .sp-smart-post-card-image {
+//     position: relative;
+// }
+// .sp-smart-post-list-two-layout-three .sp-smart-post-large-items .sp-smart-post-list-item {
+//     flex-direction: column;
+// }
+
+// /* Post list two layout (5 and 7) style */
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items .sp-smart-post-card .sp-smart-post-excerpt-read-more {
+//     display: none;
+// }
+
+// .sp-smart-post-list-two-layout-seven .sp-smart-post-small-items .sp-smart-post-des-read-more {
+//     color: #4E4F52;
+//     font-size: 14px;
+//     font-weight: 400;
+// }
+
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items.sp-smart-post-background-layout .sp-smart-post-card {
+//     padding: 0 !important;
+//     margin: 0 !important;
+//     border: none;
+// }
+
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-eight .sp-smart-post-small-items .sp-smart-post-template-one-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-seven .sp-smart-post-small-items .sp-smart-post-template-one-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-six .sp-smart-post-small-items .sp-smart-post-template-one-content,
+// #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-five .sp-smart-post-small-items .sp-smart-post-template-one-content,
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items .sp-smart-post-template-one-content, .sp-smart-post-large-items .sp-smart-post-card {
+//     width: 100%;
+// }
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card .sp-smart-post-card-image img {
+//     width: 100%;
+//     height: 100%;
+// }
+// #sp-smart-post-list-wrapper .sp-smart-post-large-items .sp-smart-post-card:hover .sp-smart-post-card-image a {
+//     transform: scale(1) rotate(0deg);
+// }
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card .sp-smart-post-card-image .image-overlay,
+// #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card:hover .sp-smart-post-card-image .image-overlay {
+//     background: transparent !important;
+// }
+
+// @media only screen and (max-width: 767px) {
+//     #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-six .sp-smart-post-small-items,
+//     #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-eight .sp-smart-post-small-items,
+//     #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-four .sp-smart-post-small-items,
+//     #sp-smart-post-list-wrapper.sp-smart-post-list-two-layout-two .sp-smart-post-small-items {
+//         grid-template-columns: repeat(1, 1fr);
+//     }
+//     .sp-smart-post-list-two #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card {
+//         flex-direction: column;
+//     }
+//     .sp-smart-post-list-two #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card-image {
+//         max-width: 100%;
+//         width: 100%;
+//     }
+//     .sp-smart-post-list-two #sp-smart-post-list-wrapper .sp-smart-post-small-items .sp-smart-post-card-content {
+//         margin-top: 0;
+//         padding: 0;
+//     } 
+// }
+
+// .sp-smart-post-list-two {
+//     #sp-smart-post-list-wrapper {
+//         .sp-smart-post-list-item {
+//             .sp-smart-post-card-image a {
+//                 width: 100%;
+//                 height: 100%;
+//             }
+//         }
+//     }
+// }

@@ -60,7 +60,7 @@ class SPS_Recommended {
 	 * Easy_Accordion_Free_Help construct function.
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'help_admin_menu' ), 80 );
+		add_action( 'admin_menu', array( $this, 'help_admin_menu' ), 20 );
 
         $page   = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';// @codingStandardsIgnoreLine
 		if ( 'pcp_help' !== $page ) {
@@ -105,27 +105,65 @@ class SPS_Recommended {
 		add_submenu_page(
 			'edit.php?post_type=sp_post_carousel',
 			__( 'Post Carousel', 'post-carousel' ),
-			__( 'Recommended', 'post-carousel' ),
+			__( 'Blocks', 'post-carousel' ),
 			'manage_options',
-			'edit.php?post_type=sp_post_carousel&page=pcp_help#recommended'
+			'edit.php?post_type=sp_post_carousel&page=pcp_help#blocks',
+			'',
+			0
 		);
 		add_submenu_page(
 			'edit.php?post_type=sp_post_carousel',
 			__( 'Post Carousel', 'post-carousel' ),
-			__( 'Lite vs Pro', 'post-carousel' ),
+			__( 'Saved Templates', 'post-carousel' ),
 			'manage_options',
-			'edit.php?post_type=sp_post_carousel&page=pcp_help#lite-to-pro'
+			'edit.php?post_type=sp_post_carousel&page=pcp_help#savedTemplate',
+			'',
+			1
+		);
+		add_submenu_page(
+			'edit.php?post_type=sp_post_carousel',
+			__( 'Post Carousel', 'post-carousel' ),
+			__( 'Settings', 'post-carousel' ),
+			'manage_options',
+			'edit.php?post_type=sp_post_carousel&page=pcp_help#settings',
+			'',
+			2
 		);
 		add_submenu_page(
 			'edit.php?post_type=sp_post_carousel',
 			__( 'Smart Post Show Help', 'post-carousel' ),
-			__( 'Get Help', 'post-carousel' ),
+			__( 'Quick Start', 'post-carousel' ),
 			'manage_options',
 			'pcp_help',
 			array(
 				$this,
 				'help_page_callback',
-			)
+			),
+			0
+		);
+
+		add_submenu_page(
+			'edit.php?post_type=sp_post_carousel',
+			__( 'Post Carousel', 'post-carousel' ),
+			__( 'Lite vs Pro', 'post-carousel' ),
+			'manage_options',
+			'edit.php?post_type=sp_post_carousel&page=pcp_help#lite-vs-pro',
+			'',
+			10
+		);
+
+		add_submenu_page(
+			'edit.php?post_type=sp_post_carousel',
+			__( 'Upgrade to Pro', 'post-carousel' ),
+			'<a class="sp-smart-post-upgrade-btn-wrapper" href="https://wpsmartpost.com/pricing/?ref=1" target="_blank">
+        		<span class="sp-smart-post-upgrade-btn">
+            		<span class="sp-go-pro-icon"></span> Upgrade to Pro
+        		</span>
+    		</a>',
+			'manage_options',
+			'pcp_help',
+			'__return_null',
+			80
 		);
 	}
 
@@ -347,7 +385,7 @@ class SPS_Recommended {
 	 * @return string
 	 */
 	public function activate_plugin_link( $plugin_slug, $plugin_file ) {
-		return wp_nonce_url( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help&action=activate&plugin=' . $plugin_slug . '/' . $plugin_file . '#recommended' ), 'activate-plugin_' . $plugin_slug . '/' . $plugin_file );
+		return wp_nonce_url( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help&action=activate&plugin=' . $plugin_slug . '/' . $plugin_file . '#about-us' ), 'activate-plugin_' . $plugin_slug . '/' . $plugin_file );
 	}
 
 	/**
@@ -393,356 +431,7 @@ class SPS_Recommended {
 
 		?>
 		<div class="sp-smart-post__help">
-			<!-- Header section start -->
-			<section class="spspc__help header">
-				<div class="spspc-header-area-top">
-					<p>You’re currently using <b>Smart Post Show Lite</b>. To access additional features, consider <a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" ><b>upgrading to Pro!</b></a> 🚀</p>
-				</div>
-				<div class="spspc-header-area">
-					<div class="spspc-container">
-						<div class="spspc-header-logo">
-							<img src="<?php echo esc_url( SP_PC_URL . 'admin/help-page/img/logo.svg' ); ?>" alt="">
-							<span><?php echo esc_html( SP_PC_VERSION ); ?></span>
-						</div>
-					</div>
-					<div class="spspc-header-logo-shape">
-						<img src="<?php echo esc_url( SP_PC_URL . 'admin/help-page/img/logo-shape.svg' ); ?>" alt="">
-					</div>
-				</div>
-				<div class="spspc-header-nav">
-					<div class="spspc-container">
-						<div class="spspc-header-nav-menu">
-							<ul>
-								<li><a class="active" data-id="get-start-tab"  href="<?php echo esc_url( home_url( '' ) . '/wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_help#get-start' ); ?>"><i class="spspc-icon-play"></i> Get Started</a></li>
-								<li><a href="<?php echo esc_url( home_url( '' ) . '/wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_help#recommended' ); ?>" data-id="recommended-tab"><i class="spspc-icon-recommended"></i> Recommended</a></li>
-								<li><a href="<?php echo esc_url( home_url( '' ) . '/wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_help#lite-to-pro' ); ?>" data-id="lite-to-pro-tab"><i class="spspc-icon-lite-to-pro-icon"></i> Lite Vs Pro</a></li>
-								<li><a href="<?php echo esc_url( home_url( '' ) . '/wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_help#about-us' ); ?>" data-id="about-us-tab"><i class="spspc-icon-info-circled-alt"></i> About Us</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Header section end -->
-
-			<!-- Start Page -->
-			<section class="spspc__help start-page" id="get-start-tab">
-				<div class="spspc-container">
-					<div class="spspc-start-page-wrap">
-						<div class="spspc-video-area">
-							<h2 class='spspc-section-title'>Welcome to Smart Post Show!</h2>
-							<span class='spspc-normal-paragraph'>Thank you for installing Smart Post Show! This video will help you get started with the plugin. Enjoy!</span>
-							<iframe width="724" height="405" src="https://www.youtube.com/embed/Zd3cSnlEA_Y?si=jZY-sPMZnol03ems" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-							<ul>
-								<li><a class='spspc-medium-btn' href="<?php echo esc_url( home_url( '/' ) . 'wp-admin/post-new.php?post_type=sp_post_carousel' ); ?>">Create a Show</a></li>
-								<li><a target="_blank" class='spspc-medium-btn' href="https://wpsmartpost.com/blocks/lite/">Live Demo</a></li>
-								<li><a target="_blank" class='spspc-medium-btn arrow-btn' href="https://wpsmartpost.com/">Explore Smart Post Show <i class="spspc-icon-button-arrow-icon"></i></a></li>
-							</ul>
-						</div>
-						<div class="spspc-start-page-sidebar">
-							<div class="spspc-start-page-sidebar-info-box">
-								<div class="spspc-info-box-title">
-									<h4><i class="spspc-icon-doc-icon"></i> Documentation</h4>
-								</div>
-								<span class='spspc-normal-paragraph'>Explore Smart Post Show plugin capabilities in our enriched documentation.</span>
-								<a target="_blank" class='spspc-small-btn' href="https://docs.shapedplugin.com/docs/post-carousel/overview/">Browse Now</a>
-							</div>
-							<div class="spspc-start-page-sidebar-info-box">
-								<div class="spspc-info-box-title">
-									<h4><i class="spspc-icon-support"></i> Technical Support</h4>
-								</div>
-								<span class='spspc-normal-paragraph'>For personalized assistance, reach out to our skilled support team for prompt help.</span>
-								<a target="_blank" class='spspc-small-btn' href="https://shapedplugin.com/create-new-ticket/">Ask Now</a>
-							</div>
-							<div class="spspc-start-page-sidebar-info-box">
-								<div class="spspc-info-box-title">
-									<h4><i class="spspc-icon-team-icon"></i> Join The Community</h4>
-								</div>
-								<span class='spspc-normal-paragraph'>Join the official ShapedPlugin Facebook group to share your experiences, thoughts, and ideas.</span>
-								<a target="_blank" class='spspc-small-btn' href="https://www.facebook.com/groups/ShapedPlugin/">Join Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- Lite To Pro Page -->
-			<section class="spspc__help lite-to-pro-page" id="lite-to-pro-tab">
-				<div class="spspc-container">
-					<div class="spspc-call-to-action-top">
-						<h2 class="spspc-section-title">Lite vs Pro Comparison</h2>
-						<a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
-					</div>
-					<div class="spspc-lite-to-pro-wrap">
-						<div class="spspc-features">
-							<ul>
-								<li class='spspc-header'>
-									<span class='spspc-title'>FEATURES</span>
-									<span class='spspc-free'>Lite</span>
-									<span class='spspc-pro'><i class='spspc-icon-pro'></i> PRO</span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>All Free Version Features</span>
-									<span class='spspc-free spspc-check-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Amazing Layouts (Carousel, Grid, List, Isotope, Timeline, ZigZag, Accordion, etc.)</span>
-									<span class='spspc-free'>4</span>
-									<span class='spspc-pro'>13+</span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Create a Show/View with Posts, Pages, Products, Media, Custom Post Types, and Multiple Post Types (All/Post, Page, Product, etc.) <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>WooCommerce Advanced Products Filtering Types (On Sale, Best Selling, Top Rated, etc) <i class="spspc-new">New</i></span>
-									<span class='spspc-free'>1</span>
-									<span class='spspc-pro'>6+</span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Display Multiple Post Types in one Show/shortcode (e.g., posts, pages, products, portfolios in a layout). <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Choose a Position for Sticky Post</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Advanced WordPress Content Filtering Options (Taxonomy, Author, Sort By, Custom Fields, Status, Date, and Keyword)</span>
-									<span class='spspc-free'>5</span>
-									<span class='spspc-pro'>7</span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Turn any Content Filtering into Ajax Live Filters and Multiple Filters Simultaneously</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Turn any Layout into an Isotope(shuffle) Filter</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Supports ACF, WooCommerce, EDD, CPT UI, The Events Calendar, Events Manager, Pods, Toolset, Membership, etc. <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Multiple Ajax Pagination Types (Ajax Number, Load More, Infinite Scrolling, etc.)</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Isotope Shuffle Filters Posts by Taxonomy Terms</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Live Filters Options (Filter type: Dropdown, Radio, Button, Label, Hide empty terms, Show post count, Alignment, etc.)</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Ajax Search Field on the Isotope or any Layout</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Content Orientations (default classic, left image, right image, overlay, card, overlay box, etc.), and eight positions. <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free'><b>1</b></span>
-									<span class='spspc-pro'><b>6</b></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>30+ Animation types for the overlay content on hover</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>12 Social sharing media, Alignment, margin. Icon shape, custom color, and many more.</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Drag and Drop Sorting content fields (thumbnail, title, content, meta fields, social share, custom fields).</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Margin for Every Content Field (thumbnail, title, meta fields, content, social share, custom fields)</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Replace Post Thumbnail with Video and Audio</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Thumbnails Custom Dimensions and Retina Ready Supported</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Display Post Meta Fields Author, Date, Taxonomy, Comment Count, View Count, Like, Reading Time <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Customize Meta Fields Position, Icon, Margin, Separator, etc.</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Center and Ticker Carousel Modes</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>20+ Powerful Carousel Settings</span>
-									<span class='spspc-free spspc-check-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Multi-row Carousel and Transition Effects</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Detail Page Link Type (Popup, Single Page, None)</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Customize Isotope Filter Type, Button Color, Margin between Buttons, Taxonomies, Alignment, etc.</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Individual Configuration Tabs for Isotope, Timeline, and Accordion Layout</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Customize Details Page Popup Type, Maximum Width, Maximum Height, Color, Background, Close button, etc. </span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Content Field Drag and Drop Sorting for the Detail Page</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Replace the Standard Archive (Post, Search, Author, Date) Layout with the Smart Post Show Layouts <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Replace Taxonomy Archives (Post Category, Tag, Product Category, Tag, Shipping) Layouts <i class="spspc-new">New</i> <i class="spspc-hot">Hot</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Replace Shop/Product Page Archive with Smart Post Show Layouts <i class="spspc-new">New</i></span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Export and Import Post Shows</span>
-									<span class='spspc-free spspc-check-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Stylize your Product Slider/Grid Typography with 1500+ Google Fonts.</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>All Premium Features, Security Enhancements, and Compatibility</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-								<li class='spspc-body'>
-									<span class='spspc-title'>Priority Top-notch Support</span>
-									<span class='spspc-free spspc-close-icon'></span>
-									<span class='spspc-pro spspc-check-icon'></span>
-								</li>
-							</ul>
-						</div>
-						<div class="spspc-upgrade-to-pro">
-							<h2 class='spspc-section-title'>Upgrade To PRO & Enjoy Advanced Features!</h2>
-							<span class='spspc-section-subtitle'>Already, <b>21000+</b> people are using Smart Post Show on their websites to create beautiful showcase, why won’t you!</span>
-							<div class="spspc-upgrade-to-pro-btn">
-								<div class="spspc-action-btn">
-									<a target="_blank" href="https://wpsmartpost.com/pricing/?ref=1" class='spspc-big-btn'>Upgrade to Pro Now!</a>
-									<span class='spspc-small-paragraph'>14-Day No-Questions-Asked <a target="_blank" href="https://shapedplugin.com/refund-policy/">Refund Policy</a></span>
-								</div>
-								<a target="_blank" href="https://wpsmartpost.com/" class='spspc-big-btn-border'>See All Features</a>
-								<a target="_blank" href="https://wpsmartpost.com/blocks/" class='spspc-big-btn-border spspc-live-pro-demo'>Pro Live Demo</a>
-							</div>
-						</div>
-					</div>
-					<div class="spspc-testimonial">
-						<div class="spspc-testimonial-title-section">
-							<span class='spspc-testimonial-subtitle'>NO NEED TO TAKE OUR WORD FOR IT</span>
-							<h2 class="spspc-section-title">Our Users Love Smart Post Show Pro!</h2>
-						</div>
-						<div class="spspc-testimonial-wrap">
-							<div class="spspc-testimonial-area">
-								<div class="spspc-testimonial-content">
-									<p>Very easy to set up and nice options even in the free version which I’m using on a NFP horse club site. Very professional look. I’m new to WordPress and still getting the hang of it so finding a plugin...</p>
-								</div>
-								<div class="spspc-testimonial-info">
-									<div class="spspc-img">
-										<img src="<?php echo esc_url( SP_PC_URL . 'admin/help-page/img/comlodge.png' ); ?>" alt="">
-									</div>
-									<div class="spspc-info">
-										<h3>Comlodge</h3>
-										<div class="spspc-star">
-											<i>★★★★★</i>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="spspc-testimonial-area">
-								<div class="spspc-testimonial-content">
-									<p>The support is excellent !!,Five stars for the plugin and five stars for the support service. We have had some doubts and they have been resolved all of them at the moment.We are very happy with the...</p>
-								</div>
-								<div class="spspc-testimonial-info">
-									<div class="spspc-img">
-										<img src="<?php echo esc_url( SP_PC_URL . 'admin/help-page/img/testimonial-avatar.svg' ); ?>" alt="">
-									</div>
-									<div class="spspc-info">
-										<h3>Annamaspons</h3>
-										<div class="spspc-star">
-											<i>★★★★★</i>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="spspc-testimonial-area">
-								<div class="spspc-testimonial-content">
-									<p>This is the third site on which I’ve used the free version of what seems to be a pretty unique product. It’s easy to get a good carousel going quickly from either pages or posts. A couple more navigatio...</p>
-								</div>
-								<div class="spspc-testimonial-info">
-									<div class="spspc-img">
-										<img src="<?php echo esc_url( SP_PC_URL . 'admin/help-page/img/testimonial-avatar.svg' ); ?>" alt="">
-									</div>
-									<div class="spspc-info">
-										<h3>Glenn Watson</h3>
-										<div class="spspc-star">
-											<i>★★★★★</i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			<div id="sp-smart-post-blocks-settings-page" class="sp-smart-post-blocks-settings-page"></div>
 
 			<!-- Recommended Page -->
 			<section id="recommended-tab" class="spspc-recommended-page">
@@ -758,117 +447,8 @@ class SPS_Recommended {
 				</div>
 			</section>
 
-			<!-- About Page -->
-			<section id="about-us-tab" class="spspc__help about-page">
-				<div class="spspc-container">
-					<div class="spspc-about-box">
-						<div class="spspc-about-info">
-							<h3>The Most Powerful Post Showcase plugin for WordPress by the Smart Posts Show Team, ShapedPlugin, LLC</h3>
-							<p>At <b>ShapedPlugin LLC</b>, we have been searching for the best way to filter and display any posts (any post type), pages, taxonomy, custom taxonomy, and custom fields in beautiful layouts without coding! Unfortunately, we couldn't find any suitable plugin that met our needs. Therefore, we decided to develop a powerful WordPress post showcase plugin that is both user-friendly and efficient. </p>
-							<p>We are introducing the Smart Post Show plugin - a simple and convenient way to showcase posts on your WordPress website. Check it out now!</p>
-							<div class="spspc-about-btn">
-								<a target="_blank" href="https://wpsmartpost.com/" class='spspc-medium-btn'>Explore Smart Post Show</a>
-								<a target="_blank" href="https://shapedplugin.com/about-us/" class='spspc-medium-btn spspc-arrow-btn'>More About Us <i class="spspc-icon-button-arrow-icon"></i></a>
-							</div>
-						</div>
-						<div class="spspc-about-img">
-							<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/shapedplugin-team.jpg' ); ?>" alt="ShapedPlugin Team">
-							<span>Team ShapedPlugin LLC at WordCamp Sylhet</span>
-						</div>
-					</div>
-					<?php
-					$plugins_arr = get_transient( 'spspc_plugins' );
-					$plugin_icon = array();
-					if ( is_array( $plugins_arr ) && ( count( $plugins_arr ) > 0 ) ) {
-						foreach ( $plugins_arr as $plugin ) {
-							$plugin_icon[ $plugin['slug'] ] = $plugin['icons'];
-						}
-					}
-					?>
-					<div class="spspc-our-plugin-list">
-						<h3 class="spspc-section-title">Upgrade your Website with our High-quality Plugins!</h3>
-						<div class="spspc-our-plugin-list-wrap">
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://wpcarousel.io/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['wp-carousel-free'] ); ?>" alt="WP Carousel">
-								<h4>WP Carousel</h4>
-								<p>The most powerful and user-friendly multi-purpose carousel, slider, & gallery plugin for WordPress.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://realtestimonials.io/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['testimonial-free'] ); ?>" alt="Real Testimonials">
-								<h4>Real Testimonials</h4>
-								<p>Simply collect, manage, and display Testimonials on your website and boost conversions.</p>
-							</a>
-							<a target="_blank" href="https://wooproductslider.io/?ref=1" class="spspc-our-plugin-list-box">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['woo-product-slider'] ); ?>" alt="Product Slider for WooCommerce">
-								<h4>Product Slider for WooCommerce</h4>
-								<p>Boost sales by interactive product Slider, Grid, and Table in your WooCommerce website or store.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://woogallery.io/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['gallery-slider-for-woocommerce'] ); ?>" alt="WooGallery">
-								<h4>WooGallery</h4>
-								<p>Product gallery slider and additional variation images gallery for WooCommerce and boost your sales.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://getwpteam.com/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<?php if ( ! empty( $plugin_icon['team-free'] ) ) { ?>
-								<img src="<?php echo esc_url( $plugin_icon['team-free'] ); ?>" alt="WP Team">
-								<?php } ?>
-								<h4>WP Team</h4>
-								<p>Display your team members smartly who are at the heart of your company or organization!</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://logocarousel.com/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['logo-carousel-free'] ); ?>" alt="Logo Carousel">
-								<h4>Logo Carousel</h4>
-								<p>Showcase a group of logo images with Title, Description, Tooltips, Links, and Popup as a grid or in a carousel.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://easyaccordion.io/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['easy-accordion-free'] ); ?>" alt="Easy Accordion">
-								<h4>Easy Accordion</h4>
-								<p>Minimize customer support by offering comprehensive FAQs and increasing conversions.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://shapedplugin.com/woocategory/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['woo-category-slider-grid'] ); ?>" alt="WooCategory">
-								<h4>WooCategory</h4>
-								<p>Display by filtering the list of categories aesthetically and boosting sales.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://wptabs.com/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['wp-expand-tabs-free'] ); ?>" alt="WP Tabs">
-								<h4>WP Tabs</h4>
-								<p>Display tabbed content smartly & quickly on your WordPress site without coding skills.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://shapedplugin.com/quick-view-for-woocommerce/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['woo-quickview'] ); ?>" alt="Quick View for WooCommerce">
-								<h4>Quick View for WooCommerce</h4>
-								<p>Quickly view product information with smooth animation via AJAX in a nice Modal without opening the product page.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://shapedplugin.com/smart-brands/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['smart-brands-for-woocommerce'] ); ?>" alt="Smart Brands for WooCommerce">
-								<h4>Smart Brands for WooCommerce</h4>
-								<p>Smart Brands for WooCommerce Pro helps you display product brands in an attractive way on your online store.</p>
-							</a>
-							<a target="_blank" class="spspc-our-plugin-list-box" href="https://shapedplugin.com/smart-swatches-for-woocommerce/?ref=1">
-								<i class="spspc-icon-button-arrow-icon"></i>
-								<img src="<?php echo esc_url( $plugin_icon['smart-swatches'] ); ?>" alt="Smart Swatches for WooCommerce">
-								<h4>Smart Swatches for WooCommerce</h4>
-								<p>Appealing color, image, and button variation swatches on your WooCommerce Shop and Product pages in minutes to increase sales.</p>
-							</a>
-						</div>
-					</div>
-				</div>
-			</section>
-
 			<!-- Footer Section -->
-			<section class="spspc-footer">
+			<!-- <section class="spspc-footer">
 				<div class="spspc-footer-top">
 					<p><span>Made With <i class="spspc-icon-heart"></i> </span> By the <a target="_blank" href="https://shapedplugin.com/">ShapedPlugin LLC</a> Team</p>
 					<p>Get connected with</p>
@@ -879,8 +459,8 @@ class SPS_Recommended {
 						<li><a target="_blank" href="https://youtube.com/@ShapedPlugin?sub_confirmation=1"><i class="spspc-icon-youtube-play"></i></a></li>
 					</ul>
 				</div>
-			</section>
+			</section> -->
 		</div>
-									<?php
+		<?php
 	}
 }

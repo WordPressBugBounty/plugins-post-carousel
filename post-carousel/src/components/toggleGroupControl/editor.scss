@@ -1,0 +1,101 @@
+.sp-smart-post-toggle-button-group {
+  border-color: #d7dade !important;
+  &.sp-negative-space {
+    margin-top: -5px;
+  }
+  &:focus-within {
+    box-shadow: none !important;
+    border-color: #d7dade !important;
+  }
+  
+  &-list {
+    display: flex;
+    width: 100%;
+    button {
+      padding: 0;
+      color: #424040;
+      position: relative;
+    }
+    // &:last-child button::after {
+    //   display: none;
+    // }
+    button.active {
+      color: var(--sp-smart-primary-2-600);
+      // svg {
+      //   fill: var(--sp-smart-primary-2-600);    
+      //   path {
+      //     stroke: var(--sp-smart-primary-2-600);
+      //   }
+      // }
+    }
+  }
+  &::before{
+    background: var(--sp-smart-primary-2-50) !important;
+    border: 1px solid var(--sp-smart-primary-2-100) !important;
+    border-radius: 2px !important;
+  }
+  &:focus-within {
+    box-shadow: none;
+    border-color: #d7dade;
+  }
+  &:hover {
+    border-color: #d7dade;
+  }
+  button {
+    svg {
+      fill: #777;
+    }      
+  }
+  .sp-svg-rotate-90 svg {
+    transform: rotate(90deg);
+  }
+}
+
+.components-base-control {
+  .components-base-control__label {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: #1E1E1E;
+    margin-top: -4px;
+    margin-bottom: 9px;
+  }
+}
+.sp-smart-post-toggle-button-group .sp-smart-post-toggle-button-group-list.sp-has-divider  {
+  div:not(:last-child) button:not(.active)::after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 50%;
+    width: 1px;
+    height: 60%;
+    background: #ddd;
+    transform: translateY(-50%);
+  }
+  > div:has(+ div > button.active) > button::after { display: none; }
+}
+
+.sp-smart-post-toggle-button-group-wrapper {
+  .sp-smart-post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    .sp-smart-post-component-title {
+      margin: 0;
+    }
+  }
+}
+.sp-smart-post-toggle-button-group-list.sp-svg-rotate-90 svg {
+  transform: rotate(90deg);
+}
+.sp-smart-post-toggle-button-group-list.sp-svg-rotate-90-reverse svg {
+  transform: rotate(-90deg);
+}
+
+.sp-is-pro {
+  .sp-smart-post-toggle-button-group {
+    opacity: .6;
+    pointer-events: none;
+  }
+}

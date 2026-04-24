@@ -40,7 +40,7 @@ class SPS_Settings {
 			)
 		);
 
-		SPS_Advanced::section( $prefix );
+		// SPS_Advanced::section( $prefix );
 		SPS_ScriptsAndStyles::section( $prefix );
 		SPS_Accessibility::section( $prefix );
 		SPS_CustomCSS::section( $prefix );

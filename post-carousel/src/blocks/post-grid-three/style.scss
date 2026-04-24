@@ -1,0 +1,220 @@
+.sp-smart-post-grid-three-contents {
+    .sp-smart-post-template-one-content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .template-two {
+        .sp-smart-post-card-content {
+            height: fit-content;
+        }
+    }
+}
+
+.sp-smart-show-pro {
+    &.grid-three-container {
+        .sp-smart-post-grid-three-contents {
+            .sp-smart-post-static-grid-contents {
+                display: grid;
+
+                &.grid-three-layout-one {
+                    grid-template-columns: repeat(2, 1fr);
+                    min-height: 200px;
+                }
+
+                &.grid-three-layout-two,
+                &.grid-three-layout-four {
+                    grid-template-columns: repeat(3, 1fr);
+
+                    .sp-smart-post-card:first-child {
+                        grid-column: 1 / span 2;
+                    }
+                }
+
+                &.grid-three-layout-two {
+                    min-height: 200px;
+                }
+
+                &.grid-three-layout-three {
+                    grid-template-columns: repeat(1, 1fr);
+                    min-height: 200px;
+
+                    .sp-smart-post-card {
+                        .sp-smart-post-category {
+                            .post-categories {
+                                width: max-content;
+                            }
+
+                            &.sp-position-top-right {
+                                .post-categories {
+                                    top: 10px;
+                                    right: 10px;
+                                }
+                            }
+
+                            &.sp-position-top-left {
+                                .post-categories {
+                                    top: 10px;
+                                    left: 10px;
+                                }
+                            }
+
+                            &.sp-position-bottom-left {
+                                .post-categories {
+                                    bottom: 10px;
+                                    left: 10px;
+                                }
+                            }
+
+                            &.sp-position-bottom-right {
+                                .post-categories {
+                                    bottom: 10px;
+                                    right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.grid-three-layout-five {
+                    grid-template-columns: repeat(3, 1fr);
+                    min-height: 200px;
+
+                    .sp-smart-post-card:first-child {
+                        grid-column: 1 / span 2;
+                        grid-row: 1 / span 2;
+                    }
+                }
+            }
+
+            .sp-smart-post-dynamic-grid-contents {
+                display: grid;
+
+                &.grid-three-layout-three {
+                    grid-template-columns: repeat(1, 1fr);
+
+                    .sp-smart-post-card {
+                        height: 200px;
+                    }
+                }
+
+                &.grid-three-layout-four {
+                    .sp-smart-post-card {
+                        height: 200px;
+
+                        &:nth-child(4n + 1) {
+                            grid-column: span 2;
+                        }
+
+                        &:nth-child(4n + 2) {
+
+                            grid-column: span 1;
+                        }
+
+                        &:nth-child(4n + 3) {
+                            grid-column: span 1;
+                        }
+
+                        &:nth-child(4n + 4) {
+                            grid-column: span 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .grid-three-container {
+        .sp-smart-post-grid-three-contents {
+            .sp-smart-post-static-grid-contents,
+            .sp-smart-post-dynamic-grid-contents {
+                .sp-smart-post-card {
+                    grid-column: 1 !important;
+                    grid-row: auto !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+// // title animate effect..................................................
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title {
+  position: relative;
+  display: inline-block;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:after {
+  content: "";
+  position: absolute;
+  transition: width 0.6s ease;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title::before {
+  content: "";
+  position: absolute;
+  transition: width 0.6s ease;
+}
+
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title .line {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title .line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  // height: 2px;
+  // background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  // transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line::after {
+  transform: scaleX(1);
+}
+
+/* Using :nth-of-type to target only .line elements */
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(1)::after {
+  transition-delay: 0s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(2)::after {
+  transition-delay: 0.2s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(3)::after {
+  transition-delay: 0.4s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(4)::after {
+  transition-delay: 0.6s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(5)::after {
+  transition-delay: 0.8s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(6)::after {
+  transition-delay: 1s;
+}
+
+
+
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(7)::after {
+  transition-delay: 1.2s;
+}
+
+.sp-smart-post-grid-three .sp-smart-post-card .sp-smart-post-title:hover .line:nth-of-type(8)::after {
+  transition-delay: 1.4s;
+}

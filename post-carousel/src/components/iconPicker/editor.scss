@@ -1,0 +1,237 @@
+.sp-smart-post-icon-picker-area {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    position: relative;
+    justify-content: space-between;
+
+    .sp-smart-post-component-title {
+        margin-bottom: 0;
+    }
+    .sp-smart-post-icon-picker-dropdown-input {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #ddd;
+        align-items: center;
+    }
+
+    .sp-smart-post-icon-picker {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        padding: 4px 0 4px 12px;
+        gap: 12px;
+    }
+    .sp-smart-post-iconPicker-dropdown-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e7e7e7;
+        margin-left: 8px;
+        height: 38px;
+        width: 24px;
+        cursor: pointer;
+
+        svg path {
+            fill: #757575;
+        }
+    }
+
+    .sp-smart-post-icon-picker-active-icon {
+        font-size: 28px;
+        color: #50575e;
+    }
+
+    // add and remove button.
+    .sp-smart-post-icon-picker-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-weight: 700;
+        border-radius: 4%;
+
+        &.sp-smart-post-icon-picker-add-btn {
+            height: 30px;
+            width: 30px;
+            font-size: 18px;
+            color: #ffff;
+            background-color: #333333;
+        }
+
+        &.sp-smart-post-icon-picker-close-btn {
+            height: 20px;
+            width: 20px;
+            font-size: 15px;
+            color: #787878;
+            background-color: #DCDCDE;
+        }
+    }
+}
+
+// popup.
+.components-popover__content:has(.sp-smart-post-icon-picker-popup) {
+    box-shadow: 0 15px 24px rgba(0, 0, 0, .22), 0 19px 76px rgba(0, 0, 0, .3);
+    border-radius: 6px;
+    background-color: #fff;
+    width: 360px;
+    padding: 16px 8px 16px 20px;
+
+    .sp-smart-post-icon-picker-popup {
+        .sp-smart-post-popup-heading {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .sp-smart-post-icon-picker-close-btn {
+                height: 20px;
+                width: 20px;
+                font-size: 15px;
+                color: #787878;
+                background-color: #DCDCDE;
+                margin-right: 12px;
+                border-style: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .sp-smart-post-icon-picker-popup-top-section {
+            display: flex;
+            flex-direction: column;
+            padding-right: 12px;
+
+            .sp-smart-post-icon-search-heading {
+                font-size: 13px;
+                font-weight: 500;
+                line-height: 16px;
+                color: #1E1E1E;
+            }
+
+            .sp-smart-post-icon-search-sub-heading {
+                font-size: 11px;
+                line-height: 16px;
+                color: #757575;
+            }
+
+            .sp-smart-post-icon-picker-search-and-category-wrapper {
+                width: 100%;
+                display: flex;
+                gap: 8px;
+                margin-top: 8px;
+
+                .sp-smart-post-icon-picker-search,
+                .sp-smart-post-icon-picker-category {
+                    line-height: 1;
+                    height: 32px;
+                    padding: 8px 10px;
+                    margin: 0;
+                    border: 1px solid #DDDDDD;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                .sp-smart-post-icon-picker-search {
+                    width: 60%
+                }
+
+                .sp-smart-post-icon-picker-category {
+                    width: 40%;
+                }
+            }
+        }
+
+        .sp-smart-post-icon-picker-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            column-gap: 11.2px;
+            overflow-y: auto;
+            max-height: 236px;
+            margin-top: 16px;
+            padding-right: 8px;
+
+            .sp-smart-post-icon-picker-item {
+                height: 36px;
+                width: 44px;
+                border: 1px solid #DDDDDD;
+                font-size: 20px;
+                border-radius: 4px;
+                color: #757575;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+
+                &.active {
+                    background-color: #757575;
+                    color: #fff;
+                }
+            }
+
+            &::-webkit-scrollbar {
+                width: 4px;
+                height: 18px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #a8a8a8;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+.sp-smart-post-icon-picker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .styble-component-title{
+        margin-bottom: 0;
+    }
+    .rfipdropdown {
+        width: 100%;
+        left: 0 !important;
+        top: 40px !important;
+    }
+    .rfipdropdown__selector .fipicon-angle-down::before{
+        display: none;
+    }
+    .rfip {
+        width: 50%;
+        margin: 0;
+        position: unset;
+    }
+    .rfipbtn{
+        width: 100px;
+        margin-left: auto;
+        min-height: 40px;
+    }
+    .rfipbtn__button {
+        width: 42px;
+    }
+    .rfipbtn__current{
+        flex: 0 0 60px;
+    }
+    .rfipbtn--default .rfipbtn__icon{
+        border: none;
+    }
+    .rfipbtn__del{
+        height: 16px;
+        width: 16px;
+        border-radius: 2px;
+    }
+}

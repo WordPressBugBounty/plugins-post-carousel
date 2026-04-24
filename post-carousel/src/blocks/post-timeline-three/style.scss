@@ -1,0 +1,135 @@
+// timeline three
+.post-timeline-three {
+    position: relative;
+    &.timeline-three-layout-two,
+    &.timeline-three-layout-one {
+        .sp-smart-post-timeline-three-container {
+            display: flex;
+            justify-content: space-around;
+            position: relative;
+            z-index: 1;
+
+            .rfm-initial-child-container{
+                align-items: flex-start;
+            }
+
+            /* horizontal line */
+            .sp-smart-post-timeline-border {
+                content: '';
+                position: absolute;
+                top: 11px;
+                left: 0;
+                right: 0;
+                height: 6px;
+                width: 100%;
+                margin: auto;
+                background: #333333;
+                border-radius: 4px;
+            }
+
+            .sp-smart-post-timeline-three-post-container {
+                position: relative;
+                padding-top: 60px;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    height: 0;
+                    width: 0;
+                    z-index: 1;
+                    top: 45px;
+                    left: 50%;
+                    transform: translateX(-50%)
+                }
+
+                /* The circles on the timeline */
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    left: 50%;
+                    top: 4px;
+                    z-index: 1;
+                    border-radius: 50%;
+                    background-color: white;
+                    transform: translateX(-50%);
+                    box-sizing: border-box;
+                }
+
+                .orientation_six,
+                .orientation_seven,
+                .orientation_eight {
+                    &.sp-smart-post-card {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    &.timeline-three-layout-two {
+        .sp-smart-post-timeline-nav-arrow,
+        .sp-smart-post-timeline-three-container .sp-smart-post-timeline-border {
+            transform: translateY(-50%);
+        }
+        .sp-smart-post-timeline-nav-arrow{
+            transform: translateY(-17px);
+        }
+        .sp-smart-post-timeline-three-post-container:nth-child(even) {
+            display: flex;
+            align-items: flex-end;
+            &::after,
+            &::before {
+                top: 100%;
+                transform: rotate(180deg) translateX(50%);
+            }
+            &::after{
+                top: calc(100% - -38px);
+            }
+            .sp-smart-post-template-one-content.orientation_six,
+            .sp-smart-post-template-one-content.orientation_seven,
+            .sp-smart-post-template-one-content.orientation_eight {
+                margin-bottom: -50px;
+                margin-top: 0;
+            }
+            .sp-smart-post-card,
+            .sp-smart-post-card-content {
+                flex-direction: column-reverse;
+            }
+        }
+        .sp-smart-post-timeline-three-post-container:nth-child(odd){
+            &::after{
+                top: 7px;
+            }
+        }
+    }
+    .sp-smart-post-card-image {
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            
+            img {
+                 width: 100%;
+                height: 100%;                
+            }
+        }
+    }
+    .sp-smart-post-swiper-nav-arrow .btn-prev {
+        left: -10px;
+    }
+    .sp-smart-post-swiper-nav-arrow .btn-next {
+        right: -10px;
+    }
+}
+
+.sp-smart-post-timeline-three-container {
+  overflow: hidden;
+}
+.timeline-three-layout-two .sp-smart-post-timeline-three-post-container:nth-child(odd) {
+  margin-top: -5px;
+}
+
+.timeline-three-layout-two .sp-smart-post-timeline-three-post-container:nth-child(even) {
+  top: calc(-100% - 38px);
+}

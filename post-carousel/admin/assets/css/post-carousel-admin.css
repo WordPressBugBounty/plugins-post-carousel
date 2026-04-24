@@ -298,8 +298,14 @@ span.pcp-shortcode-selectable::after {
 	pointer-events: none;
 }
 
+#adminmenu #menu-posts-sp_post_carousel li:nth-child(5) a {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
 #adminmenu #menu-posts-sp_post_carousel li:nth-child(8) a {
-	color: #f9be48;
+	display: none;
+}
+#adminmenu #menu-posts-sp_post_carousel li:nth-child(11) a {
+	color: #FFA500;
 }
 
 #adminmenu #menu-posts-sp_post_carousel li a .sp-go-pro-icon {
@@ -348,4 +354,40 @@ span.pcp-shortcode-selectable::after {
 #shapedplugin-offer-banner button.shapedplugin-offer-banner-dismiss:before {
 	color: #fff;
 	font-size: 22px;
+}
+
+#adminmenu #menu-posts-sp_post_carousel li a.sp-smart-post-upgrade-btn-wrapper {
+    margin-top: -10px;
+}
+.sp-smart-post-upgrade-btn,
+#adminmenu #menu-posts-sp_post_carousel li a .sp-smart-post-upgrade-btn {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    border-radius: 4px;
+    background: #11B916;
+    color: #ffffff;
+    padding: 6px 10px;
+    font-weight: 500;
+    width: 136px;
+	transition: all 0.3s ease;
+}
+
+.sp-smart-post-upgrade-btn,
+#adminmenu #menu-posts-sp_post_carousel li a .sp-smart-post-upgrade-btn:hover {
+	background: #00aa08;
+}
+
+.sp-go-pro-icon,
+#adminmenu #menu-posts-sp_post_carousel li a .sp-smart-post-upgrade-btn .sp-go-pro-icon {
+    background-image: url(../img/premium-light.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    display: block;
+    float: left;
+    margin-right: 1px;
+    margin-left: -2px;
+    margin-top: -1px;
 }

@@ -1,0 +1,111 @@
+.sp-smart-post-popup-content {
+    // position: absolute;
+    z-index: 9999;
+    background: #ffffff;
+    border-radius: 4px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 16px rgb(0 0 0 / 20%);
+    // margin-top: -12px;
+    border: 1px solid #dddddd;
+}
+
+.sp-smart-post-popup-content:has(.sp-smart-popup-body) {
+    overflow: auto;
+    max-height: 300px;
+    position: relative;
+    border: none;
+}
+
+.sp-smart-post-popup-wrapper:has(.sp-smart-post-select-dropdown ) {
+    padding: 0;
+    width: 100% !important;
+}
+.components-popover.sp-smart-post-tab-panel:has(.sp-smart-popup-body) {
+    top: -10px !important;
+}
+
+.sp-smart-post-button{
+    .sp-smart-post-header-left{
+        &.wide-area{
+            width: 85%;
+            justify-content: space-between;
+            align-items: center;
+            .sp-smart-post-toggle{
+                width: 100%;
+                .components-toggle-control{
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+}
+
+.sp-smart-post-dropdown-select {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    min-width: 240px;
+    min-height: 32px;
+    padding-left: 14px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+.sp-smart-post-border-popup .sp-smart-post-border-icon-button:hover {
+    color: transparent !important;
+}
+.sp-smart-post-header-right .sp-smart-post-border-icon-button {
+    height: 26px;
+    border: none;
+    outline: none;
+    background: transparent;
+    outline: 2px solid transparent;
+    border-radius: 4px;
+    padding: 1px;
+    outline: 2px solid #F26C0D00 !important;
+
+    &.button-clicked {
+        // outline: 2px solid var(--sp-smart-primary-2-400) !important;
+        // padding: 1px;
+        svg {
+            fill: var(--sp-smart-primary-2-400);
+        }
+        // path {
+        //     // fill: var(--sp-smart-primary-2-400);
+        //     stroke: #fff;
+        // }
+        rect {
+            stroke: var(--sp-smart-primary-2-400);
+        }
+    }
+    &:hover {
+        color: #fff !important;
+    }
+    &.button-clicked {
+        // outline: 2px solid var(--sp-smart-primary-2-400) !important;
+        // padding: 1px;
+    }
+}
+.sp-border-popover {
+    width: 360px;
+}
+.components-popover__fallback-container {
+    .sp-border-popover {
+        // top: 20px !important;
+    }
+}
+.sp-smart-post-popup-content {
+  input::-webkit-inner-spin-button{
+    min-height: 33px;
+    margin-right: 0px;
+    cursor: pointer;
+  }
+}
+.components-popover__content {
+    overflow: auto;
+	overflow-x: hidden !important;
+}

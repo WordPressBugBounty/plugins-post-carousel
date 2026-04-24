@@ -1,0 +1,75 @@
+.wp-block-sp-smart-post-show-social-profiles {
+    .block-editor-block-list__layout {
+        display: grid;
+        
+    }
+}
+.sp-social-profile-wrapper {
+    &.sp-align-left .block-editor-block-list__layout {
+        justify-content: left;
+    }
+    &.sp-align-center .block-editor-block-list__layout {
+        justify-content: center;
+    }
+    &.sp-align-right .block-editor-block-list__layout {
+        justify-content: right;
+    }
+}
+.wp-block-sp-smart-post-show-social-profile-item {
+    z-index: 0 !important;
+    transition: all 0.3s ease-in-out;
+}
+.wp-block-sp-smart-post-show-social-profile-item:hover {
+    z-index: 1 !important;
+}
+.sp-smart-post-wrapper {
+    .sp-social-profile-wrapper {
+        &.social-profiles-layout-one .block-editor-block-list__layout {
+            grid-template-columns: repeat(5, auto);
+        }
+        &.social-profiles-layout-two .block-editor-block-list__layout {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        &.social-profiles-layout-three .block-editor-block-list__layout {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        &.social-profiles-layout-four .block-editor-block-list__layout,
+        &.social-profiles-layout-five .block-editor-block-list__layout {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+@media screen and (max-width: 1023px) {
+    .sp-smart-post-wrapper {
+        .sp-social-profile-wrapper {
+            &.social-profiles-layout-two .block-editor-block-list__layout,
+            &.social-profiles-layout-four .block-editor-block-list__layout,
+            &.social-profiles-layout-five .block-editor-block-list__layout {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            &.social-profiles-layout-one .block-editor-block-list__layout {
+                grid-template-columns: repeat(5, auto);
+            }
+            &.social-profiles-layout-three .block-editor-block-list__layout {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .sp-smart-post-wrapper {
+        .sp-social-profile-wrapper {
+            &.social-profiles-layout-two .block-editor-block-list__layout,
+            &.social-profiles-layout-four .block-editor-block-list__layout,
+            &.social-profiles-layout-five .block-editor-block-list__layout {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            &.social-profiles-layout-one .block-editor-block-list__layout {
+                grid-template-columns: repeat(3, auto);
+            }
+            &.social-profiles-layout-three .block-editor-block-list__layout {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+}

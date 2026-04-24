@@ -1,0 +1,23 @@
+.spsp-gutenberg-shortcode.editor-styles-wrapper::after {
+    height: 0px;
+}
+.wp-block-smart-post-show-pro-shortcode {
+    .components-placeholder__label svg {
+        color: var( --sp-smart-primary-2-400 );
+    }
+    .sp-pcp-container {
+        pointer-events: none;
+    }
+}
+
+.spsp-gutenberg-shortcode.editor-styles-wrapper {
+    .spsp-shortcode-selector {
+        width: 250px;
+        padding: 5px 25px 5px 5px;
+        border: 1px solid #ccc;
+        font-size: 13px;
+        line-height: 2;
+        min-height: 35px;
+        border-radius: 3px;
+    }
+}

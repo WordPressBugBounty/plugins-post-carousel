@@ -100,7 +100,7 @@ class Smart_Post_Show_Admin {
 	public function add_plugin_action_links( $links, $file ) {
 		if ( SMART_POST_SHOW_BASENAME === $file ) {
 			$new_links       = array(
-				sprintf( '<a href="%s">%s</a>', admin_url( 'edit.php?post_type=sp_post_carousel' ), __( 'Manage Shows', 'post-carousel' ) ),
+				sprintf( '<a href="%s">%s</a>', admin_url( 'post-new.php?post_type=page&spblock_inserter=true' ), __( 'Explore Blocks', 'post-carousel' ) ),
 			);
 			$links['go_pro'] = sprintf( '<a href="%s" target="_blank" style="%s">%s</a>', 'https://wpsmartpost.com/', 'color:#1dab87;font-weight:bold', __( 'Go Pro!', 'post-carousel' ) );
 			return array_merge( $new_links, $links );
@@ -159,7 +159,7 @@ class Smart_Post_Show_Admin {
 			wp_enqueue_style( 'pcp_fonttello_icon' );
 			wp_enqueue_style( 'pcp-style' );
 		}
-		wp_enqueue_style( 'sp-' . SP_PC_PLUGIN_NAME, SP_PC_URL . 'admin/assets/css/post-carousel-admin' . $this->suffix . '.css', array(), SP_PC_VERSION, 'all' );
+		wp_enqueue_style( 'sp-' . SP_PC_PLUGIN_NAME, SP_PC_URL . 'admin/assets/css/post-carousel-admin.min.css', array(), SP_PC_VERSION, 'all' );
 	}
 
 	/**
@@ -183,7 +183,7 @@ class Smart_Post_Show_Admin {
 		$current_screen        = get_current_screen();
 		$the_current_post_type = $current_screen->post_type;
 		if ( 'sp_post_carousel' === $the_current_post_type ) {
-			wp_enqueue_script( SP_PC_PLUGIN_NAME, SP_PC_URL . 'admin/assets/js/post-carousel-admin' . $this->suffix . '.js', array( 'jquery' ), SP_PC_VERSION, true );
+			wp_enqueue_script( SP_PC_PLUGIN_NAME, SP_PC_URL . 'admin/assets/js/post-carousel-admin.min.js', array( 'jquery' ), SP_PC_VERSION, true );
 			wp_enqueue_script( 'pcp_swiper' );
 			wp_enqueue_script( 'pcp_script' );
 
@@ -249,7 +249,14 @@ class Smart_Post_Show_Admin {
 	 */
 	public function redirect_help_page( $plugin ) {
 		if ( SMART_POST_SHOW_BASENAME === $plugin && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) && ( ! ( defined( 'WP_CLI' ) && WP_CLI ) ) ) {
-			wp_safe_redirect( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help' ) );
+
+			$is_visited_setup_wizard = get_option( 'sp_smart_post_setup_wizard_visited', false );
+
+			if ( ! $is_visited_setup_wizard ) {
+				wp_redirect( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#setupwizard' ) );
+			} elseif ( $is_visited_setup_wizard ) {
+				wp_redirect( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help' ) );
+			}
 			exit();
 		}
 	}
@@ -271,9 +278,9 @@ class Smart_Post_Show_Admin {
 	 */
 	public function sp_spc_footer_text( $text ) {
 		$screen = get_current_screen();
-		if ( 'sp_post_carousel' === $screen->post_type ) {
+		if ( 'sp_post_carousel_page_pcp_help' === $screen->id || 'sp_post_carousel' === $screen->post_type ) {
 			$url  = 'https://wordpress.org/support/plugin/post-carousel/reviews/';
-			$text = sprintf( wp_kses_post( 'Enjoying <strong>Smart Post Show?</strong> Please rate us <span class="spspc-footer-text-star">★★★★★</span> <a href="%s" target="_blank">WordPress.org.</a> Your positive feedback will help us grow more. Thank you! 😊', 'easy-accordion-free' ), $url );
+			$text = sprintf( wp_kses_post( 'Enjoying <strong>Smart Post?</strong> Please rate us <span class="spspc-footer-text-star">★★★★★</span> <a href="%s" target="_blank">WordPress.org.</a> Your positive feedback will help us grow more. Thank you! 😊', 'post-carousel' ), $url );
 		}
 		return $text;
 	}
@@ -287,7 +294,7 @@ class Smart_Post_Show_Admin {
 	public function sp_spc_version_text( $text ) {
 		$screen = get_current_screen();
 		if ( 'sp_post_carousel' === $screen->post_type ) {
-			$text = 'Smart Post Show ' . SP_PC_VERSION;
+			$text = 'Smart Post ' . SP_PC_VERSION;
 		}
 		return $text;
 	}

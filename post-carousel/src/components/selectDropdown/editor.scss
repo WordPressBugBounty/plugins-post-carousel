@@ -1,0 +1,82 @@
+.sp-smart-post-select-dropdown:not(.sp-smart-section-heading-dropdown) {
+    max-height: 300px;
+    
+    .sp-smart-post-select-dropdown-option  svg {
+        fill: #3c434a;
+    }
+}
+.sp-smart-post-select-dropdown {
+    width: 360px !important;
+    /* Set a fixed width */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 400px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    .disabled {
+        opacity: 1;
+        color: #707070bd;
+    }
+
+    .sp-smart-post-select-dropdown-option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 0px 13px;
+        margin: 0px;
+        height: 42px;
+        border-bottom: 1px solid rgba(240, 93, 49, 0.1);
+        flex-shrink: 0;
+
+        >span {
+            margin: 0px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        &.active {
+            background-color: var( --sp-smart-primary-2-400 );
+            color: #fff;
+
+            svg {
+                fill: #fff;
+            }
+
+            path[fill="#2f2f2f"] {
+                fill: #fff;
+            }
+            i{
+                color: #fff;
+            }
+        }
+
+        &.active:hover {
+            background-color: var( --sp-smart-primary-2-400 );
+            color: #fff;
+        }
+    }
+
+    .sp-smart-post-select-dropdown-option:hover {
+        background-color: var(--sp-smart-primary-2-50);
+    }
+}
+
+.sp-smart-section-heading-dropdown .sp-smart-post-select-dropdown-option:hover.active,
+.sp-smart-section-heading-dropdown .sp-smart-post-select-dropdown-option.active path[fill="#2f2f2f"],
+.sp-smart-section-heading-dropdown .sp-smart-post-select-dropdown-option.active {
+    background-color: var(--sp-smart-primary-2-50);
+    color: #222222;
+    fill: #222222;
+}
+
+/* Metadata dropdown component user icon size */
+.sp-smart-post-popup-content .sp-smart-post-select-dropdown .sp-smart-post-select-dropdown-option svg {
+    min-width: 20px;
+    min-height: 20px;
+}

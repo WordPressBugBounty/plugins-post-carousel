@@ -1,0 +1,104 @@
+.sp-smart-post-tab-panel {
+  .components-range-control__thumb-wrapper span {
+    background-color: var(--sp-smart-primary-2-400);
+  }
+  .components-range-control__thumb-wrapper span::after,
+  .components-range-control__thumb-wrapper span::before {
+    background-color: var(--sp-smart-primary-2-400);
+  }
+}
+
+.sp-smart-post-header-control-left,
+.sp-smart-post-header-control-right {
+  display: flex;
+  align-items: center;
+}
+
+.sp-smart-post-header-control {
+  display: flex;
+  justify-content: space-between;
+  height: 22px;
+  margin-bottom: 8px;
+}
+
+.sp-smart-post-header-control-reset.components-button {
+  color: #8c8f94;
+}
+.sp-smart-post-header-control-reset.components-button:focus {
+  box-shadow: none;
+}
+
+.sp-smart-post-header-control-reset.components-button:hover svg {
+  color: var(--sp-smart-primary-2-400);
+}
+.sp-smart-post-header-control-reset.components-button::after {
+  border: 0;
+}
+.sp-smart-post-ranger-length .sp-smart-post-units span,
+.sp-smart-post-ranger-length .sp-smart-post-units button {
+  width: 38px;
+}
+.sp-smart-post-range-control {
+  .components-range-control {
+    .components-input-control {
+      .components-input-control__container {
+        input {
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+body.rtl {
+  .sp-smart-post-range-control {
+    .components-range-control {
+      .components-input-control {
+        margin-left: 0 !important;
+        margin-right: 16px;
+      }
+    }
+  }
+}
+
+.sp-smart-post-range-control {
+  &.sp-negative-space {
+    margin-top: -4px;
+  }
+  .components-input-base {
+    min-height: 32px;
+    height: 32px;
+    input {
+      max-height: 32px;      
+    }
+    input::-webkit-inner-spin-button{
+      min-height: 32px;
+      margin-right: -11px !important;
+      cursor: pointer;
+    }
+  }
+  .components-range-control__root {
+    min-height: auto;
+  }
+  .components-base-control {
+    .components-range-control,
+    .components-base-control__field {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.sp-pro-ranger {
+  a.sp-smart-pro-text {
+    margin-left: 0;
+  }
+  .sp-smart-post-component-title {
+    color: #00000080
+  }
+  .sp-smart-post-units,
+  .components-range-control,
+  .sp-smart-post-header-control-right {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}

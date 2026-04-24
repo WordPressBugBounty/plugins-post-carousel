@@ -267,6 +267,11 @@
     background-color: #c03635 !important;
 }
 
+input[type=checkbox]:focus, input[type=radio]:focus {
+    box-shadow: none;
+    outline: none;
+}
+
 /*
 .spf-buttons .button.spf-reset-section {
     border-color: #6b6a6a;
@@ -1337,6 +1342,17 @@ Smart Post Show Custom CSS.
 * Custom CSS
 */
 
+.wp-core-ui #sp_pcp_view_options select {
+    height: 30px;
+    min-height: 30px;
+    line-height: 1;
+}
+
+/* .wp-core-ui #sp_pcp_view_options .button, .wp-core-ui #sp_pcp_view_options .button-primary, .wp-core-ui #sp_pcp_view_options .button-secondary {
+    line-height: 2.2;
+    min-height: 38px;
+} */
+
 .spf-field.spf-field-wp_editor.pcp_carousel_content_source .spf-fieldset,
 .spf-field.spf-field-background_adv.pcp_carousel_content_bg .spf-fieldset {
     margin-left: 0;
@@ -1416,6 +1432,8 @@ Smart Post Show Custom CSS.
 .spf-field-dimensions .spf--input select,
 .spf-field-dimensions_advanced .spf--input select {
     margin: 0;
+    min-height: 30px;
+    line-height: 1;
 }
 
 .spf-content .spf-field-box_shadow .spf--input input {
@@ -1434,6 +1452,8 @@ Smart Post Show Custom CSS.
     width: 65px;
     max-width: 100%;
     text-align: center;
+    height: 30px;
+    min-height: 30px;
 }
 
 .spf-field-box_shadow .spf--color,
@@ -1479,9 +1499,14 @@ Smart Post Show Custom CSS.
 .spf-field-column .spf--icon+input,
 .spf-field-dimensions .spf--icon+input,
 .spf-field-dimensions_advanced .spf--icon+input {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-radius: 0 4px 4px 0;
     padding-right: 0;
+}
+
+.spf-field input:has(+ .spf--border-select),
+.spf-field input:has(+ .spf--unit) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .spf-field-box_shadow .spf--unit,
@@ -2145,6 +2170,9 @@ Smart Post Show Custom CSS.
 .spf-field-select select {
     max-width: 100%;
     margin: 0;
+    height: 30px;
+    min-height: 30px;
+    line-height: 1;
 }
 
 /**
@@ -2182,8 +2210,10 @@ Smart Post Show Custom CSS.
     position: relative;
     z-index: 1;
     margin: 0;
-    width: 50px;
+    width: 60px;
     text-align: center;
+    min-height: 30px;
+    line-height: 1;
 }
 
 .spf-field-slider.carousel_auto_play_ranger input[type="number"] {
@@ -2382,6 +2412,9 @@ Smart Post Show Custom CSS.
     color: #555;
     border: 1px solid #7e8993;
     background-color: #f5f5f5;
+    height: 28px;
+    min-height: 28px;
+    line-height: 1;
 }
 
 .spf-field-spinner .ui-button {
@@ -2439,6 +2472,9 @@ Smart Post Show Custom CSS.
     margin: 0;
     padding: 0 8px;
     border-radius: 0;
+    height: 30px;
+    min-height: 30px;
+    line-height: 1;
 }
 
 .spf-field-spinner .ui-button-text {
@@ -2562,6 +2598,8 @@ Smart Post Show Custom CSS.
 .spf-field-typography select {
     min-width: 100%;
     margin: 0;
+    min-height: 32px;
+    line-height: 1;
 }
 
 .spf-field-typography .spf--title {
@@ -2597,6 +2635,9 @@ Smart Post Show Custom CSS.
     margin: 0;
     min-width: 100%;
     max-width: 130px;
+    background-color: transparent;
+    line-height: 1;
+    min-height: 32px;
 }
 
 .spf-field-typography .spf--input-wrap {
@@ -4706,7 +4747,7 @@ Smart Post Show Custom CSS.
 
 #sp_pcp_view_options {
     border-top-color: #f1f1f1;
-    margin-top: -21px;
+    margin-top: -29px;
 }
 
 #sp_pcp_view_options .spf-nav ul li {
@@ -5415,6 +5456,8 @@ Smart Post Show Custom CSS.
     border-color: #1A74E4;
     padding: 4px 16px;
     text-transform: uppercase;
+    line-height: 2.2;
+    min-height: 38px;
 }
 
 .spf-field-group .ui-accordion .spf-cloneable-item {
@@ -6143,4 +6186,14 @@ div:is(#sp_pcp_promotional_notice, #sp_pcp_page_builder_notice, #sp_pcp_display_
 
 .spf.spf-options .sp-smart-post-upgrade-to-pro-button:hover {
     background-color: #008f00;
+}
+
+.sp_post_carousel_page_pcp_settings a.sp-pcp-classic-settings-page-link {
+    display: inline-block;
+    text-align: right;
+    position: relative;
+    margin-top: 24px;
+    color: #1a74e4;
+    right: 38px;
+    width: 100%;
 }

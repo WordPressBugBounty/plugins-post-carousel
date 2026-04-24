@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use SmartPostShow\Blocks\Helper;
+
 /**
  * Smart_Post_Show_Free_Element_Shortcode_Addons main class.
  */
@@ -101,6 +103,7 @@ class Smart_Post_Show_Free_Element_Shortcode_Addons {
 
 		wp_enqueue_script( 'pcp_swiper' );
 		wp_enqueue_script( 'pcp_script' );
+		wp_enqueue_script( 'sp_smart_post_build_script' );
 	}
 	/**
 	 * Enqueue styles for the elementor block area.
@@ -172,6 +175,15 @@ class Smart_Post_Show_Free_Element_Shortcode_Addons {
 		// Register widget.
 		require_once SP_PC_PATH . 'admin/ElementAddons/Shortcode_Widget.php';
 		\Elementor\Plugin::instance()->widgets_manager->register( new Shortcode_Widget() );
+
+		$integration_options = Helper::get_integration_options();
+
+		$elementor_integration = $integration_options['elementor'] ?? false;
+
+		if ( $elementor_integration ) {
+			require_once SP_PC_PATH . 'admin/ElementAddons/Smart_Post_Show_Template_Widget.php';
+			\Elementor\Plugin::instance()->widgets_manager->register( new Smart_Post_Show_Template_Widget() );
+		}
 	}
 }
 

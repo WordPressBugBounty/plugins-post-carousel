@@ -1,0 +1,231 @@
+.sp-smart-image-preset-template {
+    &.sp-smart-image-preset-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        border: 1px dashed #ccc;
+        padding: 68px 0;
+        text-align: center;
+        min-height: 137px;
+    }
+    &.is-medium.sp-smart-image-preset-wrapper {
+        padding: 68px 40px
+    }
+    .components-placeholder__label {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        color: #3D3B3A;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+    }
+    .components-placeholder__instructions {
+        color: #706D6C;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        margin: 0;
+    }
+    .components-placeholder__fieldset {
+        justify-content: center;
+    }
+    .smart-image-upload-button {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        
+        .sp-smart-image-preset-btn {
+            display: flex;
+            padding: 8px 12px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 40px;
+            background-color: transparent;
+            border: 1.5px solid var(--sp-smart-primary-2-400);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover .smart-image-upload--text {
+                color: #FFFFFF;
+            }
+            .smart-image-upload-icon path {
+                stroke: var(--sp-smart-primary-2-400);
+            }
+            &:hover .smart-image-upload-icon path {
+                stroke: #FFFFFF;
+            }
+        }
+        .sp-smart-image-preset-btn:hover {
+            background-color: var(--sp-smart-primary-2-400);
+        }
+        .smart-image-upload--text {
+            color: var(--sp-smart-primary-2-400);
+            text-align: center;
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px; /* 125% */
+        }
+        .sp-btn-fill {
+            background-color: var(--sp-smart-primary-2-400);
+            .smart-image-upload--text {
+                color: #fff;
+            }
+            .smart-image-upload-icon path {
+                stroke: #fff;
+                fill: var(--sp-smart-primary-2-400);
+            }
+        }
+        .components-form-file-upload {
+            button {
+                width: inherit;
+                height: inherit;
+                gap: 10px;
+                padding: 0;
+            }
+        }
+    }
+    &.is-medium {
+        .components-placeholder__label {
+            font-size: 18px;
+            line-height: 1.2;
+        }
+        .smart-image-upload-button {
+            display: flex;
+            flex-direction: column;
+            .components-form-file-upload button {
+                width: 100%;
+                .sp-smart-image-preset-btn {
+                    width: inherit;
+                }
+            }
+        }
+    }
+}
+.sp-url-input {
+    width: 150px;
+}
+.sp-smart-post-show.url-inserter-form {
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    top: 45px;
+    left: unset;
+    right: 0;
+    box-shadow: 0 3px 6px 0 #dddddd93;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #FFF;
+    input.url-inserter-input {
+        height: 35px;
+        width: 80%;
+        border-color: #ddd;
+    }
+    button {
+        width: 24px;
+        height: 24px;
+        
+        svg {
+            max-width: 24px;
+            width: 24px;
+            height: 24px;
+            path {
+            fill: var(--sp-smart-primary-2-400);
+            }
+        }
+        &.sp-disabled {
+            opacity: 0.7;
+            cursor: auto;
+        }
+    }
+}
+.sp-inserter-btn {
+    position: relative;
+    cursor: pointer;
+}
+
+.sp-smart-image-upload-preloader {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 50px;
+        margin: auto;
+    }
+}
+
+.sp-hide-on-desktop {
+    display: block !important;
+    position: relative;
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 2px, transparent 9px);
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 9997;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .sp-hide-on-tablet {
+    display: block !important;
+     position: relative;
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 2px, transparent 9px);
+    &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 9997;
+  }
+  }
+  .sp-smart-post-block-wrapper:not(.sp-hide-on-tablet) {
+    display: block;
+  }
+}
+@media only screen and (max-width: 599px) {
+  .sp-smart-post-block-wrapper.sp-hide-on-mobile {
+    display: block !important;
+     position: relative;
+    background: repeating-linear-gradient(125deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 2px, transparent 9px);
+    &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 9997;
+  }
+  }
+  .sp-smart-post-block-wrapper:not(.sp-hide-on-mobile) {
+    display: block;
+  }
+}

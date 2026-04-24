@@ -54,12 +54,36 @@ class Smart_Post_Show_Public {
 	 * @return void
 	 */
 	private function pcp_public_action() {
+		add_action( 'template_redirect', array( $this, 'pcp_handle_site_mode_redirection' ) );
 		add_shortcode( 'smart_post_show', array( $this, 'pcp_shortcode_render' ) );
 		add_shortcode( 'sp_postcarousel', array( $this, 'pcp_shortcode_render' ) );
 		add_shortcode( 'post-carousel', array( $this, 'pcp_shortcode_render' ) );
 		add_action( 'save_post', array( $this, 'delete_page_sp_pcp_option_on_save' ) );
 
 		$this->suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? '' : '.min';
+	}
+
+
+	/**
+	 * Handle Site Mode (Maintenance/Coming Soon) redirection.
+	 *
+	 * @return void
+	 */
+	public function pcp_handle_site_mode_redirection() {
+		$settings         = get_option( 'sp_post_carousel_settings', array() );
+		$site_mode        = isset( $settings['pcp_site_mode'] ) ? $settings['pcp_site_mode'] : 'live';
+		$redirect_page_id = isset( $settings['pcp_select_page'] ) ? absint( $settings['pcp_select_page'] ) : 0;
+		$user_capability  = apply_filters( 'pcp_user_role_permission', 'manage_options' );
+
+		if ( 'live' !== $site_mode && ! empty( $redirect_page_id ) ) {
+			if ( ! current_user_can( $user_capability ) ) {
+				$current_page_id = get_queried_object_id();
+				if ( $current_page_id !== $redirect_page_id ) {
+					wp_safe_redirect( get_permalink( $redirect_page_id ) );
+					exit;
+				}
+			}
+		}
 	}
 
 	/**
@@ -148,17 +172,17 @@ class Smart_Post_Show_Public {
 			wp_register_style( 'font-awesome', SP_PC_URL . 'public/assets/css/font-awesome.min.css', array(), SP_PC_VERSION, 'all' );
 		}
 		if ( $pcp_settings['pcp_swiper_css'] ) {
-			wp_register_style( 'pcp_swiper', SP_PC_URL . 'public/assets/css/swiper-bundle' . $this->suffix . '.css', array(), SP_PC_VERSION, 'all' );
+			wp_register_style( 'pcp_swiper', SP_PC_URL . 'public/assets/css/swiper-bundle.min.css', array(), SP_PC_VERSION, 'all' );
 		}
-		wp_register_style( 'pcp_fonttello_icon', SP_PC_URL . 'admin/assets/css/fontello' . $this->suffix . '.css', array(), SP_PC_VERSION, 'all' );
+		wp_register_style( 'pcp_fonttello_icon', SP_PC_URL . 'admin/assets/css/fontello.min.css', array(), SP_PC_VERSION, 'all' );
 
-		wp_register_style( 'pcp-style', SP_PC_URL . 'public/assets/css/style' . $this->suffix . '.css', array(), SP_PC_VERSION, 'all' );
+		wp_register_style( 'pcp-style', SP_PC_URL . 'public/assets/css/style.min.css', array(), SP_PC_VERSION, 'all' );
 
 		/**
 		 * Register all the Scripts for the public-facing side of the site.
 		 */
-		wp_register_script( 'pcp_swiper', SP_PC_URL . 'public/assets/js/swiper-bundle' . $this->suffix . '.js', array( 'jquery' ), SP_PC_VERSION, true );
-		wp_register_script( 'pcp_script', SP_PC_URL . 'public/assets/js/scripts' . $this->suffix . '.js', array( 'jquery' ), SP_PC_VERSION, true );
+		wp_register_script( 'pcp_swiper', SP_PC_URL . 'public/assets/js/swiper-bundle.min.js', array( 'jquery' ), SP_PC_VERSION, true );
+		wp_register_script( 'pcp_script', SP_PC_URL . 'public/assets/js/scripts.min.js', array( 'jquery' ), SP_PC_VERSION, true );
 
 		wp_localize_script(
 			'pcp_script',

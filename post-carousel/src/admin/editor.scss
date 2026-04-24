@@ -1,0 +1,80 @@
+.sp-pcp-pro-modal {
+    &-wrapper {
+        width: 400px;
+        background-color: #fff;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    &-cross {
+        position: absolute;
+        width: 42px;
+        height: 42px;
+        text-align: center;
+        color: #000;
+        background-color: #fff;
+        border-radius: 50%;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        transition: all .3s linear;
+
+        &:hover {
+            border-color: #000;
+        }
+    }
+
+    &-info {
+        h5 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 16px 0;
+        }
+        p {
+            font-size: 15.5px;
+            line-height: 1.6;
+            color: #6E6A69;
+        }
+    }
+
+    .sp-pcp-pro-modal-btn {
+        font-size: 16px;
+        line-height: 1.4;
+        text-decoration: none;
+        font-weight: 600;
+        background-color: #0DA812;
+        padding: 14px 20px;
+        color: #fff;
+        border-radius: 8px;
+        margin-top: 12px;
+        display: inline-flex;
+        transition: all .3s ease-in-out;
+        align-items: center;
+        gap: 8px;
+
+        &:hover {
+            background-color: #06830a;
+        }
+
+        &:focus{
+            outline: none;
+            box-shadow: none;
+        }
+    }
+}
+
+.sp-pcp-pro-modal-components {
+    overflow: visible;
+    .components-modal__content {
+        margin-top: 0;
+        padding: 40px;
+    }
+    .components-modal__header {
+        display: none;
+    }
+}

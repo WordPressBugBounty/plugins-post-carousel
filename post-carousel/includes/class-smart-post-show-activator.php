@@ -30,5 +30,4 @@ class Smart_Post_Show_Activator {
 	public static function activate() {
 		deactivate_plugins( 'post-carousel-pro/post-carousel-pro.php' );
 	}
-
 }

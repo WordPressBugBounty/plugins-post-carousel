@@ -1,0 +1,99 @@
+.sp-smart-post-popup-content:has(.sp-smart-global-shadow-wrapper) {
+     // position: relative;
+     margin-top: 0;
+     bottom: 50px;
+}
+.sp-smart-global-shadow {
+     .sp-smart-post-component-title {
+          margin-bottom: 0;
+     }
+     &-list ul {
+          margin-bottom: 12px;
+     }
+     &-list ul li {
+          border: 1px solid #ddd;
+          padding: 10px;
+          margin-bottom: 0;
+          button {
+               color: #fff;
+          }
+          &:not(:last-child) {
+               border-bottom: 0;
+          }
+     }
+     &-wrapper {
+          width: 360px;
+     }
+     &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px 10px 10px;
+        background: #f2f2f2;
+
+        input {
+            border-radius: 2px;
+            border: 1px solid #ddd;
+            height: 32px;
+            width: 220px;
+            padding-left: 10px;
+
+            &:focus{
+                outline: none;
+            }
+        }
+        h4 {
+            margin: 6px;
+            span {
+               margin-right: 5px;
+            }
+        }
+     }
+     &-body {
+          padding: 16px;
+
+          .components-base-control__field {
+               width: 80px;
+          }
+
+          .components-input-control__backdrop:focus-within,
+          select:focus {
+               outline: none;
+               box-shadow: none;
+          }
+     }
+     &-preset {
+          border: 1px solid #cccc;
+          padding: 40px;
+          margin-bottom: 16px;
+
+          .sp-smart-shadow-preset-box {
+               width: 100%;
+               box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.18);
+               height: 70px;
+               border: 0.5px solid #DDD;
+               border-radius: 2px;
+          }
+     }
+
+     &-input-field {
+          display: flex;
+          margin-bottom: 16px;
+          .components-input-base {
+               flex-direction: column-reverse;
+          }
+          .components-input-control__label {
+               font-size: 11px !important;
+               color: #8C8F94;
+          }
+          .components-input-control__input {
+               height: 32px;
+          }
+
+          .components-input-control__backdrop:focus-within:not(:has(:is(.em5sgkm8, .em5sgkm7):focus-within)) .em5sgkm6 {
+               border: none;
+               box-shadow: none;
+               outline: none;
+          }
+     }
+}

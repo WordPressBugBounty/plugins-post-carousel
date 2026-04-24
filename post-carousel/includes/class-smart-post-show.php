@@ -138,6 +138,16 @@ class Smart_Post_Show {
 		require_once SP_PC_PATH . 'admin/class-smart-post-show-admin.php';
 
 		/**
+		 * Weekly events.
+		 */
+		require_once SP_PC_PATH . 'admin/class-smart-post-show-cron.php';
+
+		/**
+		 * Save template.
+		 */
+		require_once SP_PC_PATH . 'includes/class-smart-post-show-saved-template.php';
+
+		/**
 		 * The class responsible for defining metabox setup that occur in the admin area.
 		 */
 		require_once SP_PC_PATH . '/admin/views/sp-framework/classes/setup.class.php';
@@ -154,6 +164,56 @@ class Smart_Post_Show {
 		 */
 		require_once SP_PC_PATH . 'admin/views/notices/review.php';
 
+		/**
+		 * The class blocks helper.
+		 */
+		require_once SP_PC_PATH . 'blocks/includes/class-block-helper.php';
+
+		\SmartPostShow\Blocks\Helper::set_integration_options();
+
+		$integration_options = \SmartPostShow\Blocks\Helper::get_integration_options();
+
+		$divi_integration     = $integration_options['divi'] ?? false;
+		$oxygen_integration   = $integration_options['oxygen'] ?? false;
+		$wpbakery_integration = $integration_options['wpbakery'] ?? false;
+		$beaber_integration   = $integration_options['beaver'] ?? false;
+		$bricks_integration   = $integration_options['bricks'] ?? false;
+
+		/**
+		 * Divi.
+		 */
+		if ( $divi_integration ) {
+			require_once SP_PC_PATH . 'admin/page-builder/divi/smart-post-show-divi.php';
+		}
+
+		/**
+		 * Oxygen.
+		 */
+		if ( $oxygen_integration ) {
+			require_once SP_PC_PATH . 'admin/page-builder/oxygen/init.php';
+		}
+
+		/**
+		 * WPBakery.
+		 */
+		if ( $wpbakery_integration && defined( 'WPB_VC_VERSION' ) ) {
+			require_once SP_PC_PATH . 'admin/page-builder/wpBakery/smart-post-show-wpbakery.php';
+		}
+
+		/**
+		 * Beaver Builder.
+		 */
+		if ( $beaber_integration && class_exists( 'FLBuilder' ) ) {
+			require_once SP_PC_PATH . 'admin/page-builder/beaver/smart-post-beaver.php';
+		}
+
+		/**
+		 * Bricks Builder.
+		 */
+		if ( $bricks_integration ) {
+			require_once SP_PC_PATH . 'admin/page-builder/bricks/init.php';
+		}
+
 		// Elementor shortcode addons.
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		if ( ( is_plugin_active( 'elementor/elementor.php' ) || is_plugin_active_for_network( 'elementor/elementor.php' ) ) ) {
@@ -165,6 +225,12 @@ class Smart_Post_Show {
 		 * Gutenberg block.
 		 */
 		if ( version_compare( $GLOBALS['wp_version'], '5.3', '>=' ) ) {
+			require_once SP_PC_PATH . 'admin/blocks-settings/class-blocks-settings-page.php';
+			new Sp_Smart_Post_Block_Admin_Menu_Page();
+
+			require_once SP_PC_PATH . 'blocks/class-smart-post-show-blocks.php';
+			Sp_Smart_Post_Blocks_Init::instance();
+
 			require_once SP_PC_PATH . 'admin/class-smart-post-show-gutenberg-block.php';
 			new Smart_Post_Show_Gutenberg_Block();
 		}
@@ -195,6 +261,10 @@ class Smart_Post_Show {
 	private function define_common_hooks() {
 		$common_hooks = new Smart_Post_Show_Post_Type( SP_PC_PLUGIN_NAME, SP_PC_VERSION );
 		$this->loader->add_action( 'init', $common_hooks, 'register_carousel_post_type', 10 );
+
+		// Saved Template.
+		$saved_template = new Smart_Post_Show_Saved_Template();
+		$this->loader->add_action( 'init', $saved_template, 'register_template_shortcode' );
 	}
 
 	/**

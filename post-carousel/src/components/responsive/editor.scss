@@ -1,0 +1,91 @@
+.sp-smart-post-responsive {
+  margin-left: 10px;
+}
+
+.sp-smart-post-units {
+  position: relative;
+  color: #8c8f94;
+  &-btn {
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    z-index: 999;
+    margin-top: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+  }
+  &:hover .sp-smart-post-units-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+  &:hover {
+    span {
+      border-color: var(--sp-smart-primary-2-400);
+      color: var(--sp-smart-primary-2-400);
+      svg {
+        fill: var(--sp-smart-primary-2-400);
+      }
+    }
+  }
+  span {
+    display: inline-block;
+    font-size: 10px;
+    padding: 0px;
+    width: 24px;
+    height: 20px;
+    border: 1px solid #8c8f94;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    cursor: pointer;
+    text-transform: lowercase;
+    svg {
+      fill: #8c8f94;
+    }
+  }
+  span.box-unit {
+    width: 45px !important;
+  }
+  button {
+    padding: 0;
+    width: 24px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    font-size: 10px;
+    border: none;
+    color: #8c8f94;
+    border-radius: 0;
+    box-shadow: none;
+    &:focus:not(:disabled) {
+      outline: none;
+      box-shadow: none;
+    }
+    &.active {
+      background-color: var(--sp-smart-primary-2-50);
+      color: var(--sp-smart-primary-2-600);
+      svg {
+        fill: var(--sp-smart-primary-2-600);
+      }
+    }
+  }
+}
+.sp-smart-post-units.box {
+  .sp-smart-post-units-btn {
+    button {
+      width: 45px;
+    }
+  }
+}
+
+.sp-smart-post-units-btn {
+  button.components-button:hover {
+    color: var(--sp-smart-primary-2-600);
+    background-color: var(--sp-smart-primary-2-50);
+  }
+  button.components-button.active {
+    color: var(--sp-smart-primary-2-600);
+  }
+}

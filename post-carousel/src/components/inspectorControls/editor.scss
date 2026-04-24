@@ -1,0 +1,109 @@
+// tab panel customization
+.sp-smart-post-tab-panel {
+  &-header {
+    background: linear-gradient(90deg, var(--sp-smart-primary-2-600) 0%, var(--sp-smart-primary-2-400) 65.02%);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .sp-smart-post-tab-panel-header {
+    height: 50px;
+  }
+  .components-panel__body {
+    transition: box-shadow 0.6s ease;
+  }
+  .components-panel__body.is-opened {
+    padding: 16px;
+    scroll-margin-top: unset;
+  }
+  
+  &.sp-flash {
+    .components-panel__body.is-opened {
+      position: relative;
+      padding: 16px;
+      scroll-margin-top: 51px;
+      // animation: fadeBoxShadow 1s forwards;
+      // animation-delay: 1s;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        animation: fadeBoxShadow 1s forwards;
+        animation-delay: 1s;
+        pointer-events: none;
+      }
+    }
+  }
+
+  @keyframes fadeBoxShadow {
+    0% {
+      box-shadow: inset 0 0 0 2px #037fff;
+    }
+    100% {
+        box-shadow: inset 0 0 0 0 transparent;
+    }
+  }
+  .sp-smart-post-tab-panel-header-btn-wrapper {
+    padding: 0 18px 18px;
+
+    .sp-smart-post-btn-group {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+
+      .sp-btn-item {
+        display: flex;
+        padding: 13px 7px;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 0;
+        align-self: stretch;
+        color: #FFF;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        user-select: none;
+
+        &.sp-ready-patterns {
+          border-radius: 4px;
+          border: 1px solid #1A74E4;
+          background: #1A74E4;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            border: 1px solid #1b63d2;
+            background: #1b63d2;
+          }
+        }
+        &.sp-block-preview {
+          border-radius: 4px;
+          border: 1px solid var(--sp-smart-primary-2-600);
+          background: var(--sp-smart-primary-2-600);
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            border: 1px solid var(--sp-smart-primary-2-700);
+            background: var(--sp-smart-primary-2-700);
+          }
+        }
+        &:focus {
+          box-shadow: none;
+          outline: none;
+        }
+      }
+    }
+  }
+}

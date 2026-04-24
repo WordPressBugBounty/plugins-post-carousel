@@ -1733,7 +1733,7 @@
 					var $top = $this.offset().top - ($tooltip.outerHeight() / 2 - 14);
 					// this block used for support tooltip.
 					if ($this.find('.spf-support').length > 0) {
-						$top = $this.offset().top + 42;
+						$top = $this.offset().top + 48;
 						offset_left = $this.offset().left - 231;
 					}
 					$tooltip.css({

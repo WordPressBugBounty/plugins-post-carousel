@@ -7,10 +7,10 @@
  * @package           Smart_Post_Show
  *
  * @wordpress-plugin
- * Plugin Name:       Smart Post Show
+ * Plugin Name:       Smart Post
  * Plugin URI:        https://wpsmartpost.com/
- * Description:       Filter and display posts, pages, taxonomy (categories, tags, & post formats), in beautiful layouts (carousel, grid) easily without coding! Highly customizable and developer-friendly with free active support.
- * Version:           3.0.13
+ * Description:       <a href="https://wpsmartpost.com/" target="_blank">Smart Post</a> is an Advanced Gutenberg Blocks Library plugin with 60+ ready-to-use post blocks to showcase your content beautifully. Create stunning layouts like post grid, post list, post slider, post thumbnail slider, post carousel, news ticker, post timeline, and additional page builder blocks and modules—all with just a few clicks. <br> Perfect for blogs, news, magazines, portfolios, and personal websites. Smart Post is also an excellent choice for niche sites like personal blogs, travel blogs, fashion blogs, food blogs, recipe blogs, and more.
+ * Version:           4.0.0
  * Author:            ShapedPlugin LLC
  * Author URI:        https://shapedplugin.com/
  * License:           GPL-2.0+
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Start at version 2.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'SMART_POST_SHOW_VERSION', '3.0.13' );
+define( 'SMART_POST_SHOW_VERSION', '4.0.0' );
 define( 'SMART_POST_SHOW_BASENAME', plugin_basename( __FILE__ ) );
 
 /**

@@ -19,8 +19,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  * @version 1.0.0
  */
-if ( ! class_exists( 'SP_PCP_Field_tabbed' ) ) {
+if ( ! class_exists( 'SP_PC_Field_tabbed' ) ) {
 
+	/**
+	 * SP_PC_Field_tabbed
+	 */
 	class SP_PC_Field_tabbed extends SP_PC_Fields {
 
 		/**

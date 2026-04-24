@@ -73,7 +73,7 @@ class Smart_Post_Show_Post_Type {
 			array(
 				'name'               => __( 'Manage Shows', 'post-carousel' ),
 				'singular_name'      => __( 'Show', 'post-carousel' ),
-				'menu_name'          => __( 'Smart Post Show', 'post-carousel' ),
+				'menu_name'          => __( 'Smart Post', 'post-carousel' ),
 				'all_items'          => __( 'Manage Shows', 'post-carousel' ),
 				'add_new'            => __( 'Add New', 'post-carousel' ),
 				'add_new_item'       => __( 'Add New Show', 'post-carousel' ),
@@ -88,7 +88,14 @@ class Smart_Post_Show_Post_Type {
 		);
 		// Set the Smart post show post type arguments.
 		$menu_icon = 'data:image/svg+xml;base64,' . base64_encode(
-			'<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 288 288" enable-background="new 0 0 288 288" xml:space="preserve"><path fill="#A0A5AA" d="M262.102,20.977H27.615c-3.195,0-6.638,2.401-6.638,5.63v234.359c0,3.229,3.443,6.057,6.638,6.057h234.487c3.187,0,4.921-2.828,4.921-6.057V26.607C267.023,23.378,265.289,20.977,262.102,20.977z M118.37,53.441h51.26v43.571h-51.26V53.441z M55.15,53.441h51.26v43.571H55.15V53.441z M135.457,235.413H55.15v-46.134h80.307V235.413z M135.457,173.047H55.15v-46.134h80.307V173.047z M235.413,235.413h-80.307v-46.134h80.307V235.413z M235.413,173.047h-80.307v-46.134h80.307V173.047z M235.413,97.012h-51.26V53.441h51.26V97.012z"/><line fill="none" x1="-99" y1="-84" x2="-99" y2="-57"/><line fill="none" x1="-170" y1="61" x2="-170" y2="101"/></svg>'
+			'<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1.25 12.2422C1.25 11.4871 1.8621 10.875 2.61715 10.875H7.75765C8.51271 10.875 9.12481 11.4871 9.12481 12.2422V17.3828C9.12481 18.1379 8.51271 18.75 7.75765 18.75H2.61715C1.8621 18.75 1.25 18.1379 1.25 17.3828V12.2422Z" fill="white"/>
+				<path d="M10.8748 5.1875C10.8748 3.01288 12.6376 1.25 14.8122 1.25C16.9867 1.25 18.7496 3.01288 18.7496 5.1875C18.7496 7.36212 16.9867 9.125 14.8122 9.125C12.6376 9.125 10.8748 7.36212 10.8748 5.1875Z" fill="white"/>
+				<path d="M1.25 2.61719C1.25 1.86211 1.8621 1.25 2.61715 1.25H7.75765C8.51271 1.25 9.12481 1.86211 9.12481 2.61719V7.75781C9.12481 8.51289 8.51271 9.125 7.75765 9.125H2.61715C1.8621 9.125 1.25 8.51289 1.25 7.75781V2.61719Z" fill="white"/>
+				<rect x="10.8752" y="16.9999" width="7.87481" height="1.16667" rx="0.583333" fill="white"/>
+				<rect x="10.8752" y="11.458" width="7.87481" height="1.16667" rx="0.583333" fill="white"/>
+				<rect x="10.8752" y="14.0829" width="7.87481" height="1.16667" rx="0.583333" fill="white"/>
+			</svg>'
 		);
 		$args      = apply_filters(
 			'sp_post_carousel_post_type_args',

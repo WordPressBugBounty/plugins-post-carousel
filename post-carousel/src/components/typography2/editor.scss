@@ -1,0 +1,344 @@
+.sp-smart-post-typography-fonts {
+  width: 360px;
+  padding: 0px 20px 10px;
+  position: relative;
+
+  .sp-smart-post-toggle-button-group {
+    border-color: #d7dade;
+
+        &::before {
+            background: var(--sp-smart-primary-2-400);
+        }
+    }
+
+  #font-picker {
+    width: 100%;
+    margin-bottom: 15px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 20%);
+  }
+
+  .sp-smart-post-typography-header {
+    margin-bottom: 10px;
+    // border-bottom: 1px solid #ccc;
+    border-radius: 6px 6px 0px 0px;
+    padding: 15px 0;
+    margin-right: -20px;
+    margin-left: -20px;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #f2f2f2;
+    z-index: 999;
+
+    h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: #2f2f2f;
+      margin: 0 16px;
+    }
+  }
+
+  div[id^="font-picker"] .dropdown-button,
+  div[id^="font-picker"] .dropdown-button:hover,
+  div[id^="font-picker"] ul,
+  div[id^="font-picker"] .dropdown-button:focus {
+    background: #fff;
+  }
+
+  div[id^="font-picker"] ul li button:hover,
+  div[id^="font-picker"] ul li button:focus,
+  div[id^="font-picker"] ul li button.active-font {
+    background: #f3f3f3;
+  }
+
+  .sp-smart-post-select-field .sp-smart-post-component-title {
+    margin-bottom: 4px;
+    display: inline-block;
+  }
+
+  .css-19bb58m {
+    margin: 0;
+    padding: 0;
+  }
+
+  .css-t3ipsp-control:hover,
+  .css-t3ipsp-control {
+    box-shadow: none;
+    border-color: #ccc;
+  }
+
+  .css-tr4s17-option {
+    background-color: #f0f0f0;
+    color: #2f2f2f;
+  }
+
+  .sp-smart-post-typography-family {
+    width: 50%;
+  }
+
+  .sp-smart-post-typography-fields>.sp-smart-post-select-field {
+    width: 50%;
+
+    .css-t3ipsp-control {
+      min-height: 32px;
+      height: 32px;
+    }
+  }
+
+  .sp-smart-post-select-field {
+
+    .css-t3ipsp-control,
+    .css-13cymwt-control,
+    .components-select-control__input {
+      min-height: 32px !important;
+      height: 32px !important;
+      align-content: center;
+    }
+  }
+
+  .components-input-control__backdrop {
+    border-color: #ccc !important;
+  }
+
+  .components-select-control__input {
+    height: 32px !important;
+    min-height: 32px;
+  }
+
+  input[type="text"]:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .css-1u9des2-indicatorSeparator {
+    display: none;
+  }
+
+  .components-range-control__thumb-wrapper span {
+    background-color: var(--sp-smart-primary-2-400);
+  }
+
+  .components-range-control__thumb-wrapper span::after,
+  .components-range-control__thumb-wrapper span::before {
+    background-color: var(--sp-smart-primary-2-400);
+  }
+
+  .sp-smart-post-toggle-button-group {
+    border-color: #d7dade;
+
+    &-list {
+      display: flex;
+      width: 100%;
+
+      button.active {
+
+        // color: #fff;
+        svg {
+          fill: #fff;
+
+          path {
+            stroke: #fff;
+          }
+        }
+      }
+
+      button.active+div div {
+        background: var(--sp-smart-primary-2-400);
+      }
+    }
+
+    &:focus-within {
+      box-shadow: none;
+      border-color: #d7dade;
+    }
+
+    .components-range-control__thumb-wrapper span {
+        background-color: var(--sp-smart-primary-2-400);
+    }
+    .components-range-control__thumb-wrapper span::after,
+    .components-range-control__thumb-wrapper span::before {
+        background-color: var(--sp-smart-primary-2-400);
+    }
+
+    .sp-smart-post-toggle-button-group {
+        border-color: #d7dade;
+
+        &-list {
+            display: flex;
+            width: 100%;
+            button.active {
+                // color: #fff;
+                svg {
+                    fill: #fff;
+                    path {
+                        stroke: #fff;
+                    }
+                }
+            }
+            button.active + div div {
+                background: var(--sp-smart-primary-2-400);
+            }
+        }
+        &:focus-within {
+            box-shadow: none;
+            border-color: #d7dade;
+        }
+        &:hover {
+            border-color: #d7dade;
+        }
+        button {
+            svg {
+                fill: #777;
+            }
+        }
+    }
+  }
+}
+
+.components-popover__content:has(.sp-smart-post-typography-fonts) {
+  box-shadow: -4px 4px 12px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+}
+
+div[role="option"] {
+  background-color: transparent;
+}
+
+div[role="option"]:hover {
+  background-color: #f0f0f0;
+}
+
+div[aria-selected="true"] {
+    background-color: var(--sp-smart-primary-2-400);
+}
+
+.sp-smart-post-typography-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button.components-button {
+    border-radius: 4px;
+    // transition: 0.3s;
+    padding: 1px;
+    height: 26px;
+
+    &:focus:not(:disabled) {
+      box-shadow: none;
+    }
+    &.active button.components-button:focus,
+    &.active button.components-button {
+        box-shadow: none;
+        outline: 2px solid var(--sp-smart-primary-2-400) !important;
+        padding: 1px;
+    }
+  }
+
+  &.active button.components-button:focus,
+  &.active button.components-button {
+    box-shadow: none;
+    outline: 2px solid var(--sp-smart-primary-2-400) !important;
+    padding: 1px;
+  }
+}
+
+.sp-smart-post-typography-btn.active {
+    button {
+        // background-color: var(--sp-smart-primary-2-400);
+        color: #fff;
+        border-color: var(--sp-smart-primary-2-400);
+        svg path,
+        svg rect {
+            stroke: var(--sp-smart-primary-2-400);
+        }
+    }
+    button:hover {
+        color: #fff !important;
+    }
+}
+
+.sp-smart-post-typography-btn button:hover {
+    border-color: var(--sp-smart-primary-2-400);
+    color: var(--sp-smart-primary-2-400) !important;
+}
+
+.sp-smart-post-typography-multiple-button-group button:not(:last-child) span {
+  border-right: 1px solid #ddd;
+  width: 100%;
+  height: 70%;
+  align-content: center;
+}
+.sp-smart-post-typography-multiple-button-group
+    button.active:not(:last-child)
+    span {
+    border-right-color: var(--sp-smart-primary-2-400);
+}
+
+.sp-smart-post-typography-multiple-button-group button:has(+ button.active) span {
+  border-right-color: transparent;
+}
+
+.sp-smart-post-typography-fields {
+  display: flex;
+  // justify-content: space-between;
+  gap: 8px;
+
+  .css-1nmdiq5-menu {
+    width: 200px;
+    z-index: 999;
+  }
+}
+
+.sp-smart-post-typography-fields .sp-smart-post-select-field {
+  flex-direction: column;
+}
+
+.sp-smart-post-typography-fields {
+  flex-direction: row;
+
+  .css-1u9des2-indicatorSeparator {
+    display: none;
+  }
+}
+
+.sp-smart-post-typography-fonts {
+
+.sp-smart-post-typography-font-size-presets {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    button.components-button {
+        border-radius: 4px;
+        // transition: 0.3s;
+        padding: 1px;
+        height: 26px;
+        &:focus:not(:disabled) {
+            box-shadow: none;
+        }
+        svg {
+            fill: #fff;
+        }
+    }
+    &.active button.components-button:focus,
+    &.active button.components-button {
+        box-shadow: none;
+        outline: 2px solid var(--sp-smart-primary-2-400) !important;
+        padding: 1px;
+    }
+    .components-base-control {
+        flex: 1;
+        .components-range-control__wrapper {
+            flex: auto;
+        }
+    }
+}
+
+.sp-smart-post-typography-multiple-button-group {
+    .components-toggle-group-control::before {
+        background: var(--sp-smart-primary-2-400) !important;
+    }
+  }
+}

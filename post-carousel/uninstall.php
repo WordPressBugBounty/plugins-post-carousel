@@ -52,6 +52,10 @@ function sp_post_carousel_data_delete() {
 	// Delete offer banner related option keys.
 	delete_option( 'shapedplugin_offer_banner_dismissed_black_friday_2025' );
 	delete_option( 'shapedplugin_offer_banner_dismissed_new_year_2026' );
+
+	// Unschedule previously scheduled event.
+	$timestamp = wp_next_scheduled( 'smart_post_show_weekly_scheduled_events' );
+	wp_unschedule_event( $timestamp, 'smart_post_show_weekly_scheduled_events', array() );
 }
 
 // Load Smart Post Show file.

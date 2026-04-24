@@ -41,14 +41,6 @@ if ( ! class_exists( 'Smart_Post_Show_Gutenberg_Block_Init' ) ) {
 		 * Register block editor script for backend.
 		 */
 		public function spsp_block_editor_assets() {
-			wp_enqueue_script(
-				'smart-post-show-shortcode-block',
-				plugins_url( '/GutenbergBlock/build/index.js', __DIR__ ),
-				array( 'jquery' ),
-				SP_PC_VERSION,
-				true
-			);
-
 			/**
 			 * Register block editor css file enqueue for backend.
 			 */
@@ -93,7 +85,7 @@ if ( ! class_exists( 'Smart_Post_Show_Gutenberg_Block_Init' ) ) {
 			/**
 			 * Register block editor js file enqueue for backend.
 			 */
-			wp_register_script( 'pcp_script', SP_PC_URL . 'public/assets/js/scripts' . $this->suffix . '.js', array( 'jquery' ), SP_PC_VERSION, true );
+			wp_register_script( 'pcp_script', SP_PC_URL . 'public/assets/js/scripts.min.js', array( 'jquery' ), SP_PC_VERSION, true );
 			if ( is_admin() ) {
 				wp_localize_script(
 					'pcp_script',

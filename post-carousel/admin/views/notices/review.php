@@ -64,11 +64,11 @@ class SPS_Review {
 		?>
 		<div id="smart-post-show-review-notice" class="smart-post-show-review-notice">
 			<div class="sp-sps-plugin-icon">
-				<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/images/sps-icon.svg' ); ?>" alt="Smart Post Show">
+				<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/images/sps-icon.svg' ); ?>" alt="Smart Post">
 			</div>
 			<div class="sp-sps-notice-text">
-				<h3>Enjoying <strong>Smart Post Show</strong>?</h3>
-				<p>We hope you had a wonderful experience using <strong>Smart Post Show</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/post-carousel/reviews/" target="_blank"><strong>WordPress.org</strong></a>?
+				<h3>Enjoying <strong>Smart Post</strong>?</h3>
+				<p>We hope you had a wonderful experience using <strong>Smart Post</strong>. Please take a moment to leave a review on <a href="https://wordpress.org/support/plugin/post-carousel/reviews/" target="_blank"><strong>WordPress.org</strong></a>?
 				Your positive review will help us improve. Thank you! 😊</p>
 
 				<p class="sp-sps-review-actions">

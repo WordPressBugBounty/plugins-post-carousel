@@ -1,0 +1,39 @@
+.sp-smart-post-focal-point {
+    .sp-smart-post-header-control {
+        margin-bottom: 8px;
+    }
+    .focal-point-picker__controls {
+        display: none;
+    }
+    .sp-smart-post-focal-point-control {
+        .components-focal-point-picker__media--placeholder {
+            height: 100%;
+        }
+        .components-focal-point-picker {
+            margin: 0;
+            width: 100%;
+            height: 140px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.sp-smart-post-focal-point.sp-is-pro{
+    .sp-smart-pro-text {
+        margin-left: 5px;
+    }
+}
+
+.sp-is-pro {
+    .sp-smart-post-component-title{
+        color: #00000080;
+    }
+    .sp-smart-post-focal-point-control {
+        opacity: .6;
+        pointer-events: none;
+    }
+}
