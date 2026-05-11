@@ -736,12 +736,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 			},
 		},
 		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
-		{
 			class: `
 				#${uniqueId} .sp-smart-post-categories .sp-smart-post-category,
 				#${uniqueId} .sp-smart-post-excerpt,
@@ -777,13 +771,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 
 	if ("Tablet" === currentDevice || "all" === currentDevice) {
 		const tabletCss = [
-			...responsiveCss("Tablet"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			...responsiveCss("Tablet")
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -793,13 +781,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 
 	if ("Mobile" === currentDevice || "all" === currentDevice) {
 		const mobileCss = [
-			...responsiveCss("Mobile"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			...responsiveCss("Mobile")
 		];
 		cacheCss.mobile = wrapInMediaQuery(
 			objectToCssString(mobileCss),

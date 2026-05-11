@@ -139,13 +139,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				...css.styles,
 				...responsive("Desktop")[css.class],
 			},
-		})),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		}))
 	];
 
 	cacheCss.desktop = objectToCssString(desktopCss);
@@ -156,13 +150,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 			...dynamicCssBtn()?.map((css) => ({
 				...css,
 				styles: { ...responsive("Tablet")[css.class] },
-			})),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			}))
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -175,13 +163,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 			...dynamicCssBtn()?.map((css) => ({
 				...css,
 				styles: { ...responsive("Mobile")[css.class] },
-			})),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			}))
 		];
 		cacheCss.mobile = wrapInMediaQuery(
 			objectToCssString(mobileCss),

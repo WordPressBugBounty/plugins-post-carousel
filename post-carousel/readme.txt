@@ -1,15 +1,15 @@
-=== Post Grid & Gutenberg Page Builder Blocks for Blogs, News & Any Website – Smart Post ===
+=== Smart Post – Post Grid, Post Carousel, Post Slider Gutenberg Blocks for Blog & News ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags:  post grid, post carousel, list category posts, gutenberg blocks, page builder
 Requires at least: 5.0
 Tested up to: 7.0
 WC requires at least: 5.0
 WC tested up to: 10.7.0
-Stable tag: 4.0.0
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-60+ Post & Page Builder Gutenberg Blocks with 160+ Ready Patterns. Post Grid, Post Carousel, Post Slider, Post Timeline, List Category Posts, and more
+Display posts in Grid, Carousel, Slider, Timeline, List & Live Filter layouts with Gutenberg Blocks & Ready Patterns - Elementor, Divi, & Shortcodes.
 
 == Description ==
 
@@ -24,7 +24,7 @@ Build and manage professional websites effortlessly while boosting user engageme
 
 [__Ready Patterns__](https://wpsmartpost.com/patterns/) | [__Blocks__](https://wpsmartpost.com/blocks/) | [__Documentation__](https://wpsmartpost.com/docs/) | [__Support__](https://shapedplugin.com/create-new-ticket/) | [__Upgrade to Pro!__](https://wpsmartpost.com/pricing/)
 
-https://www.youtube.com/watch?v=vnveuaiPBdc&list=PLoUb-7uG-5jPJ4tAoZbF_angfWNGeXdye
+https://www.youtube.com/watch?v=vnveuaiPBdc
 
 ***Our Mission Behind Smart Post***
 
@@ -470,6 +470,10 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.1 - May 11, 2026 =
+* Fix: The Fontawesome icon CSS conflict issue.
+* Fix: The common CSS selector issue.
 
 = 4.0.0 - Apr 24, 2026 =
 * New: Smart Frontend Filter block.

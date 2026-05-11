@@ -2354,7 +2354,7 @@ const sharedDynamicCss = (attributes, page) => {
 	}
 
 	// Show/hide on device sizes
-	// sharedDesktopCss = showHide(sharedDesktopCss, uniqueId, hideOnDesktop, "");
+	sharedDesktopCss = showHide(sharedDesktopCss, uniqueId, hideOnDesktop, "");
 	// sharedTabletCss = showHide(sharedTabletCss, uniqueId, hideOnTablet, "flex");
 	// sharedMobileCss = showHide(sharedMobileCss, uniqueId, hideOnMobile, "flex");
 

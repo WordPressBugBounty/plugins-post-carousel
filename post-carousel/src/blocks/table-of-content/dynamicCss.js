@@ -326,34 +326,16 @@ const dynamicCss = (attributes) => {
 	};
 
 	const desktopCss = [
-		...tocResponsiveCss("Desktop"),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		...tocResponsiveCss("Desktop")
 	];
 	// Tablet CSS styles.
 	const tabletCss = [
-		...tocResponsiveCss("Tablet"),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnTablet ? "none" : "block",
-			},
-		},
+		...tocResponsiveCss("Tablet")
 	];
 
 	// Mobile CSS styles.
 	const mobileCss = [
-		...tocResponsiveCss("Mobile"),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnMobile ? "none" : "block",
-			},
-		},
+		...tocResponsiveCss("Mobile")
 	];
 
 	const tabletMediaQueryCss = wrapInMediaQuery(objectToCssString(tabletCss), "only screen and (max-width: 1023px)");

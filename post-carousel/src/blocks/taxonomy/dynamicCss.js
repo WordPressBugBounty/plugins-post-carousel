@@ -652,25 +652,13 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 	};
 
 	const desktopCss = [
-		...taxonomyResponsiveCss("Desktop"),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		...taxonomyResponsiveCss("Desktop")
 	];
 	cacheCss.desktop = objectToCssString(desktopCss);
 
 	if ("Tablet" === currentDevice || "all" === currentDevice) {
 		const tabletCss = [
-			...taxonomyResponsiveCss("Tablet"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			...taxonomyResponsiveCss("Tablet")
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -685,13 +673,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				styles: {
 					display: "none",
 				},
-			},
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			}
 		];
 
 		cacheCss.mobile = wrapInMediaQuery(

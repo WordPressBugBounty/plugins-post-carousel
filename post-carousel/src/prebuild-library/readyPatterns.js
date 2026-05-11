@@ -7,7 +7,6 @@ import { decodeEntities } from "@wordpress/html-entities";
 import FilterSidebar from "./filter/sidebarFilter";
 
 // Pattern categories moved to constants.js
-
 const Skeleton = (props) => {
 	const { type, size, loop, unit, c_s, classes } = props;
 
@@ -62,6 +61,14 @@ const Skeleton = (props) => {
 	);
 };
 
+const Tooltip = ({text}) => {
+	return (
+		<div className="sp-smart-import-or-pro-tooltip">
+			<span>{text}</span>
+		</div>
+	)
+}
+
 // Individual Card Component.
 export const PremadeCard = memo(({ data, localizedData, wishListArr, setWListAction, reload, reloadId, onImport }) => {
 	const isInWishlist = wishListArr?.includes(String(data.ID));
@@ -84,25 +91,32 @@ export const PremadeCard = memo(({ data, localizedData, wishListArr, setWListAct
 		<div className="sp-smart-pattern-card-body">
 			<div className="sp-smart-item-list">
 				<div className="sp-smart-item-list-overlay">
-					<a className="sp-smart-pattern-img">
+					<a target="_blank" rel="noopener noreferrer" href={`https://wpsmartpost.com/patterns/#demo${data?.ID}`} className="sp-smart-pattern-img">
 						<img src={data.image} loading="lazy" alt={data.name} />
 					</a>
-					<div className="sp-smart-pattern-overlay">
-						<a
-							className="sp-smart-overlay-view"
-							href={`https://wpsmartpost.com/patterns/#demo${data?.ID}`}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={__("Preview", "post-carousel") + " " + data.name}
-						>
-							<PreviewIcon />
-						</a>
-					</div>
+					<a target="_blank" rel="noopener noreferrer" href={`https://wpsmartpost.com/patterns/#demo${data?.ID}`}>
+						<div className="sp-smart-pattern-overlay">
+							<a
+								className="sp-smart-overlay-view"
+								href={`https://wpsmartpost.com/patterns/#demo${data?.ID}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={__("Preview", "post-carousel") + " " + data.name}
+							>
+								<PreviewIcon />
+							</a>
+						</div>
+					</a>
 				</div>
 
 				<div className="sp-smart-item-list-info">
 					<div className="sp-smart-item-info">
-						<span>{decodeEntities(data?.name || "")}</span>
+						<a
+							href={`https://wpsmartpost.com/patterns/#demo${data?.ID}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={__("Preview", "post-carousel") + " " + data.name}
+						><span>{decodeEntities(data?.name || "")}</span></a>
 					</div>
 
 					<span className="smart-post-action-btn">
@@ -134,6 +148,9 @@ export const PremadeCard = memo(({ data, localizedData, wishListArr, setWListAct
 								aria-label={__("Upgrade to Pro to access this pattern", "post-carousel")}
 							>
 								<ProBadgeIcon /> {__("Pro", "post-carousel")}
+								<Tooltip 
+									text={__("Upgrade to Pro", "post-carousel")}
+								/>
 							</a>
 						) : (
 							<span
@@ -156,6 +173,9 @@ export const PremadeCard = memo(({ data, localizedData, wishListArr, setWListAct
 								) : (
 									<>
 										<ImportIcon /> {__("Import", "post-carousel")}
+										<Tooltip 
+											text={__("Free Pattern", "post-carousel")}
+										/>
 									</>
 								)}
 							</span>

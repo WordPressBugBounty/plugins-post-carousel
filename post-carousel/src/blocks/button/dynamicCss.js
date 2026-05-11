@@ -513,13 +513,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 		...buttonLabelCSS(),
 		...buttonIconCss(),
 		...buttonDefaultHoverEffect(),
-		...buttonHoverEffectCss(),
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		...buttonHoverEffectCss()
 	];
 
 	cacheCss.desktop = objectToCssString(desktopCss);
@@ -527,13 +521,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 	if ("Tablet" === currentDevice || "all" === currentDevice) {
 		// Tablet CSS styles.
 		const tabletCss = [
-			...responsiveCss("Tablet"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			...responsiveCss("Tablet")
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -543,13 +531,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 	if ("Mobile" === currentDevice || "all" === currentDevice) {
 		// Mobile CSS styles.
 		const mobileCss = [
-			...responsiveCss("Mobile"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			...responsiveCss("Mobile")
 		];
 		cacheCss.mobile = wrapInMediaQuery(
 			objectToCssString(mobileCss),

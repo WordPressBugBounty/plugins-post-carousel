@@ -151,6 +151,10 @@
 	color: #888;
 }
 
+.sp-pcp-post-meta ul li .fa-comments-o {
+    font-family: FontAwesome;
+}
+
 .sp-pcp-post .sp-pcp-post-content {
 	text-transform: none;
 	font-size: 16px;

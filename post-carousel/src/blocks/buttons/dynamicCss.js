@@ -12,9 +12,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 		fullWidthBtnEnable,
 		buttonsAlignment,
 		buttonsVerticalAlignment,
-		hideOnDesktop,
-		hideOnTablet,
-		hideOnMobile,
 		globalBreakPointData,
 	} = attributes;
 
@@ -52,12 +49,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				"align-items": `${fullWidthBtnEnable ? "center" : "center"} `,
 			},
 		},
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
 	];
 
 	cacheCss.desktop = objectToCssString(desktopCss);
@@ -70,12 +61,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				styles: {
 					gap: rangerCss(buttonGap, "Tablet"),
 					margin: spacingGenerate(buttonsMargin, "Tablet"),
-				},
-			},
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
 				},
 			},
 		];
@@ -93,12 +78,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				styles: {
 					gap: rangerCss(buttonGap, "Mobile"),
 					margin: spacingGenerate(buttonsMargin, "Mobile"),
-				},
-			},
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
 				},
 			},
 		];

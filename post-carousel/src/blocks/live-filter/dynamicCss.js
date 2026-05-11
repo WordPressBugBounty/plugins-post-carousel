@@ -300,10 +300,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 		const desktopCss = [
 			...baseLiveFilterCss(),
 			...responsiveCss("Desktop"),
-			{
-				class: `#${uniqueId}`,
-				styles: { display: hideOnDesktop ? "none" : "block" },
-			},
 		];
 		cacheCss.desktop = objectToCssString(desktopCss);
 	}
@@ -313,10 +309,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 		const tabletCss = [
 			...baseLiveFilterCss(),
 			...responsiveCss("Tablet"),
-			{
-				class: `#${uniqueId}`,
-				styles: { display: hideOnTablet ? "none" : "block" },
-			},
 		];
 		cacheCss.tablet = wrapInMediaQuery(objectToCssString(tabletCss), `only screen and (max-width: ${tabletBp}px)`);
 	}
@@ -326,10 +318,6 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 		const mobileCss = [
 			...baseLiveFilterCss(),
 			...responsiveCss("Mobile"),
-			{
-				class: `#${uniqueId}`,
-				styles: { display: hideOnMobile ? "none" : "block" },
-			},
 		];
 		cacheCss.mobile = wrapInMediaQuery(objectToCssString(mobileCss), `only screen and (max-width: ${mobileBp}px)`);
 	}

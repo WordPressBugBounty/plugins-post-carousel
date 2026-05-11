@@ -449,13 +449,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				display: "flex",
 				"justify-content": carouselAnimationEffect === "fade" ? "space-around" : "center",
 			},
-		},
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		}
 	];
 
 	cacheCss.desktop = objectToCssString(desktopCss);
@@ -468,13 +462,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				styles: {
 					"align-items": "center",
 				},
-			},
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			}
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -559,13 +547,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 				styles: {
 					display: "none",
 				},
-			},
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			}
 		];
 		cacheCss.mobile = wrapInMediaQuery(
 			objectToCssString(mobileCss),

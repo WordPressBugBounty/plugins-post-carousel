@@ -22,7 +22,6 @@ class SPS_Table_Of_Contents {
 	 */
 	public function __construct() {
 		add_filter( 'the_content', array( $this, 'add_ids_to_post_headings' ), 9 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_heading_copy_assets' ) );
 	}
 
 	/**
@@ -41,6 +40,11 @@ class SPS_Table_Of_Contents {
 				$tag   = $matches[1];
 				$attrs = $matches[2];
 				$text  = wp_strip_all_tags( $matches[3] );
+
+				// Skip if class contains sp-smart-post-title.
+				if ( preg_match( '/class=["\'][^"\']*sp-smart-post-title[^"\']*["\']/', $attrs ) ) {
+					return $matches[0];
+				}
 
 				// Skip if ID already exists.
 				if ( preg_match( '/id=["\'].*?["\']/', $attrs ) ) {
@@ -119,51 +123,5 @@ class SPS_Table_Of_Contents {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * Enqueue_heading_copy_assets function
-	 *
-	 * @return void
-	 */
-	public function enqueue_heading_copy_assets() {
-		if ( ! is_singular() || is_admin() || wp_doing_ajax() ) {
-			return;
-		}
-
-		global $post;
-
-		if ( ! apply_filters( 'enable_heading_copy_link', true ) ) {
-			return;
-		}
-
-		$css = <<<'CSS'
-body .sps-toc-heading-copy-link {
-	display: inline-block !important;
-	margin-left: 8px !important;
-	text-decoration: none !important;
-	color: #0073aa !important;
-	font-weight: normal !important;
-	opacity: 0 !important;
-	transition: opacity 0.2s ease !important;
-	font-size: 0.8em !important;
-	border: none !important;
-	background: none !important;
-	box-shadow: none !important;
-	padding: 0 !important;
-	cursor: pointer !important;
-}
-
-body .sps-toc-heading-copy-link:hover {
-	color: #005a87 !important;
-	text-decoration: underline !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	position: relative !important;
-}
-CSS;
-
-		wp_add_inline_style( 'wp-block-library', $css );
 	}
 }

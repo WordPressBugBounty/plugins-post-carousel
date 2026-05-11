@@ -131,26 +131,14 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 			styles: {
 				color: socialSingleSubTextColor.hoverColor,
 			},
-		},
-		{
-			class: `#${uniqueId}`,
-			styles: {
-				display: hideOnDesktop ? "none" : "block",
-			},
-		},
+		}
 	];
 
 	cacheCss.desktop = objectToCssString(desktopCss);
 
 	if ("Tablet" === currentDevice || "all" === currentDevice) {
 		const tabletCss = [
-			...responsiveCss("Tablet"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnTablet ? "none" : "block",
-				},
-			},
+			...responsiveCss("Tablet")
 		];
 		cacheCss.tablet = wrapInMediaQuery(
 			objectToCssString(tabletCss),
@@ -159,13 +147,7 @@ const dynamicCss = (attributes, page = "frontend", currentDevice = "all") => {
 	}
 	if ("Mobile" === currentDevice || "all" === currentDevice) {
 		const mobileCss = [
-			...responsiveCss("Mobile"),
-			{
-				class: `#${uniqueId}`,
-				styles: {
-					display: hideOnMobile ? "none" : "block",
-				},
-			},
+			...responsiveCss("Mobile")
 		];
 
 		cacheCss.mobile = wrapInMediaQuery(
