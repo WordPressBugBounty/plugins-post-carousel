@@ -158,7 +158,7 @@ const ContainerEdit = ({ attributes, setAttributes, clientId, isSelected }) => {
 		setAttributes({
 			containerColumnRoot:  columnsWidthStyle,
 		})
-	}, [layout]);
+	}, [layout, columnsGap]);
 
 	const alignClasses = containerWidth === "boxed" ? `${align ? "align"+align : ""}` : "alignfull";
 	const activeAlignIcon = {

@@ -22,6 +22,14 @@ const SmartInfoBoxEdit = ({ attributes, setAttributes, clientId, name }) => {
 		blockName,
 	} = attributes;
 
+	const googleFontLists = [
+		ratingTypography,
+		titleTypography,
+		subTitleTypography,
+		descriptionTypography,
+		badgeTypography,
+	];
+
 	useEffect(() => {
 		setAttributes({
 			fontLists: jsonStringify(googleFonts(googleFontLists, "frontend")),
@@ -31,14 +39,6 @@ const SmartInfoBoxEdit = ({ attributes, setAttributes, clientId, name }) => {
 	const blockProps = useBlockProps({
 		className: additionalCssClass,
 	});
-
-	const googleFontLists = [
-		ratingTypography,
-		titleTypography,
-		subTitleTypography,
-		descriptionTypography,
-		badgeTypography,
-	];
 
 	const googleFontListsEditor = useMemo(() => googleFonts(googleFontLists), googleFontLists);
 
