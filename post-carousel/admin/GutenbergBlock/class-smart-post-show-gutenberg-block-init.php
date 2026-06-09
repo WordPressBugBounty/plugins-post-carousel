@@ -48,6 +48,7 @@ if ( ! class_exists( 'Smart_Post_Show_Gutenberg_Block_Init' ) ) {
 			wp_enqueue_style( 'pcp_swiper' );
 			wp_enqueue_style( 'pcp_fonttello_icon' );
 			wp_enqueue_style( 'pcp-style' );
+			wp_enqueue_style( 'sp_smart_post_blocks_editor_style' );
 		}
 		/**
 		 * Shortcode list.

@@ -1,11 +1,11 @@
 === Smart Post – Post Grid, Post Carousel, Post Slider Gutenberg Blocks for Blog & News ===
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags:  post grid, post carousel, list category posts, gutenberg blocks, page builder
-Requires at least: 5.0
+Requires at least: 5.9
 Tested up to: 7.0
 WC requires at least: 5.0
-WC tested up to: 10.7.0
-Stable tag: 4.0.2
+WC tested up to: 10.8.1
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,9 +14,9 @@ Display posts in Grid, Carousel, Slider, Timeline, List & Live Filter layouts wi
 == Description ==
 
 🚀 Explore [**60+ Advanced Post & Page Builder Blocks (Free & Pro)**](https://wpsmartpost.com/blocks/)  
-📚 Start with [**160+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
+📚 Start with [**250+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
 🌐 Visit the Official Website [**Smart Post**](https://wpsmartpost.com/)  
-❤️ 118+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
+❤️ 129+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
 
 [**Smart Post**](https://wpsmartpost.com/) is a next-generation Post Grid and Gutenberg Page Builder Blocks plugin designed to help you build stunning blogs, magazines, news portals, and content-driven websites with ease. Whether you're creating a new site or upgrading an existing one, Smart Post lets you transform your content into modern, engaging layouts in minutes—no coding required.
 
@@ -349,7 +349,7 @@ Discover our powerful WordPress and WooCommerce plugins designed to save time, b
 
 * PHP 5.6 or later
 * MySQL 5.6 or later
-* WordPress 5.0 or later
+* WordPress 5.9 or later
 
 **This section describes how to install the plugin and get it working**
 
@@ -470,6 +470,16 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.3 - Jun 09, 2026 =
+* New: The Default Editor option in the plugin settings tab to set editor preference to create post showcase.
+* New: The Shortcode area added to the Saved Templates' right sidebar to copy shortcode easily.
+* Improved: WordPress minimum version requirement updated from 5.0 to 5.9.0 for better Gutenberg block compatibility.
+* Improved: Classic shortcodes added to the Saved Template list table.
+* Improved: The Plugin Dashboard Panel has been enhanced.
+* Improved: The Ready Patterns Library style.
+* Improved: The Tools (Export/Import) panel moved to Settings page.
+* Tested: Compatible with WooCommerce 10.8.1.
 
 = 4.0.2 - May 20, 2026 =
 * Fix: Info Box block loading issue.

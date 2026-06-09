@@ -112,15 +112,15 @@ class SPS_Metaboxes {
 	 * @return void
 	 */
 	public static function page_builders_metabox( $prefix ) {
-		SP_PC::createMetabox(
-			$prefix,
-			array(
-				'title'        => __( 'Page Builders', 'post-carousel' ),
-				'post_type'    => 'sp_post_carousel',
-				'context'      => 'side',
-				'show_restore' => false,
-			)
-		);
+		// SP_PC::createMetabox(
+		// $prefix,
+		// array(
+		// 'title'        => __( 'Page Builders', 'post-carousel' ),
+		// 'post_type'    => 'sp_post_carousel',
+		// 'context'      => 'side',
+		// 'show_restore' => false,
+		// )
+		// );
 
 		SP_PC::createSection(
 			$prefix,

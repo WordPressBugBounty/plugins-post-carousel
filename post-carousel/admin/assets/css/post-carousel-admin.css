@@ -183,6 +183,8 @@ span.pcp-shortcode-selectable::after {
 	margin-top: 0;
 	margin-bottom: 16px;
 	overflow: hidden;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
 }
 
 .pcp-scode-wrap-side .pcp-sc-title {
@@ -304,7 +306,7 @@ span.pcp-shortcode-selectable::after {
 #adminmenu #menu-posts-sp_post_carousel li:nth-child(8) a {
 	display: none;
 }
-#adminmenu #menu-posts-sp_post_carousel li:nth-child(11) a {
+#adminmenu #menu-posts-sp_post_carousel li:nth-child(10) a {
 	color: #FFA500;
 }
 
@@ -390,4 +392,103 @@ span.pcp-shortcode-selectable::after {
     margin-right: 1px;
     margin-left: -2px;
     margin-top: -1px;
+}
+
+/* Footer Styles */
+.spspc-footer-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+
+.spspc-footer-container {
+	display: flex;
+	justify-content: space-between;
+	width: 60%;
+	float: left;
+	gap: 12px;
+}
+
+.spspc-footer-left {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.spspc-footer-left span,
+.spspc-footer-left a {
+	color: #6e6a69;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.spspc-footer-text {
+	color: #155bb8;
+	text-decoration: none;
+}
+
+.spspc-footer-text:hover {
+	color: #0a53b3;
+	text-decoration: underline !important;
+}
+
+.spspc-footer-team-link:focus,
+.spspc-footer-text:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.spspc-footer-team-link {
+	color: #1e67d8 !important;
+	text-decoration: underline;
+}
+
+.spspc-footer-team-link:hover {
+	color: #0a53b3 !important;
+	text-decoration: underline !important;
+}
+
+.spspc-footer-heart {
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+}
+
+.spspc-footer-social {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.spspc-footer-social-link {
+	display: inline-flex;
+	align-items: center;
+	transition: transform 0.2s ease;
+}
+
+.spspc-footer-social-link:hover {
+	transform: scale(1.1);
+}
+
+.spspc-footer-social-link:hover svg path {
+	fill: #1e67d8;
+}
+
+.spspc-footer-social-link svg {
+	display: block;
+}
+
+@media (max-width: 782px) {
+	.spspc-footer-container {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+}
+
+.pcp-delete-data {
+	display: none;
 }

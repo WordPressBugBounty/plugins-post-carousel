@@ -8,7 +8,7 @@ import ListTwoEdit from "./edit";
 const options = {
 	apiVersion: 3,
 	icon: ListTwoBlockIcon,
-	category: "sp-smart-post-show",
+	category: "sp-smart-post-show-pro-blocks",
 	name: "sp-smart-post-show/post-list-two",
 	title: "Post List 02",
 	description: "Display post lists with the first featured post and layout variations.",

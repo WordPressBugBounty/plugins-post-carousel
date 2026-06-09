@@ -35,7 +35,7 @@ class Smart_Post_Show_Template_Widget extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Saved Templates', 'post-carousel' );
+		return __( 'Smart Post Saved Template', 'post-carousel' );
 	}
 
 	/**
@@ -101,11 +101,21 @@ class Smart_Post_Show_Template_Widget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'sp_smart_post_show_pro_template',
 			array(
-				'label'       => __( 'Smart Post Templates', 'post-carousel' ),
+				'label'       => __( 'Saved Template', 'post-carousel' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'default'     => '0',
 				'options'     => Helper::get_save_template_list(),
+			)
+		);
+
+		// Edit This Template button.
+		$this->add_control(
+			'sp_pcp_edit_template',
+			array(
+				'type'            => \Elementor\Controls_Manager::RAW_HTML,
+				'raw'             => $this->get_edit_template_button(),
+				'content_classes' => 'sp-pcp-elementor-template-actions',
 			)
 		);
 
@@ -167,7 +177,7 @@ class Smart_Post_Show_Template_Widget extends \Elementor\Widget_Base {
 				color: #999;
 				font-size: 14px;
 			">
-				Please select a Smart Post Saved Templates
+				Please select a Saved Template
 			</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			return;
 		}
@@ -200,5 +210,34 @@ class Smart_Post_Show_Template_Widget extends \Elementor\Widget_Base {
 				echo '</div>';
 			}
 		}
+	}
+
+	/**
+	 * Get edit template and add new template buttons HTML.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @return string Buttons HTML.
+	 */
+	protected function get_edit_template_button() {
+		$template_url = admin_url( 'edit.php?post_type=sp_post_template&page=sp_post_carousel&page=pcp_help#savedTemplate' );
+
+		$new_template_url = admin_url( 'post-new.php?post_type=sp_post_template&spblock_inserter' );
+
+		ob_start();
+		?>
+
+		<div class="sp-pcp-elementor-template-buttons">
+			<a class="sp-pcp-edit-template-btn" href="<?php echo esc_url( $template_url ); ?>" style="color:#fff; background-color:#3e3e40; padding:12px 24px; border-radius:4px; display:inline-block; font-size: 14px" onmouseover="this.style.backgroundColor='#4b4b4d'" onmouseout="this.style.backgroundColor='#3e3e40'">
+				<span style="display:inline-block; transform: rotate(70deg); margin-right: 4px">✎</span>
+				<span><?php echo esc_html__( 'Edit This Template', 'post-carousel' ); ?></span>
+			</a>
+			<a href="<?php echo esc_url( $new_template_url ); ?>" class="sp-pcp-add-template-btn" style="color:#fff; background-color:#641DD7; padding: 10px 23px; border-radius:4px; display:inline-block; margin-top: 15px; font-size: 14px" onmouseover="this.style.backgroundColor='#641DD7'" onmouseout="this.style.backgroundColor='#5a18c4'">
+				<span style="display:inline-block; font-size: 18px; margin-right: 4px;">+</span>
+				<span><?php echo esc_html__( 'Add New Template', 'post-carousel' ); ?></span>
+			</a>
+		</div>
+		<?php
+		return ob_get_clean();
 	}
 }

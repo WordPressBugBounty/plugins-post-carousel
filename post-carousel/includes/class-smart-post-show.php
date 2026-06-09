@@ -165,6 +165,12 @@ class Smart_Post_Show {
 		require_once SP_PC_PATH . 'admin/views/notices/review.php';
 
 		/**
+		 * The class responsible for admin promo notices.
+		 */
+		require_once SP_PC_PATH . 'includes/Admin/Admin_Notices.php';
+		new \SmartPostShow\Admin\Admin_Notices();
+
+		/**
 		 * The class blocks helper.
 		 */
 		require_once SP_PC_PATH . 'blocks/includes/class-block-helper.php';
@@ -294,6 +300,8 @@ class Smart_Post_Show {
 
 		$this->loader->add_action( 'wp_ajax_pcp_export_shortcodes', $import_export, 'export_shortcodes' );
 		$this->loader->add_action( 'wp_ajax_pcp_import_shortcodes', $import_export, 'import_shortcodes' );
+		// Get shortcode list for export selection.
+		$this->loader->add_action( 'wp_ajax_pcp_get_shortcode_list_for_export', $import_export, 'get_shortcode_list_for_export' );
 
 		// after activated plugin redirect to help page.
 		$this->loader->add_action( 'activated_plugin', $plugin_admin, 'redirect_help_page' );

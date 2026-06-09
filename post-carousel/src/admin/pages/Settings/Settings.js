@@ -1,12 +1,14 @@
 import { useState, useEffect } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { GeneratorSettingsPageArrow, SiteAvailabilityIcon, AdvancedIcon } from "../../../icons/icons";
+import { GeneratorSettingsPageArrow, SiteAvailabilityIcon, AdvancedIcon, ToolsIcon } from "../../../icons/icons";
 
-import { SiteAvailability, Advanced } from "./SettingsOptions";
+import { SiteAvailability, Advanced, Tools } from "./SettingsOptions";
 
 import "./setting-styles.scss";
 
-const Settings = () => {
+const Settings = (props) => {
+
+	const { setPage } = props;
 	const [settingsOptions, setSettingsOptions] = useState(sp_pcp_block_settings?.settings);
 
 	const tabs = [
@@ -17,10 +19,16 @@ const Settings = () => {
 			Render: SiteAvailability,
 		},
 		{
-			label: __("Advanced", "post-carousel"),
+			label: __("Advanced Controls", "post-carousel"),
 			Icon: AdvancedIcon,
 			value: "advanced",
 			Render: Advanced,
+		},
+		{
+			label: __("Tools", "post-carousel"),
+			Icon: ToolsIcon,
+			value: "tools",
+			Render: Tools,
 		},
 	];
 
@@ -74,19 +82,20 @@ const Settings = () => {
 				</div>
 				<div className="sp-pcp-setting-tab-content">
 					{tabs?.map(({ value, Render }) =>
-						settingTab === value ? (
-							<Render
-								key={value}
-								settingsOptions={settingsOptions}
-								setSettingsOptions={setSettingsOptions}
-							/>
-						) : null
+							settingTab === value ? (<>
+									<Render
+										key={value}
+										settingsOptions={settingsOptions}
+										setSettingsOptions={setSettingsOptions}
+										setPage={setPage}
+									/>
+								</>) : null
+
 					)}
 				</div>
 			</section>
 			<a
 				href={`${sp_pcp_block_settings?.homeUrl}wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_settings`}
-				target="_blank"
 				rel="noopener noreferrer"
 				className="sp-pcp-classic-settings-page-link"
 			>

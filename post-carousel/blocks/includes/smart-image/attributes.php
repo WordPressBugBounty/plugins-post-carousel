@@ -6,6 +6,10 @@
  * @subpackage Smart_Post_Show_Pro/blocks/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 return array(
 	'isPreview'                       => array(
 		'type'    => 'boolean',

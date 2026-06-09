@@ -294,7 +294,7 @@
 }
 
 .sp-smart-pattern-list-container {
-    padding: 0 48px 16px;
+    padding: 50px 48px 16px;
 }
 
 .sp-smart-popup-wrap .sp-smart-pattern-list-container .sp-smart-pattern-grid .sp-smart-item-list {
@@ -303,13 +303,18 @@
     gap: 20px;
     justify-content: space-between;
     border-radius: 4px;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #efe6fb;
     background: #FFF;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    // box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
     padding: 20px;
+    transition: all 0.3s ease;
 
     img {
         width: 100%;
+    }
+
+    &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 }
 
@@ -432,6 +437,7 @@
     border-radius: 4px;
     background-color: #3D9E56;
     transition: background-color 400ms;
+    cursor: auto;
 
     svg {
         vertical-align: middle;
@@ -452,6 +458,7 @@
     transition: background-color 400ms;
     display: flex;
     align-items: center;
+    cursor: auto;
 }
 
 // .smart-post-action-btn .sp-smart-btn-pro:hover {
@@ -516,6 +523,7 @@
     position: absolute;
     display: flex;
     background: rgba(0, 0, 0, 0);
+    transition: all 0.3s ease; 
 }
 
 .sp-smart-item-list-overlay {
@@ -649,15 +657,14 @@
     line-height: 1.5;
 }
 
-// Ready Pattern Sidebar
-
+ 
 .sp-smart-template-library-sidebar-wrapper {
     position: sticky;
     top: 0px;
     width: 320px;
     display: flex;
     flex-direction: column;
-    margin: 32px 0 0 48px;
+    margin: 18px 0 0 48px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgb(224, 224, 224) transparent;
@@ -665,14 +672,66 @@
     padding: 0px;
     gap: 16px;
 
+    /* Firefox Configuration */
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; /* Opacity 0 by default */
+    transition: scrollbar-color 0.50s ease-in-out; /* 2-Second smooth transition */
+
+    /* Chrome, Safari, and Edge Configuration */
+    &::-webkit-scrollbar {
+        width: 6px !important; /* Always allocated so layout doesn't shift */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        /* Default: Opacity 0 (completely transparent gray) */
+        background-color: rgba(210, 210, 210, 0) !important;
+        border-radius: 4px !important;
+        /* Tells WebKit to transition the color change smoothly over 2 seconds */
+         transition: scrollbar-color 0.50s ease-in-out; /* Super fast transition */
+    }
+
+    /* --- Hover State: Smoothly Fade In over 2 Seconds --- */
+    &:hover {
+        /* Firefox Fade In */
+        scrollbar-color: rgb(210, 210, 210) transparent; 
+
+        /* Chrome/Safari/Edge Fade In */
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(210, 210, 210, 1) !important; /* Opacity 1 */
+        }
+    }
+
     .sp-smart-template-library-sidebar-header {
         color: #00073a;
         font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: 20px;
-        margin: 20px 0 20px;
+        // margin: 28px 0 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+      /* 1. Targets the Block Types header specifically */
+    &.Block-Types {
+        margin: 32px 0 28px;
     }
+
+    /* 2. Optional: Targets the Pattern Types header specifically */
+    &.Pattern-Types {
+         margin: 28px 0 28px;
+    }
+
+    }
+
+    // .sp-smart-template-filter-category > .sp-smart-template-library-sidebar-header:first-child {
+    //     margin-top: 2px;
+    // }
+
     .sp-smart-sidebar-category-filter {
         display: flex;
         flex-direction: column;
@@ -716,6 +775,9 @@
         }
         input[type=radio]:checked+.sp-smart-radio-label {
             color: var(--sp-smart-primary-2-600);
+        }
+        &:hover {
+            background: var(--sp-smart-primary-2-50);
         }
         &.sp-active {
             background: var( --sp-smart-primary-2-50 );

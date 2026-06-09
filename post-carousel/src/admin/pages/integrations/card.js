@@ -1,6 +1,6 @@
 import Toggle from "react-toggle";
 import { __ } from "@wordpress/i18n";
-import { Demos, Docs } from "../../template-parts/icons";
+import { Demos, Docs } from "../../components/icons/ui";
 
 const IntegrateCard = ({ data, isDisabled = false, value, integrationName, blockShowHideHandler }) => {
 

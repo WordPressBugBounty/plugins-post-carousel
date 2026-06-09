@@ -1,4 +1,4 @@
-/*----------------------------------------*/
+/*----------------------------------------
 /*  Smart Post Show help page base css
 /*----------------------------------------*/
 .spspc__help.lite-to-pro-page *,
@@ -33,6 +33,10 @@
   line-height: 28px;
   color: #2F2F2F;
   border-radius: 6px;
+}
+.spspc-recommended-page .spspc-section-title {
+  font-size: 22px;
+  margin-top: -6px !important;
 }
 .sp-smart-post__help .spspc-call-to-action-top .spspc-section-subtitle {
   font-size: 16px;
@@ -198,6 +202,7 @@
   border-radius: 6px;
   border: 1px solid #EFE6FB;
   overflow: hidden;
+  margin-bottom: 80px;
 }
 .sp-smart-post__help .spspc-features ul li.spspc-body,
 .sp-smart-post__help .spspc-features ul li.spspc-header {
@@ -364,7 +369,7 @@
 /*  Recommended page style
 /*----------------------------------------*/
 .sp-smart-post__help .spspc-recommended-page h2{
-  margin: 50px 0px 40px 8px;
+  margin: 38px 0px 20px 8px;
 }
 /*----------------------------------------*/
 /*  About us page style
@@ -432,45 +437,9 @@
   align-items: center;
 }
 
-/*----------------------------------------*/
-/*  Footer section style
-/*----------------------------------------*/
-/* .sp-smart-post__help .spspc-footer-top {
-  text-align: center;
-  margin-top: 80px;
-}
-.sp-smart-post__help .spspc-footer-top span i {
-  color: #E57373;
-}
-.sp-smart-post__help .spspc-footer-top ul{
-  display: flex;
-  justify-content: center;
-}
-.sp-smart-post__help .spspc-footer-top p,
-.sp-smart-post__help .spspc-footer-top a {
-  color: #6D6B6A;
-  margin: 5px 0;
-}
-.sp-smart-post__help .spspc-footer-top ul li a{
-  color: #969392;
-  font-size: 18px;
-  margin-right: 3px;
-}
-.sp-smart-post__help .spspc-footer-top a:hover,
-.sp-smart-post__help .spspc-footer-top ul li a:hover{
-  color: #F15D32;
-} */
-
 /* Responsive Css */
 @media only screen and (max-width: 960px) {
   .sp-smart-post__help .spspc-about-box,
-  .sp-smart-post__help .spspc-start-page-wrap {
-    flex-direction: column;
-  }
-  .sp-smart-post__help .spspc-start-page-sidebar {
-    max-width: 500px;
-    margin: auto;
-  }
   .sp-smart-post__help .spspc-about-img {
     width: 100%;
     margin-top: 30px;
@@ -481,25 +450,11 @@
 }
 
 @media only screen and (max-width: 640px) {
-  .sp-smart-post__help .spspc-header-nav-menu ul li a{
-    padding: 8px 8px;
-    font-size: 12px;
-  }
-  .sp-smart-post__help .spspc-header-nav-menu ul li a i {
-    display: none;
-  }
-  .sp-smart-post__help .spspc-header-logo-shape{
-    display: none;
-  }
-  .sp-smart-post__help .spspc-our-plugin-list-wrap,
   .sp-smart-post__help .spspc-testimonial-wrap{
     flex-direction: column;
   }
   .sp-smart-post__help .spspc-about-btn {
     display: inline-grid;
-  }
-  .sp-smart-post__help .spspc-our-plugin-list-box {
-    width: 100%;
   }
 }
 

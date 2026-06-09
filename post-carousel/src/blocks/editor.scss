@@ -61,6 +61,10 @@
 	}
 }
 
+[class*=version-7] .sp-easy-accordion-tabs-panel .sp-eab-doc-link-button-wrapper a {
+    margin-left: 0;
+}
+
 // css for components
 .sp-smart-post-d-flex {
 	display: flex;
@@ -98,11 +102,6 @@
 
 }
 
-.editor-block-list-item-sp-smart-post-show-post-list-two,
-.editor-block-list-item-sp-smart-post-show-smart-search,
-.editor-block-list-item-sp-smart-post-show-post-grid-four,
-.editor-block-list-item-sp-smart-post-show-thumbnail-slider-two,
-.editor-block-list-item-sp-smart-post-show-post-slider-two,
 .sp-smart-post-list-panel-body .components-panel__body-toggle,
 .sp-smart-post-separator-panel-body .components-panel__body-toggle,
 .sp-smart-post-badge-panel-body .components-panel__body-toggle,
@@ -135,28 +134,6 @@
 		width: 18px;
 		border: 1px solid #93DCAC;
 		font-weight: 600;
-	}
-}
-
-.editor-block-list-item-sp-smart-post-show-post-list-two,
-.editor-block-list-item-sp-smart-post-show-smart-search,
-.editor-block-list-item-sp-smart-post-show-post-grid-four,
-.editor-block-list-item-sp-smart-post-show-thumbnail-slider-two,
-.editor-block-list-item-sp-smart-post-show-post-slider-two {
-	position: relative;
-
-	&::before {
-		border-radius: 20px;
-		padding-left: 15px;
-		right: 0;
-		top: 12px;
-	}
-
-	&:hover::before {
-		background-position: 4px 45%;
-		border-radius: 12px;
-		content: "PRO";
-		width: 43px;
 	}
 }
 

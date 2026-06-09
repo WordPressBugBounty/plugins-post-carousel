@@ -29,6 +29,7 @@ class Smart_Search extends Block_Base {
 	 */
 	protected function set_block_properties() {
 		$this->block_name     = 'smart-search';
+		$this->category       = 'sp-smart-post-show-pro-blocks';
 		$this->editor_scripts = array( 'sp_smart_post_blocks_index_js' );
 		$this->styles         = array( 'sp_smart_post_blocks_css', 'sp_smart_post_blocks_style' );
 		$this->scripts        = array( 'sp_smart_post_smart_search_script' );

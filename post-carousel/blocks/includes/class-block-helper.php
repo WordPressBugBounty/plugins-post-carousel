@@ -1012,7 +1012,7 @@ class Helper {
 	 */
 	public static function get_save_template_list() {
 		// Default placeholder option.
-		$options = array( '0' => esc_html__( 'Select Template', 'post-carousel' ) );
+		$options = array( '0' => esc_html__( '- Select Template -', 'post-carousel' ) );
 
 		$query = new \WP_Query(
 			array(
@@ -1024,7 +1024,8 @@ class Helper {
 
 		if ( $query->have_posts() ) {
 			foreach ( $query->posts as $post ) {
-				$options[ $post->ID ] = $post->post_title;
+				$title = ! empty( $post->post_title ) ? $post->post_title : '#' . $post->ID;
+				$options[ $post->ID ] = $title;
 			}
 
 			// Sort by ID descending so the latest template appears first.

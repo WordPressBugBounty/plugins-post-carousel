@@ -69,22 +69,28 @@ class Smart_Post_Show_Import_Export {
 	 * @return void
 	 */
 	public function export_shortcodes() {
-		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
-			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
-		}
-
+		// Check user capability first.
 		$_capability = apply_filters( 'sp_post_carousel_import_export_user_capability', 'manage_options' );
 		if ( ! current_user_can( $_capability ) ) {
 			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to export.', 'post-carousel' ) ) );
 		}
 
+		// Verify nonce only if provided.
+		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+		if ( $nonce && ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
+		}
+
 		$shortcode_ids = isset( $_POST['pcp_ids'] ) ? wp_unslash( $_POST['pcp_ids'] ) : ''; // phpcs:ignore
 
-		if ( is_array( $shortcode_ids ) ) {
+		if ( 'all_shortcodes' === $shortcode_ids ) {
+			// Keep as string for export method.
+		} elseif ( is_array( $shortcode_ids ) ) {
 			$shortcode_ids = array_map( 'absint', $shortcode_ids );
 		} else {
-			$shortcode_ids = sanitize_text_field( $shortcode_ids );
+			// Convert comma-separated string to array.
+			$ids_array = explode( ',', $shortcode_ids );
+			$shortcode_ids = array_map( 'absint', array_filter( $ids_array ) );
 		}
 
 		$export = $this->export( $shortcode_ids );
@@ -210,16 +216,16 @@ class Smart_Post_Show_Import_Export {
 	 * @return void
 	 */
 	public function import_shortcodes() {
-		// Verify nonce.
-		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
-			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
-		}
-
-		// Check user capabilities.
+		// Check user capability first.
 		$_capability = apply_filters( 'sp_post_carousel_import_export_user_capability', 'manage_options' );
 		if ( ! current_user_can( $_capability ) ) {
 			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to import.', 'post-carousel' ) ) );
+		}
+
+		// Verify nonce only if provided.
+		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+		if ( $nonce && ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
 		}
 
 		// Get and validate input data.
@@ -270,5 +276,38 @@ class Smart_Post_Show_Import_Export {
 			);
 		}
 		wp_send_json_success( $status, 200 );
+	}
+
+	/**
+	 * Get shortcode list for export selection.
+	 *
+	 * @return void
+	 */
+	public function get_shortcode_list_for_export() {
+		// Check user capability instead of strict nonce verification for this read-only operation.
+		$_capability = apply_filters( 'sp_post_carousel_import_export_user_capability', 'manage_options' );
+		if ( ! current_user_can( $_capability ) ) {
+			wp_send_json_error( array( 'message' => 'You do not have permission.' ) );
+		}
+
+		$args = array(
+			'post_type'      => 'sp_post_carousel',
+			'post_status'    => array( 'publish', 'draft' ),
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'posts_per_page' => 100,
+		);
+
+		$shortcodes = get_posts( $args );
+		$list       = array();
+
+		foreach ( $shortcodes as $shortcode ) {
+			$list[] = array(
+				'id'    => $shortcode->ID,
+				'title' => $shortcode->post_title,
+			);
+		}
+
+		wp_send_json_success( $list );
 	}
 }

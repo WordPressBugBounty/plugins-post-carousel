@@ -222,7 +222,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 		/**
 		 * Restrict New Template Creation
 		 *
-		 * This method checks the total published posts
+		 * This method checks the total posts (all statuses)
 		 * of the `sp_post_template` post type.
 		 * If the count is 2 or more, it blocks the
 		 * new post creation page.
@@ -234,13 +234,23 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 			// Check if the request is for our custom post type.
 			if ( isset( $_GET['post_type'] ) && 'sp_post_template' === $_GET['post_type'] ) {
 
-				// Get total published posts count.
-				$count = wp_count_posts( 'sp_post_template' )->publish;
+				// Get all posts count (all statuses).
+				$args = array(
+					'post_type'      => 'sp_post_template',
+					'post_status'    => 'any',
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
+				);
+
+				$posts = get_posts( $args );
+				$count = count( $posts );
 
 				// Prevent creating more than 2 templates.
 				if ( $count >= 2 ) {
 
-					wp_die( 'You can only create two save templates.' );
+					$redirect_url = admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help&show_pro_modal=1#savedTemplate' );
+					wp_safe_redirect( $redirect_url );
+					exit;
 				}
 			}
 		}
@@ -511,21 +521,23 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 					'sp-pcp-block-setting-page',
 					'sp_pcp_block_settings',
 					array(
-						'homeUrl'             => home_url( '/' ),
-						'pluginUrl'           => SP_PC_URL,
-						'getOptions'          => get_option( 'sp-pcp-blocks-setting-options' ),
-						'userName'            => $current_user->display_name,
-						'modulesOptions'      => get_option( 'sp-pcp-blocks-modules-options' ),
-						'integrationOptions'  => get_option( 'sp-pcp-integration-options' ),
-						'pluginVersion'       => SP_PC_VERSION,
-						'nonce'               => wp_create_nonce( 'sp-update-block-settings-nonce' ),
-						'adminUrl'            => admin_url(),
-						'settings'            => get_option( 'sp_post_carousel_settings', array() ),
-						'restNonce'           => wp_create_nonce( 'wp_rest' ),
-						'restUrl'             => get_rest_url(),
-						'wizardImages'        => SP_PC_URL . 'admin/img/wizard/',
-						'sp_pcp_user_consent' => get_option( 'sp_pcp_allow_anonymous_data', 'undefined' ),
-						'sp_ua_site_type'     => get_option( 'sp_ua_site_type' ) ?? '',
+						'homeUrl'               => home_url( '/' ),
+						'pluginUrl'             => SP_PC_URL,
+						'getOptions'            => get_option( 'sp-pcp-blocks-setting-options' ),
+						'userName'              => $current_user->display_name,
+						'modulesOptions'        => get_option( 'sp-pcp-blocks-modules-options' ),
+						'integrationOptions'    => get_option( 'sp-pcp-integration-options' ),
+						'pluginVersion'         => SP_PC_VERSION,
+						'nonce'                 => wp_create_nonce( 'sp-update-block-settings-nonce' ),
+						'adminUrl'              => admin_url(),
+						'settings'              => get_option( 'sp_post_carousel_settings', array() ),
+						'restNonce'             => wp_create_nonce( 'wp_rest' ),
+						'restUrl'               => get_rest_url(),
+						'wizardImages'          => SP_PC_URL . 'admin/img/wizard/',
+						'sp_pcp_user_consent'   => get_option( 'sp_pcp_allow_anonymous_data', 'undefined' ),
+						'sp_ua_site_type'       => get_option( 'sp_ua_site_type' ) ?? '',
+						'pcp_editor_preference' => get_option( 'spsp_blocks_promo_modal_choice', '' ),
+						'savedTemplatesUrl'     => admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#savedTemplate' ),
 					)
 				);
 			}
@@ -694,6 +706,17 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 				// Save merged result.
 				update_option( 'sp_post_carousel_settings', $merged_options );
 			}
+
+			// Handle editor preference for promo modal.
+			if ( isset( $_POST['editorPreference'] ) ) {
+				$editor_preference = sanitize_key( wp_unslash( $_POST['editorPreference'] ) );
+				$allowed_editors   = array( 'block_editor', 'classic_shortcode' );
+				if ( in_array( $editor_preference, $allowed_editors, true ) ) {
+					update_option( 'spsp_blocks_promo_modal_choice', $editor_preference, false );
+				} else {
+					delete_option( 'spsp_blocks_promo_modal_choice' );
+				}
+			}
 			wp_send_json_success(
 				array(
 					'options' => get_option( 'sp_post_carousel_settings' ),
@@ -811,7 +834,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 				'site_language'  => $site_language,
 				'theme_name'     => $theme->get( 'Name' ),
 				'plugin_version' => SP_PC_VERSION,
-				'wp_version'     => wp_get_wp_version(),
+				'wp_version'     => get_bloginfo( 'version' ),
 				'php_version'    => $php_version,
 				'db_version'     => $db_version,
 				'active_plugins' => $active_plugins,
@@ -977,43 +1000,62 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 		 * @return void
 		 */
 		public function sp_pcp_notice_for_user_consent() {
+			$plugin_logo_image = 'https://ps.w.org/post-carousel/assets/icon-256x256.gif';
 			?>
 				<style>
 					.sp_pcp-anonymous-data-notice {
 						background-color: #ffffff;
 						border: none;
+						border: 1px solid rgba(204, 204, 204, 1);
 						border-left: 4px solid #5715c3;
 						margin-bottom: 20px;
 						display: flex;
-						padding: 14px 24px 18px 27px;
+						padding: 14px;
 						align-items: flex-start;
-						gap: 20px;
+						gap: 16px;
 						box-shadow: 0 16px 32px -4px rgba(12, 12, 13, 0.05), 0 4px 4px -4px rgba(12, 12, 13, 0.02);
-					}
+						position: relative;
+						border-radius: 4px;
+						}
+
+					button.sp_pcp_anonymous_data_cross {
+						border: none;
+						background: transparent;
+						position: absolute;
+						top: 0;
+						right: 7px;
+						cursor: pointer;
+						color: #b6b6b6;
+						font-size: 16px;
+						}
+
+					.sp_pcp-anonymous-data-notice-wrapper {
+						display: flex;
+						gap: 26px;
+						}
 
 					.sp_pcp-anonymous-data-notice img {
-						height: 36px;
-						width: 36px;
+						width: 52px;
 						border-radius: 4px;
-					}
+						}
 					.sp_pcp-anonymous-data-notice h3 {
 						font-weight: 600;
 						font-size: 18px;
 						color: #2C2D2F;
 						margin: 0 0 8px 0;
-					}
+						}
 					.sp_pcp-anonymous-data-notice p, .sp_pcp-anonymous-data-notice a {
 						color: #6E6F72;
 						font-size: 14px;
-						margin: 0 0 8px 0;
-					}
+						margin: 0 0 2px 0;
+						}
 					.sp_pcp-anonymous-data-notice a {
 						text-decoration: underline;
-					}
+						}
 					.sp_pcp-anonymous-data-notice .button {
 						font-size: 14px;
 						font-weight: 500;
-					}
+						}
 					.sp_pcp-anonymous-data-notice .button {
 						font-size: 14px;
 						font-weight: 500;
@@ -1022,53 +1064,60 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 						border: 1px solid #ECEDF0;
 						transition: all 0.2s ease;
 						margin-top: 8px;
-					}
+						}
 					.sp_pcp-anonymous-data-notice .button:hover {
 						border: 1px solid #b7b8bb;
 						color: #6E6F72;
 						background-color: #ffffff;
-					}
-					.sp_pcp-anonymous-data-notice .button-primary {
-						background-color: #1A74E4;
-						border: 1px solid #1A74E4;
+						}
+					.sp_pcp-anonymous-data-notice .sp_pcp_anonymous_data_connect {
+						background-color: rgba(30, 30, 30, 1);
 						color: #ffffff;
-					}
-					.sp_pcp-anonymous-data-notice .button-primary:hover {
-						background-color: #1768CD;
+						line-height: 14px;
+						border-radius: 4px;
+						font-size: 13px;
+						}
+					.sp_pcp-anonymous-data-notice .sp_pcp_anonymous_data_connect:hover {
+						background-color: rgb(46, 46, 46);
 						color: #ffffff;
-						border: 1px solid #1A74E4;
-					}
+						}
+					.sp_pcp-anonymous-data-notice .sp_pcp_anonymous_data_connect:focus {
+						border: none;
+						box-shadow: none;
+						out-line: none;
+						}
 				</style>
 
 				<div class="notice notice-info sp_pcp-anonymous-data-notice">
-					<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/images/sps-icon.svg' ); ?>" alt="Smart Post"/>
-					<div>
-						<h3>
-						<?php esc_html_e( 'Contribute to Smart Post Improvements', 'post-carousel' ); ?>
-						</h3>
-						<p>
-						<?php
-						esc_html_e(
-							'Help us improve Smart Post Plugin by reporting bugs and issues, so we can resolve problems faster and deliver better performance.',
-							'post-carousel'
-						);
-						?>
-						<a href="https://wpsmartpost.com/information-we-collect/" target="_blank"><?php esc_html_e( 'Learn More', 'post-carousel' ); ?></a>
-						</p>
+					<img src="<?php echo esc_url( $plugin_logo_image ); ?>" alt="Smart Post"/>
+					<div class="sp_pcp-anonymous-data-notice-wrapper">
+						<div>
+							<h3>
+							<?php esc_html_e( 'Help us make Smart Post even more awesome?', 'post-carousel' ); ?>
+							</h3>
+							<p>
+							<?php
+							esc_html_e(
+								'Allow us to collect non-sensitive diagnostic data to resolve problems faster and improve performance.',
+								'post-carousel'
+							);
+							?>
+							<a href="https://wpsmartpost.com/information-we-collect/" target="_blank"><?php esc_html_e( 'Learn More', 'post-carousel' ); ?></a>
+							</p>
+						</div>
 						<div style="display:flex; gap:10px;">
 							<form method="post" style="display:inline;">
 							<?php wp_nonce_field( 'sp_pcp_anonymous_data_action', 'sp_pcp_anonymous_data_nonce' ); ?>
 								<input type="hidden" name="sp_pcp_anonymous_data_action" value="allow" />
-								<button type="submit" class="button button-primary">
-								<?php esc_html_e( "I'd like to help", 'post-carousel' ); ?>
+								<button type="submit" class="sp_pcp_anonymous_data_connect button">
+								<?php esc_html_e( 'Accept & Close', 'post-carousel' ); ?>
 								</button>
 							</form>
 
 							<form method="post" style="display:inline;">
 							<?php wp_nonce_field( 'sp_pcp_anonymous_data_action', 'sp_pcp_anonymous_data_nonce' ); ?>
 								<input type="hidden" name="sp_pcp_anonymous_data_action" value="deny" />
-								<button type="submit" class="button">
-								<?php esc_html_e( 'No thanks', 'post-carousel' ); ?>
+								<button type="submit" class="sp_pcp_anonymous_data_cross dashicons dashicons-dismiss">
 								</button>
 							</form>
 						</div>

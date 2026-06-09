@@ -105,7 +105,7 @@ class SPS_Recommended {
 		add_submenu_page(
 			'edit.php?post_type=sp_post_carousel',
 			__( 'Post Carousel', 'post-carousel' ),
-			__( 'Blocks', 'post-carousel' ),
+			'Blocks <span class="eap-menu-new-indicator" style="color: #f18200;font-size: 9px; padding-left: 3px;"> NEW!</span>',
 			'manage_options',
 			'edit.php?post_type=sp_post_carousel&page=pcp_help#blocks',
 			'',
@@ -436,7 +436,7 @@ class SPS_Recommended {
 			<!-- Recommended Page -->
 			<section id="recommended-tab" class="spspc-recommended-page">
 				<div class="spspc-container">
-					<h2 class="spspc-section-title">Enhance your Website with our Free Robust Plugins</h2>
+					<h2 class="spspc-section-title">Supercharge Your Website with Our Free Plugins — Trusted by 360,050+ Users</h2>
 					<div class="spspc-wp-list-table plugin-install-php">
 						<div class="spspc-recommended-plugins" id="the-list">
 							<?php

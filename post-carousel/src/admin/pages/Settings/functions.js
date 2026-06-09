@@ -5,7 +5,7 @@ import { Modal, Spinner } from "@wordpress/components";
 import { Arrow, InfoIcon } from "../../../icons/icons";
 import { createInterpolateElement } from "@wordpress/element";
 
-export const saveSettingOptions = async (settings, actionType = "save", setSettingsOptions, shareData) => {
+export const saveSettingOptions = async (settings, actionType = "save", setSettingsOptions, shareData, editorPreference) => {
 	try {
 		const formData = new FormData();
 
@@ -14,6 +14,9 @@ export const saveSettingOptions = async (settings, actionType = "save", setSetti
 		formData.append("optionData", JSON.stringify(settings));
 		if (shareData !== undefined) {
 			formData.append("shareData", JSON.stringify(shareData));
+		}
+		if (editorPreference !== undefined) {
+			formData.append("editorPreference", editorPreference);
 		}
 
 		const response = await axios.post(ajaxurl, formData);
@@ -135,6 +138,15 @@ export const renderInfoText = (label) => {
 };
 
 export const SaveAndReset = ({ onSave, onReset, isChanged, isSaving }) => {
+	const SaveIcon = () => (
+		<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24" style={{ enableBackground: 'new 0 0 24 24' }} xmlSpace="preserve">
+			<style type="text/css">
+				{`.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}.st1{fill:none;stroke:#000000;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:187.5;}.st2{fill-rule:evenodd;clip-rule:evenodd;}.st3{fill-rule:evenodd;clip-rule:evenodd;fill:none;stroke:#000000;stroke-width:2.2;stroke-linejoin:round;stroke-miterlimit:10;}.st4{fill:#FFFFFF;}`}
+			</style>
+			<path className="st4" d="M23.4,6.6l-6.1-6C17,0.2,16.5,0,16,0H3.2C1.4,0,0,1.4,0,3.2v17.6C0,22.6,1.4,24,3.2,24h17.6  c1.8,0,3.2-1.4,3.2-3.2V8C24,7.4,23.8,7,23.4,6.6z M8.1,2.2h5.7v2.9H8.1V2.2z M17.1,21.8H6.9V15h10.2V21.8z M21.8,20.8  c0,0.5-0.4,1-1,1h-1.5v-7.4c0-0.9-0.7-1.6-1.6-1.6H6.3c-0.9,0-1.6,0.7-1.6,1.6v7.4H3.2c-0.5,0-1-0.4-1-1V3.2c0-0.5,0.4-1,1-1h2.7  v3.5c0,0.9,0.7,1.6,1.6,1.6h7c0.9,0,1.6-0.7,1.6-1.6V2.3l5.8,5.8V20.8z"/>
+		</svg>
+	);
+
 	return (
 		<div className={`sp-pcp-settings-save-wrapper`}>
 			<button className={`sp-pcp-settings-save-btn ${isChanged ? "active" : ""}`} onClick={onSave}>
@@ -143,9 +155,16 @@ export const SaveAndReset = ({ onSave, onReset, isChanged, isSaving }) => {
 						<Spinner /> {__("Saving…", "post-carousel")}
 					</>
 				) : (
-					<>{__("Save Changes", "post-carousel")}</>
+					<>
+						<SaveIcon /> {__("Save Changes", "post-carousel")}
+					</>
 				)}
 			</button>
+			{onReset && (
+				<button className="sp-pcp-settings-reset-btn" onClick={onReset}>
+					{__("Reset", "post-carousel")}
+				</button>
+			)}
 		</div>
 	);
 };

@@ -27,6 +27,7 @@ class Post_Grid_Four extends Block_Base {
 	 */
 	protected function set_block_properties() {
 		$this->block_name     = 'post-grid-four';
+		$this->category       = 'sp-smart-post-show-pro-blocks';
 		$this->scripts        = array( 'sp_smart_post_blocks_script_js' );
 		$this->styles         = array( 'sp_smart_post_blocks_css', 'sp_smart_post_blocks_social_icons_style', 'sp_smart_post_blocks_google_fonts' );
 		$this->editor_scripts = array( 'sp_smart_post_blocks_index_js' );

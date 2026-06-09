@@ -1,63 +1,74 @@
 .sp-pcp-settings-page-container {
     display: flex;
-    min-height: 360px;
+    gap: 32px;
     align-items: flex-start;
-    border-radius: 4px;
-    border: 1px solid #DDDDDD;
-    background: #ffffff;
-    overflow: hidden;
     position: relative;
 
     .sp-pcp-setting-tabs {
-        display: block;
+        display: flex;
+        flex-direction: column;
         z-index: 10;
-        width: 225px;
+        width: 248px;
         height: 100%;
+        background: #ffffff;
+        border: 1px solid #DDDDDD;
+        border-radius: 12px;
+        padding: 16px;
+        gap: 8px;
 
         ul {
             list-style: none;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
     }
 
     .sp-pcp-setting-tab {
         cursor: pointer;
-        border-bottom: 1px solid #E0E0E0;
-        padding: 14px 15px;
+        padding: 10px 20px 10px 8px;
         font-size: 14px;
         line-height: 20px;
-        color: #444444;
-        border-radius: 0;
+        color: #1e1e1e;
+        border-radius: 6px;
         font-weight: 500;
-        z-index: 10;
         position: relative;
-        background: #F0F0F0;
-        border-right: 1px solid #E0E0E0;
+        background: transparent;
+        border: 1px solid transparent;
         display: flex;
-        gap: 8px;
-        margin: 0;
+        align-items: center;
+        gap: 6px;
         transition: all 0.3s ease;
 
-        &:nth-child(1) {
+        .sp-pcp-setting-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+
             svg {
-                height: 16px;
                 width: 16px;
-                margin-bottom: -3px;
+                height: 16px;
             }
 
             path {
-                stroke: #2F2F2F;
+                stroke: #1e1e1e;
             }
         }
 
-        &.active {
-            background: #FFFFFF;
-            color: #641DD7;
-            border-right: 1px solid rgba(0, 0, 0, 0);
-            box-shadow: 3px 0 0 0 #641DD7 inset;
+        &:hover {
+            background: #f5f5f5;
+        }
 
-            path {
+        &.active {
+            background: #ffffff;
+            color: #641DD7;
+            border: 1px solid #641DD7;
+
+            .sp-pcp-setting-icon path {
                 stroke: #641DD7;
             }
         }
@@ -78,20 +89,16 @@
     }
 
     .sp-pcp-setting-tabs-bottom {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 9;
-        width: 225px;
-        margin-left: -1px;
-        border-right: 1px solid #E0E0E0;
-        background: #FFFFFF;
+        display: none;
     }
 
     .sp-pcp-setting-tab-content {
-        height: 100%;
         flex: 1;
         padding: 32px;
+        background: #ffffff;
+        border: 1px solid #DDDDDD;
+        border-radius: 12px;
+        min-width: 0;
     }
 
     hr {
@@ -106,13 +113,14 @@
     .sp-pcp-settings-save-wrapper {
         display: flex;
         gap: 8px;
-        margin-top: 36px;
+        margin-top: 30px;
+        justify-content: flex-start;
 
         button {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 10px 24px;
+            gap: 8px;
+            padding: 14px 24px;
             color: #FFFFFF;
             font-size: 16px;
             font-weight: 600;
@@ -125,12 +133,17 @@
 
         .sp-pcp-settings-save-btn {
             pointer-events: none;
-            height: 48px;
 
             &.active {
-                background-color: rgb(0, 194, 99);
+                background-color: #3b9752;
                 pointer-events: initial;
             }
+        }
+
+        .sp-pcp-settings-reset-btn {
+            background-color: white;
+            border: 1px solid #ff5b2e;
+            color: #ff5b2e;
         }
     }
 
@@ -162,7 +175,41 @@
     .sp-pcp-settings-advanced-controls {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: 20px;
+
+        .sp-pcp-settings-option {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            justify-content: space-between;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .sp-pcp-option-label-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 50%;
+        }
+
+        .sp-pcp-component-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2f2f2f;
+            line-height: 20px;
+        }
+
+        .sp-pcp-option-help-text {
+            font-size: 13px;
+            font-weight: 400;
+            color: #757575;
+            line-height: 20px;
+        }
 
         .sp-pcp-blocks-settings-select-field {
             .css-1y1fx19 svg {
@@ -447,6 +494,306 @@
     margin-top: 24px;
     position: relative;
     right: 16px;
-    text-align: right;
-    width: 100%;
+    font-weight: 500;
+    margin-left: 335px;
+}
+/* Tools Tab Styles */
+.sp-pcp-settings-tools-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+	width: 100%;
+
+	.sp-pcp-settings-tools-section {
+		display: flex;
+		gap: 32px;
+		width: 100%;
+
+		.sp-pcp-settings-tools-section-header {
+			width: 280px;
+			flex-shrink: 0;
+
+			.sp-pcp-settings-tools-section-title {
+				color: #2F2F2F;
+				font-size: 14px;
+				font-weight: 500;
+				line-height: 1.6;
+				margin: 0;
+			}
+		}
+
+		.sp-pcp-settings-tools-section-content {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			justify-content: center;
+
+			.sp-pcp-settings-tools-subtitle {
+				color: #2F2F2F;
+				font-size: 13px;
+				font-weight: 500;
+				line-height: 20px;
+				margin: 0;
+				white-space: nowrap;
+			}
+
+			.sp-pcp-settings-tools-radio-group {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+
+				.sp-pcp-settings-tools-radio {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					cursor: pointer;
+
+					input[type="radio"] {
+						display: none;
+					}
+
+					.sp-pcp-settings-tools-radio-label {
+						color: #2F2F2F;
+						font-size: 13px;
+						line-height: 20px;
+						position: relative;
+						padding-left: 24px;
+
+						&::before {
+							content: '';
+							position: absolute;
+							left: 0;
+							top: 50%;
+							transform: translateY(-50%);
+							width: 16px;
+							height: 16px;
+							border-radius: 10px;
+							background: #FFFFFF;
+							border: 1px solid #949494;
+						}
+
+						&::after {
+							content: '';
+							position: absolute;
+							left: 5px;
+							top: 50%;
+							transform: translateY(-50%);
+							width: 8px;
+							height: 8px;
+							border-radius: 50%;
+							background: #FFFFFF;
+							opacity: 0;
+							transition: opacity 0.2s ease;
+						}
+					}
+
+					&.active {
+						.sp-pcp-settings-tools-radio-label {
+							&::before {
+								background: #3858E9;
+								border-color: #3858E9;
+							}
+
+							&::after {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+
+			.sp-pcp-settings-tools-file-input {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				border: 2px dashed transparent;
+				transition: all 0.2s ease;
+
+
+				.sp-pcp-settings-tools-file-btn {
+					background: #F0F0F0;
+					border: 1px solid #2F2F2F;
+					border-radius: 4px;
+					padding: 10px 16px;
+					color: #2F2F2F;
+					font-size: 13px;
+					font-weight: 500;
+					line-height: 13px;
+					cursor: pointer;
+					display: inline-block;
+				}
+
+				.sp-pcp-settings-tools-file-name {
+					color: #757575;
+					font-size: 13px;
+					line-height: 20px;
+				}
+
+
+				&.dragging {
+					border-style: dashed;
+					border-color: #641DD7;
+					background: #f6f0ff;
+				}
+			}
+
+			.sp-pcp-settings-tools-btn {
+				padding: 10px 16px;
+				border-radius: 4px;
+				border: none;
+				color: #FFFFFF;
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 20px;
+				text-transform: capitalize;
+				cursor: pointer;
+				white-space: nowrap;
+				width: 150px;
+
+				&.sp-pcp-settings-tools-btn-primary {
+					background: #1A74E4;
+					border-color: #1A74E4;
+
+					&:hover {
+						background: #155DB7;
+						border-color: #155DB7;
+					}
+				}
+
+				&.sp-pcp-settings-tools-btn-secondary {
+					background: #BBBBBB;
+
+					&:hover {
+						background: #A8A8A8;
+					}
+
+					&.has-file {
+						background: #1A74E4;
+
+						&:hover {
+							background: #155DB7;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.sp-pcp-settings-tools-divider {
+		height: 1px;
+		background: #F0F0F0;
+		width: 100%;
+	}
+}
+
+/* Multi-select dropdown */
+.sp-pcp-settings-tools-multiselect {
+	margin-top: 12px;
+	
+	.sp-smart-post-select-field {
+		min-width: 260px;
+	}
+}
+
+/* React Select Multi-Select Styles */
+.sp-pcp-settings-tools-multiselect {
+	margin-top: 12px;
+	min-width: 260px;
+
+	.sp-pcp-tools-multi-select {
+		.sp-pcp-tools__control {
+			min-height: 38px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+
+			&:hover {
+				border-color: #ddd;
+			}
+		}
+
+		.sp-pcp-tools__value-container {
+			padding: 2px 4px;
+		}
+
+		.sp-pcp-tools__multi-value {
+			background-color: #3858e9;
+			border-radius: 4px;
+			margin: 2px;
+			display: flex;
+			align-items: center;
+
+			.sp-pcp-tools__multi-value__label {
+				color: #fff;
+				font-size: 13px;
+			}
+
+			.sp-pcp-tools__multi-value__remove {
+				background: transparent;
+				border: none;
+				color: #fff;
+				cursor: pointer;
+
+				&:hover {
+					background: transparent;
+					color: #fff;
+				}
+			}
+		}
+
+		.sp-pcp-tools__placeholder {
+			color: #757575;
+			font-size: 13px;
+		}
+
+		.sp-pcp-tools__single-value,
+		.sp-pcp-tools__input {
+			font-size: 13px;
+			color: #2f2f2f;
+		}
+
+		.sp-pcp-tools__menu {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			margin-top: 4px;
+
+			.sp-pcp-tools__menu-list {
+				padding: 4px 0;
+
+				.sp-pcp-tools__option {
+					padding: 8px 12px;
+					font-size: 13px;
+					cursor: pointer;
+
+					&:hover {
+						background-color: #f0f0f0;
+					}
+
+					&.sp-pcp-tools__option--is-selected {
+						background-color: #3858e9;
+						color: #fff;
+					}
+
+					&.sp-pcp-tools__option--is-focused {
+						background-color: #e0e0e0;
+					}
+				}
+			}
+		}
+
+		.sp-pcp-tools__indicator-separator {
+			display: none;
+		}
+
+		.sp-pcp-tools__dropdown-indicator,
+		.sp-pcp-tools__clear-indicator {
+			padding: 4px;
+		}
+
+        .sp-pcp-tools__input-container input {
+            box-shadow: none;
+            min-height: 26px;
+        }
+	}
 }

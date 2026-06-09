@@ -70,6 +70,13 @@ if ( ! class_exists( 'SP_Smart_Block_Base' ) ) {
 		protected $keywords = array( 'Smart post' );
 
 		/**
+		 * Block category.
+		 *
+		 * @var string
+		 */
+		protected $category = 'sp-smart-post-show';
+
+		/**
 		 * Attributes
 		 *
 		 * @var array
@@ -175,7 +182,7 @@ if ( ! class_exists( 'SP_Smart_Block_Base' ) ) {
 				$args['attributes'] = $this->attributes;
 				$args['keywords']   = $this->keywords;
 				$args['apiVersion'] = 3;
-				$args['category']   = 'sp-smart-post-show';
+				$args['category']   = $this->category;
 				$args['blockName']  = "sp-smart-post-show/{$this->block_name}";
 			}
 			$render_callback = $this->get_render_callback();

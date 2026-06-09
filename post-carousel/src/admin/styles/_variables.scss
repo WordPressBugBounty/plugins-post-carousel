@@ -1,0 +1,57 @@
+// CSS Variables
+:root {
+  --sp-smart-primary-2-50: #EFE6FB;
+  --sp-smart-primary-2-100: #D6C2F5;
+  --sp-smart-primary-2-200: #BB99EE;
+  --sp-smart-primary-2-300: #9E6DE9;
+  --sp-smart-primary-2-400: #884AE3;
+  --sp-smart-primary-2-500: #6F22DD;
+  --sp-smart-primary-2-600: #641DD7;
+  --sp-smart-primary-2-700: #5412CF;
+  --sp-smart-primary-2-800: #4307C9;
+  --sp-smart-primary-2-900: #1E00C0;
+  --sp-smart-primary-2-gradient: linear-gradient(90deg, #0054FB 0%, #4A70FE 65.02%);
+}
+
+// SCSS Variables
+$sp-primary-600: #641DD7;
+$sp-primary-700: #5412CF;
+$sp-green: #4AB866;
+$sp-text-color: #333333;
+$sp-border-color: #E0E0E0;
+$sp-bg-light: #F9F9F9;
+$sp-bg-white: #FFFFFF;
+
+// Quick Start Page Specific Colors
+$qs-primary-color: #F26C0D;
+$qs-primary-hover: #e9510c;
+$qs-text-muted: #757575;
+$qs-link-blue: #1a74e4;
+$qs-link-blue-hover: #0f5cb3;
+$qs-max-width: 1400px;
+
+// Common SCSS Variables
+$max-width: 1400px;
+$white: #FFFFFF;
+$border-color: #E0E0E0;
+$link-blue: #1a74e4;
+$link-blue-hover: #0f5cb3;
+$primary-color: #F26C0D;
+
+// Spacing
+$sp-spacing-xs: 4px;
+$sp-spacing-sm: 8px;
+$sp-spacing-md: 16px;
+$sp-spacing-lg: 24px;
+$sp-spacing-xl: 32px;
+
+// Border Radius
+$sp-radius-sm: 4px;
+$sp-radius-md: 8px;
+$sp-radius-lg: 12px;
+$sp-radius-full: 9999px;
+
+// Transitions
+$sp-transition-fast: 0.15s ease;
+$sp-transition-normal: 0.25s ease;
+$sp-transition-slow: 0.3s ease;

@@ -56,6 +56,7 @@ class Smart_Post_Show_Saved_Template {
 		add_shortcode( 'smart_post', array( $this, 'smart_template_callback' ) );
 		add_filter( 'use_block_editor_for_post_type', array( $this, 'smart_post_force_block_editor_for_save_template' ), 100, 2 );
 		add_action( 'admin_init', array( $this, 'redirect_saved_template_edit_page' ) );
+		add_action( 'admin_init', array( $this, 'redirect_based_on_editor_preference' ) );
 		add_action( 'rest_api_init', array( $this, 'smart_saved_template_rest' ) );
 	}
 
@@ -230,6 +231,33 @@ class Smart_Post_Show_Saved_Template {
 				exit;
 			}
 		}
+	}
+
+	/**
+	 * Redirect "Add New Carousel" to the block-editor Saved Template flow
+	 * when the user previously picked Block Editor in the welcome modal
+	 * and ticked "Remember this choice".
+	 *
+	 * @return void
+	 */
+	public function redirect_based_on_editor_preference() {
+		global $pagenow;
+
+		if ( 'post-new.php' !== $pagenow ) {
+			return;
+		}
+
+		$post_type = isset( $_GET['post_type'] ) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : '';
+		if ( 'sp_post_carousel' !== $post_type ) {
+			return;
+		}
+
+		if ( 'block_editor' !== get_option( 'spsp_blocks_promo_modal_choice' ) ) {
+			return;
+		}
+
+		wp_safe_redirect( admin_url( 'post-new.php?post_type=sp_post_template&spblock_inserter' ) );
+		exit;
 	}
 
 	/**

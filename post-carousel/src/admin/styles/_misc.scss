@@ -1,0 +1,108 @@
+// Misc styles (green header notice, navigation badge, etc.)
+
+/*
+ * GREEN HEADER NOTICE CSS.
+ */
+.sp-pcp-green-header-notice {
+	background-color: #148652;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.sp-pcp-green-header-notice-content {
+		display: flex;
+		align-items: center;
+		padding: 12px 0;
+
+		.sp-pcp-green-header-notice-text {
+			color: #fff;
+			font-size: 14px;
+			margin-left: 6px;
+		}
+
+		.sp-pcp-green-header-notice-link {
+			color: #fff;
+			font-size: 14px;
+			font-weight: bold;
+			display: inline-flex;
+			align-items: center;
+			padding-left: 8px;
+			position: relative;
+			gap: 3px;
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: 0px;
+				left: 8px;
+				right: 0;
+				height: 1px;
+				background-color: #fff;
+			}
+
+			&:hover {
+				text-decoration: none;
+				svg {
+					transform: translateX(3px) rotate(45deg);
+				}
+			}
+
+			svg {
+				width: 11px;
+				height: 11px;
+				transform: rotate(45deg);
+				transition: all .3s ease-in-out;
+			}
+		}
+	}
+}
+
+/*
+ * NAVIGATION BADGE CSS.
+ */
+.sp-smart-post-block-settings-nev {
+	.sp-pcp-nav-badge {
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		background-color: transparent;
+		color: #007aff;
+		font-size: 9px;
+		font-weight: 500;
+		padding: 0;
+		border-radius: 0;
+		white-space: nowrap;
+		line-height: normal;
+		text-transform: uppercase;
+	}
+
+	.sp-pcp-nav-our-plugins {
+		position: relative;
+
+		a {
+			display: flex !important;
+			align-items: center;
+			gap: 4px;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 1px;
+			height: 20px;
+			background-color: #ccc;
+		}
+
+		&.active::after {
+			display: none;
+		}
+
+		&:where(:has(~ .active), :has(+ .active))::after {
+			display: none;
+		}
+	}
+}

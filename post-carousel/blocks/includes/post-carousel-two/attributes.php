@@ -6,6 +6,10 @@
  * @subpackage Smart_Post_Show_Pro/blocks/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
 $post_carousel_two_attributes = array(
 	'contentOnHover'       => array(
 		'type'    => 'boolean',

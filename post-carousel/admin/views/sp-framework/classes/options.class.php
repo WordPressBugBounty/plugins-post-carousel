@@ -934,7 +934,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 			echo '</div>';
 
 			if ( 'pcp_settings' === $menu_slug ) {
-				echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#settings' ) ) . '" target="_blank" rel="noopener noreferrer" class="sp-pcp-classic-settings-page-link"> 
+				echo '<a href="' . esc_url( admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#settings' ) ) . '" rel="noopener noreferrer" class="sp-pcp-classic-settings-page-link"> 
 				Back to Block Settings
 				<span class="sp-pcp-classic-settings-page-link-arrow">
 					<img src="' . esc_url( SP_PC_URL ) . 'admin/views/sp-framework/assets/img/block-settings-arrow.svg">

@@ -1164,6 +1164,10 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 						'slug'  => 'sp-smart-post-show',
 						'title' => __( 'SMART POST', 'post-carousel' ),
 					),
+					array(
+						'slug'  => 'sp-smart-post-show-pro-blocks',
+						'title' => __( 'SMART POST PRO BLOCKS', 'post-carousel' ),
+					),
 				),
 				$categories
 			);

@@ -5848,123 +5848,253 @@ Smart Post Show Custom CSS.
 }
 
 /* Update to pro promotional notice */
-.pcp-notice-wrapper {
-    border-width: 1px;
-    border-radius: 5px;
-    padding-top: 8px;
-    padding-bottom: 10px;
+.spf-field-shortcode:has(.pcp-pro-notice-wrapper) {
+	border: 1px solid rgba(187, 153, 238, 1);
+	border-radius: 4px;
+	padding: 16px !important;
+	background-image: linear-gradient(221.41deg, rgba(239, 230, 251, 1) 0.73%, rgba(239, 230, 251, 0.1) 99.41%);
+}
+
+.spf-field-shortcode:has(.pcp-pro-notice-wrapper)::before,
+.spf-field-shortcode:has(.pcp-pro-notice-wrapper)::after {
+	display: none;
+}
+
+#sp_pcp_promotional_notice:has(.pcp-pro-notice-wrapper) {
+	all: unset;
 }
 
 #sp_pcp_promotional_notice .postbox-header {
-    display: none;
+	display: none;
 }
 
 #sp_pcp_display_shortcode .postbox-header {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 div:is(#sp_pcp_promotional_notice, #sp_pcp_page_builder_notice, #sp_pcp_display_shortcode) .spf-content,
 div:is(#sp_pcp_promotional_notice, #sp_pcp_page_builder_notice, #sp_pcp_display_shortcode).postbox {
-    border-radius: 3px;
+	border-radius: 3px;
 }
 
+.pcp-pro-notice-heading {
+	margin: 0;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	color: #2F2F2F;
+	/* margin-bottom: 16px; */
+}
+
+.sp_wpcp_shortcode-area p {
+    margin-top: 6px;
+}
+
+.pcp-pro-notice-heading span {
+	color: #641DD7;
+}
+
+.pcp-pro-notice-features {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.pcp-pro-notice-features li {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	margin: 0;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 20px;
+	color: #2F2F2F;
+}
+
+.pcp-pro-feature__icon {
+	/* flex: 0 0 24px; */
+	width: 14px;
+	height: 14px;
+	border-radius: 4px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pcp-pro-feature__label,
+.pcp-pro-feature__link {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.pcp-pro-feature__link {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: #2F2F2F;
+    text-decoration: none;
+    transition: all 0.3s ease
+}
+
+.pcp-pro-feature__link:hover,
+.pcp-pro-feature__link:focus {
+	color: #2F2F2F;
+	box-shadow: none;
+}
+
+.pcp-pro-feature__link:hover {
+    text-decoration: underline;
+    color: #641DD7;
+}
+
+.pcp-pro-feature__arrow {
+	width: 10px;
+	height: 10px;
+    display: none;
+}
+
+.pcp-pro-notice-wrapper .pcp-pro-notice-button {
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pcp-pro-notice-wrapper .pcp-pro-notice-button a {
+	width: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 14px 12px;
+	background: #159E2E;
+	margin-top: 20px;
+	color: #ffffff;
+	font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration: none;
+	border-radius: 4px;
+	transition: background 0.2s ease;
+}
+
+.pcp-pro-notice-wrapper .pcp-pro-notice-button .sp-go-pro-icon {
+	height: 16px;
+	margin: 0;
+}
+
+.pcp-pro-notice-wrapper .pcp-pro-notice-button a:hover,
+.pcp-pro-notice-wrapper .pcp-pro-notice-button a:focus {
+	background: #117F25;
+	color: #ffffff;
+	box-shadow: none;
+	outline: none;
+}
+
+/* Legacy support */
 .pcp-notice-wrapper {
-    border-width: 1px;
-    border-radius: 5px;
-    text-align: left;
+	border-width: 1px;
+	border-radius: 5px;
+	padding-top: 8px;
+	padding-bottom: 10px;
+	text-align: left;
 }
 
 .pcp-notice-heading {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: rgba(0, 0, 0, 1);
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 1);
 }
 
 .pcp-notice-heading span {
-    color: #0C6E63;
+	color: #0C6E63;
 }
 
 .pcp-notice-desc {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 20px;
-    color: rgba(101, 105, 118, 1);
-    margin-bottom: 20px;
-    margin-top: 10px;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 20px;
+	color: rgba(101, 105, 118, 1);
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
 
 .pcp-notice-wrapper ul li {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 20px;
-    color: rgba(0, 0, 0, 1);
-    display: inline-flex;
-    gap: 10px;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 1);
+	display: inline-flex;
+	gap: 10px;
 }
 
 .pcp-notice-wrapper .pcp-notice-button {
-    position: relative;
-    font-size: 16px;
-    border-radius: 5px;
-    color: #ffffff;
-    border: 1px solid transparent;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    z-index: 0;
-    transition: border-color 0.5s ease;
+	position: relative;
+	font-size: 16px;
+	border-radius: 5px;
+	color: #ffffff;
+	border: 1px solid transparent;
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	overflow: hidden;
+	z-index: 0;
+	transition: border-color 0.5s ease;
 }
 
 .pcp-notice-wrapper .pcp-notice-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #B53361 0%, #E2572C 100%);
-    z-index: -1;
-    transition: opacity 0.6s ease;
-    opacity: 1;
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, #B53361 0%, #E2572C 100%);
+	z-index: -1;
+	transition: opacity 0.6s ease;
+	opacity: 1;
 }
 
 .pcp-notice-wrapper .pcp-notice-button::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #E2572C 0%, #B53361 100%);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.6s ease;
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, #E2572C 0%, #B53361 100%);
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.6s ease;
 }
 
 .pcp-notice-wrapper .pcp-notice-button:hover::before,
 .pcp-notice-wrapper .pcp-notice-button:hover::after {
-    opacity: 1;
+	opacity: 1;
 }
 
 .pcp-notice-wrapper .pcp-notice-button a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 14px 30px 14px 30px;
-    position: relative;
-    z-index: 1;
+	color: #ffffff;
+	text-decoration: none;
+	padding: 14px 30px 14px 30px;
+	position: relative;
+	z-index: 1;
 }
 
 .pcp-notice-wrapper .pcp-notice-button a:focus {
-    box-shadow: none;
-    outline: none;
+	box-shadow: none;
+	outline: none;
 }
 
 .pcp-notice-button i {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .pcp-notice-wrapper ul li i {
-    color: rgba(74, 184, 102, 1);
-    font-size: 11px;
+	color: rgba(74, 184, 102, 1);
+	font-size: 11px;
 }
 
 .pcp-admin-header .heading-wrapper {

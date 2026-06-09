@@ -1,0 +1,16 @@
+// Main SCSS file that imports all partial files
+
+// Import variables and mixins first
+@import './variables';
+@import './mixins';
+
+// Import component-specific styles
+@import './base';
+@import './cards';
+@import './quick-start';
+@import './saved-template';
+@import './modules';
+@import './lite-vs-pro';
+@import './about-us';
+@import './testimonial';
+@import './misc';

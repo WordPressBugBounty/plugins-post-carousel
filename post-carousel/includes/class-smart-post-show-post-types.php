@@ -105,6 +105,7 @@ class Smart_Post_Show_Post_Type {
 				'public'          => false,
 				'show_ui'         => $show_ui,
 				'show_in_menu'    => $show_ui,
+				'show_in_rest'    => true,
 				'menu_icon'       => $menu_icon,
 				'hierarchical'    => false,
 				'query_var'       => false,

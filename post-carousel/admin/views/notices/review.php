@@ -61,10 +61,13 @@ class SPS_Review {
 		if ( ! $load ) {
 			return;
 		}
+
+		$plugin_logo_image = 'https://ps.w.org/post-carousel/assets/icon-256x256.gif';
+
 		?>
 		<div id="smart-post-show-review-notice" class="smart-post-show-review-notice">
 			<div class="sp-sps-plugin-icon">
-				<img src="<?php echo esc_url( SP_PC_URL . 'admin/assets/img/images/sps-icon.svg' ); ?>" alt="Smart Post">
+				<img src="<?php echo esc_url( $plugin_logo_image ); ?>" alt="Smart Post">
 			</div>
 			<div class="sp-sps-notice-text">
 				<h3>Enjoying <strong>Smart Post</strong>?</h3>

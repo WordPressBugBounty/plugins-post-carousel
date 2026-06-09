@@ -637,7 +637,7 @@ class Assets_Manager {
 			'sp_video_and_gallery_slider'      => 'blocks/assets/js/video-and-gallery-slider.min.js',
 			'sp-smart-post-back-to-top'        => 'blocks/assets/js/back-to-top.min.js',
 			'sp_smart_post_smart_toc_script'   => 'blocks/assets/js/table-of-content.min.js',
-			'sp_smart_post_build_script'   => 'blocks/assets/js/builder-scripts.js',
+			'sp_smart_post_build_script'       => 'blocks/assets/js/builder-scripts.js',
 		);
 
 		foreach ( $scripts as $handle => $path ) {
@@ -726,6 +726,7 @@ class Assets_Manager {
 					'adminUrl'            => admin_url(),
 					'isPro'               => true,
 					'modulesOptions'      => Helper::get_modules_show_hide(),
+					'savedTemplatesUrl'   => admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#savedTemplate' ),
 				)
 			);
 			wp_localize_script(

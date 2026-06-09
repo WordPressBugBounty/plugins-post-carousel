@@ -1,9 +1,15 @@
 .sp-pcp-pro-modal {
     &-wrapper {
-        width: 400px;
+        width: 480px;
         background-color: #fff;
         border-radius: 10px;
         text-align: center;
+    }
+
+    &-icon {
+        img {
+            width: 84px;
+        }
     }
 
     &-cross {

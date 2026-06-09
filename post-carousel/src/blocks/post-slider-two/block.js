@@ -8,7 +8,7 @@ import PostSliderTwoEdit from "./edit";
 const options = {
 	apiVersion: 3,
 	icon: PostSliderTwoBlockIcon,
-	category: "sp-smart-post-show",
+	category: "sp-smart-post-show-pro-blocks",
 	name: "sp-smart-post-show/post-slider-two",
 	title: "Post Slider 02",
 	description: "Display posts in full-width elegant slider with rich content.",

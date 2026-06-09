@@ -2,12 +2,12 @@
 .sp-smart-template-filter {
   display: flex;
   align-items: center;
-  // padding: 32px;
   background: #fff;
   gap: 12px;
   border-radius: 6px;
+  // padding: 32px;
   // border: 1px solid #ECECEC;
-  margin: 32px 0 0;
+  // margin: 32px 0 0;
 
   select {
     height: 36px;
@@ -64,6 +64,7 @@
 
     svg {
       padding-left: 9px;
+
       path {
         fill: none;
       }
@@ -93,6 +94,7 @@
     &:hover {
       color: var(--sp-smart-primary-2-400);
       background-color: transparent;
+
       svg path {
         fill: currentColor;
       }
@@ -102,11 +104,16 @@
   &-search {
     position: relative;
     color: #757575;
+    flex: 1;
+    min-width: 150px;
 
     input {
       padding: 6px 12px 6px 30px;
       border-color: #E0E0E0;
-      width: 460px;
+      height: 42px;
+      min-width: 270px;
+      max-width: 560px;
+      width: 42%;
 
       &::placeholder {
         color: #757575;
@@ -121,6 +128,7 @@
       display: inline-flex;
     }
   }
+
   &-sort {
     margin-left: auto;
   }
@@ -140,7 +148,7 @@
   cursor: pointer;
   border-radius: 3px;
   border: 1px solid #E0E0E0;
-  padding: 8px 10px 8px 8px;
+  padding: 8px 10px;
   text-align: left;
   font-size: 14px;
 
@@ -213,6 +221,7 @@
   .components-radio-control__group-wrapper {
     gap: 0;
   }
+
   .components-radio-control__option {
     display: flex;
     align-items: center;
@@ -223,21 +232,25 @@
     margin-bottom: 4px;
     background: 0 0;
   }
+
   .components-radio-control__option:has(.components-radio-control__input:checked) {
     background-color: var(--sp-smart-primary-2-50);
   }
+
   .components-radio-control__input:checked {
     background-color: #fff;
     border: 1px solid var(--sp-smart-primary-2-600);
   }
 
   .components-radio-control__input:checked:before {
-      background-color: var(--sp-smart-primary-2-600);
-      border: 1px solid #fff
+    background-color: var(--sp-smart-primary-2-600);
+    border: 1px solid #fff
   }
-  .components-radio-control__input[type=radio]:focus{
+
+  .components-radio-control__input[type=radio]:focus {
     box-shadow: none !important;
   }
+
   .components-radio-control__label {
     color: #2f2f2f;
     display: flex;
@@ -247,7 +260,8 @@
     line-height: 18px;
     width: 100%;
   }
-  .components-radio-control__input:checked + .components-radio-control__label {
+
+  .components-radio-control__input:checked+.components-radio-control__label {
     color: var(--sp-smart-primary-2-600);
   }
 }

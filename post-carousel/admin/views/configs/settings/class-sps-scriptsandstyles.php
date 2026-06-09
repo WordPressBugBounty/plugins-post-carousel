@@ -54,6 +54,15 @@ class SPS_ScriptsAndStyles {
 						'text_width' => 110,
 						'default'    => true,
 					),
+
+					array(
+						'id'         => 'pcp_delete_all_data',
+						'type'       => 'checkbox',
+						'class'      => 'pcp-delete-data',
+						'title'      => __( 'Clean-up Data on Deletion', 'post-carousel' ),
+						'title_info' => __( 'Delete all Smart Post Show data from the database on plugin uninstalling and deletion.', 'post-carousel' ),
+						'default'    => false,
+					),
 				),
 			)
 		);

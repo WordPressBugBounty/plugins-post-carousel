@@ -88,7 +88,7 @@ const WelcomePage = () => {
 					<iframe
 						width="510"
 						height="410"
-						src="https://www.youtube.com/embed/vnveuaiPBdc?si=2pLSHQVHgpTe9nZS&autoplay=1"
+						src="https://www.youtube.com/embed/_WxI7oyxdPA?si=za939M1X32eBO_KX&autoplay=1&autoplay=1"
 						title="YouTube video player"
 						allow="autoplay; encrypted-media"
 					></iframe>

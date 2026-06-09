@@ -7,7 +7,7 @@ import { isBlockEnabled } from "../../utils";
 const options = {
 	apiVersion: 3,
 	icon: SearchBlockIcon,
-	category: "sp-smart-post-show",
+	category: "sp-smart-post-show-pro-blocks",
 	name: "sp-smart-post-show/smart-search",
 	title: "Smart Search",
 	description: "Enable visitors to instantly find content with a stylish, powerful live search.",

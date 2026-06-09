@@ -1,5 +1,5 @@
-import { RadioControl } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
+import { BlockTypeIcon } from "../../icons/icons";
 
 const FilterSidebar = ( props ) => {
     const {
@@ -25,6 +25,20 @@ const FilterSidebar = ( props ) => {
         return acc;
     }, {});
 
+    // Calculate Free/Pro counts for Pattern Types
+    const freeProCount = allData?.reduce(
+        (acc, item) => {
+            acc.all = (acc.all || 0) + 1;
+            if (item.pro) {
+                acc.pro = (acc.pro || 0) + 1;
+            } else {
+                acc.free = (acc.free || 0) + 1;
+            }
+            return acc;
+        },
+        { all: 0, free: 0, pro: 0 }
+    );
+
     const blockTypeObject = {
         "ready-patterns": __("Block Types", "post-carousel"),
         "starter-sites": __("Category Types", "post-carousel"),
@@ -33,33 +47,40 @@ const FilterSidebar = ( props ) => {
 
     return (
         <div className="sp-smart-template-filter-category">
-            <h3 className="sp-smart-template-library-sidebar-header">
+            <h3 className="sp-smart-template-library-sidebar-header Pattern-Types">
                Pattern Types
             </h3>
             <div className="sp-smart-post-patter-type">
-                <RadioControl
-                    onChange={(v) => {
-                        changeStates("freePro", v);
-                    }}
-                    options={[
-                        {
-                            label: "All",
-                            value: "all"
-                        },
-                        {
-                            label: "Free",
-                            value: "free"
-                        },
-                        {
-                            label: "Pro",
-                            value: "pro"
-                        }
-                    ]}
-                    selected={fieldValue?.freePro}
-                />
+                {["all", "free", "pro"].map((option, index) => (
+                    <label
+                        key={index}
+                        htmlFor={`free-pro-option-${index}`}
+                        className={`components-radio-control__option ${option === fieldValue?.freePro ? "sp-active" : ""}`}
+                    >
+                        <input
+                            type="radio"
+                            id={`free-pro-option-${index}`}
+                            name="sp-smart-free-pro-option"
+                            className="components-radio-control__input"
+                            value={option}
+                            checked={option === fieldValue?.freePro}
+                            onChange={() => changeStates("freePro", option)}
+                        />
+                        <span className="components-radio-control__label">
+                            {option === "all" && "All"}
+                            {option === "free" && "Free"}
+                            {option === "pro" && "Pro"}
+                            <span>
+                                {option === "all" && `(${freeProCount?.all ?? 0})`}
+                                {option === "free" && `(${freeProCount?.free ?? 0})`}
+                                {option === "pro" && `(${freeProCount?.pro ?? 0})`}
+                            </span>
+                        </span>
+                    </label>
+                ))}
             </div>
-            <h3 className="sp-smart-template-library-sidebar-header">
-               { blockTypeObject[tabName] }
+            <h3 className="sp-smart-template-library-sidebar-header Block-Types">
+               <BlockTypeIcon /> { blockTypeObject[tabName] }
             </h3>
             { fieldOptions?.filterArr?.length > 0 && (
                 <>
