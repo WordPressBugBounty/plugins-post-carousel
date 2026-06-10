@@ -49,7 +49,7 @@ const TemplateOne = ({
 						className={`sp-ticker-img sp-img-${tickerImgShape}`}
 					/>
 				)}
-				<span> {stringTrim(data.title, titleLength)} </span>
+				<span> {data.title} </span>
 			</div>
 
 			{tickerDate && (

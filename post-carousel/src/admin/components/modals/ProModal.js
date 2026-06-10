@@ -63,12 +63,12 @@ const ProModal = ({ isOpen, onClose, hasPostCarouselPosts = false, onViewMoreBlo
 							{hasPostCarouselPosts && onViewMoreBlocks && (
 								<p className="sp-pcp-qs-classic-editor-link">
 									{__("Switch to Classic Editor?", "post-carousel")}{" "}
-									<span
-										onClick={() => onViewMoreBlocks("settings=advanced")}
-										style={{ cursor: "pointer", textDecoration: "underline" }}
+									<a className="sp-pcp-switch-to-classic"
+										href={`${sp_pcp_block_settings.homeUrl}wp-admin/edit.php?post_type=sp_post_carousel&page=pcp_help#settings=advanced`}
+										onClick={() => setTimeout(() => window.location.reload(), 100)}
 									>
 										{__("Click here", "post-carousel")}
-									</span>
+									</a>
 								</p>
 							)}
 						</div>

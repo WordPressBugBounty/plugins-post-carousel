@@ -68,7 +68,7 @@ const TemplateOne = ({ data, attributes, thumbIndex = "" }) => {
 					/>
 				)}
 				{data?.title && (
-					<span className="sp-smart-post-ticker-title">{stringTrim(data.title, titleLength)}</span>
+					<span className="sp-smart-post-ticker-title">{data.title}</span>
 				)}
 				{tickerDate && <span className="ticker-date">{date}</span>}
 			</div>

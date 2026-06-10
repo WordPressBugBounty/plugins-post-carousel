@@ -355,7 +355,7 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 							</h4>
 							<p className="sp-pcp-qs-patterns-desc">
 								{__(
-									"Choose from beautifully crafted layouts and launch stunning carousels in seconds.",
+									"Choose from beautifully crafted layouts and launch stunning post layouts in seconds.",
 									"post-carousel"
 								)}
 							</p>

@@ -256,6 +256,8 @@ class Template_Part {
 		$title_tag    = isset( $attributes['titleHTMLTag'] ) ? $attributes['titleHTMLTag'] : 'h3';
 		$title_effect = isset( $attributes['titleEffect'] ) ? $attributes['titleEffect'] : 'none';
 
+		$title_type = isset( $attributes['titleType'] ) ? $attributes['titleType'] : 'limit';
+
 		$title   = isset( $data['title'] ) ? $data['title'] : '';
 		$link    = isset( $data['link'] ) ? $data['link'] : '';
 		$target  = isset( $attributes['generalLinkOpen'] ) ? $attributes['generalLinkOpen'] : '';
@@ -268,7 +270,12 @@ class Template_Part {
 		$title_length_type = isset( $title_length['unit'] ) ? $title_length['unit'] : 'words';
 		$title_length_num  = isset( $title_length['value'] ) ? $title_length['value'] : 'words';
 
-		$title_content           = 'chars' === $title_length_type ? substr( $title, 0, $title_length_num ) : implode( ' ', array_slice( explode( ' ', $title ), 0, $title_length_num ) );
+		$title_content = $title;
+
+		if ( 'limit' === $title_type ) {
+			$title_content = 'chars' === $title_length_type ? substr( $title, 0, $title_length_num ) : implode( ' ', array_slice( explode( ' ', $title ), 0, $title_length_num ) );
+		}
+
 		$title_global_typo_class = isset( $attributes['titleGlobalTypography']['class'] ) ? $attributes['titleGlobalTypography']['class'] : '';
 
 		$target_attr = ( 'new-tab' === $target ) ? 'target=_blank' : '';

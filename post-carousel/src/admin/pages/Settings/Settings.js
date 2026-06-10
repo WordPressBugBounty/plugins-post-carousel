@@ -8,7 +8,7 @@ import "./setting-styles.scss";
 
 const Settings = (props) => {
 
-	const { setPage } = props;
+	const { setPage, initialTab } = props;
 	const [settingsOptions, setSettingsOptions] = useState(sp_pcp_block_settings?.settings);
 
 	const tabs = [
@@ -32,8 +32,11 @@ const Settings = (props) => {
 		},
 	];
 
-	// Get default tab from hash or use 'license-key'
+	// Get default tab from prop, hash or use 'site-availability'
 	const getInitialTab = () => {
+		if (initialTab) {
+			return initialTab;
+		}
 		const hash = window.location.hash.replace("#", "");
 		const tabValue = hash.split("=")[1];
 		return tabValue || "site-availability";

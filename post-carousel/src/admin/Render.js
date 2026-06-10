@@ -37,7 +37,6 @@ const integrations = sp_pcp_block_settings?.integrationOptions;
 
 const Render = () => {
 	const hashValue = window.location.hash.replace("#", "").split("=")[0];
-	const hashTabValue = window.location.hash.replace("#", "").split("=")[1];
 
 	const [blocksSettings, setBlocksSettings] = useState(options);
 	const [modulesOptions, setModulesOptions] = useState(modules);
@@ -175,7 +174,12 @@ const Render = () => {
 					integrationOptions={integrationOptions}
 					blockShowHideHandler={blockShowHideHandler}
 				/>}
-				{(page === "settings" || page?.startsWith("settings=")) && <Settings setPage={setPage} />}
+				{(page === "settings" || page?.startsWith("settings=")) && (
+					<Settings
+						setPage={setPage}
+						initialTab={page?.includes("=") ? page.split("=")[1] : undefined}
+					/>
+				)}
 			</div>
 
 			<Toaster position="top-right" reverseOrder={false} />

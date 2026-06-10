@@ -301,7 +301,8 @@ export const Title = memo(({ title, link, attributes, onClick, thumbIndex, progr
 				return;
 			}
 
-			const rawText = titleLength ? stringTrim(title, titleLength) : title;
+			// const rawText = titleLength ? stringTrim(title, titleLength) : title;
+			const rawText = title;
 			const temp = document.createElement("div");
 			const style = window.getComputedStyle(textElement);
 
@@ -428,10 +429,8 @@ export const Title = memo(({ title, link, attributes, onClick, thumbIndex, progr
 					className="sp-smart-post-title-text"
 					data-text="true"
 					dangerouslySetInnerHTML={{
-						__html: stringTrim(
-							`${thumbIndex ? `<span class="sp-thumb-item-page-id">${thumbIndex}</span>` : ""}${title}`,
-							titleLength
-						),
+						__html:`${thumbIndex ? `<span class="sp-thumb-item-page-id">${thumbIndex}</span>` : ""}${title}`,
+							titleLength,
 					}}
 				/>
 				<span dangerouslySetInnerHTML={{ __html: postBadgesPosition === "after-title" ? badgesMarkup : "" }} />

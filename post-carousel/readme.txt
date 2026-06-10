@@ -5,7 +5,7 @@ Requires at least: 5.9
 Tested up to: 7.0
 WC requires at least: 5.0
 WC tested up to: 10.8.1
-Stable tag: 4.0.3
+Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -471,10 +471,14 @@ Yes, Smart Post works with WordPress multisite networks.
 
 == Changelog ==
 
+= 4.0.4 - Jun 10, 2026 =
+* Fix: The post title length issue of post slider block.
+* Fix: The switch back to classic link issue in popup.
+
 = 4.0.3 - Jun 09, 2026 =
 * New: The Default Editor option in the plugin settings tab to set editor preference to create post showcase.
 * New: The Shortcode area added to the Saved Templates' right sidebar to copy shortcode easily.
-* Improved: WordPress minimum version requirement updated from 5.0 to 5.9.0 for better Gutenberg block compatibility.
+* Improved: WordPress minimum version requirement updated from 5.0 to 5.9 for better Gutenberg block compatibility.
 * Improved: Classic shortcodes added to the Saved Template list table.
 * Improved: The Plugin Dashboard Panel has been enhanced.
 * Improved: The Ready Patterns Library style.
