@@ -564,10 +564,15 @@ class Admin_Notices {
 			'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
 		);
 
-		$posts     = get_posts( $args );
-		$has_posts = count( $posts ) > 0;
+		$posts             = get_posts( $args );
+		$has_posts         = count( $posts ) > 0;
 		$editor_preference = get_option( 'spsp_blocks_promo_modal_choice', '' );
 		$is_block_editor   = 'block-editor' === $editor_preference;
-		wp_send_json_success( array( 'has_posts' => $has_posts, 'is_block_editor' => $is_block_editor ) );
+		wp_send_json_success(
+			array(
+				'has_posts'       => $has_posts,
+				'is_block_editor' => $is_block_editor,
+			)
+		);
 	}
 }

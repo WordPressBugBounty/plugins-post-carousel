@@ -57,6 +57,13 @@ function smart_post_template_divi_modules() {
 		public $slug = 'smart_post_template';
 
 		/**
+		 * Module icon path.
+		 *
+		 * @var string
+		 */
+		public $icon_path = '';
+
+		/**
 		 * Visual Builder support.
 		 *
 		 * @var string
