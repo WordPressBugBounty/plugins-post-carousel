@@ -1,4 +1,4 @@
-import { useEffect, useState } from "@wordpress/element";
+import { useCallback, useEffect, useState } from "@wordpress/element";
 import { Toaster, toast } from "react-hot-toast";
 import Header from "./components/layout/Header";
 import "./style.scss";
@@ -44,47 +44,61 @@ const Render = () => {
 
 	const [page, setPage] = useState(hashValue ? hashValue : "quick-start");
 
-	const postMenu = document.querySelector("#menu-posts-sp_post_carousel .wp-submenu");
-	const allItems = postMenu?.querySelectorAll("li");
+	// Store menu references in state to avoid unnecessary re-renders
+	const [menuRefs, setMenuRefs] = useState({ postMenu: null, allItems: null });
+
+	// Update menu references when needed
+	useEffect(() => {
+		const postMenu = document.querySelector("#menu-posts-sp_post_carousel .wp-submenu");
+		const allItems = postMenu?.querySelectorAll("li") || [];
+		setMenuRefs({ postMenu, allItems });
+	}, []);
+
+	// Stable callback for menu click handling
+	const postMenuAction = useCallback((e) => {
+		const currentItem = e.target.closest("li");
+		menuRefs.allItems?.forEach((element) => {
+			element.classList.remove("current");
+		});
+		currentItem?.classList.add("current");
+
+		setTimeout(() => {
+			setPage(window.location.hash.replace("#", ""));
+		}, 0);
+	}, [menuRefs.allItems]);
 
 	useEffect(() => {
-		const removeCurrentClass = () => {
-			allItems?.forEach((element) => {
-				element.classList.remove("current");
-			});
-		};
-
-		const postMenuAction = (e) => {
-			const currentItem = e.target.closest("li");
-			removeCurrentClass();
-			currentItem?.classList.add("current");
-
-			setTimeout(() => {
-				setPage(window.location.hash.replace("#", ""));
-			}, 0);
-		};
-
 		// Extract base page name from page value (e.g., "settings" from "settings=advanced")
 		const basePageName = page.includes("=") ? page.split("=")[0] : page;
 		const pageLink = ["blocks", "savedTemplate", "settings", "lite-vs-pro"].includes(basePageName) ? basePageName : "pcp_help";
 
-		const blocksMenuLi = postMenu.querySelector(`a[href$="${pageLink}"]`)?.closest("li");
+		if (menuRefs.postMenu) {
+			const blocksMenuLi = menuRefs.postMenu.querySelector(`a[href$="${pageLink}"]`)?.closest("li");
 
-		if(blocksMenuLi) {
-			removeCurrentClass();
-			blocksMenuLi.classList.add("current");
+			if (blocksMenuLi) {
+				menuRefs.allItems?.forEach((element) => {
+					element.classList.remove("current");
+				});
+				blocksMenuLi.classList.add("current");
+			}
 		}
 
 		const recommendedPage = document.querySelector(".spspc-recommended-page");
 
-		if("our-plugins" === page && recommendedPage) {
+		if ("our-plugins" === page && recommendedPage) {
 			recommendedPage.style.display = "block";
 		}
 
-		postMenu?.addEventListener("click", postMenuAction);
+		if (menuRefs.postMenu) {
+			menuRefs.postMenu.addEventListener("click", postMenuAction);
+		}
 
-		return () => postMenu?.removeEventListener("click", postMenuAction);
-	}, [page]);
+		return () => {
+			if (menuRefs.postMenu) {
+				menuRefs.postMenu.removeEventListener("click", postMenuAction);
+			}
+		};
+	}, [page, menuRefs.postMenu, menuRefs.allItems, postMenuAction]);
 
 	// Initialize Crisp chat
 	useEffect(() => {

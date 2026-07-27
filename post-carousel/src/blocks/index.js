@@ -5,6 +5,7 @@ import "./editor.scss";
 import { SmartPostShowLogoIcon } from "../icons/icons.js";
 import saveBlockCSS from "../controls/saveBlockCSS.js";
 import "../global-settings/index.js";
+import "../controls/redirect.js";
 import "./section-heading/block.js";
 import "./search-filter/block.js";
 import "./author-filter/block.js";
@@ -48,7 +49,6 @@ import "./smart-list/block.js";
 import "./shortcode/block.js";
 import "../prebuild-library/index.js";
 import "../saved-template-sidebar/index.js";
-import "./explore-blocks.js";
 
 updateCategory("sp-smart-post-show", {
 	icon: <SmartPostShowLogoIcon color="var(--sp-smart-primary-2-400)" />,

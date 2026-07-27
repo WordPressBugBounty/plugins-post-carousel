@@ -195,6 +195,9 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 			// Update settings options.
 			add_action( 'wp_ajax_sp_pcp_update_setting_options', array( $this, 'sp_pcp_update_setting_options' ) );
 
+			// Permanently dismiss the "Upgrade to Pro" header notice.
+			add_action( 'wp_ajax_sp_pcp_dismiss_upgrade_notice', array( $this, 'sp_pcp_dismiss_upgrade_notice' ) );
+
 			// Weekly schedules events.
 			add_action( 'smart_post_show_weekly_scheduled_events', array( $this, 'send_usage_data_weekly' ) );
 
@@ -538,6 +541,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 						'sp_ua_site_type'       => get_option( 'sp_ua_site_type' ) ?? '',
 						'pcp_editor_preference' => get_option( 'spsp_blocks_promo_modal_choice', '' ),
 						'savedTemplatesUrl'     => admin_url( 'edit.php?post_type=sp_post_carousel&page=pcp_help#savedTemplate' ),
+						'upgradeNoticeVisible'  => $this->is_upgrade_notice_visible(),
 					)
 				);
 			}
@@ -720,6 +724,64 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 			wp_send_json_success(
 				array(
 					'options' => get_option( 'sp_post_carousel_settings' ),
+				)
+			);
+		}
+
+		/**
+		 * Determine whether the "Upgrade to Pro" header notice should be shown.
+		 *
+		 * The notice appears only after 3 days from plugin activation and only
+		 * until the user dismisses it. The activation timestamp is read from the
+		 * existing `smart_post_show_activation_date` option (set once on install
+		 * in class-smart-post-show-updates.php); the dismissal flag from the
+		 * `sp_pcp_upgrade_notice_dismissed` option (default false).
+		 *
+		 * @return bool True when the notice should be displayed.
+		 */
+		private function is_upgrade_notice_visible() {
+			$activation_date = (int) get_option( 'smart_post_show_activation_date' );
+
+			// Hide until 3 days have passed since activation (or if unknown).
+			if ( $activation_date <= 0 || ( $activation_date + ( DAY_IN_SECONDS * 3 ) ) > current_time( 'timestamp' ) ) {
+				return false;
+			}
+
+			// Hide once the user has dismissed it.
+			if ( (bool) get_option( 'sp_pcp_upgrade_notice_dismissed', false ) ) {
+				return false;
+			}
+
+			return true;
+		}
+
+		/**
+		 * Permanently dismiss the "Upgrade to Pro" header notice.
+		 *
+		 * Stores the dismissal in the `sp_pcp_upgrade_notice_dismissed` option
+		 * (default false) so the notice is never shown again once closed.
+		 *
+		 * @return void
+		 */
+		public function sp_pcp_dismiss_upgrade_notice() {
+			// Check user capability.
+			if ( ! current_user_can( apply_filters( 'sp_pc_dashboard_capability', 'manage_options' ) ) ) {
+				wp_send_json_error( __( 'Unauthorized access.', 'post-carousel' ), 403 );
+			}
+
+			// Verify nonce.
+			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+			if ( ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) ) {
+				wp_send_json_error( __( 'Invalid nonce.', 'post-carousel' ) );
+			}
+
+			// Sanitize the flag and persist the dismissal.
+			$dismissed = isset( $_POST['dismissed'] ) ? filter_var( wp_unslash( $_POST['dismissed'] ), FILTER_VALIDATE_BOOLEAN ) : true;
+			update_option( 'sp_pcp_upgrade_notice_dismissed', $dismissed );
+
+			wp_send_json_success(
+				array(
+					'dismissed' => (bool) get_option( 'sp_pcp_upgrade_notice_dismissed', false ),
 				)
 			);
 		}
@@ -961,8 +1023,9 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 		 * Conditionally display the anonymous data consent notice.
 		 *
 		 * Ensures the current user has sufficient permissions, the notice
-		 * has not been ignored, a valid license is active, and the delay
-		 * period has passed before showing the notice.
+		 * has not been ignored, there is at least one saved template or
+		 * classic shortcode, and the delay period has passed before
+		 * showing the notice.
 		 *
 		 * @return void
 		 */
@@ -980,10 +1043,23 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 				return;
 			}
 
-			// delay logic (7 days).
+			// Check if there are any saved templates or classic shortcodes.
+			$saved_template_count    = wp_count_posts( 'sp_post_template' );
+			$classic_shortcode_count = wp_count_posts( 'sp_post_carousel' );
+
+			// Total published count from both post types.
+			$total_saved_templates    = isset( $saved_template_count->publish ) ? $saved_template_count->publish : 0;
+			$total_classic_shortcodes = isset( $classic_shortcode_count->publish ) ? $classic_shortcode_count->publish : 0;
+
+			// Do not show notice if both lists are empty.
+			if ( $total_saved_templates < 1 && $total_classic_shortcodes < 1 ) {
+				return;
+			}
+
+			// delay logic (3 days).
 			$this->maybe_set_notice_start_time();
 
-			if ( ! $this->has_notice_delay_passed( 7 ) ) {
+			if ( ! $this->has_notice_delay_passed( 3 ) ) {
 				return;
 			}
 
@@ -1089,7 +1165,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 				</style>
 
 				<div class="notice notice-info sp_pcp-anonymous-data-notice">
-					<img src="<?php echo esc_url( $plugin_logo_image ); ?>" alt="Smart Post"/>
+					<!-- <img src="<?php echo esc_url( $plugin_logo_image ); ?>" alt="Smart Post"/> -->
 					<div class="sp_pcp-anonymous-data-notice-wrapper">
 						<div>
 							<h3>

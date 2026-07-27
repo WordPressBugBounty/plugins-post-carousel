@@ -85,6 +85,28 @@ class Smart_Post_Show {
 	}
 
 	/**
+	 * Check whether Divi 5.x is the active builder version.
+	 *
+	 * Divi 5 exposes the et_builder_d5_enabled() function and/or an
+	 * ET_BUILDER_VERSION constant of 5.0 or greater. Anything else is
+	 * treated as classic Divi 4.
+	 *
+	 * @since 4.0.6
+	 * @return bool True if Divi 5.x is active.
+	 */
+	private static function sp_is_divi_5_active() {
+		if ( function_exists( 'et_builder_d5_enabled' ) && et_builder_d5_enabled() ) {
+			return true;
+		}
+
+		if ( defined( 'ET_BUILDER_VERSION' ) ) {
+			return version_compare( ET_BUILDER_VERSION, '5.0', '>=' );
+		}
+
+		return false;
+	}
+
+	/**
 	 * Load the required dependencies for this plugin.
 	 *
 	 * Include the following files that make up the plugin:
@@ -165,12 +187,6 @@ class Smart_Post_Show {
 		require_once SP_PC_PATH . 'admin/views/notices/review.php';
 
 		/**
-		 * The class responsible for admin promo notices.
-		 */
-		require_once SP_PC_PATH . 'includes/Admin/Admin_Notices.php';
-		new \SmartPostShow\Admin\Admin_Notices();
-
-		/**
 		 * The class blocks helper.
 		 */
 		require_once SP_PC_PATH . 'blocks/includes/class-block-helper.php';
@@ -187,9 +203,52 @@ class Smart_Post_Show {
 
 		/**
 		 * Divi.
+		 *
+		 * Divi 5 uses a React/JSON module architecture, while Divi 4 uses the
+		 * classic ET_Builder_Module PHP class. Load the matching integration
+		 * based on the active Divi version. The Divi 5 REST API is registered
+		 * independently on rest_api_init.
 		 */
 		if ( $divi_integration ) {
-			require_once SP_PC_PATH . 'admin/page-builder/divi/smart-post-show-divi.php';
+			// Register the Divi 5 REST API routes (template list + preview HTML).
+			add_action(
+				'rest_api_init',
+				function () {
+					require_once SP_PC_PATH . 'admin/page-builder/divi5/server/rest-api.php';
+					if ( function_exists( 'SmartPostShow\\Admin\\PageBuilders\\Divi5\\spsp_divi5_register_rest_routes' ) ) {
+						\SmartPostShow\Admin\PageBuilders\Divi5\spsp_divi5_register_rest_routes();
+					}
+				},
+				10
+			);
+
+			// Load the Divi 5 server-side module (self-registers with Divi's dependency tree).
+			add_action(
+				'init',
+				function () {
+					if ( ! self::sp_is_divi_5_active() ) {
+						return;
+					}
+					require_once SP_PC_PATH . 'admin/page-builder/divi5/server/index.php';
+				},
+				10
+			);
+
+			// Load the version-appropriate builder integration.
+			add_action(
+				'init',
+				function () {
+					if ( self::sp_is_divi_5_active() ) {
+						// Divi 5 module.
+						require_once SP_PC_PATH . 'admin/page-builder/divi5/Divi5_Builder.php';
+						\SmartPostShow\Admin\PageBuilders\Divi5\Divi5_Builder::init();
+					} elseif ( defined( 'ET_BUILDER_VERSION' ) || class_exists( 'ET_Builder_Module' ) ) {
+						// Classic Divi 4 module (self-registers on et_builder_ready).
+						require_once SP_PC_PATH . 'admin/page-builder/divi/smart-post-show-divi.php';
+					}
+				},
+				20
+			);
 		}
 
 		/**

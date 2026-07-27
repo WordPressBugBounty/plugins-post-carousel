@@ -51,7 +51,7 @@ const InspectorControl = ({ Inspector, attributes, setAttributes, isSelected = f
 					<div className="sp-smart-post-tab-panel-doc-link-wrapper">
 						<div className="sp-smart-post-block-doc-link">
 							<a href={blockDocLink[blockName]} target="_blank" rel="noreferrer">
-								Documentation <ArrowUpRight />
+								Documentation
 							</a>
 						</div>
 					</div>

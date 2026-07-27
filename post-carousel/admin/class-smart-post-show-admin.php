@@ -100,7 +100,7 @@ class Smart_Post_Show_Admin {
 	public function add_plugin_action_links( $links, $file ) {
 		if ( SMART_POST_SHOW_BASENAME === $file ) {
 			$new_links       = array(
-				sprintf( '<a href="%s">%s</a>', admin_url( 'post-new.php?post_type=sp_post_template&spblock_inserter=true' ), __( 'Add Post Layout', 'post-carousel' ) ),
+				sprintf( '<a href="%s">%s</a>', admin_url( 'post-new.php?post_type=page&spblock_inserter=true' ), __( 'Add Post Layout', 'post-carousel' ) ),
 			);
 			$links['go_pro'] = sprintf( '<a href="%s" target="_blank" style="%s">%s</a>', 'https://wpsmartpost.com/', 'color:#1dab87;font-weight:bold', __( 'Go Pro!', 'post-carousel' ) );
 			return array_merge( $new_links, $links );

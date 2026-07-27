@@ -529,7 +529,6 @@ button.sp-smart-post-header-control-reset {
 		outline: none;
 	}
 }
-
 .block-editor-block-inspector {
 	.sp-smart-post-block-doc-link a {
 		display: flex;
@@ -551,6 +550,10 @@ button.sp-smart-post-header-control-reset {
 		box-shadow: none;
 		outline: none;
 	}
+}
+
+[class*=version-7] .block-editor-block-inspector .sp-smart-post-block-doc-link a {
+	margin-left: 16px;
 }
 
 .components-popover:has(.sp-smart-post-icon-picker-popup) {

@@ -124,5 +124,34 @@
 			sel.removeAllRanges();
 			sel.addRange(r);
 		}
+
+		/* Add Visual Block Editor button on the list page */
+		function addVisualBlockEditorButton() {
+			if (typeof ajaxurl === 'undefined') {
+				return false;
+			}
+			if (document.body.classList.contains('post-type-sp_post_carousel') &&
+				document.body.classList.contains('edit-php')) {
+				var pageTitleAction = document.querySelector('.page-title-action');
+				if (pageTitleAction && !document.querySelector('.sp-pcp-visual-block-editor-btn')) {
+					var button = document.createElement('a');
+					button.href = ajaxurl.replace('admin-ajax.php', 'post-new.php?post_type=page&spblock_inserter=true');
+					button.className = 'sp-pcp-visual-block-editor-btn';
+					button.textContent = 'Start with Smart Post Blocks';
+					pageTitleAction.parentNode.insertBefore(button, pageTitleAction.nextSibling);
+					return true;
+				}
+			}
+			return false;
+		}
+
+		function tryAddButton() {
+			if (addVisualBlockEditorButton()) {
+				return;
+			}
+			setTimeout(tryAddButton, 100);
+		}
+
+		tryAddButton();
 	})
 })(jQuery)

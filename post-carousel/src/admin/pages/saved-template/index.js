@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "@wordpress/element";
 import { BuilderLeftArrow, BuilderRightArrow } from "../../components/icons/builder";
-import { SimplePlusIcon, CheckIcon, CopyIcon, DeleteBinIcon, EditPencilIcon } from "../../components/icons/ui";
+import { CheckIcon, CopyIcon, DeleteBinIcon, EditPencilIcon } from "../../components/icons/ui";
 import { useDispatch, useSelect, resolveSelect, dispatch } from "@wordpress/data";
 import { toast } from "react-hot-toast";
 import { Button, Spinner, Tooltip } from "@wordpress/components";
@@ -26,15 +26,7 @@ const SavedTemplatesPromo = ({ addNewTemplate }) => {
 						<b>shortcodes</b> — perfect for page builders like <b>Elementor, Divi, WPBakery</b>, and more.
 					</p>
 					<p className="sp-pcp-saved-template-promo__desc">
-						Smart Post blocks work directly on any page or post in Gutenberg. To reuse blocks use
-						WordPress's built-in{" "}
-						<a
-							href="https://wpsmartpost.com/docs/how-to-create-gutenberg-reusable-blocks-with-patterns-in-wordpress/"
-							target="_blank"
-						>
-							<b>Reusable Blocks (Patterns)</b>
-						</a>{" "}
-						feature.
+						Smart Post blocks work directly on any page or post in Gutenberg.
 					</p>
 				</div>
 				<a
@@ -97,46 +89,16 @@ const SavedTemplate = () => {
 	const [noPostText, setNoPostText] = useState(false);
 
 	const [isOpen, setOpen] = useState(false);
-	const [hasPostCarouselPosts, setHasPostCarouselPosts] = useState(false);
 	const openModal = () => setOpen(true);
 	const closeModal = () => setOpen(false);
 
 	const { totalSaveTemplate } = useTotalSaveTemplate();
 
-	// Check for show_pro_modal URL parameter to auto-open modal and check posts
+	// Check for show_pro_modal URL parameter to auto-open modal
 	useEffect(() => {
 		const urlParams = new URLSearchParams(window.location.search);
 		if (urlParams.get("show_pro_modal") === "1") {
 			setOpen(true);
-			// Check if there are sp_post_carousel posts
-			const checkPosts = async () => {
-				try {
-					const response = await fetch(`${sp_pcp_block_settings?.adminUrl || ""}admin-ajax.php`, {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/x-www-form-urlencoded",
-						},
-						body: new URLSearchParams({
-							action: "check_sp_post_carousel_posts",
-							nonce: sp_pcp_block_settings?.nonce || "",
-						}),
-					});
-
-					if (response.ok) {
-						const contentType = response.headers.get("content-type");
-						if (contentType && contentType.includes("application/json")) {
-							const data = await response.json();
-							if (data.success && data.data?.has_posts) {
-								setHasPostCarouselPosts(true);
-							}
-						}
-					}
-				} catch (error) {
-					console.error("Error checking posts:", error);
-				}
-			};
-			checkPosts();
-
 			// Remove show_pro_modal from URL
 			urlParams.delete("show_pro_modal");
 			const newUrl = `${window.location.pathname}${urlParams.toString() ? "?" + urlParams.toString() : ""}${window.location.hash}`;
@@ -160,26 +122,11 @@ const SavedTemplate = () => {
 		[searchValue]
 	);
 
-	// Get Classic Shortcode Posts count.
-	const classicShortcodeCount = useSelect(
-		(select) =>
-			select("core")?.getEntityRecords("postType", "sp_post_carousel", {
-				status: "any",
-				per_page: -1,
-				search: searchValue,
-				_fields: ["id"],
-			})?.length || 0,
-		[searchValue]
-	);
-
 	// Total count for pagination.
-	const totalPostCount = blockTemplateCount + classicShortcodeCount;
+	const totalPostCount = blockTemplateCount;
 
-	// Dynamic table columns - only show editor_type when classic shortcodes exist.
-	const tableCol =
-		classicShortcodeCount > 0
-			? ["checkBox", "title", "editor_type", "shortcode", "date", "action"]
-			: ["checkBox", "title", "shortcode", "date", "action"];
+	// Table columns - fixed for saved templates only.
+	const tableCol = ["checkBox", "title", "shortcode", "date", "action"];
 
 	// Get Block Editor Templates.
 	const blockTemplateList = useSelect(
@@ -193,41 +140,22 @@ const SavedTemplate = () => {
 		[searchValue]
 	);
 
-	// Get Classic Shortcode Posts.
-	const classicShortcodeList = useSelect(
-		(select) =>
-			select("core")?.getEntityRecords("postType", "sp_post_carousel", {
-				status: "any",
-				per_page: -1,
-				search: searchValue,
-				_fields: ["id", "modified", "title", "status"],
-			}) || [],
-		[searchValue]
-	);
-
-	// Combine and sort by modified date (newest first).
-	const allTemplates = [...blockTemplateList, ...classicShortcodeList].sort((a, b) => {
+	// Sort by modified date (newest first).
+	const allTemplates = [...blockTemplateList].sort((a, b) => {
 		return new Date(b.modified) - new Date(a.modified);
 	});
 
-	// Paginate combined list.
+	// Paginate list.
 	const savedTemplateList = allTemplates.slice(
 		searchValue ? 0 : (currentPage - 1) * 10,
 		searchValue ? 10 : currentPage * 10
 	);
 
 	// Get Delete entity record.
-	const { deleteEntityRecord, editEntityRecord, saveEditedEntityRecord, saveEntityRecord, invalidateResolution } =
+	const { deleteEntityRecord, editEntityRecord, saveEditedEntityRecord, invalidateResolution } =
 		useDispatch("core");
 
-	// Helper to determine post type from item.
-	const getPostType = (item) => {
-		// Check if item has a type property or determine from the list
-		const isBlockTemplate = blockTemplateList?.some((bt) => bt.id === item.id);
-		return isBlockTemplate ? "sp_post_template" : "sp_post_carousel";
-	};
-
-	const deleteItemHandler = async (itemId = null, postType = null) => {
+	const deleteItemHandler = async (itemId = null) => {
 		const deleteId = itemId ? [itemId] : checkId;
 		if (deleteId?.length < 1) {
 			return;
@@ -238,11 +166,8 @@ const SavedTemplate = () => {
 			await Promise.all(
 				deleteId.map(async (id) => {
 					try {
-						// Determine post type if not provided.
-						const type = postType || getPostType({ id });
-						await deleteEntityRecord("postType", type, id, { force: true });
+						await deleteEntityRecord("postType", "sp_post_template", id, { force: true });
 					} catch (error) {
-						// console.error(`Error deleting template ID: ${id}`, error);
 						notify(`Error deleting template ID: ${id}: ${error} `);
 					}
 				})
@@ -265,19 +190,15 @@ const SavedTemplate = () => {
 					if (!id) {
 						return;
 					}
-					// Determine post type for this ID
-					const postType = getPostType({ id });
-
 					// Check if record exists in the store
-					const record = await resolveSelect("core").getEntityRecord("postType", postType, id);
+					const record = await resolveSelect("core").getEntityRecord("postType", "sp_post_template", id);
 
 					if (!record) {
 						return;
 					}
-					await editEntityRecord("postType", postType, id, { status: newStatus });
-					await saveEditedEntityRecord("postType", postType, id);
+					await editEntityRecord("postType", "sp_post_template", id, { status: newStatus });
+					await saveEditedEntityRecord("postType", "sp_post_template", id);
 				} catch (error) {
-					// console.error(`Error update template ID: ${id}`, error);
 					notify(`Error update template ID: ${id}: ${error} `);
 				}
 			})
@@ -326,9 +247,7 @@ const SavedTemplate = () => {
 			return;
 		}
 		try {
-			const postType = getPostType(item);
-			const shortcode =
-				postType === "sp_post_template" ? `[smart_post id="${item.id}"]` : `[smart_post_show id="${item.id}"]`;
+			const shortcode = `[smart_post id="${item.id}"]`;
 
 			const copied = await copyText(shortcode);
 
@@ -391,14 +310,10 @@ const SavedTemplate = () => {
 	};
 
 	const duplicateShortcodeHandler = async (item) => {
-		// Only check limit for block templates, not classic shortcodes
-		const postType = getPostType(item);
-		if (postType === "sp_post_template") {
-			const totalTemplate = await totalSaveTemplate();
-			if (totalTemplate >= 2) {
-				openModal();
-				return;
-			}
+		const totalTemplate = await totalSaveTemplate();
+		if (totalTemplate >= 2) {
+			openModal();
+			return;
 		}
 
 		try {
@@ -419,20 +334,10 @@ const SavedTemplate = () => {
 				return;
 			}
 
-			// Invalidate both lists to refresh.
+			// Invalidate list to refresh.
 			invalidateResolution("getEntityRecords", [
 				"postType",
 				"sp_post_template",
-				{
-					status: "any",
-					per_page: -1,
-					search: searchValue,
-					_fields: ["id", "modified", "title", "status"],
-				},
-			]);
-			invalidateResolution("getEntityRecords", [
-				"postType",
-				"sp_post_carousel",
 				{
 					status: "any",
 					per_page: -1,
@@ -484,7 +389,6 @@ const SavedTemplate = () => {
 		e.preventDefault();
 
 		const totalTemplate = await totalSaveTemplate();
-		setHasPostCarouselPosts(false);
 
 		if (totalTemplate >= 2) {
 			openModal();
@@ -496,11 +400,7 @@ const SavedTemplate = () => {
 	return (
 		<>
 			<div className="sp-pcp-blocks-setting-saved-template-page">
-				{/* <Button variant="secondary" onClick={ openModal }>
-                Open Modal
-            </Button> */}
 				<ProModal
-					hasPostCarouselPosts={hasPostCarouselPosts}
 					onViewMoreBlocks={handleViewMoreBlocks}
 					isOpen={isOpen}
 					onClose={closeModal}
@@ -531,7 +431,7 @@ const SavedTemplate = () => {
 									className="sp-pcp-blocks-setting-template-search-field"
 									type="text"
 									placeholder="Search..."
-									spellCheck="false"
+									spellCheck={false}
 									data-ms-editor="true"
 									onChange={searchValueHandler}
 								/>
@@ -570,8 +470,6 @@ const SavedTemplate = () => {
 													}}
 													checked={allCheck}
 												/>
-											) : item === "editor_type" ? (
-												"Editor Type"
 											) : (
 												item
 											)}
@@ -615,25 +513,12 @@ const SavedTemplate = () => {
 													{item?.title?.rendered || "(No Title)"}
 												</a>
 											</td>
-											{classicShortcodeCount > 0 && (
-												<td className="sp-pcp-blocks-setting-saved-template-table-editor_type">
-													<span
-														className={`sp-pcp-editor-type-badge ${getPostType(item) === "sp_post_template" ? "block-editor" : "classic-editor"}`}
-													>
-														{getPostType(item) === "sp_post_template"
-															? "Block Editor"
-															: "Classic"}
-													</span>
-												</td>
-											)}
 											<td
 												className="sp-pcp-blocks-setting-saved-template-table-shortcode"
 												onClick={() => copyShortCodeHandler(item)}
 											>
 												<span className="sp-smart-saved-template-shortcode-text">
-													{getPostType(item) === "sp_post_template"
-														? `[smart_post id="${item?.id}"]`
-														: `[smart_post_show id="${item?.id}"]`}
+													{`[smart_post id="${item?.id}"]`}
 												</span>{" "}
 												{shortcodeCoped === item.id && (
 													<span className="sp-smart-post-shortcode-copy-tooltip">

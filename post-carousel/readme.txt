@@ -4,8 +4,8 @@ Tags:  post grid, post carousel, list category posts, gutenberg blocks, page bui
 Requires at least: 5.9
 Tested up to: 7.0
 WC requires at least: 5.0
-WC tested up to: 10.8.1
-Stable tag: 4.0.5
+WC tested up to: 10.9.4
+Stable tag: 4.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -471,8 +471,18 @@ Yes, Smart Post works with WordPress multisite networks.
 
 == Changelog ==
 
+= 4.0.6 - Jul 27, 2026 =
+* New: "Start with Smart Post Blocks" button on the Manage View screen — opens the block editor so you can start building Post layouts visually with Smart Posts blocks.
+* Improved: The plugin quick start page's call to action enhanced.
+* Improved: Replaced unserialize() with WordPress plugins_api() for the recommended plugin section.
+* Improved: The plugin menus are reorganized.
+* Fix: The Saved Template Divi Addon compatibility issue with Divi 5.
+* Fix: The Post Carousel 01 and Post Carousel 02 category was not showing at Smart Design Library.
+* Removed: The modal to set editor preference to create post showcase.
+* Tested: WooCommerce 10.9.4 compatibility.
+
 = 4.0.5 - Jun 19, 2026 =
-* Fix: The warning found in the Widget Editor for not block theme.
+* Fix: The warning found in the Widget Editor for the non-block theme.
 
 = 4.0.4 - Jun 10, 2026 =
 * Fix: The post title length issue of post slider block.

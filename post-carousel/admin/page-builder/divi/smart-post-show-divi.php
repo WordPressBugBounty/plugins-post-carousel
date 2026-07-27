@@ -40,6 +40,12 @@ function smart_post_template_divi_modules() {
 		return;
 	}
 
+	// Bail if the module class is already declared to avoid a fatal
+	// "Cannot declare class ... already in use" when this runs more than once.
+	if ( class_exists( 'Smart_Post_Template_Module' ) ) {
+		return;
+	}
+
 	/**
 	 * Smart Post Template Module Class.
 	 *

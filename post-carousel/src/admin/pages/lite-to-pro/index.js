@@ -461,8 +461,8 @@ const LightToPro = () => {
 									<StarIcon color='#fff' />
 									<StarIcon color='#fff' />
 								</div>
-								<span className="spspc-testimonial-rating-score">4.8/5</span>
-								<span className="spspc-testimonial-review-count">130+ Reviews</span>
+								<span className="spspc-testimonial-rating-score">4.9/5</span>
+								<span className="spspc-testimonial-review-count">140+ Reviews</span>
 							</a>
 						</div>
 						<h2 className="spspc-testimonial-title">

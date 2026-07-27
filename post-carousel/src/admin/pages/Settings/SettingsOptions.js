@@ -3,7 +3,7 @@ import { __ } from "@wordpress/i18n";
 import Toggle from "react-toggle";
 import Select from "react-select";
 import { SelectField } from "../../../components";
-import { saveSettingOptions, renderInfoText, InfoText, SaveAndReset } from "./functions";
+import { saveSettingOptions, renderInfoText, SaveAndReset } from "./functions";
 
 const jsToPhpBool = (val) => {
 	return val ? "1" : "0";
@@ -100,35 +100,24 @@ export const SiteAvailability = ({ settingsOptions, setSettingsOptions }) => {
 export const Advanced = ({ settingsOptions, setSettingsOptions }) => {
 	const [initialValues, setInitialValues] = useState({
 		cleanDataOnDelete: phpToJsBool[settingsOptions?.pcp_delete_all_data] || false,
-		editorPreference: sp_pcp_block_settings?.pcp_editor_preference || '',
-		// googleFonts: phpToJsBool[settingsOptions?.pcp_enqueue_google_font] || false,
 	});
 	const [isSaving, setIsSaving] = useState(false);
 
 	const [cleanDataOnDelete, setCleanDataOnDelete] = useState(initialValues.cleanDataOnDelete);
-	const [editorPreference, setEditorPreference] = useState(initialValues.editorPreference);
 
-	// const [googleFonts, setGoogleFonts] = useState(
-	// 	initialValues.googleFonts
-	// );
-
-	const isChanged = initialValues.cleanDataOnDelete !== cleanDataOnDelete || initialValues.editorPreference !== editorPreference;
+	const isChanged = initialValues.cleanDataOnDelete !== cleanDataOnDelete;
 
 	const saveAdvancedControls = (actionType = "save") => {
 		const newCleanOnDelete = cleanDataOnDelete;
-		const newEditorPreference = editorPreference;
-		// const newGoogleFonts = googleFonts;
 
 		const updatedSettings = {
 			pcp_delete_all_data: jsToPhpBool(newCleanOnDelete),
 		};
 		setIsSaving(true);
 
-		saveSettingOptions(updatedSettings, actionType, setSettingsOptions, null, newEditorPreference).then(() => {
+		saveSettingOptions(updatedSettings, actionType, setSettingsOptions).then(() => {
 			setInitialValues({
 				cleanDataOnDelete: newCleanOnDelete,
-				editorPreference: newEditorPreference,
-				// googleFonts: newGoogleFonts,
 			});
 			setIsSaving(false);
 		});
@@ -153,48 +142,6 @@ export const Advanced = ({ settingsOptions, setSettingsOptions }) => {
 					/>
 				</div>
 			</div>
-			<div className="sp-pcp-settings-option">
-				<div className="sp-pcp-option-label-wrapper">
-					<span className="sp-pcp-component-title">
-						{__("Default Editor", "post-carousel")}
-					</span>
-					<span className="sp-pcp-option-help-text">
-						{__("Choose which editor opens when you click 'Add New Show'. Pick 'Ask each time' to keep the welcome popup.", "post-carousel")}
-					</span>
-				</div>
-				<div className="sp-pcp-blocks-settings-select-field">
-					<SelectField
-						value={editorPreference}
-						onChange={(val) => setEditorPreference(val)}
-						items={[
-							{
-								label: __("Ask each time", "post-carousel"),
-								value: "",
-							},
-							{
-								label: __("Block Editor", "post-carousel"),
-								value: "block_editor",
-							},
-							{
-								label: __("Classic Shortcode", "post-carousel"),
-								value: "classic_shortcode",
-							},
-						]}
-					/>
-				</div>
-			</div>
-			{/* <div className="sp-pcp-settings-toggle sp-pcp-settings-option">
-				<span className="sp-pcp-component-title">
-					{__("Google Fonts", "post-carousel")}
-				</span>
-				<div className="sp-pcp-blocks-settings-toggle-btn">
-					<Toggle
-						checked={googleFonts}
-						icons={false}
-						onChange={() => setGoogleFonts(!googleFonts)}
-					/>
-				</div>
-			</div> */}
 
 			<SaveAndReset onSave={() => saveAdvancedControls("save")} isChanged={isChanged} isSaving={isSaving} />
 		</div>

@@ -10,7 +10,7 @@
 
 .sp-pcp-settings-getting-start-page-content {
   display: flex;
-  gap: 40px;
+  gap: 24px;
   align-items: flex-start;
 }
 
@@ -319,13 +319,16 @@
     box-shadow: none;
     padding: 14px 18px;
 
-    &:nth-last-child(-n+2) {
-      opacity: 0.7;
-    }
+    // &:nth-last-child(-n+2) {
+    //   opacity: 0.7;
+    // }
 
     .sp-pcp-pro-blocks-badge {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .3s ease-in-out;
     }
+
 
     .sp-pcp-blocks-settings-card-icon {
       width: 48px;
@@ -336,6 +339,10 @@
       justify-content: center;
     }
   }
+  .sp-pcp-blocks-settings-card &:hover .sp-pcp-pro-blocks-badge {
+    visibility: visible;
+    opacity: 1;
+  } 
 }
 
 .sp-pcp-qs-blocks-gradient {
@@ -371,12 +378,19 @@
     box-shadow: none !important;
     padding: 14px 18px;
 
-    &:nth-last-child(-n+2) {
-      opacity: 0.7;
-    }
+    // &:nth-last-child(-n+2) {
+    //   opacity: 0.7;
+    // }
 
     .sp-pcp-pro-blocks-badge {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .3s ease-in-out;
+    }
+
+    &:hover .sp-pcp-pro-blocks-badge {
+      visibility: visible;
+      opacity: 1;
     }
 
     .sp-pcp-blocks-settings-card-icon {
@@ -483,6 +497,7 @@
   flex-direction: column;
   gap: 24px;
   top: 20px;
+  position: sticky;
 }
 
 // Patterns Library Card

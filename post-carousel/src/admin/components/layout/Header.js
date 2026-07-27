@@ -1,9 +1,9 @@
-import { useEffect, useState } from "@wordpress/element";
+import { useEffect, useState, useRef } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
 import useGetChangeLogData from "../../hooks/getChangeLogData";
 import { Arrow, ArrowRight } from "../icons/navigation";
 import { Logo, OurPluginsIcon } from "../icons/brand";
-import { LogNoticeIcon, SpikerNoticeIcon, Support, Blog, Community, DocsStroked, FeatRequest, GetHelp, Roadmap, SetupWizard, TechSupport, Video, WhatsNew, ChangeLogNoticeIcon } from "../icons/ui";
+import { LogNoticeIcon, Blog, Community, DocsStroked, FeatRequest, GetHelp, Roadmap, SetupWizard, TechSupport, Video, WhatsNew } from "../icons/ui";
 import { CloseIcon } from "../../../prebuild-library/icons";
 
 const GreenCheckIcon = () => (
@@ -61,11 +61,23 @@ const GetHelpItems = [
 		Icon: Community,
 		link: "https://community.shapedplugin.com/portal/",
 	},
+	{
+		title: __("About Us", "post-carousel"),
+		Icon: DocsStroked,
+		link: "#about-us",
+		value: "about-us",
+		internal: true,
+	},
 ];
 
 const Header = ({ page, setPage, modulesOptions }) => {
 	const [changeLogToggle, setChangeLogToggle] = useState(false);
 	const [changeLodData, setChangeLogData] = useState(null);
+	const [showUpgradeNotice, setShowUpgradeNotice] = useState(!!sp_pcp_block_settings?.upgradeNoticeVisible);
+	const [activeItemPosition, setActiveItemPosition] = useState({ left: 0, width: 0 });
+	const navRef = useRef();
+	const itemsRef = useRef({});
+	const getHelpRef = useRef();
 
 	const { getChangeLog } = useGetChangeLogData();
 
@@ -84,48 +96,109 @@ const Header = ({ page, setPage, modulesOptions }) => {
 
 	useEffect(() => {
 		const closeChangeLog = (e) => {
-			if (e.target.classList.contains("show-change-log")) {
-				setChangeLogToggle(false);
-				document.querySelector("body").classList.remove("show-change-log");
+			if (changeLogToggle) {
+				const changelogEl = document.querySelector(".sp-pcp-change-log");
+				if (changelogEl && !changelogEl.contains(e.target)) {
+					setChangeLogToggle(false);
+					document.querySelector("body").classList.remove("show-change-log");
+				}
 			}
 		};
 		document.addEventListener("click", closeChangeLog);
 		return () => document.removeEventListener("click", closeChangeLog);
-	}, []);
+	}, [changeLogToggle]);
 
 	const enabledSavedTemplate = modulesOptions?.some((item) => item.module_name === "saved-template" && item.show);
 
 	useEffect(() => {
 		const postMenu = document.getElementById("menu-posts-sp_post_carousel");
+		if (!postMenu) {
+			return;
+		}
 		const saveTemplateItem = postMenu?.querySelectorAll("li");
 
-		if(!enabledSavedTemplate) {
-			saveTemplateItem[3].style.display = "none";
-		}else {
-			saveTemplateItem[3].style.display = "block";
+		if (saveTemplateItem && saveTemplateItem.length > 3) {
+			if (!enabledSavedTemplate) {
+				saveTemplateItem[3].style.display = "none";
+			} else {
+				saveTemplateItem[3].style.display = "block";
+			}
 		}
 
-	}, [enabledSavedTemplate])
+		// Initialize recommended plugins wrapper visibility on mount
+		const pluginsContainer = document.querySelector(".spspc-recommended-page");
+		if (pluginsContainer) {
+			if (page === "our-plugins") {
+				pluginsContainer.style.display = "block";
+			} else {
+				pluginsContainer.style.display = "none";
+			}
+		}
+	}, [enabledSavedTemplate, page]);
+
+	// Update sliding indicator position when current page changes
+	useEffect(() => {
+		if (page === "about-us") {
+			// Position indicator below Get Help button
+			const getHelpEl = getHelpRef.current;
+			const nav = navRef.current;
+			if (getHelpEl && nav) {
+				const navRect = nav.getBoundingClientRect();
+				const getHelpRect = getHelpEl.getBoundingClientRect();
+				setActiveItemPosition({
+					left: getHelpRect.left - navRect.left,
+					width: getHelpRect.width,
+				});
+			}
+		} else if (itemsRef.current[page]) {
+			// Position indicator below nav item
+			const item = itemsRef.current[page];
+			const nav = navRef.current;
+			if (item && nav) {
+				const navRect = nav.getBoundingClientRect();
+				const itemRect = item.getBoundingClientRect();
+				setActiveItemPosition({
+					left: itemRect.left - navRect.left,
+					width: itemRect.width,
+				});
+			}
+		}
+
+		// Show/hide recommended plugins wrapper based on active page
+		const pluginsContainer = document.querySelector(".spspc-recommended-page");
+		if (pluginsContainer) {
+			if (page === "our-plugins") {
+				pluginsContainer.style.display = "block";
+			} else {
+				pluginsContainer.style.display = "none";
+			}
+		}
+	}, [page]);
 
 	const tabChange = (e) => {
-		const targetValue = e.target.getAttribute( "value" );
-		setPage( targetValue );
+		e.preventDefault();
+		const targetLink = e.currentTarget.closest("a");
+		const targetValue = targetLink.getAttribute("value");
+		setPage(targetValue);
+		window.location.hash = targetValue;
+	};
 
-		const recommendedPage = document.querySelector(".spspc-recommended-page");
+	// Permanently dismiss the upgrade notice: hide it immediately and persist the
+	// choice via AJAX so it never shows again on subsequent page loads.
+	const dismissUpgradeNotice = () => {
+		setShowUpgradeNotice(false);
 
-		if(!recommendedPage) return;
+		const formData = new FormData();
+		formData.append("action", "sp_pcp_dismiss_upgrade_notice");
+		formData.append("nonce", sp_pcp_block_settings?.nonce);
+		formData.append("dismissed", true);
 
-		if("our-plugins" === targetValue) {
-			recommendedPage.style.display = "block";
-		}else{
-			recommendedPage.style.display = "none";
-		}
-
-	}
+		fetch(ajaxurl, { method: "POST", body: formData }).catch(() => {});
+	};
 
 	const navigationItems = [
 		{
-			title: __("Getting Started", "post-carousel"),
+			title: __("Dashboard", "post-carousel"),
 			value: "quick-start",
 			href: "#",
 			show: true,
@@ -168,12 +241,6 @@ const Header = ({ page, setPage, modulesOptions }) => {
 			show: true,
 		},
 		{
-			title: __("About Us", "post-carousel"),
-			value: "about-us",
-			href: "#about-us",
-			show: true,
-		},
-		{
 			title: __("Our Plugins", "post-carousel"),
 			value: "our-plugins",
 			href: "#our-plugins",
@@ -181,6 +248,16 @@ const Header = ({ page, setPage, modulesOptions }) => {
 			icon: <OurPluginsIcon />,
 		},
 	];
+
+	const getNavDividerClass = (value) => {
+		if (value === "lite-vs-pro") {
+			return "sp-pcp-nav-divider";
+		}
+		if (value === "our-plugins") {
+			return "sp-pcp-nav-item-with-icon";
+		}
+		return "";
+	};
 
 	return (
 		<>
@@ -206,12 +283,13 @@ const Header = ({ page, setPage, modulesOptions }) => {
 				)}
 			</div>
 
-			<div className="sp-pcp-blocks-settings-page-header">
+			{/* Upgrade Notice with Close Button */}
+			{showUpgradeNotice && (
 				<div className="sp-pcp-green-header-notice">
 					<div className="sp-pcp-green-header-notice-content">
 						<GreenCheckIcon />
 						<span className="sp-pcp-green-header-notice-text">
-							<strong>You're on Lite</strong> — unlock the full power at <strong>50% OFF. Lifetime Deal.</strong> Pay once, Use forever.
+							You're currently using <strong>Smart Post Lite</strong>. To access additional features, consider
 						</span>
 						<a
 							className="sp-pcp-green-header-notice-link"
@@ -222,64 +300,94 @@ const Header = ({ page, setPage, modulesOptions }) => {
 							{__("Upgrade to Pro", "post-carousel")}
 							<ArrowRight />
 						</a>
+						<button
+							className="sp-pcp-green-header-notice-close"
+							onClick={dismissUpgradeNotice}
+							type="button"
+						>
+							<CloseIcon />
+						</button>
 					</div>
 				</div>
-				<div className="sp-pcp-blocks-settings-page-header-body">
+			)}
+
+			{/* Header with Three-Column Layout */}
+			<div className="sp-pcp-blocks-settings-page-header">
+				<div className="sp-pcp-block-setting-header-wrapper">
+					{/* Left: Logo + Version */}
 					<div className="sp-pcp-blocks-settings-page-header-left">
 						<Logo />
-						<span onClick={() => changeLogControl()}> <LogNoticeIcon /> {sp_pcp_block_settings.pluginVersion}</span>
+						<span onClick={() => changeLogControl()} className="sp-pcp-plugin-version">
+							<LogNoticeIcon /> {sp_pcp_block_settings.pluginVersion}
+						</span>
 					</div>
-					<button className="sp-pcp-blocks-settings-page-header-right">
-							<GetHelp />
 
-							<span className="get-help">{__("Get Help", "post-carousel")}</span>
-							<div className="sp-pcp-help-drop-down">
-								{GetHelpItems?.map(
-									({ title, link, Icon }, index) => (
-										<a
+					{/* Center: Navigation with Sliding Indicator */}
+					<div className="sp-pcp-admin-dashboard-nav" ref={navRef}>
+						<span
+							className="sp-pcp-nav-sliding-indicator"
+							style={{ left: `${activeItemPosition.left}px`, width: `${activeItemPosition.width}px` }}
+						></span>
+						<ul>
+							{navigationItems?.map(
+								({ title, value, href, show, badge, icon }, index) =>
+									show && (
+										<li
 											key={index}
-											href={link}
-											target="_blank"
-											rel="noopener noreferrer"
+											className={getNavDividerClass(value)}
+											ref={(el) => (itemsRef.current[value] = el)}
 										>
-											<Icon />
-											<span>{title}</span>
-											<span className="drop-down-arrow">
-												<Arrow />
-											</span>
-										</a>
+											<a
+												href={href}
+												className={page === value ? "active" : ""}
+												value={value}
+												onClick={tabChange}
+											>
+												{icon}
+												{title}
+												{badge && (
+													<span className="sp-pcp-nav-badge">{badge}</span>
+												)}
+											</a>
+										</li>
 									)
-								)}
-							</div>
-					</button>
-				</div>
-			</div>
-			<div className="sp-smart-post-block-settings-nev">
-				<ul>
-					{navigationItems?.map(
-						({ title, value, href, show, badge, icon }, index) =>
-							show && (
-								<li key={index} className={
-										value === "our-plugins"
-											? `sp-pcp-nav-our-plugins${page === "about-us" || page === "our-plugins" ? " active" : ""}`
-											: ""
-									}>
+							)}
+						</ul>
+					</div>
+
+					{/* Right: Get Help */}
+					<div
+						ref={getHelpRef}
+						className={`sp-pcp-blocks-settings-page-header-right${page === "about-us" ? " active" : ""}`}
+					>
+						<GetHelp />
+						<span className="get-help">{__("Get Help", "post-carousel")}</span>
+						<div className="sp-pcp-help-drop-down">
+							{GetHelpItems?.map(
+								({ title, link, Icon, internal, value }, index) => (
 									<a
-										href={href}
-										className={(page === value) ? "active" : ""}
-										value={value}
-										onClick={tabChange}
+										key={index}
+										href={link}
+										{...(!internal && { target: "_blank", rel: "noopener noreferrer" })}
+										{...(internal && {
+											onClick: (e) => {
+												e.preventDefault();
+												setPage(value);
+												window.location.hash = value;
+											}
+										})}
 									>
-										{icon}
-										{title}
-										{badge && (
-											<span className="sp-pcp-nav-badge">{badge}</span>
-										)}
+										<Icon />
+										<span>{title}</span>
+										<span className="drop-down-arrow">
+											<Arrow />
+										</span>
 									</a>
-								</li>
-							)
-					)}
-				</ul>
+								)
+							)}
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	);

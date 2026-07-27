@@ -35,7 +35,7 @@ const quickStartBlocks = [
 	"post-timeline-one",
 	"news-ticker",
 	"taxonomy",
-	"smart-search",
+	"smart-image",
 	"table-of-content",
 	"smart-info-box",
 ];
@@ -56,7 +56,6 @@ const proFeatures = [
 		hot: true,
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/#demoId3647",
 		icon: <FeaturedPostIcon />,
 		label: __("Smart Frontend Live Filter & Search", "post-carousel"),
 		hot: true,
@@ -64,7 +63,6 @@ const proFeatures = [
 	{
 		icon: <FeaturedPostIcon />,
 		label: __("Custom Archive & Single Post Builder", "post-carousel"),
-		// hot: true,
 	},
 	{
 		icon: <FeaturedPostIcon />,
@@ -72,34 +70,27 @@ const proFeatures = [
 		hot: true,
 	},
 	{
-		url: "https://wpsmartpost.com/patterns/",
 		icon: <FeaturedPostIcon />,
 		label: __("250+ Ready Designs/Patterns Library", "post-carousel"),
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/",
 		icon: <FeaturedPostIcon />,
 		label: __("60+ Gutenberg Blocks", "post-carousel"),
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/#demoId3511",
 		icon: <FeaturedPostIcon />,
 		label: __("Modern Post Grid, List, Slider Layouts", "post-carousel"),
-		// hot: true,
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/#demoId3514",
 		icon: <FeaturedPostIcon />,
 		label: __("Post Featured Video & Gallery Images", "post-carousel"),
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/#demoId3514",
 		icon: <FeaturedPostIcon />,
 		label: __("Post Highlights & Badges", "post-carousel"),
 		hot: true,
 	},
 	{
-		url: "https://wpsmartpost.com/blocks/#demoId3604",
 		icon: <FeaturedPostIcon />,
 		label: __("Custom Taxonomy Image & Color", "post-carousel"),
 	},
@@ -167,18 +158,6 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 		setPageAndHash(page || "blocks");
 	};
 
-	const addNewTemplate = async (e, url = `${sp_pcp_block_settings.adminUrl}post-new.php?post_type=sp_post_template&spblock_inserter=true`) => {
-		e.preventDefault();
-
-		const totalTemplate = await totalSaveTemplate();
-
-		if (totalTemplate >= 2) {
-			openModal();
-		} else {
-			window.location.href = url;
-		}
-	};
-
 	return (
 		<div className="sp-pcp-settings-getting-start-page">
 			<div className="sp-pcp-settings-getting-start-page-content">
@@ -194,13 +173,12 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 								</h3>
 								<p className="sp-pcp-qs-welcome-desc">
 									{__(
-										"Thank you for installing Smart Post! This video will help you get started with the plugin. Enjoy!",
+										"Thank you for installing Smart Post! Start creating your post layouts directly in the visual block editor. Enjoy!",
 										"post-carousel"
 									)}
 								</p>
 								<a
-									href={`${sp_pcp_block_settings.adminUrl}post-new.php?post_type=sp_post_template&spblock_inserter=true`}
-									onClick={addNewTemplate}
+									href={`${sp_pcp_block_settings.adminUrl}post-new.php?post_type=page&spblock_inserter=true`}
 									className="sp-pcp-qs-create-btn"
 								>
 									<i className="dashicons dashicons-plus-alt2"></i>
@@ -361,8 +339,7 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 							</p>
 							<div className="sp-pcp-qs-patterns-btn-wrapper">
 								<a
-									href={`${sp_pcp_block_settings?.homeUrl}wp-admin/post-new.php?post_type=sp_post_template&sp_pcp_pattern_library`}
-									onClick={(e) => addNewTemplate(e, `${sp_pcp_block_settings?.homeUrl}wp-admin/post-new.php?post_type=sp_post_template&sp_pcp_pattern_library`)}
+									href={`${sp_pcp_block_settings?.homeUrl}wp-admin/post-new.php?post_type=page&sp_pcp_pattern_library`}
 									className="sp-pcp-qs-patterns-btn"
 								>
 									{__("Start with Ready Patterns", "post-carousel")}
@@ -387,16 +364,8 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 							</div>
 							<div className="sp-pcp-qs-pro-features">
 								{proFeatures.map((feature, index) => {
-									const FeatureComponent = feature.url ? "a" : "span";
-									const featureProps = feature.url
-										? { href: feature.url, target: "_blank", rel: "noreferrer" }
-										: {};
 									return (
-										<FeatureComponent
-											key={index}
-											{...featureProps}
-											className="sp-pcp-qs-pro-feature"
-										>
+										<span key={index} className="sp-pcp-qs-pro-feature">
 											<span className="sp-pcp-qs-pro-icon">
 												{feature.icon}
 											</span>
@@ -404,8 +373,7 @@ const QuickStart = ({ blocksSettings, blockShowHideHandler, setPageAndHash, modu
 												{feature.label}
 												{feature.hot && " 🔥"}
 											</span>
-											{feature.url && <ArrowRight className="sp-pcp-qs-pro-feature-arrow" />}
-										</FeatureComponent>
+										</span>
 									);
 								})}
 							</div>

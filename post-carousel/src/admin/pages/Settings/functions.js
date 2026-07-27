@@ -5,7 +5,7 @@ import { Modal, Spinner } from "@wordpress/components";
 import { Arrow, InfoIcon } from "../../../icons/icons";
 import { createInterpolateElement } from "@wordpress/element";
 
-export const saveSettingOptions = async (settings, actionType = "save", setSettingsOptions, shareData, editorPreference) => {
+export const saveSettingOptions = async (settings, actionType = "save", setSettingsOptions, shareData) => {
 	try {
 		const formData = new FormData();
 
@@ -14,9 +14,6 @@ export const saveSettingOptions = async (settings, actionType = "save", setSetti
 		formData.append("optionData", JSON.stringify(settings));
 		if (shareData !== undefined) {
 			formData.append("shareData", JSON.stringify(shareData));
-		}
-		if (editorPreference !== undefined) {
-			formData.append("editorPreference", editorPreference);
 		}
 
 		const response = await axios.post(ajaxurl, formData);

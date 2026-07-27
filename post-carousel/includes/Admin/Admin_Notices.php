@@ -62,7 +62,7 @@ class Admin_Notices {
 			return;
 		}
 
-		$block_editor_url = admin_url( 'post-new.php?post_type=sp_post_template&spblock_inserter=true' );
+		$block_editor_url = admin_url( 'post-new.php?post_type=page&spblock_inserter=true' );
 		$nonce            = wp_create_nonce( 'spsp_blocks_promo_notice' );
 		?>
 		<div class="notice spsp-blocks-promo-notice" data-spsp-nonce="<?php echo esc_attr( $nonce ); ?>">
@@ -236,7 +236,7 @@ class Admin_Notices {
 			return;
 		}
 
-		$block_editor_url = admin_url( 'post-new.php?post_type=sp_post_template&spblock_inserter=true' );
+		$block_editor_url = admin_url( 'post-new.php?post_type=page&spblock_inserter=true' );
 		$nonce            = wp_create_nonce( 'spsp_blocks_promo_modal' );
 		$modal_video_url  = 'https://wpsmartpost.com/wp-content/uploads/2026/06/SP-Popup-V01_1.mp4';
 		?>

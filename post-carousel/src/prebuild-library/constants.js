@@ -48,6 +48,8 @@ export const PATTERN_CATEGORIES = [
 	{ label: "Post Slider 02", value: "post-slider-two" },
 	{ label: "Thumbnail Slider", value: "thumbnail-slider" },
 	// { label: "Thumbnail Slider 02", value: "thumbnail-slider-two" },
+	{ label: "Post Carousel 01", value: "post-carousel" },
+	{ label: "Post Carousel 02", value: "post-carousel-two" },
 	{ label: "Social Profiles", value: "social-profiles" },
 	{ label: "Section Heading", value: "section-heading" },
 	{ label: "Post Timeline 01", value: "post-timeline-one" },
