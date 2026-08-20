@@ -219,7 +219,7 @@ class D5SmartPostShowProModule implements DependencyInterface {
 
 		// Enqueue CSS file if exists (same pattern as Elementor/Oxygen).
 		if ( file_exists( $css_file ) ) {
-			echo '<link rel="stylesheet" href="' . esc_url( $css_url . '?v=' . filemtime( $css_file ) ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<link rel="stylesheet" href="' . esc_url( $css_url . '?v=' . filemtime( $css_file ) ) . '">'; // phpcs:ignore -- WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		// Get and output dynamic CSS from meta (same pattern as Elementor/Oxygen).
@@ -234,7 +234,7 @@ class D5SmartPostShowProModule implements DependencyInterface {
 			$font_lists = array_unique( $font_lists );
 			foreach ( $font_lists as $font ) {
 				if ( ! empty( $font ) ) {
-					echo '<link rel="stylesheet" href="' . esc_url( 'https://fonts.googleapis.com/css?family=' . $font ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<link rel="stylesheet" href="' . esc_url( 'https://fonts.googleapis.com/css?family=' . $font ) . '">'; // phpcs:ignore -- WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			}
 		}

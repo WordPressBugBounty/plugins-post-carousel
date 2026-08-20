@@ -62,7 +62,7 @@ class SPS_Review {
 			return;
 		}
 
-		$plugin_logo_image = 'https://ps.w.org/post-carousel/assets/icon-256x256.gif';
+		$plugin_logo_image = SP_PC_URL . 'admin/assets/img/icon-256x256.gif';
 
 		?>
 		<div id="smart-post-show-review-notice" class="smart-post-show-review-notice">

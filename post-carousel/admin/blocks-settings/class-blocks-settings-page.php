@@ -1076,7 +1076,6 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 		 * @return void
 		 */
 		public function sp_pcp_notice_for_user_consent() {
-			$plugin_logo_image = 'https://ps.w.org/post-carousel/assets/icon-256x256.gif';
 			?>
 				<style>
 					.sp_pcp-anonymous-data-notice {
@@ -1165,7 +1164,6 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 				</style>
 
 				<div class="notice notice-info sp_pcp-anonymous-data-notice">
-					<!-- <img src="<?php echo esc_url( $plugin_logo_image ); ?>" alt="Smart Post"/> -->
 					<div class="sp_pcp-anonymous-data-notice-wrapper">
 						<div>
 							<h3>

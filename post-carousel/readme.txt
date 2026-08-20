@@ -2,10 +2,10 @@
 Contributors: shapedplugin, rubel_miah, shamimmiashuhagh, khalilu
 Tags:  post grid, post carousel, list category posts, gutenberg blocks, page builder
 Requires at least: 5.9
-Tested up to: 7.0
+Tested up to: 7.1
 WC requires at least: 5.0
-WC tested up to: 10.9.4
-Stable tag: 4.0.6
+WC tested up to: 11.0.1
+Stable tag: 4.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Display posts in Grid, Carousel, Slider, Timeline, List & Live Filter layouts wi
 🚀 Explore [**60+ Advanced Post & Page Builder Blocks (Free & Pro)**](https://wpsmartpost.com/blocks/)  
 📚 Start with [**250+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
 🌐 Visit the Official Website [**Smart Post**](https://wpsmartpost.com/)  
-❤️ 134+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
+❤️ 153+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
 
 [**Smart Post**](https://wpsmartpost.com/) is a next-generation Post Grid and Gutenberg Page Builder Blocks plugin designed to help you build stunning blogs, magazines, news portals, and content-driven websites with ease. Whether you're creating a new site or upgrading an existing one, Smart Post lets you transform your content into modern, engaging layouts in minutes—no coding required.
 
@@ -335,13 +335,13 @@ Discover our powerful WordPress and WooCommerce plugins designed to save time, b
 
 [**Logo Carousel**](https://wordpress.org/plugins/logo-carousel-free/) – Display client, partner, or brand logos in responsive carousels to build credibility, strengthen brand identity, and showcase partnerships effectively.
 
-[**WooGallery**](https://wordpress.org/plugins/gallery-slider-for-woocommerce/) – Create beautiful, responsive product galleries for WooCommerce to showcase images attractively, improve user experience, and increase product engagement.
+[**Reno Product Gallery**](https://wordpress.org/plugins/gallery-slider-for-woocommerce/) – Create beautiful, responsive product galleries for WooCommerce to showcase images attractively, improve user experience, and increase product engagement.
 
 [**Smart Swatches**](https://wordpress.org/plugins/smart-swatches/) – Replace default WooCommerce variation dropdowns with color, image, and label swatches to improve product selection and enhance the shopping experience.
 
 [**Product Slider (Smart Store)**](https://wordpress.org/plugins/woo-product-slider/) – Build modern, conversion-focused WooCommerce store layouts with advanced features to improve product visibility, user experience, and sales performance.
 
-[**WooCategory**](https://wordpress.org/plugins/woo-category-slider-grid/) – Display WooCommerce product categories in stylish grids or sliders to improve navigation, highlight collections, and enhance store browsing experience.
+[**Reno Product Category**](https://wordpress.org/plugins/woo-category-slider-grid/) – Display WooCommerce product categories in stylish grids or sliders to improve navigation, highlight collections, and enhance store browsing experience.
 
 == Installation ==
 
@@ -376,7 +376,7 @@ In the search field, type "Smart Post". Once you have found it, you can install 
 * Upload the post-carousel directory to the /wp-content/plugins/ directory
 * Activate the plugin in the Plugin dashboard
 
-You will now see the Post Carousel menu in your WordPress admin panel.
+You will now see the Smart Post menu in your WordPress admin panel.
 
 The WordPress codex contains <a href="https://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation">instructions</a> on how to install a WordPress plugin.
 
@@ -470,6 +470,11 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.7 - Aug 20, 2026 =
+* Fix: The Offloading images issue.
+* Tested: WordPress 7.1 compatibility.
+* Tested: Compatible with WooCommerce 11.0.1
 
 = 4.0.6 - Jul 27, 2026 =
 * New: "Start with Smart Post Blocks" button on the Manage View screen — opens the block editor so you can start building Post layouts visually with Smart Posts blocks.
