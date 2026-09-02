@@ -5,7 +5,7 @@ Requires at least: 5.9
 Tested up to: 7.1
 WC requires at least: 5.0
 WC tested up to: 11.0.1
-Stable tag: 4.0.7
+Stable tag: 4.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Display posts in Grid, Carousel, Slider, Timeline, List & Live Filter layouts wi
 🚀 Explore [**60+ Advanced Post & Page Builder Blocks (Free & Pro)**](https://wpsmartpost.com/blocks/)  
 📚 Start with [**250+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
 🌐 Visit the Official Website [**Smart Post**](https://wpsmartpost.com/)  
-❤️ 153+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
+❤️ 157+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
 
 [**Smart Post**](https://wpsmartpost.com/) is a next-generation Post Grid and Gutenberg Page Builder Blocks plugin designed to help you build stunning blogs, magazines, news portals, and content-driven websites with ease. Whether you're creating a new site or upgrading an existing one, Smart Post lets you transform your content into modern, engaging layouts in minutes—no coding required.
 
@@ -470,6 +470,10 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.8 – Sep 02, 2026 =
+* Fix: The password-protected post content was exposed through the post preview modal. Reported by Revanth Hari Narayana Matte via WPScan.
+* Fix: The Saved Templates duplicate permission issue that allowed unauthorized users to duplicate private saved templates. Reported by Revanth Hari Narayana Matte via WPScan.
 
 = 4.0.7 - Aug 20, 2026 =
 * Fix: The Offloading images issue.

@@ -270,8 +270,16 @@ class Smart_Post_Show_Saved_Template {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'duplicate_smart_saved_templates' ),
-				'permission_callback' => function () {
-					return current_user_can( 'edit_posts' );
+				'permission_callback' => function ( WP_REST_Request $request ) {
+					$post_id = (int) $request->get_param( 'id' );
+					if ( ! $post_id ) {
+						return false;
+					}
+					$post = get_post( $post_id );
+					if ( ! $post || 'sp_post_template' !== $post->post_type ) {
+						return new WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to do that.', 'post-carousel' ), array( 'status' => 403 ) );
+					}
+					return current_user_can( 'edit_post', $post_id );
 				},
 			)
 		);
@@ -288,6 +296,15 @@ class Smart_Post_Show_Saved_Template {
 		$post = get_post( $post_id );
 		if ( ! $post ) {
 			return new WP_Error( 'not_found', 'Post not found', array( 'status' => 404 ) );
+		}
+		if ( 'sp_post_template' !== $post->post_type ) {
+			return new WP_Error( 'not_found', 'Post not found', array( 'status' => 404 ) );
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return new WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to do that.', 'post-carousel' ), array( 'status' => 403 ) );
+		}
+		if ( 'private' === $post->post_status && ! current_user_can( 'read_post', $post_id ) ) {
+			return new WP_Error( 'rest_forbidden', __( 'Sorry, you are not allowed to do that.', 'post-carousel' ), array( 'status' => 403 ) );
 		}
 
 		$args        = array(

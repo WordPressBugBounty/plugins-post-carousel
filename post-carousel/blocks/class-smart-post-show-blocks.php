@@ -1387,9 +1387,19 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 			if ( ! $post_id || get_post_status( $post_id ) !== 'publish' ) {
 				wp_send_json_error( 'Invalid or unpublished post.' );
 			}
-			$image_id = get_post_thumbnail_id( $post_id );
 
-			$post          = get_post( $post_id );
+			$post = get_post( $post_id );
+			if ( ! $post ) {
+				wp_send_json_error( 'Invalid or unpublished post.' );
+			}
+			// Honour WordPress password protection — unauthenticated callers
+			// must not receive the raw post_content or the password itself.
+			if ( post_password_required( $post ) ) {
+				$content = get_the_password_form( $post );
+			} else {
+				$content = apply_filters( 'the_content', get_the_content( null, false, $post ) );
+			}
+			$image_id = get_post_thumbnail_id( $post_id );
 			$post_author   = ucwords( get_the_author_meta( 'display_name', $post->post_author ) );
 			$post_date     = get_the_date( 'F j, Y', $post_id );
 			$categories    = get_the_terms( $post_id, 'category' );
@@ -1410,8 +1420,11 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 
 			$data = array(
 				'title'         => get_the_title( $post ),
-				'content'       => apply_filters( 'the_content', $post->post_content ),
-				'post_data'     => $post,
+				'content'       => $content,
+				'post_data'     => array(
+					'ID'            => $post->ID,
+					'comment_count' => $post->comment_count,
+				),
 				// 'post_thumbnail'      => get_the_post_thumbnail( $post ),
 				'meta_taxonomy' => $meta_taxonomy,
 				'date_time'     => $post_date,

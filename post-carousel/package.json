@@ -6,10 +6,12 @@
 	"license": "GPL-2.0-or-later",
 	"main": "index.js",
 	"scripts": {
-		"build": "npm run build:blocks && npm run build:admin",
+		"build": "npm run build:blocks && npm run build:admin && npm run build:divi5",
 		"start": "concurrently -n \"WP,SASS\" -c \"blue,green\" \"wp-scripts start src/blocks/index.js --output-path=blocks/build/editor\" \"gulp watchFiles\"",
 		"build:blocks": "concurrently -n \"WP,SCSS\" -c \"blue,green\" \"wp-scripts build src/blocks/index.js --output-path=blocks/build/editor\" \"gulp compileStyles\" && npm run postbuild:blocks",
 		"build:admin": "wp-scripts build src/admin/index.js --output-path=blocks/build/dashboard && npm run postbuild:admin",
+		"build:divi5": "webpack --config webpack.divi5.config.js --mode production",
+		"start:divi5": "webpack --config webpack.divi5.config.js --mode development --watch",
 		"start:admin": "wp-scripts start src/admin/index.js --output-path=blocks/build/dashboard",
 		"build:css": "gulp compileStyles",
 		"watch:css": "gulp watchFiles",
