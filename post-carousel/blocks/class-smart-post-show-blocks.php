@@ -634,8 +634,24 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 				$block_template_post_type = 'wp_template_part';
 			}
 			if ( 'site-editor' === $block_editor_type || 'widget-area' === $block_editor_location ) {
+				// Templates, template parts and widget areas are public, but the location data is request-controlled,
+				// so a referenced post (synced pattern or post content) must be publicly readable or readable by the current user.
+				$block_template_id = isset( $block_location['templateId'] ) ? $block_location['templateId'] : '';
+				$reads_post_by_id  = 'post-content' === $block_editor_location || ( isset( $block_location['postType'] ) && 'wp_block' === $block_location['postType'] );
+				if ( $reads_post_by_id && $block_template_id ) {
+					$template_post          = is_numeric( $block_template_id ) ? get_post( (int) $block_template_id ) : null;
+					$template_post_readable = $template_post && 'publish' === $template_post->post_status && empty( $template_post->post_password );
+					if ( ! $template_post_readable && ( ! $template_post || ! current_user_can( 'read_post', $template_post->ID ) ) ) {
+						return new WP_Error( 'rest_forbidden', __( 'You are not allowed to access this resource.', 'post-carousel' ), array( 'status' => 403 ) );
+					}
+				}
 				$block = $this->get_template_block( $unique_id, $block_location );
 			} else {
+				$page          = $page_id ? get_post( $page_id ) : false;
+				$page_readable = $page && 'publish' === $page->post_status && empty( $page->post_password );
+				if ( ! $page_readable && ( ! $page || ! current_user_can( 'read_post', $page_id ) ) ) {
+					return new WP_Error( 'rest_forbidden', __( 'You are not allowed to access this page.', 'post-carousel' ), array( 'status' => 403 ) );
+				}
 				$content = get_post_field( 'post_content', $page_id );
 				if ( ! $content ) {
 					return new WP_Error( 'not_found', 'Page not found or has no content.', array( 'status' => 404 ) );
@@ -851,12 +867,21 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 		 */
 		public function smart_search_query_data( $search_settings ) {
 			// Extract settings.
-			$post_type   = $search_settings['postType'] ?? 'post';
+			$public_post_types = \SmartPostShow\Blocks\PostQueryHandler::filter_public_post_types( $search_settings['postType'] ?? 'post' );
+			if ( empty( $public_post_types ) ) {
+				return array(
+					'post_query'      => array(),
+					'total_posts'     => 0,
+					'remaining_posts' => 0,
+				);
+			}
+			$post_type   = $public_post_types[0];
 			$search_term = sanitize_text_field( $search_settings['s'] ?? '' );
 			$taxonomy    = sanitize_text_field( $search_settings['taxonomyType'] ?? '' );
 			$term        = sanitize_text_field( $search_settings['term'] ?? array() );
 			$post_limit  = isset( $search_settings['postLimit'] ) ? absint( $search_settings['postLimit'] ) : 4;
 			$load_more   = filter_var( $search_settings['loadMore'] ?? false, FILTER_VALIDATE_BOOLEAN );
+			$offset      = $load_more ? absint( $search_settings['offset'] ?? 0 ) : 0;
 
 			// Base query args.
 			$args = array(
@@ -865,11 +890,11 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 				's'           => $search_term,
 			);
 
-			// if load more is true → show all remaining posts .
-			if ( $load_more ) {
-				$args['posts_per_page'] = -1;
-			} else {
-				$args['posts_per_page'] = $post_limit;
+			// if load more is true → show the next batch of remaining posts after the ones already shown.
+			$max_per_page           = \SmartPostShow\Blocks\PostQueryHandler::get_max_posts_per_page();
+			$args['posts_per_page'] = $load_more ? $max_per_page : \SmartPostShow\Blocks\PostQueryHandler::clamp_post_limit( $post_limit );
+			if ( $offset ) {
+				$args['offset'] = $offset;
 			}
 
 			// Taxonomy filter.
@@ -925,7 +950,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 			}
 
 			// Remaining post count.
-			$remaining_posts = max( 0, $total_posts - count( $post_query ) );
+			$remaining_posts = max( 0, $total_posts - $offset - count( $post_query ) );
 
 			return array(
 				'post_query'      => $post_query,
@@ -975,7 +1000,8 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 				}
 
 				$html = ob_get_clean();
-				if ( empty( $post_query ) ) {
+				// Load more appends to the existing results, so skip the "not found" message there.
+				if ( empty( $post_query ) && ! filter_var( $query_params['loadMore'] ?? false, FILTER_VALIDATE_BOOLEAN ) ) {
 					$no_result_found_text = isset( $query_params['noResultFoundResult'] ) ? $query_params['noResultFoundResult'] : 'No post found';
 					$html                 = '<span class="sp-search-not-found">' . esc_html( $no_result_found_text ) . '</span>';
 				}

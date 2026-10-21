@@ -56,7 +56,6 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 			// query functions for get all post.
 			if ( is_admin() ) {
 				add_action( 'wp_ajax_sp_smart_post_block_all_post_query', array( $this, 'sp_smart_post_block_all_post_query' ) );
-				add_action( 'wp_ajax_nopriv_sp_smart_post_block_all_post_query', array( $this, 'sp_smart_post_block_all_post_query' ) );
 			}
 
 			// metadata query.
@@ -399,6 +398,23 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 				'taxonomy_type'              => $query_data['catTabCategoryType'] ?? '',
 			);
 
+			if ( 'multiple_post_type' !== $config['post_type'] ) {
+				$public_post_types   = \SmartPostShow\Blocks\PostQueryHandler::filter_public_post_types( $config['post_type'] );
+				$config['post_type'] = empty( $public_post_types ) ? '__invalid_public_post_type__' : $public_post_types[0];
+			} else {
+				$requested_post_types           = array_map(
+					static function ( $type ) {
+						return is_object( $type ) ? $type->value : $type;
+					},
+					$query_data['multiplePostType'] ?? array()
+				);
+				$query_data['multiplePostType'] = array_map(
+					static function ( $type ) {
+						return (object) array( 'value' => $type );
+					},
+					\SmartPostShow\Blocks\PostQueryHandler::filter_public_post_types( $requested_post_types )
+				);
+			}
 			$config['date_format']        = self::get_date_format( $config['date_format_type'], $config['custom_date_format'] );
 			$config['multiple_post_type'] = self::prepare_ajax_multiple_post_types( $config['post_type'], $query_data );
 
@@ -461,6 +477,9 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 			if ( ! wp_verify_nonce( $nonce, 'sp_smart_post_block_nonce' ) ) {
 				return;
 			}
+			if ( ! current_user_can( 'edit_posts' ) ) {
+				wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'post-carousel' ) ), 403 );
+			}
 
 			$query_data = isset( $_POST['postQueryData'] ) ? sanitize_text_field( wp_unslash( $_POST['postQueryData'] ) ) : '';
 
@@ -475,9 +494,14 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 					return $multi_type->value;
 				},
 				$multiple_post_type
-			) : array( 'post' );
+			) : array( $post_type );
+			$multiple_post_type = \SmartPostShow\Blocks\PostQueryHandler::filter_public_post_types( $multiple_post_type );
+			if ( empty( $multiple_post_type ) ) {
+				$multiple_post_type = array( '__invalid_public_post_type__' );
+			}
 
 			$post_query_args                   = \SmartPostShow\Blocks\PostQueryHandler::query( $query_data, 'args' )['args'];
+			$post_query_args['post_type']      = $multiple_post_type;
 			$post_query_args['fields']         = 'ids';
 			$post_query_args['posts_per_page'] = 99999;
 
@@ -485,16 +509,28 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 
 			$the_search_query = new \WP_Query(
 				array(
-					'post_type'      => ( 'multiple_post_type' === $post_type && ! empty( $multiple_post_type ) ) ? $multiple_post_type : $post_type,
-					'posts_per_page' => 20,
-					's'              => $search_text,
-					'post__in'       => $post_lists,
+					'post_type'              => $multiple_post_type,
+					'posts_per_page'         => 20,
+					'post_status'            => 'publish',
+					'no_found_rows'          => true,
+					'update_post_meta_cache' => false,
+					'update_post_term_cache' => false,
+					's'                      => $search_text,
+					'post__in'               => $post_lists,
 				)
 			);
 
+			$posts = array();
+			foreach ( $the_search_query->posts as $post ) {
+				$posts[] = array(
+					'ID'         => $post->ID,
+					'post_title' => $post->post_title,
+				);
+			}
+
 			wp_send_json(
 				array(
-					'posts' => count( $post_lists ) > 0 ? $the_search_query->posts : array(),
+					'posts' => count( $post_lists ) > 0 ? $posts : array(),
 				)
 			);
 		}

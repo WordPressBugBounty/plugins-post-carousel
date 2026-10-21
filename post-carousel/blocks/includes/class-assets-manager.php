@@ -1365,13 +1365,10 @@ class Assets_Manager {
 	 * @return bool
 	 */
 	public function permission_check( $post_id = false, $cap = '' ) {
-		$cap       = $cap ? $cap : 'edit_others_posts';
-		$is_passed = false;
-		if ( $post_id ) {
-			$post_author = (int) get_post_field( 'post_author', $post_id );
-			$is_passed   = (int) get_current_user_id() === $post_author;
+		if ( is_numeric( $post_id ) ) {
+			return current_user_can( 'edit_post', (int) $post_id );
 		}
-		return $is_passed || current_user_can( $cap );
+		return current_user_can( $cap ? $cap : 'edit_others_posts' );
 	}
 	/**
 	 * Save block CSS via REST API.
@@ -1387,8 +1384,21 @@ class Assets_Manager {
 		$sanitized_params = $this->sanitize_block_params( $params );
 		extract( $sanitized_params ); // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
 
-		$capability = 'publish_posts';
-		if ( ! $this->permission_check( is_numeric( $post_id ) ? $post_id : false, $capability ) ) {
+		$capability = 'edit_others_posts';
+		if ( ! empty( $widget_id ) || ( in_array( $post_id, array( 'wp_template', 'wp_template_part' ), true ) && 'wp_block' !== $block_type ) ) {
+			$authorized = current_user_can( 'edit_theme_options' );
+		} elseif ( 'wp_block' === $block_type ) {
+			if ( in_array( $post_id, array( 'wp_template', 'wp_template_part' ), true ) ) {
+				$authorized = current_user_can( 'edit_theme_options' );
+			} else {
+				$parent_authorized = is_numeric( $post_id ) && $this->permission_check( (int) $post_id );
+				$ref_authorized    = is_numeric( $block_ref_id ) && $this->permission_check( (int) $block_ref_id );
+				$authorized        = $parent_authorized || $ref_authorized;
+			}
+		} else {
+			$authorized = is_numeric( $post_id ) ? $this->permission_check( (int) $post_id ) : current_user_can( $capability );
+		}
+		if ( ! $authorized ) {
 			$this->log_asset_operation(
 				'error',
 				'permission_check',

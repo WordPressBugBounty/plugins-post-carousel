@@ -514,7 +514,7 @@ class Admin_Notices {
 	 */
 	public function dismiss_blocks_promo_notice() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'spsp_blocks_promo_notice' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'spsp_blocks_promo_notice' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error();
 		}
 		update_option( 'spsp_blocks_promo_notice_dismissed', 1, false );
@@ -532,7 +532,7 @@ class Admin_Notices {
 	 */
 	public function dismiss_blocks_promo_modal() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'spsp_blocks_promo_modal' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'spsp_blocks_promo_modal' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error();
 		}
 		$choice  = isset( $_POST['choice'] ) ? sanitize_text_field( wp_unslash( $_POST['choice'] ) ) : '';
@@ -553,7 +553,7 @@ class Admin_Notices {
 	 */
 	public function check_sp_post_carousel_posts() {
 		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) || ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error();
 		}
 

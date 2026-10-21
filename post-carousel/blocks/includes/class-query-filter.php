@@ -23,6 +23,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 class PostQueryHandler {
 
 	/**
+	 * Keep only the post types that are registered as public.
+	 *
+	 * @since 4.0.9
+	 *
+	 * @param string|array $post_types Post type name or list of names.
+	 * @return array List of public post type names.
+	 */
+	public static function filter_public_post_types( $post_types ) {
+		$public_post_types = get_post_types( array( 'public' => true ) );
+
+		return array_values( array_intersect( (array) $post_types, $public_post_types ) );
+	}
+
+	/**
+	 * Get the maximum number of posts a single query may load.
+	 *
+	 * @since 4.0.9
+	 *
+	 * @return int Maximum posts per page, at least 1.
+	 */
+	public static function get_max_posts_per_page() {
+		return max( 1, (int) apply_filters( 'sp_smart_post_query_max_per_page', 100 ) );
+	}
+
+	/**
+	 * Clamp a requested post limit between 1 and the maximum posts per page.
+	 *
+	 * @since 4.0.9
+	 *
+	 * @param mixed $post_limit Requested post limit.
+	 * @return int Post limit within the allowed range.
+	 */
+	public static function clamp_post_limit( $post_limit ) {
+		return min( max( 1, absint( $post_limit ) ), self::get_max_posts_per_page() );
+	}
+
+	/**
 	 * Get current date components for filtering.
 	 *
 	 * @return array Current date components (day, month, year, week).
@@ -268,7 +305,7 @@ class PostQueryHandler {
 	 */
 	private static function calculate_posts_per_page( array $query_data, string $block_name, int $all_post_limit ): array {
 		// The total post limit allowed for the query.
-		$post_limit = (int) ( $query_data['postLimit'] ?? 20 );
+		$post_limit = self::clamp_post_limit( $query_data['postLimit'] ?? 20 );
 
 		// Current page number for pagination (defaults to page 1).
 		$current_page = (int) ( $query_data['currentPage'] ?? 1 );
@@ -611,7 +648,7 @@ class PostQueryHandler {
 		$current_post_id = $query_data['postId'] ?? false;
 		$block_name      = $query_data['blockName'] ?? 'post-carousel';
 		// $post_limit         = (int) ( $query_data['postLimit'] ?? 20 );
-		$post_limit      = (int) ( ! empty( $query_data['postLimit'] ) ? $query_data['postLimit'] : 8 );
+		$post_limit      = self::clamp_post_limit( ! empty( $query_data['postLimit'] ) ? $query_data['postLimit'] : 8 );
 		$order_by        = $query_data['orderBy'] ?? 'date';
 		$show_pagination = $query_data['paginationEnable'] ?? false;
 		$order_direction = $query_data['orderDirection'] ?? 'DESC';
@@ -627,11 +664,18 @@ class PostQueryHandler {
 			$query_data['multiplePostType']
 		)
 		: array( $post_type );
+		$multiple_post_type   = self::filter_public_post_types( $multiple_post_type );
+		$has_public_post_type = ! empty( $multiple_post_type );
+		if ( ! $has_public_post_type ) {
+			$multiple_post_type = array( '__invalid_public_post_type__' );
+		}
 
 		// Calculate total post limit.
 		$all_post_limit = 0;
-		foreach ( $multiple_post_type as $value ) {
-			$all_post_limit += (int) ( wp_count_posts( $value )->publish ?? 0 );
+		if ( $has_public_post_type ) {
+			foreach ( $multiple_post_type as $value ) {
+				$all_post_limit += (int) ( wp_count_posts( $value )->publish ?? 0 );
+			}
 		}
 
 		// Calculate posts per page and offset.

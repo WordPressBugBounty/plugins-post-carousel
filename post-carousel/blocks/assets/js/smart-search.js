@@ -59,8 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	}
-	const eventHandler = async (e, container, query) => {
+	const eventHandler = async (e, container, query, append = false) => {
 		e.preventDefault();
+		// A new search starts from the first batch; load more continues after the shown posts.
+		if (!append) {
+			query.loadMore = false;
+			query.offset = 0;
+		}
 		const target = e.target;
 		const searchResults = container.querySelector(
 			".sp-smart-post-search-results"
@@ -94,7 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				".sp-smart-post-search-list"
 			);
 			if (resultList) {
-				resultList.innerHTML = data.html;
+				if (append) {
+					resultList.insertAdjacentHTML("beforeend", data.html);
+				} else {
+					resultList.innerHTML = data.html;
+				}
 				if (query.s && query?.hightLightSearchTerm) {
 					highlightSearchTerm(resultList, query.s.trim());
 				}
@@ -114,7 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
 						);
 						loadMoreBtn?.addEventListener("click", () => {
 							query.loadMore = true;
-							eventHandler(e, container, query);
+							query.offset = resultList
+								? resultList.querySelectorAll(".sp-smart-post-search-item").length
+								: 0;
+							eventHandler(e, container, query, true);
 						});
 					} else {
 						loadMore.innerHTML = `<a href="/?s=${query.s}" ${query?.moreResultClickAction === "new_tab" ? `target="_blank"` : ""} class="sp-smart-post-search-load-more-button">

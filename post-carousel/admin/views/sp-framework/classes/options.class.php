@@ -477,7 +477,7 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 		public function set_options( $ajax = false ) {
 			// Check nonce.
 			$nonce = $ajax && ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : ( ( ! empty( $_POST[ 'spf_options_nonce' . $this->unique ] ) ) ? sanitize_text_field( wp_unslash( $_POST[ 'spf_options_nonce' . $this->unique ] ) ) : '' );
-			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) || ! current_user_can( apply_filters( 'sp_pc_dashboard_capability', 'manage_options' ) ) ) {
 				return false;
 			}
 			// XSS ok.

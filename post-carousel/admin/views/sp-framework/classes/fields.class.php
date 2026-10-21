@@ -367,13 +367,6 @@ if ( ! class_exists( 'SP_PC_Fields' ) ) {
 					break;
 
 				default:
-					if ( function_exists( $type ) ) {
-						if ( ! empty( $term ) ) {
-							$options = call_user_func( $type, $query_args );
-						} else {
-							$options = call_user_func( $type, $term, $query_args );
-						}
-					}
 					break;
 			}
 				// Array search by "term".

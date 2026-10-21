@@ -121,7 +121,7 @@ class SPS_Review {
 	 **/
 	public function dismiss_review_notice() {
 
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'sps_review_notice' ) ) {
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'sps_review_notice' ) || ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 

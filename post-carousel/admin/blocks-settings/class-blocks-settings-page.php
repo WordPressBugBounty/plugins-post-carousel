@@ -355,7 +355,7 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 		public function sp_smart_post_block_changelog() {
 			$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
 
-			if ( ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) ) {
+			if ( ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) || ! current_user_can( apply_filters( 'sp_pc_dashboard_capability', 'manage_options' ) ) ) {
 				return;
 			}
 

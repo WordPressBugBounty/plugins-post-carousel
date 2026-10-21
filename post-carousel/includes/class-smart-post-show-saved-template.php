@@ -160,14 +160,19 @@ class Smart_Post_Show_Saved_Template {
 
 		$content = '';
 		if ( $id ) {
+			$content_post = get_post( $id );
+			if ( ! $content_post || 'sp_post_template' !== $content_post->post_type ) {
+				return '';
+			}
+			$post_status = $content_post->post_status;
+			if ( 'publish' !== $post_status || post_password_required( $content_post ) ) {
+				return '';
+			}
 			if ( ! $saved_template_enabled ) {
 				return '<p>[smart_post id="' . $id . '"]</p>';
 			}
 
-			$content_post = get_post( $id );
-			$post_status  = isset( $content_post ) ? $content_post->post_status : '';
-
-			if ( 'publish' === $post_status ) {
+			if ( 'sp_post_template' === $content_post->post_type && 'publish' === $post_status && ! post_password_required( $content_post ) ) {
 				$style_url = $this->saved_template_style( $id );
 				$this->saved_template_static_style( $id );
 				$content .= $content_post ? $content_post->post_content : null;
