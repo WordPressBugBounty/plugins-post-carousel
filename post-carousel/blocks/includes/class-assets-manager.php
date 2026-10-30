@@ -1388,12 +1388,15 @@ class Assets_Manager {
 		if ( ! empty( $widget_id ) || ( in_array( $post_id, array( 'wp_template', 'wp_template_part' ), true ) && 'wp_block' !== $block_type ) ) {
 			$authorized = current_user_can( 'edit_theme_options' );
 		} elseif ( 'wp_block' === $block_type ) {
+			// The CSS is written onto the referenced synced pattern, so it must be a pattern the user can edit.
+			$ref_is_block = is_numeric( $block_ref_id ) && 'wp_block' === get_post_type( (int) $block_ref_id );
 			if ( in_array( $post_id, array( 'wp_template', 'wp_template_part' ), true ) ) {
-				$authorized = current_user_can( 'edit_theme_options' );
+				$authorized = $ref_is_block && current_user_can( 'edit_theme_options' );
+			} elseif ( $is_preview ) {
+				// Preview CSS is stored under the parent post, not the pattern.
+				$authorized = $ref_is_block && is_numeric( $post_id ) && $this->permission_check( (int) $post_id );
 			} else {
-				$parent_authorized = is_numeric( $post_id ) && $this->permission_check( (int) $post_id );
-				$ref_authorized    = is_numeric( $block_ref_id ) && $this->permission_check( (int) $block_ref_id );
-				$authorized        = $parent_authorized || $ref_authorized;
+				$authorized = $ref_is_block && $this->permission_check( (int) $block_ref_id );
 			}
 		} else {
 			$authorized = is_numeric( $post_id ) ? $this->permission_check( (int) $post_id ) : current_user_can( $capability );

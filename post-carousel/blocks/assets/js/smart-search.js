@@ -47,13 +47,23 @@ document.addEventListener("DOMContentLoaded", function () {
 		nodes?.forEach(function (node) {
 			const parent = node.parentNode;
 			if (parent && parent.nodeName !== "MARK") {
-				const newHTML = node.nodeValue.replace(
-					regex,
-					'<mark class="sp-smart-post-search-highlight">$1</mark>'
-				);
-				if (newHTML !== node.nodeValue) {
+				// Split on the capture group: odd indexes are matches. Build nodes so text is never parsed as HTML.
+				const parts = node.nodeValue.split(regex);
+				if (parts.length > 1) {
 					const span = document.createElement("span");
-					span.innerHTML = newHTML;
+					parts.forEach((part, index) => {
+						if (!part) {
+							return;
+						}
+						if (index % 2 === 1) {
+							const mark = document.createElement("mark");
+							mark.className = "sp-smart-post-search-highlight";
+							mark.textContent = part;
+							span.appendChild(mark);
+						} else {
+							span.appendChild(document.createTextNode(part));
+						}
+					});
 					parent.replaceChild(span, node);
 				}
 			}
@@ -115,13 +125,16 @@ document.addEventListener("DOMContentLoaded", function () {
 				const showCount = query?.showResultsCount || true;
 				const viewMoreText =
 					loadMore.dataset.view_more_text ?? "View More";
+				const loadMoreText = ` ${viewMoreText}${ showCount ? (" " + data.remaining_posts +  " + Posts") : ""}`;
 				if (data.remaining_posts > 0) {
 					if (query?.moreResultClickAction === "expanded") {
-						loadMore.innerHTML = `<button type="button" class="sp-smart-post-search-load-more-button"> ${viewMoreText}${ showCount ? (" " + data.remaining_posts +  " + Posts") : ""}</button>`;
-						const loadMoreBtn = loadMore.querySelector(
-							".sp-smart-post-search-load-more-button"
-						);
-						loadMoreBtn?.addEventListener("click", () => {
+						const loadMoreBtn = document.createElement("button");
+						loadMoreBtn.type = "button";
+						loadMoreBtn.className = "sp-smart-post-search-load-more-button";
+						loadMoreBtn.textContent = loadMoreText;
+						loadMore.textContent = "";
+						loadMore.appendChild(loadMoreBtn);
+						loadMoreBtn.addEventListener("click", () => {
 							query.loadMore = true;
 							query.offset = resultList
 								? resultList.querySelectorAll(".sp-smart-post-search-item").length
@@ -129,8 +142,15 @@ document.addEventListener("DOMContentLoaded", function () {
 							eventHandler(e, container, query, true);
 						});
 					} else {
-						loadMore.innerHTML = `<a href="/?s=${query.s}" ${query?.moreResultClickAction === "new_tab" ? `target="_blank"` : ""} class="sp-smart-post-search-load-more-button">
-						${viewMoreText}${ showCount ? (" " + data.remaining_posts +  " + Posts") : ""} </a>`;
+						const loadMoreLink = document.createElement("a");
+						loadMoreLink.href = `/?s=${encodeURIComponent(query.s ?? "")}`;
+						if (query?.moreResultClickAction === "new_tab") {
+							loadMoreLink.target = "_blank";
+						}
+						loadMoreLink.className = "sp-smart-post-search-load-more-button";
+						loadMoreLink.textContent = `${loadMoreText} `;
+						loadMore.textContent = "";
+						loadMore.appendChild(loadMoreLink);
 					}
 				} else {
 					loadMore.innerHTML = "";

@@ -834,7 +834,7 @@ class Template {
 			$image_alt_text     = 'alt="' . ( ! empty( $data['image_alt'] ) ? esc_attr( $data['image_alt'] ) : esc_attr( $data['title'] ) ) . '"';
 			$post_thumbnail_url = isset( $data['post_thumbnail_url'] ) ? $data['post_thumbnail_url'] : false;
 			$feature_image      = $post_thumbnail_url ? '<img src="' . esc_url( $post_thumbnail_url ) . '" ' . $image_alt_text . ' loading="lazy" />' : '';
-			$feature_image      = ! empty( $feature_image ) ? $feature_image : '<img src="' . $placeholder_img . '" ' . $image_alt_text . ' />';
+			$feature_image      = ! empty( $feature_image ) ? $feature_image : '<img src="' . esc_url( $placeholder_img ) . '" ' . $image_alt_text . ' />';
 			$title              = isset( $data['title'] ) ? $data['title'] : '';
 			?>
 			<div class="sp-smart-post-search-item">
@@ -855,8 +855,7 @@ class Template {
 						?>
 						<div class="sp-smart-post-categories 
 						<?php
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						echo $meta_global_typo_class;
+						echo esc_attr( $meta_global_typo_class );
 						?>
 						">
 							<?php
@@ -864,8 +863,7 @@ class Template {
 								?>
 								<span class="sp-smart-post-category">
 								<?php
-								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								echo $category;
+								echo esc_html( $category );
 								?>
 								</span>
 								<?php
@@ -878,8 +876,7 @@ class Template {
 
 					<a href="<?php echo esc_attr( $permalink ); ?>" class="sp-smart-post-search-item-title 
 					<?php
-					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					echo $title_global_typo_class;
+					echo esc_attr( $title_global_typo_class );
 					?>
 					">
 					<?php
@@ -897,8 +894,7 @@ class Template {
 						?>
 						<div class="sp-smart-post-meta-list 
 						<?php
-						// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-						echo $meta_global_typo_class;
+						echo esc_attr( $meta_global_typo_class );
 						?>
 						">
 							<?php
@@ -906,8 +902,7 @@ class Template {
 								?>
 								<span class='sp-smart-post-meta'> 
 								<?php
-								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								echo $data['author'] ?? '';
+								echo esc_html( $data['author'] ?? '' );
 								?>
 								, </span>
 								<?php

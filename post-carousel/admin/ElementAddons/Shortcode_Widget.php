@@ -135,7 +135,7 @@ class Shortcode_Widget extends \Elementor\Widget_Base {
 			return;
 		}
 
-		$generator_id = $sp_pcp_shortcode;
+		$generator_id = (int) $sp_pcp_shortcode;
 
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			$shortcode_id = $generator_id; // Smart Post Show global ID for Shortcode metaboxes.

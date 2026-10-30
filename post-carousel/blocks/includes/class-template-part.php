@@ -172,7 +172,7 @@ class Template_Part {
 			$feature_image = '<img src="' . esc_url( $attachment_url ) . '" ' . $image_alt_text . ' />';
 		}
 
-		$feature_image = ! empty( $feature_image ) ? $feature_image : '<img src="' . $placeholder_img . '" ' . $image_alt_text . ' />';
+		$feature_image = ! empty( $feature_image ) ? $feature_image : '<img src="' . esc_url( $placeholder_img ) . '" ' . $image_alt_text . ' />';
 
 		preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/', $feature_image, $video_feature_image );
 
@@ -253,7 +253,7 @@ class Template_Part {
 	 */
 	public static function title( $attributes, $data, $progress = false ) {
 		$show_title   = isset( $attributes['titleShow'] ) ? $attributes['titleShow'] : true;
-		$title_tag    = isset( $attributes['titleHTMLTag'] ) ? $attributes['titleHTMLTag'] : 'h3';
+		$title_tag    = Helper::sanitize_html_tag( $attributes['titleHTMLTag'] ?? 'h3', 'h3' );
 		$title_effect = isset( $attributes['titleEffect'] ) ? $attributes['titleEffect'] : 'none';
 
 		$title_type = isset( $attributes['titleType'] ) ? $attributes['titleType'] : 'limit';
@@ -1129,8 +1129,10 @@ class Template_Part {
 					if ( 'all' === $author_type || 'exclude' === $author_type ) {
 						$authors = get_users(
 							array(
-								'orderby' => 'display_name',
-								'order'   => 'ASC',
+								'orderby'             => 'display_name',
+								'order'               => 'ASC',
+								// Only list users with published content, never every registered user.
+								'has_published_posts' => is_string( $post_type ) && post_type_exists( $post_type ) ? array( $post_type ) : true,
 							)
 						);
 						if ( 'exclude' === $author_type ) {
@@ -1143,7 +1145,7 @@ class Template_Part {
 							$post_count = count_user_posts( $author->data->ID, $post_type );
 							?>
 							<option value="<?php echo esc_attr( $author->data->ID ); ?>"
-								data-default-count="<?php echo intval( $post_count ); ?>" data-label="<?php echo esc_html( $author->data->display_name ); ?>">
+								data-default-count="<?php echo intval( $post_count ); ?>" data-label="<?php echo esc_attr( $author->data->display_name ); ?>">
 								<?php echo esc_html( $author->data->display_name ); ?>
 								(<?php echo intval( $post_count ); ?>)
 							</option>
@@ -1154,7 +1156,7 @@ class Template_Part {
 							$post_count = count_user_posts( $author['id'], $post_type );
 							?>
 							<option value="<?php echo esc_attr( $author['id'] ); ?>"
-								data-default-count="<?php echo intval( $post_count ); ?>" data-label="<?php echo esc_html( $author['label'] ); ?>">
+								data-default-count="<?php echo intval( $post_count ); ?>" data-label="<?php echo esc_attr( $author['label'] ); ?>">
 								<?php echo esc_html( $author['label'] ); ?>
 								(<?php echo intval( $post_count ); ?>)
 							</option>
@@ -1256,7 +1258,7 @@ class Template_Part {
 			<div class="sp-smart-post-pagination-section sp-justify-<?php echo esc_attr( $pagination_align ); ?> <?php echo esc_attr( $additional_css_class ); ?>" data-pages="<?php echo esc_attr( $pages ); ?>"
 				data-current="<?php echo esc_attr( $page_current ); ?>"
 				data-paginationtype="<?php echo esc_attr( $pagination_type ); ?>"
-				data-endmessage="<?php echo esc_html( $pagination_end_message ); ?>"
+				data-endmessage="<?php echo esc_attr( $pagination_end_message ); ?>"
 				data-paginationstyle="<?php echo esc_attr( $pagination_style ); ?>">
 				<?php if ( 'load-more' === $pagination_type ) { ?>
 					<div class="sp-smart-post-load-more-button">

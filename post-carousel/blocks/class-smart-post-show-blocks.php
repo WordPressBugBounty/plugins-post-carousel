@@ -1415,7 +1415,8 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Init' ) ) {
 			}
 
 			$post = get_post( $post_id );
-			if ( ! $post ) {
+			// Only post types the blocks can list (public ones); never e.g. WooCommerce coupons.
+			if ( ! $post || empty( \SmartPostShow\Blocks\PostQueryHandler::filter_public_post_types( $post->post_type ) ) ) {
 				wp_send_json_error( 'Invalid or unpublished post.' );
 			}
 			// Honour WordPress password protection — unauthenticated callers

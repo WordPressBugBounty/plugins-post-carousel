@@ -148,7 +148,7 @@ class Shortcode_Widget_Deprecated extends \Elementor\Widget_Base {
 			return;
 		}
 
-		$generator_id = $sp_pcp_shortcode;
+		$generator_id = (int) $sp_pcp_shortcode;
 
 		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
 			$shortcode_id = esc_attr( $generator_id ); // Smart Post Show global ID for Shortcode metaboxes.
@@ -160,7 +160,7 @@ class Shortcode_Widget_Deprecated extends \Elementor\Widget_Base {
 			$section_title = get_the_title( $shortcode_id );
 			// Load dynamic style for the backend preview.
 			$dynamic_style = Smart_Post_Show_Public::load_dynamic_style( $shortcode_id, $view_options, $layout );
-			echo '<style id="sps_dynamic_' . esc_attr( $shortcode_id ) . '">' . $dynamic_style['dynamic_css'] . '</style>'; // phpcs:ignore
+			echo '<style id="sps_dynamic_' . esc_attr( $shortcode_id ) . '">' . wp_strip_all_tags( $dynamic_style['dynamic_css'] ) . '</style>'; // phpcs:ignore
 			SP_PC_Output::pc_html_show( $view_options, $layout, $shortcode_id, $section_title );
 		} else {
 			echo do_shortcode( '[smart_post_show id="' . $generator_id . '"]' );

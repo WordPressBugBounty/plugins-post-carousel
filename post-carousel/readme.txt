@@ -5,7 +5,7 @@ Requires at least: 5.9
 Tested up to: 7.1
 WC requires at least: 5.0
 WC tested up to: 11.2.1
-Stable tag: 4.0.9
+Stable tag: 4.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -470,6 +470,11 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.10 – Oct 30, 2026 =
+* Improved: Strengthened output security across blocks, filters, Smart Search, the video gallery, and Table of Contents.
+* Improved: Tightened permission checks for settings, show import/export, block CSS saving, and editor data.
+* Improved: The Author Filter now lists only authors with published posts.
 
 = 4.0.9 – Oct 21, 2026 =
 * Improved: Strengthened editor security by making block preview and page content lookups available to authorized users only.

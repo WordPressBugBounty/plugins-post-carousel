@@ -580,51 +580,74 @@ class SpSmartVideoPlayer {
 	}
 
 	loadVideo() {
-		this.container.innerHTML = this.getEmbedHTML(this.url);
+		this.container.textContent = "";
+		this.container.appendChild(this.getEmbedElement(this.url));
 	}
 
+	// Kept for backward compatibility; the markup is serialized from DOM nodes, so attribute values are escaped.
 	getEmbedHTML(url) {
+		const wrapper = document.createElement("div");
+		wrapper.appendChild(this.getEmbedElement(url));
+		return wrapper.innerHTML;
+	}
+
+	// Build the player with DOM APIs; the URL comes from a data attribute and must never be parsed as HTML.
+	getEmbedElement(url) {
+		const message = (text) => {
+			const p = document.createElement("p");
+			p.style.color = "red";
+			p.textContent = text;
+			return p;
+		};
+		const iframe = (src, allow) => {
+			const el = document.createElement("iframe");
+			el.setAttribute("width", "100%");
+			el.setAttribute("height", "100%");
+			el.src = src;
+			el.setAttribute("frameborder", "0");
+			el.allow = allow;
+			el.allowFullscreen = true;
+			return el;
+		};
+
 		if (!url) {
-			return `<p style="color:red;">⚠️ No video URL provided.</p>`;
+			return message("⚠️ No video URL provided.");
 		}
 
 		if (url.includes("youtube.com") || url.includes("youtu.be")) {
 			const id = (url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/) || [])[1];
 			if (id) {
-				return `
-					<iframe
-						width="100%"
-						height="100%"
-						src="https://www.youtube.com/embed/${id}?autoplay=1"
-						frameborder="0"
-						allow="autoplay; encrypted-media"
-						allowfullscreen
-					></iframe>`;
+				return iframe(
+					`https://www.youtube.com/embed/${id}?autoplay=1`,
+					"autoplay; encrypted-media"
+				);
 			}
 		}
 
 		if (url.includes("vimeo.com")) {
-			const id = url.split("/").pop();
-			return `
-				<iframe
-					width="100%"
-					height="100%"
-					src="https://player.vimeo.com/video/${id}?autoplay=1"
-					frameborder="0"
-					allow="autoplay; fullscreen"
-					allowfullscreen
-				></iframe>`;
+			const id = (url.match(/vimeo\.com\/(?:.*\/)?(\d+)/) || [])[1];
+			if (id) {
+				return iframe(
+					`https://player.vimeo.com/video/${id}?autoplay=1`,
+					"autoplay; fullscreen"
+				);
+			}
 		}
 
 		if (url.match(/\.(mp4|webm|ogg)$/)) {
-			return `
-				<video width="100%" height="100%" controls autoplay>
-					<source src="${url}" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>`;
+			const video = document.createElement("video");
+			video.setAttribute("width", "100%");
+			video.setAttribute("height", "100%");
+			video.controls = true;
+			video.autoplay = true;
+			const source = document.createElement("source");
+			source.src = url;
+			source.type = "video/mp4";
+			video.append(source, "Your browser does not support the video tag.");
+			return video;
 		}
 
-		return `<p style="color:red;">⚠️ Unsupported video link!</p>`;
+		return message("⚠️ Unsupported video link!");
 	}
 
 	/**

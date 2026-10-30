@@ -397,6 +397,11 @@ if ( ! class_exists( 'SP_PC_Metabox' ) ) {
 				return $post_id;
 			}
 
+			// Only save onto this metabox's own post types, and only for users who can edit the post.
+			if ( ! current_user_can( 'edit_post', $post_id ) || ! in_array( get_post_type( $post_id ), $this->post_type, true ) ) {
+				return $post_id;
+			}
+
 			// XSS ok.
 			// No worries, This "POST" requests is sanitizing in the below foreach.
 			// @codingStandardsIgnoreLine

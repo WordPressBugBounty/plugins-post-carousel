@@ -76,6 +76,7 @@ class SP_PC_HTML {
 		if ( $show_post_title && ! empty( $pcp_post_title ) ) {
 			// Post Title Settings.
 			$post_title_tag    = SP_PC_Functions::pcp_metabox_value( 'post_title_tag', $post_title_setting, 'h2' );
+			$post_title_tag    = in_array( $post_title_tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span' ), true ) ? $post_title_tag : 'h2';
 			$allowed_html_tags = array(
 				'em'     => array(),
 				'strong' => array(),

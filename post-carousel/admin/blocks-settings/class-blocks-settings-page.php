@@ -704,6 +704,14 @@ if ( ! class_exists( 'Sp_Smart_Post_Block_Admin_Menu_Page' ) ) {
 					$existing_options = array();
 				}
 
+				// Front-end JavaScript needs unfiltered_html; without it the stored value is kept.
+				if ( ! current_user_can( 'unfiltered_html' ) ) {
+					unset( $options['pcp_custom_js'] );
+				}
+				if ( isset( $options['pcp_custom_css'] ) && is_string( $options['pcp_custom_css'] ) ) {
+					$options['pcp_custom_css'] = wp_strip_all_tags( $options['pcp_custom_css'] );
+				}
+
 				// Merge new values over old ones.
 				$merged_options = array_merge( $existing_options, $options );
 

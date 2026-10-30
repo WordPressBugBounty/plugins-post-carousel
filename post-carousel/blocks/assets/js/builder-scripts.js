@@ -2545,10 +2545,10 @@ function init() {
 						buttonPreloader?.classList?.add('sp-d-hidden');
 					}
 					if (page >= total && loadMoreWrapper) {
-						loadMoreWrapper.insertAdjacentHTML(
-							'beforeend',
-							`<span class="sps-no-more-post">${endMessage}</span>`
-						);
+						const noMorePost = document.createElement('span');
+						noMorePost.className = 'sps-no-more-post';
+						noMorePost.textContent = endMessage;
+						loadMoreWrapper.appendChild(noMorePost);
 						const loadMoreWrapperBtn =
 							loadMoreWrapper.querySelector('a');
 						loadMoreWrapperBtn.style.display = 'none';
@@ -2805,7 +2805,7 @@ function init() {
 
 		// Update button label
 		if (spanLabel) {
-			spanLabel.innerHTML = `${label}${count ? ` (${count})` : ''}`;
+			spanLabel.textContent = `${label}${count ? ` (${count})` : ''}`;
 		}
 
 		// Update select and trigger change

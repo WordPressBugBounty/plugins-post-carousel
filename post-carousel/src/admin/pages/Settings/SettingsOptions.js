@@ -243,6 +243,7 @@ export const Tools = ({ setPage }) => {
 		) {
 			const formData = new FormData();
 			formData.append("action", "pcp_export_shortcodes");
+			formData.append("nonce", sp_pcp_block_settings?.nonce);
 			formData.append("pcp_ids", selectedShortcode);
 
 			fetch(ajaxurl, {
@@ -282,6 +283,7 @@ export const Tools = ({ setPage }) => {
 				const fileContent = e.target.result;
 				const formData = new FormData();
 				formData.append("action", "pcp_import_shortcodes");
+				formData.append("nonce", sp_pcp_block_settings?.nonce);
 				formData.append("shortcode", fileContent);
 
 				fetch(ajaxurl, {

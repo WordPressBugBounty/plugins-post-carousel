@@ -217,6 +217,50 @@ class Helper {
 	}
 
 	/**
+	 * Returns a heading/text tag name from an allowlist.
+	 *
+	 * Block attributes are user-controlled, so a tag name must never be printed as-is.
+	 *
+	 * @param mixed  $tag     Requested tag name.
+	 * @param string $default Tag used when the requested one is not allowed.
+	 * @return string Allowed tag name.
+	 */
+	public static function sanitize_html_tag( $tag, $default = 'h3' ) {
+		$allowed_tags = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span' );
+		$tag          = is_string( $tag ) ? strtolower( trim( $tag ) ) : '';
+
+		return in_array( $tag, $allowed_tags, true ) ? $tag : $default;
+	}
+
+	/**
+	 * Returns a CSS color value the block color pickers can produce, or the default.
+	 *
+	 * Accepts hex, rgb(a)/hsl(a) and CSS custom properties (global colors).
+	 *
+	 * @param mixed  $color   Requested color.
+	 * @param string $default Color used when the requested one is not valid.
+	 * @return string Valid color value.
+	 */
+	public static function sanitize_css_color( $color, $default = '' ) {
+		$color = is_string( $color ) ? trim( $color ) : '';
+		if ( '' === $color ) {
+			return $default;
+		}
+		$patterns = array(
+			'/^#[0-9a-f]{3,8}$/i',
+			'/^(rgb|hsl)a?\(\s*[0-9.,%\s\/deg]+\)$/i',
+			'/^var\(\s*--[a-z0-9_-]+\s*(,\s*#[0-9a-f]{3,8}\s*)?\)$/i',
+			'/^[a-z]+$/i',
+		);
+		foreach ( $patterns as $pattern ) {
+			if ( preg_match( $pattern, $color ) ) {
+				return $color;
+			}
+		}
+		return $default;
+	}
+
+	/**
 	 * Retrieves the SVG icon for the author.
 	 *
 	 * @param array $icon_type Icon type.
@@ -491,22 +535,22 @@ class Helper {
 
 		// Match <img> for images.
 		if ( preg_match( '/<img[^>]+src=["\']([^"\']+)["\']/', $content, $match ) ) {
-			$medias['img'] = '<img src="' . $match[1] . '" />';
+			$medias['img'] = '<img src="' . esc_url( $match[1] ) . '" />';
 		}
 
 		// Match video <source> or <video>.
 		if ( preg_match( '/<(video|source)[^>]+src=["\']([^"\']+\.(mp4|webm|mov))["\']/', $content, $match ) ) {
-			$medias['video'] = '<video controls><source src=' . $match[2] . ' type="video/mp4" /></video>';
+			$medias['video'] = '<video controls><source src="' . esc_url( $match[2] ) . '" type="video/mp4" /></video>';
 		}
 
 		// Match YouTube/Vimeo iframe.
 		if ( preg_match( '/<iframe[^>]+src=["\']([^"\']*(youtube|vimeo)\.com[^"\']*)["\']/', $content, $match ) ) {
-			$medias['video'] = '<video controls><source src=' . $match[1] . ' type="video/mp4" /></video>';
+			$medias['video'] = '<video controls><source src="' . esc_url( $match[1] ) . '" type="video/mp4" /></video>';
 		}
 
 		// Match audio <source> or <audio>.
 		if ( preg_match( '/<(audio|source)[^>]+src=["\']([^"\']+\.(mp3|ogg|wav))["\']/', $content, $match ) ) {
-			$medias['audio'] = '<audio controls > <source src="' . $match[2] . '" type ="audio/mpeg" /></audio>';
+			$medias['audio'] = '<audio controls > <source src="' . esc_url( $match[2] ) . '" type ="audio/mpeg" /></audio>';
 		}
 
 		if ( ! empty( $medias['image_source'] ) && 'image_source' === $type ) {

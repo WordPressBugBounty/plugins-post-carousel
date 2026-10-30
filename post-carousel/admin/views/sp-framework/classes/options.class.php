@@ -445,7 +445,13 @@ if ( ! class_exists( 'SP_PC_Options' ) ) {
 										$sanitized['sp_post_carousel_settings'][ $sub_key ] = wp_strip_all_tags( $sub_val );
 										break;
 									case 'pcp_custom_js':
-										$sanitized['sp_post_carousel_settings'][ $sub_key ] = wp_kses_post( $sub_val );
+										// Front-end JavaScript needs unfiltered_html (not granted to multisite subsite admins); others keep the stored value.
+										if ( current_user_can( 'unfiltered_html' ) ) {
+											$sanitized['sp_post_carousel_settings'][ $sub_key ] = wp_kses_post( $sub_val );
+										} else {
+											$stored_settings = get_option( 'sp_post_carousel_settings', array() );
+											$sanitized['sp_post_carousel_settings'][ $sub_key ] = is_array( $stored_settings ) && isset( $stored_settings['pcp_custom_js'] ) ? $stored_settings['pcp_custom_js'] : '';
+										}
 										break;
 									default:
 										$sanitized['sp_post_carousel_settings'][ $sub_key ] = sanitize_text_field( $sub_val );

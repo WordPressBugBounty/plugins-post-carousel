@@ -280,7 +280,7 @@ class Smart_Post_Show_Public {
 			}
 		}
 		// Custom css merge with dynamic style.
-		$pcp_custom_css = isset( $pcp_settings['pcp_custom_css'] ) ? trim( html_entity_decode( $pcp_settings['pcp_custom_css'] ) ) : '';
+		$pcp_custom_css = isset( $pcp_settings['pcp_custom_css'] ) ? trim( wp_strip_all_tags( html_entity_decode( $pcp_settings['pcp_custom_css'] ) ) ) : '';
 		if ( ! empty( $pcp_custom_css ) ) {
 			$custom_css .= $pcp_custom_css;
 		}

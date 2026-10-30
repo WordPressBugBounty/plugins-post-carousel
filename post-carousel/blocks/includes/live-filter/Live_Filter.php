@@ -97,7 +97,7 @@ class Live_Filter extends Block_Base {
 		$all_text_label    = $attributes['allTextLabel'] ?? 'All';
 		$filter_type       = $attributes['filterType'] ?? 'button';
 		$heading_label     = $attributes['headingLabel'] ?? 'Latest Posts';
-		$heading_tag       = $attributes['headingTag'] ?? 'h2';
+		$heading_tag       = Helper::sanitize_html_tag( $attributes['headingTag'] ?? 'h2', 'h2' );
 		$heading_style     = $attributes['headingStyle'] ?? '';
 		$taxonomy_type     = $attributes['taxonomyType'] ?? '';
 		$unique_id         = $attributes['uniqueId'] ?? '';

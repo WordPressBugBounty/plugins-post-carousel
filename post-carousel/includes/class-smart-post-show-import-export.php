@@ -75,9 +75,9 @@ class Smart_Post_Show_Import_Export {
 			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to export.', 'post-carousel' ) ) );
 		}
 
-		// Verify nonce only if provided.
+		// Require a nonce from the legacy Tools screen or the Smart Post dashboard.
 		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( $nonce && ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) && ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
 		}
 
@@ -222,9 +222,9 @@ class Smart_Post_Show_Import_Export {
 			wp_send_json_error( array( 'error' => esc_html__( 'You do not have permission to import.', 'post-carousel' ) ) );
 		}
 
-		// Verify nonce only if provided.
+		// Require a nonce from the legacy Tools screen or the Smart Post dashboard.
 		$nonce = ( ! empty( $_POST['nonce'] ) ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
-		if ( $nonce && ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'spf_options_nonce' ) && ! wp_verify_nonce( $nonce, 'sp-update-block-settings-nonce' ) ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Error: Nonce verification has failed. Please try again.', 'post-carousel' ) ), 401 );
 		}
 

@@ -109,7 +109,7 @@ function spsp_divi5_get_template_html( $request ) {
 
 	// Check if template exists and is published.
 	$template_post = get_post( $template_id );
-	if ( ! $template_post || 'publish' !== $template_post->post_status ) {
+	if ( ! $template_post || 'sp_post_template' !== $template_post->post_type || 'publish' !== $template_post->post_status ) {
 		return new \WP_REST_Response(
 			array(
 				'success' => false,

@@ -771,15 +771,18 @@ if ( ! class_exists( 'Sp_Smart_Post_Blocks_Query' ) ) {
 				$post_count = isset( wp_count_posts( $post_type )->publish ) ? (int) wp_count_posts( $post_type )->publish : 0;
 			}
 
+			// User details and meta keys are editor data; the action is also open to visitors.
+			$can_edit_posts = current_user_can( 'edit_posts' );
+
 			wp_send_json(
 				array(
 					'taxonomies'          => $taxonomy_list,
-					'authors'             => $filtered_authors,
-					'author_list'         => $author_list,
+					'authors'             => $can_edit_posts ? $filtered_authors : array(),
+					'author_list'         => $can_edit_posts ? $author_list : array(),
 					'post_count'          => $post_count,
 					'image_sizes'         => get_intermediate_image_sizes(),
 					'all_post_type_list'  => $all_post_type_list,
-					'all_meta_field_list' => $meta_field_list,
+					'all_meta_field_list' => $can_edit_posts ? $meta_field_list : array(),
 				)
 			);
 		}
