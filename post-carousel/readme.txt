@@ -4,8 +4,8 @@ Tags:  post grid, post carousel, list category posts, gutenberg blocks, page bui
 Requires at least: 5.9
 Tested up to: 7.1
 WC requires at least: 5.0
-WC tested up to: 11.2.1
-Stable tag: 4.0.10
+WC tested up to: 11.3.0
+Stable tag: 4.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Display posts in Grid, Carousel, Slider, Timeline, List & Live Filter layouts wi
 🚀 Explore [**60+ Advanced Post & Page Builder Blocks (Free & Pro)**](https://wpsmartpost.com/blocks/)  
 📚 Start with [**250+ Ready Patterns Library**](https://wpsmartpost.com/patterns/)  
 🌐 Visit the Official Website [**Smart Post**](https://wpsmartpost.com/)  
-❤️ 178+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
+❤️ 181+ ⭐⭐⭐⭐⭐ Reviews & 4.9/5 Happiness Rating on [**Trustpilot**](https://www.trustpilot.com/review/shapedplugin.com)
 
 [**Smart Post**](https://wpsmartpost.com/) is a next-generation Post Grid and Gutenberg Page Builder Blocks plugin designed to help you build stunning blogs, magazines, news portals, and content-driven websites with ease. Whether you're creating a new site or upgrading an existing one, Smart Post lets you transform your content into modern, engaging layouts in minutes—no coding required.
 
@@ -470,6 +470,10 @@ Yes, Smart Post works with WordPress multisite networks.
 
 
 == Changelog ==
+
+= 4.0.11 – Nov 12, 2026 =
+* Fixed: A PHP warning on the Recommended plugins page when a plugin icon was missing.
+* Tested: WooCommerce 11.3.0 compatibility.
 
 = 4.0.10 – Oct 30, 2026 =
 * Improved: Strengthened output security across blocks, filters, Smart Search, the video gallery, and Table of Contents.

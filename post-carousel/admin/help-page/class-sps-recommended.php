@@ -216,7 +216,7 @@ class SPS_Recommended {
 								'rating'            => $pl['rating'],
 								'num_ratings'       => $pl['num_ratings'],
 								'short_description' => $pl['short_description'],
-								'icons'             => $pl['icons']['2x'],
+								'icons'             => $pl['icons']['2x'] ?? $pl['icons']['1x'] ?? '',
 							);
 						}
 					}
